@@ -511,9 +511,7 @@ SequencedWorkerPool::Worker::~Worker() {
 }
 
 void SequencedWorkerPool::Worker::Run() {
-#if defined(OS_WIN)
   win::ScopedCOMInitializer com_initializer;
-#endif
 
   // Store a pointer to this worker in thread local storage for static function
   // access.
