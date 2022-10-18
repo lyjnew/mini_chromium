@@ -6,10 +6,10 @@
 //
 // Deal with the differences between Microsoft and GNU implemenations
 // of hash_map. Allows all platforms to use |base::hash_map| and
-// |base::hash_set|.
+// |crbase::hash_set|.
 //  eg:
-//   base::hash_map<int> my_map;
-//   base::hash_set<int> my_set;
+//   crbase::hash_map<int> my_map;
+//   crbase::hash_set<int> my_set;
 //
 // NOTE: It is an explicit non-goal of this class to provide a generic hash
 // function for pointers.  If you want to hash a pointers to a particular class,
@@ -160,7 +160,7 @@ using hash_set = std::unordered_set<Key, Hash, Pred, Alloc>;
 // Otherwise, use the pre-standard ones, but override the default hash to match
 // C++11.
 template<class Key, class T,
-         class Hash = BASE_HASH_NAMESPACE::hash<Key>,
+         class Hash = CRBASE_HASH_NAMESPACE::hash<Key>,
          class Pred = std::equal_to<Key>,
          class Alloc = std::allocator<std::pair<const Key, T>>>
 using hash_map = CRBASE_HASH_IMPL_NAMESPACE::hash_map<Key, T, Hash, Pred, Alloc>;
