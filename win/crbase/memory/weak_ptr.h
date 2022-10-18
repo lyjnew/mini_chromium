@@ -74,7 +74,7 @@
 #include "crbase/logging.h"
 #include "crbase/macros.h"
 #include "crbase/memory/ref_counted.h"
-///#include "crbase/sequence_checker.h"
+#include "crbase/sequence_checker.h"
 #include "crbase/template_util.h"
 
 namespace crbase {
@@ -102,7 +102,7 @@ class CRBASE_EXPORT WeakReference {
 
     ~Flag();
 
-///    SequenceChecker sequence_checker_;
+    SequenceChecker sequence_checker_;
     bool is_valid_;
   };
 
