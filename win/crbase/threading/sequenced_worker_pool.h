@@ -50,9 +50,9 @@ class SequencedTaskRunner;
 //   SequencedWorkerPool::SequenceToken token =
 //       SequencedWorkerPool::GetSequenceToken();
 //   pool.PostSequencedWorkerTask(token, SequencedWorkerPool::SKIP_ON_SHUTDOWN,
-//                                FROM_HERE, base::Bind(...));
+//                                FROM_HERE, crbase::Bind(...));
 //   pool.PostSequencedWorkerTask(token, SequencedWorkerPool::SKIP_ON_SHUTDOWN,
-//                                FROM_HERE, base::Bind(...));
+//                                FROM_HERE, crbase::Bind(...));
 //
 // You can make named sequence tokens to make it easier to share a token
 // across different components.
