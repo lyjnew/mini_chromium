@@ -362,6 +362,33 @@
     <ClInclude Include="memory\shared_memory_handle.h">
       <Filter>memory</Filter>
     </ClInclude>
+    <ClInclude Include="process\kill.h">
+      <Filter>process</Filter>
+    </ClInclude>
+    <ClInclude Include="process\launch.h">
+      <Filter>process</Filter>
+    </ClInclude>
+    <ClInclude Include="process\process.h">
+      <Filter>process</Filter>
+    </ClInclude>
+    <ClInclude Include="process\process_info.h">
+      <Filter>process</Filter>
+    </ClInclude>
+    <ClInclude Include="process\process_iterator.h">
+      <Filter>process</Filter>
+    </ClInclude>
+    <ClInclude Include="win\object_watcher.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="win\scoped_process_information.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="win\startup_information.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="debug\stack_trace.h">
+      <Filter>debug</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="strings\string_piece.cc">
@@ -635,6 +662,45 @@
     </ClCompile>
     <ClCompile Include="memory\shared_memory_handle_win.cc">
       <Filter>memory</Filter>
+    </ClCompile>
+    <ClCompile Include="process\kill.cc">
+      <Filter>process</Filter>
+    </ClCompile>
+    <ClCompile Include="process\kill_win.cc">
+      <Filter>process</Filter>
+    </ClCompile>
+    <ClCompile Include="process\launch.cc">
+      <Filter>process</Filter>
+    </ClCompile>
+    <ClCompile Include="process\launch_win.cc">
+      <Filter>process</Filter>
+    </ClCompile>
+    <ClCompile Include="process\process_info_win.cc">
+      <Filter>process</Filter>
+    </ClCompile>
+    <ClCompile Include="process\process_win.cc">
+      <Filter>process</Filter>
+    </ClCompile>
+    <ClCompile Include="process\process_iterator.cc">
+      <Filter>process</Filter>
+    </ClCompile>
+    <ClCompile Include="process\process_iterator_win.cc">
+      <Filter>process</Filter>
+    </ClCompile>
+    <ClCompile Include="win\object_watcher.cc">
+      <Filter>win</Filter>
+    </ClCompile>
+    <ClCompile Include="win\scoped_process_information.cc">
+      <Filter>win</Filter>
+    </ClCompile>
+    <ClCompile Include="win\startup_information.cc">
+      <Filter>win</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\stack_trace.cc">
+      <Filter>debug</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\stack_trace_win.cc">
+      <Filter>debug</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

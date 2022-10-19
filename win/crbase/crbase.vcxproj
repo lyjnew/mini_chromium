@@ -26,26 +26,26 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -102,7 +102,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>ws2_32.lib;powrprof.lib;netapi32.lib;setupapi.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ws2_32.lib;powrprof.lib;netapi32.lib;setupapi.lib;shlwapi.lib;dbghelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -118,7 +118,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>ws2_32.lib;powrprof.lib;netapi32.lib;setupapi.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ws2_32.lib;powrprof.lib;netapi32.lib;setupapi.lib;shlwapi.lib;dbghelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -138,7 +138,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>ws2_32.lib;powrprof.lib;netapi32.lib;setupapi.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ws2_32.lib;powrprof.lib;netapi32.lib;setupapi.lib;shlwapi.lib;dbghelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -158,7 +158,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>ws2_32.lib;powrprof.lib;netapi32.lib;setupapi.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ws2_32.lib;powrprof.lib;netapi32.lib;setupapi.lib;shlwapi.lib;dbghelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -188,6 +188,7 @@
     <ClInclude Include="debug\alias.h" />
     <ClInclude Include="debug\debugger.h" />
     <ClInclude Include="debug\profiler.h" />
+    <ClInclude Include="debug\stack_trace.h" />
     <ClInclude Include="debug\task_annotator.h" />
     <ClInclude Include="environment.h" />
     <ClInclude Include="event_types.h" />
@@ -229,8 +230,13 @@
     <ClInclude Include="path_service.h" />
     <ClInclude Include="pending_task.h" />
     <ClInclude Include="pickle.h" />
+    <ClInclude Include="process\kill.h" />
+    <ClInclude Include="process\launch.h" />
     <ClInclude Include="process\memory.h" />
+    <ClInclude Include="process\process.h" />
     <ClInclude Include="process\process_handle.h" />
+    <ClInclude Include="process\process_info.h" />
+    <ClInclude Include="process\process_iterator.h" />
     <ClInclude Include="process\process_metrics.h" />
     <ClInclude Include="profiler\alternate_timer.h" />
     <ClInclude Include="profiler\tracked_time.h" />
@@ -288,14 +294,17 @@
     <ClInclude Include="tracking_info.h" />
     <ClInclude Include="tuple.h" />
     <ClInclude Include="values.h" />
+    <ClInclude Include="win\object_watcher.h" />
     <ClInclude Include="win\pe_image.h" />
     <ClInclude Include="win\registry.h" />
     <ClInclude Include="win\scoped_comptr.h" />
     <ClInclude Include="win\scoped_com_initializer.h" />
     <ClInclude Include="win\scoped_co_mem.h" />
     <ClInclude Include="win\scoped_handle.h" />
+    <ClInclude Include="win\scoped_process_information.h" />
     <ClInclude Include="win\scoped_propvariant.h" />
     <ClInclude Include="win\shortcut.h" />
+    <ClInclude Include="win\startup_information.h" />
     <ClInclude Include="win\windows_version.h" />
     <ClInclude Include="win\win_util.h" />
     <ClInclude Include="win\wrapped_window_proc.h" />
@@ -314,6 +323,8 @@
     <ClCompile Include="debug\debugger.cc" />
     <ClCompile Include="debug\debugger_win.cc" />
     <ClCompile Include="debug\profiler.cc" />
+    <ClCompile Include="debug\stack_trace.cc" />
+    <ClCompile Include="debug\stack_trace_win.cc" />
     <ClCompile Include="debug\task_annotator.cc" />
     <ClCompile Include="environment.cc" />
     <ClCompile Include="files\file.cc" />
@@ -347,12 +358,20 @@
     <ClCompile Include="path_service.cc" />
     <ClCompile Include="pending_task.cc" />
     <ClCompile Include="pickle.cc" />
+    <ClCompile Include="process\kill.cc" />
+    <ClCompile Include="process\kill_win.cc" />
+    <ClCompile Include="process\launch.cc" />
+    <ClCompile Include="process\launch_win.cc" />
     <ClCompile Include="process\memory.cc" />
     <ClCompile Include="process\memory_win.cc" />
     <ClCompile Include="process\process_handle.cc" />
     <ClCompile Include="process\process_handle_win.cc" />
+    <ClCompile Include="process\process_info_win.cc" />
+    <ClCompile Include="process\process_iterator.cc" />
+    <ClCompile Include="process\process_iterator_win.cc" />
     <ClCompile Include="process\process_metrics.cc" />
     <ClCompile Include="process\process_metrics_win.cc" />
+    <ClCompile Include="process\process_win.cc" />
     <ClCompile Include="profiler\alternate_timer.cc" />
     <ClCompile Include="profiler\tracked_time.cc" />
     <ClCompile Include="rand_util.cc" />
@@ -404,10 +423,13 @@
     <ClCompile Include="tracked_objects.cc" />
     <ClCompile Include="tracking_info.cc" />
     <ClCompile Include="values.cc" />
+    <ClCompile Include="win\object_watcher.cc" />
     <ClCompile Include="win\pe_image.cc" />
     <ClCompile Include="win\registry.cc" />
     <ClCompile Include="win\scoped_handle.cc" />
+    <ClCompile Include="win\scoped_process_information.cc" />
     <ClCompile Include="win\shortcut.cc" />
+    <ClCompile Include="win\startup_information.cc" />
     <ClCompile Include="win\windows_version.cc" />
     <ClCompile Include="win\win_util.cc" />
     <ClCompile Include="win\wrapped_window_proc.cc" />
