@@ -52,6 +52,9 @@
     <Filter Include="profiler">
       <UniqueIdentifier>{137c9d3b-e5ea-4bcc-93e8-f3715027f521}</UniqueIdentifier>
     </Filter>
+    <Filter Include="message_loop">
+      <UniqueIdentifier>{55a81543-fad7-4832-8043-92e220168bea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="strings\string_piece.h">
@@ -296,6 +299,69 @@
     <ClInclude Include="win\scoped_com_initializer.h">
       <Filter>win</Filter>
     </ClInclude>
+    <ClInclude Include="pending_task.h" />
+    <ClInclude Include="message_loop\incoming_task_queue.h">
+      <Filter>message_loop</Filter>
+    </ClInclude>
+    <ClInclude Include="message_loop\message_loop.h">
+      <Filter>message_loop</Filter>
+    </ClInclude>
+    <ClInclude Include="message_loop\message_loop_task_runner.h">
+      <Filter>message_loop</Filter>
+    </ClInclude>
+    <ClInclude Include="message_loop\message_pump.h">
+      <Filter>message_loop</Filter>
+    </ClInclude>
+    <ClInclude Include="message_loop\message_pump_win.h">
+      <Filter>message_loop</Filter>
+    </ClInclude>
+    <ClInclude Include="message_loop\timer_slack.h">
+      <Filter>message_loop</Filter>
+    </ClInclude>
+    <ClInclude Include="threading\non_thread_safe.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="threading\non_thread_safe_impl.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="win\wrapped_window_proc.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="process\memory.h">
+      <Filter>process</Filter>
+    </ClInclude>
+    <ClInclude Include="message_loop\message_pump_dispatcher.h">
+      <Filter>message_loop</Filter>
+    </ClInclude>
+    <ClInclude Include="event_types.h" />
+    <ClInclude Include="message_loop\message_pump_default.h">
+      <Filter>message_loop</Filter>
+    </ClInclude>
+    <ClInclude Include="run_loop.h" />
+    <ClInclude Include="debug\task_annotator.h">
+      <Filter>debug</Filter>
+    </ClInclude>
+    <ClInclude Include="win\win_util.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="win\scoped_propvariant.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="win\shortcut.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="win\scoped_comptr.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="synchronization\cancellation_flag.h">
+      <Filter>synchronization</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\shared_memory.h">
+      <Filter>memory</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\shared_memory_handle.h">
+      <Filter>memory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="strings\string_piece.cc">
@@ -518,6 +584,56 @@
     </ClCompile>
     <ClCompile Include="sys_info_win.cc" />
     <ClCompile Include="memory\singleton.cc">
+      <Filter>memory</Filter>
+    </ClCompile>
+    <ClCompile Include="pending_task.cc" />
+    <ClCompile Include="message_loop\incoming_task_queue.cc">
+      <Filter>message_loop</Filter>
+    </ClCompile>
+    <ClCompile Include="message_loop\message_loop.cc">
+      <Filter>message_loop</Filter>
+    </ClCompile>
+    <ClCompile Include="message_loop\message_loop_task_runner.cc">
+      <Filter>message_loop</Filter>
+    </ClCompile>
+    <ClCompile Include="message_loop\message_pump.cc">
+      <Filter>message_loop</Filter>
+    </ClCompile>
+    <ClCompile Include="message_loop\message_pump_win.cc">
+      <Filter>message_loop</Filter>
+    </ClCompile>
+    <ClCompile Include="threading\non_thread_safe_impl.cc">
+      <Filter>threading</Filter>
+    </ClCompile>
+    <ClCompile Include="win\wrapped_window_proc.cc">
+      <Filter>win</Filter>
+    </ClCompile>
+    <ClCompile Include="process\memory.cc">
+      <Filter>process</Filter>
+    </ClCompile>
+    <ClCompile Include="process\memory_win.cc">
+      <Filter>process</Filter>
+    </ClCompile>
+    <ClCompile Include="message_loop\message_pump_default.cc">
+      <Filter>message_loop</Filter>
+    </ClCompile>
+    <ClCompile Include="run_loop.cc" />
+    <ClCompile Include="debug\task_annotator.cc">
+      <Filter>debug</Filter>
+    </ClCompile>
+    <ClCompile Include="win\win_util.cc">
+      <Filter>win</Filter>
+    </ClCompile>
+    <ClCompile Include="win\shortcut.cc">
+      <Filter>win</Filter>
+    </ClCompile>
+    <ClCompile Include="synchronization\cancellation_flag.cc">
+      <Filter>synchronization</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\shared_memory_win.cc">
+      <Filter>memory</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\shared_memory_handle_win.cc">
       <Filter>memory</Filter>
     </ClCompile>
   </ItemGroup>

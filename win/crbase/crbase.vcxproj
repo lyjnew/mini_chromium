@@ -102,7 +102,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ws2_32.lib;powrprof.lib;netapi32.lib;setupapi.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -118,7 +118,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ws2_32.lib;powrprof.lib;netapi32.lib;setupapi.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -138,7 +138,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ws2_32.lib;powrprof.lib;netapi32.lib;setupapi.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -158,7 +158,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ws2_32.lib;powrprof.lib;netapi32.lib;setupapi.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -188,7 +188,9 @@
     <ClInclude Include="debug\alias.h" />
     <ClInclude Include="debug\debugger.h" />
     <ClInclude Include="debug\profiler.h" />
+    <ClInclude Include="debug\task_annotator.h" />
     <ClInclude Include="environment.h" />
+    <ClInclude Include="event_types.h" />
     <ClInclude Include="files\file.h" />
     <ClInclude Include="files\file_enumerator.h" />
     <ClInclude Include="files\file_path.h" />
@@ -206,8 +208,18 @@
     <ClInclude Include="memory\raw_scoped_refptr_mismatch_checker.h" />
     <ClInclude Include="memory\ref_counted.h" />
     <ClInclude Include="memory\scoped_ptr.h" />
+    <ClInclude Include="memory\shared_memory.h" />
+    <ClInclude Include="memory\shared_memory_handle.h" />
     <ClInclude Include="memory\singleton.h" />
     <ClInclude Include="memory\weak_ptr.h" />
+    <ClInclude Include="message_loop\incoming_task_queue.h" />
+    <ClInclude Include="message_loop\message_loop.h" />
+    <ClInclude Include="message_loop\message_loop_task_runner.h" />
+    <ClInclude Include="message_loop\message_pump.h" />
+    <ClInclude Include="message_loop\message_pump_default.h" />
+    <ClInclude Include="message_loop\message_pump_dispatcher.h" />
+    <ClInclude Include="message_loop\message_pump_win.h" />
+    <ClInclude Include="message_loop\timer_slack.h" />
     <ClInclude Include="move.h" />
     <ClInclude Include="numerics\safe_conversions.h" />
     <ClInclude Include="numerics\safe_conversions_impl.h" />
@@ -215,12 +227,15 @@
     <ClInclude Include="observer_list.h" />
     <ClInclude Include="observer_list_threadsafe.h" />
     <ClInclude Include="path_service.h" />
+    <ClInclude Include="pending_task.h" />
     <ClInclude Include="pickle.h" />
+    <ClInclude Include="process\memory.h" />
     <ClInclude Include="process\process_handle.h" />
     <ClInclude Include="process\process_metrics.h" />
     <ClInclude Include="profiler\alternate_timer.h" />
     <ClInclude Include="profiler\tracked_time.h" />
     <ClInclude Include="rand_util.h" />
+    <ClInclude Include="run_loop.h" />
     <ClInclude Include="scoped_clear_errno.h" />
     <ClInclude Include="sequenced_task_runner.h" />
     <ClInclude Include="sequenced_task_runner_helpers.h" />
@@ -237,6 +252,7 @@
     <ClInclude Include="strings\sys_string_conversions.h" />
     <ClInclude Include="strings\utf_string_conversions.h" />
     <ClInclude Include="strings\utf_string_conversion_utils.h" />
+    <ClInclude Include="synchronization\cancellation_flag.h" />
     <ClInclude Include="synchronization\condition_variable.h" />
     <ClInclude Include="synchronization\lock.h" />
     <ClInclude Include="synchronization\lock_impl.h" />
@@ -249,6 +265,8 @@
     <ClInclude Include="third_party\dmg_fp\dmg_fp.h" />
     <ClInclude Include="third_party\icu\icu_utf.h" />
     <ClInclude Include="third_party\nspr\prtime.h" />
+    <ClInclude Include="threading\non_thread_safe.h" />
+    <ClInclude Include="threading\non_thread_safe_impl.h" />
     <ClInclude Include="threading\platform_thread.h" />
     <ClInclude Include="threading\post_task_and_reply_impl.h" />
     <ClInclude Include="threading\sequenced_worker_pool.h" />
@@ -272,10 +290,15 @@
     <ClInclude Include="values.h" />
     <ClInclude Include="win\pe_image.h" />
     <ClInclude Include="win\registry.h" />
+    <ClInclude Include="win\scoped_comptr.h" />
     <ClInclude Include="win\scoped_com_initializer.h" />
     <ClInclude Include="win\scoped_co_mem.h" />
     <ClInclude Include="win\scoped_handle.h" />
+    <ClInclude Include="win\scoped_propvariant.h" />
+    <ClInclude Include="win\shortcut.h" />
     <ClInclude Include="win\windows_version.h" />
+    <ClInclude Include="win\win_util.h" />
+    <ClInclude Include="win\wrapped_window_proc.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="at_exit.cc" />
@@ -291,6 +314,7 @@
     <ClCompile Include="debug\debugger.cc" />
     <ClCompile Include="debug\debugger_win.cc" />
     <ClCompile Include="debug\profiler.cc" />
+    <ClCompile Include="debug\task_annotator.cc" />
     <ClCompile Include="environment.cc" />
     <ClCompile Include="files\file.cc" />
     <ClCompile Include="files\file_enumerator.cc" />
@@ -309,11 +333,22 @@
     <ClCompile Include="logging.cc" />
     <ClCompile Include="memory\aligned_memory.cc" />
     <ClCompile Include="memory\ref_counted.cc" />
+    <ClCompile Include="memory\shared_memory_handle_win.cc" />
+    <ClCompile Include="memory\shared_memory_win.cc" />
     <ClCompile Include="memory\singleton.cc" />
     <ClCompile Include="memory\weak_ptr.cc" />
+    <ClCompile Include="message_loop\incoming_task_queue.cc" />
+    <ClCompile Include="message_loop\message_loop.cc" />
+    <ClCompile Include="message_loop\message_loop_task_runner.cc" />
+    <ClCompile Include="message_loop\message_pump.cc" />
+    <ClCompile Include="message_loop\message_pump_default.cc" />
+    <ClCompile Include="message_loop\message_pump_win.cc" />
     <ClCompile Include="numerics\safe_math_impl.h" />
     <ClCompile Include="path_service.cc" />
+    <ClCompile Include="pending_task.cc" />
     <ClCompile Include="pickle.cc" />
+    <ClCompile Include="process\memory.cc" />
+    <ClCompile Include="process\memory_win.cc" />
     <ClCompile Include="process\process_handle.cc" />
     <ClCompile Include="process\process_handle_win.cc" />
     <ClCompile Include="process\process_metrics.cc" />
@@ -322,6 +357,7 @@
     <ClCompile Include="profiler\tracked_time.cc" />
     <ClCompile Include="rand_util.cc" />
     <ClCompile Include="rand_util_win.cc" />
+    <ClCompile Include="run_loop.cc" />
     <ClCompile Include="sequenced_task_runner.cc" />
     <ClCompile Include="sequence_checker_impl.cc" />
     <ClCompile Include="strings\stringprintf.cc" />
@@ -333,6 +369,7 @@
     <ClCompile Include="strings\sys_string_conversions.cc" />
     <ClCompile Include="strings\utf_string_conversions.cc" />
     <ClCompile Include="strings\utf_string_conversion_utils.cc" />
+    <ClCompile Include="synchronization\cancellation_flag.cc" />
     <ClCompile Include="synchronization\condition_variable_win.cc" />
     <ClCompile Include="synchronization\lock.cc" />
     <ClCompile Include="synchronization\lock_impl_win.cc" />
@@ -345,6 +382,7 @@
     <ClCompile Include="third_party\icu\icu_utf.cc" />
     <ClCompile Include="third_party\nspr\prtime.cc" />
     <ClCompile Include="third_party\superfasthash\superfasthash.c" />
+    <ClCompile Include="threading\non_thread_safe_impl.cc" />
     <ClCompile Include="threading\platform_thread_win.cc" />
     <ClCompile Include="threading\post_task_and_reply_impl.cc" />
     <ClCompile Include="threading\sequenced_worker_pool.cc" />
@@ -369,7 +407,10 @@
     <ClCompile Include="win\pe_image.cc" />
     <ClCompile Include="win\registry.cc" />
     <ClCompile Include="win\scoped_handle.cc" />
+    <ClCompile Include="win\shortcut.cc" />
     <ClCompile Include="win\windows_version.cc" />
+    <ClCompile Include="win\win_util.cc" />
+    <ClCompile Include="win\wrapped_window_proc.cc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

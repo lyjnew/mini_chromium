@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef MINI_CHROMIUMBASE_ENVIRONMENT_H_
-#define MINI_CHROMIUMBASE_ENVIRONMENT_H_
+#ifndef MINI_CHROMIUM_CRBASE_ENVIRONMENT_H_
+#define MINI_CHROMIUM_CRBASE_ENVIRONMENT_H_
 
 #include <map>
 #include <string>
@@ -59,4 +59,4 @@ CRBASE_EXPORT string16 AlterEnvironment(const wchar_t* env,
 
 }  // namespace crbase
 
-#endif  // MINI_CHROMIUMBASE_ENVIRONMENT_H_
+#endif  // MINI_CHROMIUM_CRBASE_ENVIRONMENT_H_

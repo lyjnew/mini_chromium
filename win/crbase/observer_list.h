@@ -161,7 +161,7 @@ template <class ObserverType>
 void ObserverListBase<ObserverType>::AddObserver(ObserverType* obs) {
   CR_DCHECK(obs);
   if (ContainsValue(observers_, obs)) {
-    NOTREACHED() << "Observers can only be added once!";
+    CR_NOTREACHED() << "Observers can only be added once!";
     return;
   }
   observers_.push_back(obs);
@@ -237,7 +237,7 @@ class ObserverList : public ObserverListBase<ObserverType> {
   do {                                                                   \
     if ((observer_list).might_have_observers()) {                        \
       crbase::ObserverListBase<ObserverType>::Iterator                   \
-        it_inside_observer_macro(&observer_list);                        \                      \
+          it_inside_observer_macro(&observer_list);                      \
       ObserverType* obs;                                                 \
       while ((obs = it_inside_observer_macro.GetNext()) != nullptr)      \
         obs->func;                                                       \

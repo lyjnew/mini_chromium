@@ -8,7 +8,7 @@
 #include <windows.h>
 
 #include "crbase/crbase_export.h"
-///#include "crbase/location.h"
+#include "crbase/location.h"
 #include "crbase/logging.h"
 #include "crbase/macros.h"
 #include "crbase/move.h"
@@ -74,8 +74,8 @@ class GenericScopedHandle {
 
       if (Traits::IsHandleValid(handle)) {
         handle_ = handle;
-        Verifier::StartTracking(handle, this, BASE_WIN_GET_CALLER, nullptr
-                                /*tracked_objects::GetProgramCounter()*/);
+        Verifier::StartTracking(handle, this, BASE_WIN_GET_CALLER,
+                                crtracked_objects::GetProgramCounter());
       }
       ::SetLastError(last_error);
     }
@@ -90,8 +90,8 @@ class GenericScopedHandle {
     Handle temp = handle_;
     handle_ = Traits::NullHandle();
     if (Traits::IsHandleValid(temp)) {
-      Verifier::StopTracking(temp, this, BASE_WIN_GET_CALLER, nullptr
-                             /*tracked_objects::GetProgramCounter()*/);
+      Verifier::StopTracking(temp, this, BASE_WIN_GET_CALLER, 
+                             crtracked_objects::GetProgramCounter());
     }
     return temp;
   }
@@ -99,8 +99,8 @@ class GenericScopedHandle {
   // Explicitly closes the owned handle.
   void Close() {
     if (Traits::IsHandleValid(handle_)) {
-      Verifier::StopTracking(handle_, this, BASE_WIN_GET_CALLER, nullptr
-                             /*tracked_objects::GetProgramCounter()*/);
+      Verifier::StopTracking(handle_, this, BASE_WIN_GET_CALLER, 
+                             crtracked_objects::GetProgramCounter());
 
       Traits::CloseHandle(handle_);
       handle_ = Traits::NullHandle();
