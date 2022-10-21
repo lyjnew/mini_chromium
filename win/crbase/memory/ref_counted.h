@@ -111,10 +111,10 @@ class CRBASE_EXPORT RefCountedThreadSafeBase {
 // knock-off of WebKit's RefCounted<T> class.  To use this guy just extend your
 // class from it like so:
 //
-//   class MyFoo : public base::RefCounted<MyFoo> {
+//   class MyFoo : public crbase::RefCounted<MyFoo> {
 //    ...
 //    private:
-//     friend class base::RefCounted<MyFoo>;
+//     friend class crbase::RefCounted<MyFoo>;
 //     ~MyFoo();
 //   };
 //
@@ -161,14 +161,14 @@ struct DefaultRefCountedThreadSafeTraits {
 //
 // A thread-safe variant of RefCounted<T>
 //
-//   class MyFoo : public base::RefCountedThreadSafe<MyFoo> {
+//   class MyFoo : public crbase::RefCountedThreadSafe<MyFoo> {
 //    ...
 //   };
 //
 // If you're using the default trait, then you should add compile time
 // asserts that no one else is deleting your object.  i.e.
 //    private:
-//     friend class base::RefCountedThreadSafe<MyFoo>;
+//     friend class crbase::RefCountedThreadSafe<MyFoo>;
 //     ~MyFoo();
 template <class T, typename Traits = DefaultRefCountedThreadSafeTraits<T> >
 class RefCountedThreadSafe : public subtle::RefCountedThreadSafeBase {

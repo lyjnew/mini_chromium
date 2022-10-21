@@ -116,7 +116,7 @@ class CRBASE_EXPORT MessageLoop : public MessagePump::Delegate {
   ///static void EnableHistogrammer(bool enable_histogrammer);
 
   typedef scoped_ptr<MessagePump> (MessagePumpFactory)();
-  // Uses the given base::MessagePumpForUIFactory to override the default
+  // Uses the given crbase::MessagePumpForUIFactory to override the default
   // MessagePump implementation for 'TYPE_UI'. Returns true if the factory
   // was successfully registered.
   static bool InitMessagePumpForUIFactory(MessagePumpFactory* factory);

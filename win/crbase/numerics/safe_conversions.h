@@ -112,9 +112,9 @@ inline Dst strict_cast(Src value) {
                 "The numeric conversion is out of range for this type. You "
                 "should probably use one of the following conversion "
                 "mechanisms on the value you want to pass:\n"
-                "- base::checked_cast\n"
-                "- base::saturated_cast\n"
-                "- base::CheckedNumeric");
+                "- crbase::checked_cast\n"
+                "- crbase::saturated_cast\n"
+                "- crbase::CheckedNumeric");
 
   return static_cast<Dst>(value);
 }

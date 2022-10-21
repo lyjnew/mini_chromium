@@ -89,7 +89,7 @@ namespace internal {
 class CRBASE_EXPORT WeakReference {
  public:
   // Although Flag is bound to a specific SequencedTaskRunner, it may be
-  // deleted from another via base::WeakPtr::~WeakPtr().
+  // deleted from another via crbase::WeakPtr::~WeakPtr().
   class CRBASE_EXPORT Flag : public RefCountedThreadSafe<Flag> {
    public:
     Flag();
@@ -155,7 +155,7 @@ class SupportsWeakPtrBase {
  public:
   // A safe static downcast of a WeakPtr<Base> to WeakPtr<Derived>. This
   // conversion will only compile if there is exists a Base which inherits
-  // from SupportsWeakPtr<Base>. See base::AsWeakPtr() below for a helper
+  // from SupportsWeakPtr<Base>. See crbase::AsWeakPtr() below for a helper
   // function that makes calling this easier.
   template<typename Derived>
   static WeakPtr<Derived> StaticAsWeakPtr(Derived* t) {
@@ -322,11 +322,11 @@ class SupportsWeakPtr : public internal::SupportsWeakPtrBase {
 // extends a Base that extends SupportsWeakPtr<Base>.
 //
 // EXAMPLE:
-//   class Base : public base::SupportsWeakPtr<Producer> {};
+//   class Base : public crbase::SupportsWeakPtr<Producer> {};
 //   class Derived : public Base {};
 //
 //   Derived derived;
-//   base::WeakPtr<Derived> ptr = base::AsWeakPtr(&derived);
+//   crbase::WeakPtr<Derived> ptr = crbase::AsWeakPtr(&derived);
 //
 // Note that the following doesn't work (invalid type conversion) since
 // Derived::AsWeakPtr() is WeakPtr<Base> SupportsWeakPtr<Base>::AsWeakPtr(),

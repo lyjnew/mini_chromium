@@ -105,7 +105,7 @@ inline void AlignedFree(void* ptr) {
 }
 
 // Deleter for use with scoped_ptr. E.g., use as
-//   scoped_ptr<Foo, base::AlignedFreeDeleter> foo;
+//   scoped_ptr<Foo, crbase::AlignedFreeDeleter> foo;
 struct AlignedFreeDeleter {
   inline void operator()(void* ptr) const {
     AlignedFree(ptr);

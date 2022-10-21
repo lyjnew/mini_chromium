@@ -64,15 +64,15 @@ inline void cr_ignore_result(const T&) {
 // that the variable has static storage class, and that the constructor should
 // do nothing to its state.  It indicates to the reader that it is legal to
 // declare a static instance of the class, provided the constructor is given
-// the base::LINKER_INITIALIZED argument.  Normally, it is unsafe to declare a
+// the crbase::LINKER_INITIALIZED argument.  Normally, it is unsafe to declare a
 // static variable that has a constructor or a destructor because invocation
 // order is undefined.  However, IF the type can be initialized by filling with
 // zeroes (which the loader does for static variables), AND the destructor also
 // does nothing to the storage, AND there are no virtual methods, then a
 // constructor declared as
-//       explicit MyClass(base::LinkerInitialized x) {}
+//       explicit MyClass(crbase::LinkerInitialized x) {}
 // and invoked as
-//       static MyClass my_variable_name(base::LINKER_INITIALIZED);
+//       static MyClass my_variable_name(crbase::LINKER_INITIALIZED);
 namespace crbase {
 enum LinkerInitialized { LINKER_INITIALIZED };
 

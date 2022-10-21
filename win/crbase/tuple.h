@@ -134,9 +134,9 @@ struct TupleLeaf {
 // Allows accessing an arbitrary tuple element by index.
 //
 // Example usage:
-//   base::Tuple<int, double> t2;
-//   base::get<0>(t2) = 42;
-//   base::get<1>(t2) = 3.14;
+//   crbase::Tuple<int, double> t2;
+//   crbase::get<0>(t2) = 42;
+//   crbase::get<1>(t2) = 3.14;
 
 template <size_t I, typename T>
 T& get(TupleLeaf<I, T>& leaf) {
@@ -197,7 +197,7 @@ inline void DispatchToMethodImpl(ObjT* obj,
                                  Method method,
                                  const Tuple<Ts...>& arg,
                                  IndexSequence<Ns...>) {
-  (obj->*method)(base::internal::UnwrapTraits<Ts>::Unwrap(get<Ns>(arg))...);
+  (obj->*method)(crbase::internal::UnwrapTraits<Ts>::Unwrap(get<Ns>(arg))...);
 }
 
 template <typename ObjT, typename Method, typename... Ts>

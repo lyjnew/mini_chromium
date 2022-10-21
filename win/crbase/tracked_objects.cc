@@ -1002,11 +1002,7 @@ ProcessDataPhaseSnapshot::~ProcessDataPhaseSnapshot() {
 // ProcessDataPhaseSnapshot
 
 ProcessDataSnapshot::ProcessDataSnapshot()
-#if !defined(OS_NACL)
     : process_id(crbase::GetCurrentProcId()) {
-#else
-    : process_id(base::kNullProcessId) {
-#endif
 }
 
 ProcessDataSnapshot::~ProcessDataSnapshot() {

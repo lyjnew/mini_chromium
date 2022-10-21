@@ -23,7 +23,7 @@ namespace crtracked_objects {
 // and our interfaces are modeled after what TimeTicks and TimeDelta use (so we
 // can swap them into place if we want to use the "real" classes).
 
-class CRBASE_EXPORT Duration {  // Similar to base::TimeDelta.
+class CRBASE_EXPORT Duration {  // Similar to crbase::TimeDelta.
  public:
   Duration();
 
@@ -46,7 +46,7 @@ class CRBASE_EXPORT Duration {  // Similar to base::TimeDelta.
   int32_t ms_;
 };
 
-class CRBASE_EXPORT TrackedTime {  // Similar to base::TimeTicks.
+class CRBASE_EXPORT TrackedTime {  // Similar to crbase::TimeTicks.
  public:
   TrackedTime();
   explicit TrackedTime(const crbase::TimeTicks& time);

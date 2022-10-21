@@ -41,8 +41,8 @@ enum SplitResult {
 //
 // To split on either commas or semicolons, keeping all whitespace:
 //
-//   std::vector<std::string> tokens = base::SplitString(
-//       input, ",;", base::KEEP_WHITESPACE, base::SPLIT_WANT_ALL);
+//   std::vector<std::string> tokens = crbase::SplitString(
+//       input, ",;", crbase::KEEP_WHITESPACE, crbase::SPLIT_WANT_ALL);
 CRBASE_EXPORT std::vector<std::string> SplitString(
     StringPiece input,
     StringPiece separators,
@@ -62,9 +62,9 @@ CRBASE_EXPORT std::vector<string16> SplitString(
 // To iterate through all whitespace-separated tokens in an input string:
 //
 //   for (const auto& cur :
-//        base::SplitStringPiece(input, base::kWhitespaceASCII,
-//                               base::KEEP_WHITESPACE,
-//                               base::SPLIT_WANT_NONEMPTY)) {
+//        crbase::SplitStringPiece(input, crbase::kWhitespaceASCII,
+//                                 crbase::KEEP_WHITESPACE,
+//                                 crbase::SPLIT_WANT_NONEMPTY)) {
 //     ...
 CRBASE_EXPORT std::vector<StringPiece> SplitStringPiece(
     StringPiece input,

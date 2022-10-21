@@ -45,7 +45,7 @@ class NonThreadSafeDoNothing {
 // aren't.  For example, a service or a singleton like the preferences system.
 //
 // Example:
-// class MyClass : public base::NonThreadSafe {
+// class MyClass : public crbase::NonThreadSafe {
 //  public:
 //   void Foo() {
 //     DCHECK(CalledOnValidThread());
@@ -53,11 +53,11 @@ class NonThreadSafeDoNothing {
 //   }
 // }
 //
-// Note that base::ThreadChecker offers identical functionality to
+// Note that crbase::ThreadChecker offers identical functionality to
 // NonThreadSafe, but does not require inheritance. In general, it is preferable
-// to have a base::ThreadChecker as a member, rather than inherit from
+// to have a crbase::ThreadChecker as a member, rather than inherit from
 // NonThreadSafe. For more details about when to choose one over the other, see
-// the documentation for base::ThreadChecker.
+// the documentation for crbase::ThreadChecker.
 #if ENABLE_CR_NON_THREAD_SAFE
 typedef NonThreadSafeImpl NonThreadSafe;
 #else

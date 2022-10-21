@@ -35,7 +35,7 @@
                                      (expression))
 
 #define CR_SPIN_FOR_TIMEDELTA_OR_UNTIL_TRUE(delta, expression) do { \
-  crbase::TimeTicks start = base::TimeTicks::Now(); \
+  crbase::TimeTicks start = crbase::TimeTicks::Now(); \
   const crbase::TimeDelta kTimeout = delta; \
     while (!(expression)) { \
       if (kTimeout < crbase::TimeTicks::Now() - start) { \

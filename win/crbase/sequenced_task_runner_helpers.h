@@ -72,7 +72,7 @@ namespace subtle {
 //      void* object)
 //
 // An implementation of this function should simply create a
-// base::Closure from (function, object) and return the result of
+// crbase::Closure from (function, object) and return the result of
 // posting the task.
 template <class T, class ReturnType>
 class DeleteHelperInternal {

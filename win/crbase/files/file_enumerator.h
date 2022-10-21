@@ -28,7 +28,7 @@ namespace crbase {
 //
 // Example:
 //
-//   crbase::FileEnumerator enum(my_dir, false, base::FileEnumerator::FILES,
+//   crbase::FileEnumerator enum(my_dir, false, crbase::FileEnumerator::FILES,
 //                               CR_FILE_PATH_LITERAL("*.txt"));
 //   for (crbase::FilePath name = enum.Next(); !name.empty(); 
   //      name = enum.Next())

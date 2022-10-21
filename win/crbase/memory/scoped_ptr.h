@@ -105,7 +105,7 @@ class RefCountedThreadSafeBase;
 // Function object which invokes 'free' on its parameter, which must be
 // a pointer. Can be used to store malloc-allocated pointers in scoped_ptr:
 //
-// scoped_ptr<int, base::FreeDeleter> foo_ptr(
+// scoped_ptr<int, crbase::FreeDeleter> foo_ptr(
 //     static_cast<int*>(malloc(sizeof(int))));
 struct FreeDeleter {
   inline void operator()(void* ptr) const {
@@ -140,7 +140,7 @@ class scoped_ptr_impl {
   scoped_ptr_impl(scoped_ptr_impl<U, V>* other)
       : data_(other->release(), other->get_deleter()) {
     // We do not support move-only deleters.  We could modify our move
-    // emulation to have base::subtle::move() and base::subtle::forward()
+    // emulation to have crbase::subtle::move() and crbase::subtle::forward()
     // functions that are imperfect emulations of their C++11 equivalents,
     // but until there's a requirement, just assume deleters are copyable.
   }

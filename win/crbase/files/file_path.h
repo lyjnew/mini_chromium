@@ -69,7 +69,7 @@
 //
 // WARNING: FilePaths should ALWAYS be displayed with LTR directionality, even
 // when the UI language is RTL. This means you always need to pass filepaths
-// through base::i18n::WrapPathWithLTRFormatting() before displaying it in the
+// through crbase::i18n::WrapPathWithLTRFormatting() before displaying it in the
 // RTL UI.
 //
 // This is a very common source of bugs, please try to keep this in mind.
@@ -246,7 +246,7 @@ class CRBASE_EXPORT FilePath {
   // TODO(davidben): Check all our extension-sensitive code to see if
   // we can rename this to Extension() and the other to something like
   // LongExtension(), defaulting to short extensions and leaving the
-  // long "extensions" to logic like base::GetUniquePathNumber().
+  // long "extensions" to logic like crbase::GetUniquePathNumber().
   StringType FinalExtension() const CR_WARN_UNUSED_RESULT;
 
   // Returns "C:\pics\jojo" for path "C:\pics\jojo.jpg"

@@ -20,7 +20,7 @@ namespace debug {
 // with local variables, not globals, object members, or function return values
 // - these must be copied to locals if you want to ensure they are recorded in
 // crash dumps. Function arguments are fine to use since the
-// base::debug::Alias() call on them will make sure they are copied to the stack
+// crbase::debug::Alias() call on them will make sure they are copied to the stack
 // even if they were passed in a register. Note that if the local variable is a
 // pointer then its value will be retained but the memory that it points to will
 // probably not be saved in the crash dump - by default only stack memory is
@@ -36,9 +36,9 @@ namespace debug {
 //   CR_CHECK(false);
 //
 // Case #2: Prevent a tail call into a function. This is useful to make sure the
-// function containing the call to base::debug::Alias() will be present in the
+// function containing the call to crbase::debug::Alias() will be present in the
 // call stack. In this case there is no memory that needs to be on
-// the stack so we can use nullptr. The call to base::debug::Alias() needs to
+// the stack so we can use nullptr. The call to crbase::debug::Alias() needs to
 // happen after the call that is suspected to be tail called. Note: This
 // technique will prevent tail calls at the specific call site only. To prevent
 // them for all invocations of a function look at NOT_TAIL_CALLED.
@@ -56,7 +56,7 @@ namespace debug {
 // identical. If finding the precise signature of a function in the call-stack
 // is important and it's suspected the function is identical to other functions
 // it can be made unique using NO_CODE_FOLDING which is a wrapper around
-// base::debug::Alias();
+// crbase::debug::Alias();
 //
 // Example usage:
 //   CR_NOINLINE void Foo(){
@@ -65,7 +65,7 @@ namespace debug {
 //   }
 //
 // Finally please note that these effects compound. This means that saving a
-// stack variable (case #1) using base::debug::Alias() will also inhibit
+// stack variable (case #1) using crbase::debug::Alias() will also inhibit
 // tail calls for calls in earlier lines and prevent code folding.
 
 void CRBASE_EXPORT Alias(const void* var);

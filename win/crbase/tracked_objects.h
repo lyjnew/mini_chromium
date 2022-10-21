@@ -51,7 +51,7 @@ struct TrackingInfo;
 //
 // The following describes the life cycle of tracking an instance.
 //
-// First off, when the instance is created, the FROM_HERE macro is expanded
+// First off, when the instance is created, the CR_FROM_HERE macro is expanded
 // to specify the birth place (file, line, function) where the instance was
 // created.  That data is used to create a transient Location instance
 // encapsulating the above triple of information.  The strings (like __FILE__)

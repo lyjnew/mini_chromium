@@ -70,8 +70,8 @@ class CRBASE_EXPORT SysInfo {
   // corresponding unit test.
   // DON'T USE THIS ON THE MAC OR WINDOWS to determine the current OS release
   // for OS version-specific feature checks and workarounds. If you must use
-  // an OS version check instead of a feature check, use the base::mac::IsOS*
-  // family from base/mac/mac_util.h, or base::win::GetVersion from
+  // an OS version check instead of a feature check, use the crbase::mac::IsOS*
+  // family from base/mac/mac_util.h, or crbase::win::GetVersion from
   // base/win/windows_version.h.
   static void OperatingSystemVersionNumbers(int32_t* major_version,
                                             int32_t* minor_version,

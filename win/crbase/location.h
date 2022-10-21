@@ -57,7 +57,7 @@ class CRBASE_EXPORT Location {
 
       // The file name will always be uniquely identified by its pointer since
       // it comes from __FILE__, so no need to check the contents of the string.
-      // See the definition of FROM_HERE in location.h, and how it is used
+      // See the definition of CR_FROM_HERE in location.h, and how it is used
       // elsewhere.
       return crbase::HashPair(reinterpret_cast<uintptr_t>(location.file_name()),
                               location.line_number());

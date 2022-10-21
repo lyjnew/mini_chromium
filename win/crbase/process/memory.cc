@@ -11,7 +11,7 @@ namespace crbase {
 
 namespace {
 
-// Breakpad server classifies base::`anonymous namespace'::OnNoMemory as
+// Breakpad server classifies crbase::`anonymous namespace'::OnNoMemory as
 // out-of-memory crash.
 CR_NOINLINE void OnNoMemory(size_t size) {
   size_t tmp_size = size;

@@ -5,7 +5,7 @@
 
 //
 // Deal with the differences between Microsoft and GNU implemenations
-// of hash_map. Allows all platforms to use |base::hash_map| and
+// of hash_map. Allows all platforms to use |crbase::hash_map| and
 // |crbase::hash_set|.
 //  eg:
 //   crbase::hash_map<int> my_map;

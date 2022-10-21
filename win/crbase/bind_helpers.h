@@ -12,8 +12,8 @@
 //
 // ARGUMENT BINDING WRAPPERS
 //
-// The wrapper functions are base::Unretained(), base::Owned(), base::Passed(),
-// base::ConstRef(), and base::IgnoreResult().
+// The wrapper functions are crbase::crUnretained(), crbase::Owned(), 
+// crbase::Passed(), crbase::ConstRef(), and crbase::IgnoreResult().
 //
 // Unretained() allows Bind() to bind a non-refcounted class, and to disable
 // refcounting on arguments that are refcounted objects.
@@ -100,7 +100,7 @@
 //   cb->Run(1);  // Prints "1".
 //
 //   // Prints "1" on |ml|.
-//   ml->PostTask(FROM_HERE, Bind(IgnoreResult(&DoSomething), 1);
+//   ml->PostTask(CR_FROM_HERE, Bind(IgnoreResult(&DoSomething), 1);
 //
 //
 // EXAMPLE OF Passed():
@@ -192,7 +192,7 @@ namespace internal {
 // signature in BaseMixin does not need to match the signature of the function
 // we are probing for; thus it's easiest to just use void().
 //
-// Now, if TargetFunc exists somewhere in T, then &Base::TargetFunc has an
+// Now, if TargetFunc exists somewhere in T, then &crbase::TargetFunc has an
 // ambiguous resolution between BaseMixin and T.  This lets us write the
 // following:
 //
