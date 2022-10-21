@@ -21,6 +21,6 @@ namespace crbase {
 //
 Time CRBASE_EXPORT GetBuildTime();
 
-}  // namespace base
+}  // namespace crbase
 
 #endif  // MINI_CHROMIUM_CRBASE_BUILD_TIME_H_

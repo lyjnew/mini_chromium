@@ -329,6 +329,7 @@ void MessagePumpForUI::RescheduleTimer() {
     // If we can't set timers, we are in big trouble... but cross our fingers
     // for now.
     // TODO(jar): If we don't see this error, use a CHECK() here instead.
+    CR_CHECK(1) << "Chrome.MessageLoopProblem: SET_TIMER_ERROR";
     ///UMA_HISTOGRAM_ENUMERATION("Chrome.MessageLoopProblem", SET_TIMER_ERROR,
     ///                          MESSAGE_LOOP_PROBLEM_MAX);
   }

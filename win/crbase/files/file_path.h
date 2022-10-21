@@ -406,13 +406,7 @@ class CRBASE_EXPORT FilePath {
   StringType path_;
 };
 
-// This is required by googletest to print a readable output on test failures.
-// This is declared here for use in gtest-based unit tests but is defined in
-// the test_support_base target. Depend on that to use this in your unit test.
-// This should not be used in production code - call ToString() instead.
-void PrintTo(const FilePath& path, std::ostream* out);
-
-}  // namespace base
+}  // namespace crbase
 
 // Macros for string literal initialization of FilePath::CharType[], and for
 // using a FilePath::CharType[] in a printf-style format string.

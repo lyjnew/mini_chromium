@@ -108,6 +108,6 @@ class ReleaseHelperInternal {
 
 }  // namespace subtle
 
-}  // namespace base
+}  // namespace crbase
 
 #endif  // MINI_CHROMIUM_CRBASE_SEQUENCED_TASK_RUNNER_HELPERS_H_

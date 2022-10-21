@@ -22,7 +22,7 @@
 // change is the value of an expression.
 // A typical use would be:
 //
-//   SPIN_FOR_1_SECOND_OR_UNTIL_TRUE(0 == f(x));
+//   CR_SPIN_FOR_1_SECOND_OR_UNTIL_TRUE(0 == f(x));
 //
 // The expression will be evaluated repeatedly until it is true, or until
 // the time (1 second) expires.

@@ -418,7 +418,7 @@ inline bool operator>=(const StringPiece16& x, const StringPiece16& y) {
 CRBASE_EXPORT std::ostream& operator<<(std::ostream& o,
                                      const StringPiece& piece);
 
-}  // namespace base
+}  // namespace crbase
 
 // Hashing ---------------------------------------------------------------------
 

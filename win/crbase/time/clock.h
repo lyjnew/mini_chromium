@@ -35,6 +35,6 @@ class CRBASE_EXPORT Clock {
   virtual Time Now() = 0;
 };
 
-}  // namespace base
+}  // namespace crbase
 
 #endif  // MINI_CHROMIUM_CRBASE_TIME_CLOCK_H_

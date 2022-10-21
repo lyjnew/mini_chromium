@@ -49,6 +49,6 @@ CRBASE_EXPORT string16 ASCIIToUTF16(StringPiece ascii);
 // beforehand.
 CRBASE_EXPORT std::string UTF16ToASCII(StringPiece16 utf16);
 
-}  // namespace base
+}  // namespace crbase
 
 #endif  // BASE_STRINGS_UTF_STRING_CONVERSIONS_H_

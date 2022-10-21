@@ -37,7 +37,7 @@ void PlatformThreadLocalStorage::SetTLSValue(TLSKey key, void* value) {
 
 }  // namespace internal
 
-}  // namespace base
+}  // namespace crbase
 
 // Thread Termination Callbacks.
 // Windows doesn't support a per-thread destructor with its

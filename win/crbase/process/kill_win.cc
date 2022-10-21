@@ -197,4 +197,4 @@ void EnsureProcessTerminated(Process process) {
       TimeDelta::FromMilliseconds(kWaitInterval));
 }
 
-}  // namespace base
+}  // namespace crbase

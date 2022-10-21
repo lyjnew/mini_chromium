@@ -89,7 +89,7 @@ class CRBASE_EXPORT PathService {
   static bool RemoveOverride(int key);
 };
 
-}  // namespace base
+}  // namespace crbase
 
 // TODO(brettw) Convert all callers to using the base namespace and remove this.
 using crbase::PathService;
