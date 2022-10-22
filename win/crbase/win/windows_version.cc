@@ -39,13 +39,14 @@ OSInfo::OSInfo()
       wow64_status_(GetWOW64StatusForProcess(GetCurrentProcess())) {
   // Return zero on success
   typedef DWORD(WINAPI* RtlGetVersionFunc)(LPOSVERSIONINFOEX);
-  RtlGetVersionFunc RtlGetVersion = reinterpret_cast<RtlGetVersionFunc>(
+  RtlGetVersionFunc rtl_get_version = reinterpret_cast<RtlGetVersionFunc>(
     GetProcAddress(GetModuleHandle(L"ntdll.dll"), "RtlGetVersion"));
+  CR_CHECK(rtl_get_version != NULL) << "Failed to get produce 'RtlGetVersion'.";
 
   OSVERSIONINFOEX version_info;
   ZeroMemory(&version_info, sizeof(version_info));
   version_info.dwOSVersionInfoSize = sizeof(version_info);
-  RtlGetVersion(&version_info);
+  rtl_get_version(&version_info);
 
   // 'GetVersionExW': was declared deprecated on win8 latter.
   // ::GetVersionEx(reinterpret_cast<OSVERSIONINFO*>(&version_info));
@@ -102,6 +103,8 @@ OSInfo::OSInfo()
     // Only present on Vista+.
     get_product_info = reinterpret_cast<GetProductInfoPtr>(
         ::GetProcAddress(::GetModuleHandle(L"kernel32.dll"), "GetProductInfo"));
+    CR_CHECK(rtl_get_version != NULL) 
+        << "Failed to get produce 'GetProductInfo'.";
 
     get_product_info(version_info.dwMajorVersion, version_info.dwMinorVersion,
                      0, 0, &os_type);

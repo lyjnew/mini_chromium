@@ -50,9 +50,9 @@ class SequencedTaskRunner;
 //   SequencedWorkerPool::SequenceToken token =
 //       SequencedWorkerPool::GetSequenceToken();
 //   pool.PostSequencedWorkerTask(token, SequencedWorkerPool::SKIP_ON_SHUTDOWN,
-//                                FROM_HERE, crbase::Bind(...));
+//                                CR_FROM_HERE, crbase::Bind(...));
 //   pool.PostSequencedWorkerTask(token, SequencedWorkerPool::SKIP_ON_SHUTDOWN,
-//                                FROM_HERE, crbase::Bind(...));
+//                                CR_FROM_HERE, crbase::Bind(...));
 //
 // You can make named sequence tokens to make it easier to share a token
 // across different components.
@@ -66,7 +66,7 @@ class SequencedTaskRunner;
 // for CONTINUE_ON_SHUTDOWN behavior and is required for BLOCK_SHUTDOWN
 // behavior.
 //
-// Implementation note: This does not use a base::WorkerPool since that does
+// Implementation note: This does not use a crbase::WorkerPool since that does
 // not enforce shutdown semantics or allow us to specify how many worker
 // threads to run. For the typical use case of random background work, we don't
 // necessarily want to be super aggressive about creating threads.
@@ -74,7 +74,7 @@ class SequencedTaskRunner;
 // Note that SequencedWorkerPool is RefCountedThreadSafe (inherited
 // from TaskRunner).
 //
-// Test-only code should wrap this in a base::SequencedWorkerPoolOwner to avoid
+// Test-only code should wrap this in a crbase::SequencedWorkerPoolOwner to avoid
 // memory leaks. See http://crbug.com/273800
 class CRBASE_EXPORT SequencedWorkerPool : public TaskRunner {
  public:

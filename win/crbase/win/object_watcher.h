@@ -27,7 +27,7 @@ namespace win {
 //
 // Typical usage:
 //
-//   class MyClass : public base::win::ObjectWatcher::Delegate {
+//   class MyClass : public crbase::win::ObjectWatcher::Delegate {
 //    public:
 //     void DoStuffWhenSignaled(HANDLE object) {
 //       watcher_.StartWatchingOnce(object, this);
@@ -36,7 +36,7 @@ namespace win {
 //       // OK, time to do stuff!
 //     }
 //    private:
-//     base::win::ObjectWatcher watcher_;
+//     crbase::win::ObjectWatcher watcher_;
 //   };
 //
 // In the above example, MyClass wants to "do stuff" when object becomes

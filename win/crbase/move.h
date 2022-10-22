@@ -21,12 +21,12 @@
 // This should be used in the private: declarations for a class.
 //
 // Use this macro instead of DISALLOW_COPY_AND_ASSIGN if you want to pass
-// ownership of the type through a base::Callback without heap-allocating it
+// ownership of the type through a crbase::Callback without heap-allocating it
 // into a scoped_ptr.  The class must define a move constructor and move
 // assignment operator to make this work.
 //
 // This version of the macro adds a Pass() function and a cryptic
-// MoveOnlyTypeForCPP03 typedef for the base::Callback implementation to use.
+// MoveOnlyTypeForCPP03 typedef for the crbase::Callback implementation to use.
 // See IsMoveOnlyType template and its usage in base/callback_internal.h
 // for more details.
 // TODO(crbug.com/566182): Remove this macro and use DISALLOW_COPY_AND_ASSIGN

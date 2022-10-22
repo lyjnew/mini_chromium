@@ -20,7 +20,7 @@ namespace crbase {
 // Example:
 //   file_task_runner_->PostTask(
 //       CR_FROM_HERE,
-//       MakeCriticalClosure(base::Bind(&WriteToDiskTask, path_, data)));
+//       MakeCriticalClosure(crbase::Bind(&WriteToDiskTask, path_, data)));
 //
 // Note new closures might be posted in this closure. If the new closures need
 // background running time, |MakeCriticalClosure| should be applied on them

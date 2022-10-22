@@ -104,13 +104,13 @@ class ThreadTestHelper;
 // Here's more about how the protection works:
 //
 // 1) If a thread should not be allowed to make IO calls, mark it:
-//      base::ThreadRestrictions::SetIOAllowed(false);
+//      crbase::ThreadRestrictions::SetIOAllowed(false);
 //    By default, threads *are* allowed to make IO calls.
 //    In Chrome browser code, IO calls should be proxied to the File thread.
 //
 // 2) If a function makes a call that will go out to disk, check whether the
 //    current thread is allowed:
-//      base::ThreadRestrictions::AssertIOAllowed();
+//      crbase::ThreadRestrictions::AssertIOAllowed();
 //
 //
 // Style tip: where should you put AssertIOAllowed checks?  It's best

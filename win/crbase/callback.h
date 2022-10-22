@@ -26,8 +26,8 @@
 // much like lexical closures are used in other languages. For example, it
 // is used in Chromium code to schedule tasks on different MessageLoops.
 //
-// A callback with no unbound input parameters (base::Callback<void()>)
-// is called a base::Closure. Note that this is NOT the same as what other
+// A callback with no unbound input parameters (crbase::Callback<void()>)
+// is called a crbase::Closure. Note that this is NOT the same as what other
 // languages refer to as a closure -- it does not retain a reference to its
 // enclosing environment.
 //
@@ -48,7 +48,7 @@
 // BINDING A BARE FUNCTION
 //
 //   int Return5() { return 5; }
-//   base::Callback<int()> func_cb = base::Bind(&Return5);
+//   crbase::Callback<int()> func_cb = crbase::Bind(&Return5);
 //   LOG(INFO) << func_cb.Run();  // Prints 5.
 //
 // BINDING A CLASS METHOD
@@ -56,13 +56,13 @@
 //   The first argument to bind is the member function to call, the second is
 //   the object on which to call it.
 //
-//   class Ref : public base::RefCountedThreadSafe<Ref> {
+//   class Ref : public crbase::RefCountedThreadSafe<Ref> {
 //    public:
 //     int Foo() { return 3; }
 //     void PrintBye() { LOG(INFO) << "bye."; }
 //   };
 //   scoped_refptr<Ref> ref = new Ref();
-//   base::Callback<void()> ref_cb = base::Bind(&Ref::Foo, ref);
+//   crbase::Callback<void()> ref_cb = crbase::Bind(&Ref::Foo, ref);
 //   LOG(INFO) << ref_cb.Run();  // Prints out 3.
 //
 //   By default the object must support RefCounted or you will get a compiler
@@ -75,14 +75,14 @@
 //   Callbacks can be run with their "Run" method, which has the same
 //   signature as the template argument to the callback.
 //
-//   void DoSomething(const base::Callback<void(int, std::string)>& callback) {
+//   void DoSomething(const crbase::Callback<void(int, std::string)>& callback) {
 //     callback.Run(5, "hello");
 //   }
 //
 //   Callbacks can be run more than once (they don't get deleted or marked when
-//   run). However, this precludes using base::Passed (see below).
+//   run). However, this precludes using crbase::Passed (see below).
 //
-//   void DoSomething(const base::Callback<double(double)>& callback) {
+//   void DoSomething(const crbase::Callback<double(double)>& callback) {
 //     double myresult = callback.Run(3.14159);
 //     myresult += callback.Run(2.71828);
 //   }
@@ -93,7 +93,7 @@
 //   specified in the Callback template type:
 //
 //   void MyFunc(int i, const std::string& str) {}
-//   base::Callback<void(int, const std::string&)> cb = base::Bind(&MyFunc);
+//   crbase::Callback<void(int, const std::string&)> cb = crbase::Bind(&MyFunc);
 //   cb.Run(23, "hello, world");
 //
 // PASSING BOUND INPUT PARAMETERS
@@ -104,18 +104,19 @@
 //   calling.
 //
 //   void MyFunc(int i, const std::string& str) {}
-//   base::Callback<void()> cb = base::Bind(&MyFunc, 23, "hello world");
+//   crbase::Callback<void()> cb = crbase::Bind(&MyFunc, 23, "hello world");
 //   cb.Run();
 //
-//   A callback with no unbound input parameters (base::Callback<void()>)
-//   is called a base::Closure. So we could have also written:
+//   A callback with no unbound input parameters (crbase::Callback<void()>)
+//   is called a crbase::Closure. So we could have also written:
 //
-//   base::Closure cb = base::Bind(&MyFunc, 23, "hello world");
+//   crbase::Closure cb = crbase::Bind(&MyFunc, 23, "hello world");
 //
 //   When calling member functions, bound parameters just go after the object
 //   pointer.
 //
-//   base::Closure cb = base::Bind(&MyClass::MyFunc, this, 23, "hello world");
+//   crbase::Closure cb = 
+//       crbase::Bind(&MyClass::MyFunc, this, 23, "hello world");
 //
 // PARTIAL BINDING OF PARAMETERS
 //
@@ -123,7 +124,7 @@
 //   the rest when you execute the callback.
 //
 //   void MyFunc(int i, const std::string& str) {}
-//   base::Callback<void(const std::string&)> cb = base::Bind(&MyFunc, 23);
+//   crbase::Callback<void(const std::string&)> cb = crbase::Bind(&MyFunc, 23);
 //   cb.Run("hello world");
 //
 //   When calling a function bound parameters are first, followed by unbound
@@ -136,7 +137,7 @@
 //
 // BINDING A CLASS METHOD WITH WEAK POINTERS
 //
-//   base::Bind(&MyClass::Foo, GetWeakPtr());
+//   crbase::Bind(&MyClass::Foo, GetWeakPtr());
 //
 //   The callback will not be run if the object has already been destroyed.
 //   DANGER: weak pointers are not threadsafe, so don't use this
@@ -144,7 +145,7 @@
 //
 // BINDING A CLASS METHOD WITH MANUAL LIFETIME MANAGEMENT
 //
-//   base::Bind(&MyClass::Foo, base::Unretained(this));
+//   crbase::Bind(&MyClass::Foo, crbase::Unretained(this));
 //
 //   This disables all lifetime management on the object. You're responsible
 //   for making sure the object is alive at the time of the call. You break it,
@@ -153,7 +154,7 @@
 // BINDING A CLASS METHOD AND HAVING THE CALLBACK OWN THE CLASS
 //
 //   MyClass* myclass = new MyClass;
-//   base::Bind(&MyClass::Foo, base::Owned(myclass));
+//   crbase::Bind(&MyClass::Foo, crbase::Owned(myclass));
 //
 //   The object will be deleted when the callback is destroyed, even if it's
 //   not run (like if you post a task during shutdown). Potentially useful for
@@ -165,8 +166,8 @@
 //   that doesn't expect a return value.
 //
 //   int DoSomething(int arg) { cout << arg << endl; }
-//   base::Callback<void(int)> cb =
-//       base::Bind(base::IgnoreResult(&DoSomething));
+//   crbase::Callback<void(int)> cb =
+//       crbase::Bind(crbase::IgnoreResult(&DoSomething));
 //
 //
 // -----------------------------------------------------------------------------
@@ -175,13 +176,13 @@
 //
 // Bound parameters are specified as arguments to Bind() and are passed to the
 // function. A callback with no parameters or no unbound parameters is called a
-// Closure (base::Callback<void()> and base::Closure are the same thing).
+// Closure (crbase::Callback<void()> and crbase::Closure are the same thing).
 //
 // PASSING PARAMETERS OWNED BY THE CALLBACK
 //
 //   void Foo(int* arg) { cout << *arg << endl; }
 //   int* pn = new int(1);
-//   base::Closure foo_callback = base::Bind(&foo, base::Owned(pn));
+//   crbase::Closure foo_callback = crbase::Bind(&foo, crbase::Owned(pn));
 //
 //   The parameter will be deleted when the callback is destroyed, even if it's
 //   not run (like if you post a task during shutdown).
@@ -191,7 +192,7 @@
 //   void TakesOwnership(scoped_ptr<Foo> arg) {}
 //   scoped_ptr<Foo> f(new Foo);
 //   // f becomes null during the following call.
-//   base::Closure cb = base::Bind(&TakesOwnership, base::Passed(&f));
+//   crbase::Closure cb = crbase::Bind(&TakesOwnership, crbase::Passed(&f));
 //
 //   Ownership of the parameter will be with the callback until the it is run,
 //   when ownership is passed to the callback function. This means the callback
@@ -202,7 +203,7 @@
 //
 //   void TakesOneRef(scoped_refptr<Foo> arg) {}
 //   scoped_refptr<Foo> f(new Foo)
-//   base::Closure cb = base::Bind(&TakesOneRef, f);
+//   crbase::Closure cb = crbase::Bind(&TakesOneRef, f);
 //
 //   This should "just work." The closure will take a reference as long as it
 //   is alive, and another reference will be taken for the called function.
@@ -213,8 +214,8 @@
 //
 //   void foo(const int& arg) { printf("%d %p\n", arg, &arg); }
 //   int n = 1;
-//   base::Closure has_copy = base::Bind(&foo, n);
-//   base::Closure has_ref = base::Bind(&foo, base::ConstRef(n));
+//   crbase::Closure has_copy = crbase::Bind(&foo, n);
+//   crbase::Closure has_ref = crbase::Bind(&foo, crbase::ConstRef(n));
 //   n = 2;
 //   foo(n);                        // Prints "2 0xaaaaaaaaaaaa"
 //   has_copy.Run();                // Prints "1 0xbbbbbbbbbbbb"

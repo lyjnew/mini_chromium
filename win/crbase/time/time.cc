@@ -157,8 +157,8 @@ time_t Time::ToTimeT() const {
     return std::numeric_limits<time_t>::max();
   }
   if (std::numeric_limits<int64_t>::max() - kTimeTToMicrosecondsOffset <= us_) {
-    CR_DLOG(WARNING) << "Overflow when converting base::Time with internal " <<
-                        "value " << us_ << " to time_t.";
+    CR_DLOG(WARNING) << "Overflow when converting crbase::Time with internal " 
+                     << "value " << us_ << " to time_t.";
     return std::numeric_limits<time_t>::max();
   }
   return (us_ - kTimeTToMicrosecondsOffset) / kMicrosecondsPerSecond;

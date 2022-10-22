@@ -20,7 +20,7 @@ namespace win {
 // The running version of Windows.  This is declared outside OSInfo for
 // syntactic sugar reasons; see the declaration of GetVersion() below.
 // NOTE: Keep these in order so callers can do things like
-// "if (base::win::GetVersion() >= base::win::VERSION_VISTA) ...".
+// "if (crbase::win::GetVersion() >= crbase::win::VERSION_VISTA) ...".
 enum Version {
   VERSION_PRE_XP = 0,  // Not supported.
   VERSION_XP,

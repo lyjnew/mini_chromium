@@ -36,12 +36,12 @@ class ThreadCheckerDoNothing {
 // ThreadChecker is a helper class used to help verify that some methods of a
 // class are called from the same thread. It provides identical functionality to
 // crbase::NonThreadSafe, but it is meant to be held as a member variable, rather
-// than inherited from base::NonThreadSafe.
+// than inherited from crbase::NonThreadSafe.
 //
-// While inheriting from base::NonThreadSafe may give a clear indication about
+// While inheriting from crbase::NonThreadSafe may give a clear indication about
 // the thread-safety of a class, it may also lead to violations of the style
 // guide with regard to multiple inheritance. The choice between having a
-// ThreadChecker member and inheriting from base::NonThreadSafe should be based
+// ThreadChecker member and inheriting from crbase::NonThreadSafe should be based
 // on whether:
 //  - Derived classes need to know the thread they belong to, as opposed to
 //    having that functionality fully encapsulated in the base class.

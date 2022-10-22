@@ -62,7 +62,7 @@ bool PathProviderWin(int key, FilePath* result) {
         cur = FilePath(system_buffer);
         break;
       }
-      // Fall through to base::DIR_PROGRAM_FILES if we're on an X86 machine.
+      // Fall through to crbase::DIR_PROGRAM_FILES if we're on an X86 machine.
     case crbase::DIR_PROGRAM_FILES:
       if (FAILED(SHGetFolderPath(NULL, CSIDL_PROGRAM_FILES, NULL,
                                  SHGFP_TYPE_CURRENT, system_buffer)))

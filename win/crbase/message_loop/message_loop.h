@@ -218,7 +218,7 @@ class CRBASE_EXPORT MessageLoop : public MessagePump::Delegate {
   // NOTE: This method may be called on any thread.  The object will be
   // released (and thus possibly deleted) on the thread that executes
   // MessageLoop::Run().  If this is not the same as the thread that calls
-  // ReleaseSoon(FROM_HERE, ), then T MUST inherit from
+  // ReleaseSoon(CR_FROM_HERE, ), then T MUST inherit from
   // RefCountedThreadSafe<T>!
   template <class T>
   void ReleaseSoon(const crtracked_objects::Location& from_here,

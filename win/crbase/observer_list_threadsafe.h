@@ -83,7 +83,7 @@ class UnboundMethod {
 // This class is used to work around VS2005 not accepting:
 //
 // friend class
-//     base::RefCountedThreadSafe<ObserverListThreadSafe<ObserverType>>;
+//     crbase::RefCountedThreadSafe<ObserverListThreadSafe<ObserverType>>;
 //
 // Instead of friending the class, we could friend the actual function
 // which calls delete.  However, this ends up being

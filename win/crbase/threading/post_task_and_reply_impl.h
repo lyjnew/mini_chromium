@@ -21,8 +21,8 @@ namespace internal {
 // MessageLoop.
 //
 // If you're looking for a concrete implementation of
-// PostTaskAndReply, you probably want base::SingleThreadTaskRunner, or you
-// may want base::WorkerPool.
+// PostTaskAndReply, you probably want crbase::SingleThreadTaskRunner, or you
+// may want crbase::WorkerPool.
 class PostTaskAndReplyImpl {
  public:
   virtual ~PostTaskAndReplyImpl() = default;
