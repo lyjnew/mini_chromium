@@ -8,7 +8,7 @@
 #include <string.h>
 
 // bit_cast<Dest,Source> 是一个实现了与"*reinterpret_cast<Dest*>(&source)"等效
-// 的模板函数. 我们需要这样像原始换乘库和快速数学支持的非常低级别函数
+// 的模板函数. 我们需要这样像原始缓存库和快速数学支持的非常低级别函数
 //
 //   float f = 3.14159265358979;
 //   int i = bit_cast<int32_t>(f);
