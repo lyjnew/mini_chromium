@@ -103,7 +103,7 @@ OSInfo::OSInfo()
     // Only present on Vista+.
     get_product_info = reinterpret_cast<GetProductInfoPtr>(
         ::GetProcAddress(::GetModuleHandle(L"kernel32.dll"), "GetProductInfo"));
-    CR_CHECK(rtl_get_version != NULL) 
+    CR_CHECK(get_product_info != NULL)
         << "Failed to get produce 'GetProductInfo'.";
 
     get_product_info(version_info.dwMajorVersion, version_info.dwMinorVersion,
