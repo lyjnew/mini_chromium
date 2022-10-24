@@ -127,11 +127,11 @@ class CRBASE_EXPORT CallbackBase {
 // std::unique_ptr.
 // TODO(dcheng): Revisit this when Windows switches to VS2015 by default.
 template <typename T> struct IsMoveOnlyType {
-///  template <typename U>
-///  static YesType Test(const typename U::MoveOnlyTypeForCPP03*);
+  template <typename U>
+  static YesType Test(const typename U::MoveOnlyTypeForCPP03*);
 
-///  template <typename U>
-///  static NoType Test(...);
+  template <typename U>
+  static NoType Test(...);
 
   static const bool value = sizeof((Test<T>(0))) == sizeof(YesType) &&
                             !is_const<T>::value;
