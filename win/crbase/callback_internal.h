@@ -23,10 +23,18 @@ namespace crbase {
 namespace internal {
 class CallbackBase;
 
+// BindStateBase被Callback类用于提供一个不透明的句柄, Callback类可以去代表一个绑定了
+// 参数的函数对象. 它表现的像一个存在的类型被用于对应的DoInvoke函数去执行函数. 这允许我
+// 们可以通过"类型抹除"保护Callback类不受到已绑定参数的类型的影响.
+// 在基础层, 唯一任务是增加引用计数数据, 自从RefCountedThreadSafe要求析构函数是一个虚
+// 函数后就不要用它.
+// 为每个BindState模板实例化创建一个虚函数表会导致膨胀, 它的唯一任务是调用析构函数, 这可
+// 以用一个函数指针完成.
+
 // BindStateBase is used to provide an opaque handle that the Callback
-// class can use to represent a function object with bound arguments.  It
+// class can use to represent a function object with bound arguments. It
 // behaves as an existential type that is used by a corresponding
-// DoInvoke function to perform the function execution.  This allows
+// DoInvoke function to perform the function execution. This allows
 // us to shield the Callback class from the types of the bound argument via
 // "type erasure."
 // At the base level, the only task is to add reference counting data. Don't use
@@ -55,6 +63,8 @@ class BindStateBase {
   CR_DISALLOW_COPY_AND_ASSIGN(BindStateBase);
 };
 
+// 持有Callback方法, 不要求特殊化去减少模板膨胀
+
 // Holds the Callback methods that don't require specialization to reduce
 // template bloat.
 class CRBASE_EXPORT CallbackBase {
@@ -69,6 +79,10 @@ class CRBASE_EXPORT CallbackBase {
   void Reset();
 
  protected:
+  // 在C++里, 把函数指针转到另外一种类型的函数指针是安全的. 使用void*来保存函数指针是
+  // 不好的. 我们创建了一个调用函数储存(InvokeFuncStorage)来储存函数指针, 然后把它转
+  // 回原始类型使用
+
   // In C++, it is safe to cast function pointers to function pointers of
   // another type. It is not okay to use void*. We create a InvokeFuncStorage
   // that that can store our function pointer, and then cast it back to
@@ -78,11 +92,18 @@ class CRBASE_EXPORT CallbackBase {
   // Returns true if this callback equals |other|. |other| may be null.
   bool Equals(const CallbackBase& other) const;
 
+  // 允许通过构造函数来初始化类成员|bind_state_|, 以避免scoped_refptr的默认初始化调
+  // 用. 我们也不用在这里初始化类成员|polymorphic_invoke_|, 因为在Callback模板派生里
+  // 的一个正常赋值操作有利于优化编译错误
+
   // Allow initializing of |bind_state_| via the constructor to avoid default
   // initialization of the scoped_refptr.  We do not also initialize
   // |polymorphic_invoke_| here because doing a normal assignment in the
   // derived Callback templates makes for much nicer compiler errors.
   explicit CallbackBase(BindStateBase* bind_state);
+
+  // 强制析构函数在此转换单元内部实例化, 因此我们的子类将将不会得到一个被内联的版本, 避免
+  // 更多的模板膨胀
 
   // Force the destructor to be instantiated inside this translation unit so
   // that our subclasses will not get inlined versions.  Avoids more template
@@ -92,6 +113,9 @@ class CRBASE_EXPORT CallbackBase {
   scoped_refptr<BindStateBase> bind_state_;
   InvokeFuncStorage polymorphic_invoke_;
 };
+
+// 一个模板辅助器来确定是否得到的类型为non-const还是move-only-type, 也就是说(i.e.)
+// 一个给定类型的值是否应该通过传给std::move()来析构.   
 
 // A helper template to determine if given type is non-const move-only-type,
 // i.e. if a value of the given type should be passed via std::move() in a
@@ -103,11 +127,11 @@ class CRBASE_EXPORT CallbackBase {
 // std::unique_ptr.
 // TODO(dcheng): Revisit this when Windows switches to VS2015 by default.
 template <typename T> struct IsMoveOnlyType {
-  template <typename U>
-  static YesType Test(const typename U::MoveOnlyTypeForCPP03*);
+///  template <typename U>
+///  static YesType Test(const typename U::MoveOnlyTypeForCPP03*);
 
-  template <typename U>
-  static NoType Test(...);
+///  template <typename U>
+///  static NoType Test(...);
 
   static const bool value = sizeof((Test<T>(0))) == sizeof(YesType) &&
                             !is_const<T>::value;
