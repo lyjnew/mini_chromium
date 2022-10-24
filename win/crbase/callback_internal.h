@@ -80,7 +80,7 @@ class CRBASE_EXPORT CallbackBase {
 
  protected:
   // 在C++里, 把函数指针转到另外一种类型的函数指针是安全的. 使用void*来保存函数指针是
-  // 不好的. 我们创建了一个调用函数储存(InvokeFuncStorage)来储存函数指针, 然后把它转
+  // 不好的. 我们创建了一个调用函数存储(InvokeFuncStorage)来储存函数指针, 然后把它转
   // 回原始类型使用
 
   // In C++, it is safe to cast function pointers to function pointers of
@@ -94,7 +94,7 @@ class CRBASE_EXPORT CallbackBase {
 
   // 允许通过构造函数来初始化类成员|bind_state_|, 以避免scoped_refptr的默认初始化调
   // 用. 我们也不用在这里初始化类成员|polymorphic_invoke_|, 因为在Callback模板派生里
-  // 的一个正常赋值操作有利于优化编译错误
+  // 的一个正常赋值操作对于编译器错误来说更友好.
 
   // Allow initializing of |bind_state_| via the constructor to avoid default
   // initialization of the scoped_refptr.  We do not also initialize
@@ -115,13 +115,18 @@ class CRBASE_EXPORT CallbackBase {
 };
 
 // 一个模板辅助器来确定是否得到的类型为non-const还是move-only-type, 也就是说(i.e.)
-// 一个给定类型的值是否应该通过传给std::move()来析构.   
+// 一个给定类型的值是否应该通过传给std::move()来析构. 
+// 如果类型拥有一个哨兵成员MoveOnlyTypeForCPP03则被考虑为仅移动的(move-only):
+// 一个类通常会使用CR_DISALLOW_COPY_AND_ASSIGN_WITH_MOVE_FOR_BIND这个宏来实现此特性.
+// 这样对所有的仅移动(move-only)的类型来说更容易些... 但是这会在VS2013里的某些类型混
+// 淆模板推导, 像std::unique_ptr.
+// 代办事项(dcheng): 在切换到VS2015的时候, 重新浏览此内容.
 
 // A helper template to determine if given type is non-const move-only-type,
 // i.e. if a value of the given type should be passed via std::move() in a
 // destructive way. Types are considered to be move-only if they have a
-// sentinel MoveOnlyTypeForCPP03 member: a class typically gets this from using
-// the DISALLOW_COPY_AND_ASSIGN_WITH_MOVE_FOR_BIND macro.
+// sentinel MoveOnlyTypeForCPP03 member: a class typically gets this from 
+// using the CR_DISALLOW_COPY_AND_ASSIGN_WITH_MOVE_FOR_BIND macro.
 // It would be easy to generalize this trait to all move-only types... but this
 // confuses template deduction in VS2013 with certain types such as
 // std::unique_ptr.
@@ -137,6 +142,9 @@ template <typename T> struct IsMoveOnlyType {
                             !is_const<T>::value;
 };
 
+// 特殊处理IsMoveOnlyType, 让std::unique_ptr仍然被认为是仅移动的(move-only), 即使
+// 没有哨兵成员MoveOnlyTypeForCPP03
+
 // Specialization of IsMoveOnlyType so that std::unique_ptr is still considered
 // move-only, even without the sentinel member.
 template <typename T>
@@ -147,6 +155,17 @@ struct CallbackParamTraitsForMoveOnlyType;
 
 template <typename>
 struct CallbackParamTraitsForNonMoveOnlyType;
+
+// 代办事项(tzik): 一旦MSVS支持有默认值的可变参数模板, 请用一个默认的参数
+// http://connect.microsoft.com/VisualStudio/feedbackdetail/view/957801/compilation-error-with-variadic-templates
+//
+// 这是被用于带来一个参数类型的一个类型特征对象, 并且提取一个适合的类型来储存和转发参数.
+//
+// 特别的, 它可以除去引用并且把数组转换成指针来储存; 还能避免意外创建一个双引用参数当参数
+// 是个引用类型时.
+//
+// 为数组类型存储将是一个问题, 因为我们是通过常量引用来传递参数的, 在这个案例上, 我们最终
+// 通过C++不允许的初始化列表里传递一个真实数组类型. 这将损坏C字符串的传递
 
 // TODO(tzik): Use a default parameter once MSVS supports variadic templates
 // with default values.
