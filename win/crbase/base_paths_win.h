@@ -5,7 +5,7 @@
 #ifndef MINI_CHROMIUM_CRBASE_BASE_PATHS_WIN_H_
 #define MINI_CHROMIUM_CRBASE_BASE_PATHS_WIN_H_
 
-// This file declares windows-specific path keys for the base module.
+// This file declares windows-specific path keys for the crbase module.
 // These can be used with the PathService to access various special
 // directories and files.
 

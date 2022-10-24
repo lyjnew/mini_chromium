@@ -5,7 +5,7 @@
 #ifndef MINI_CHROMIUM_CRBASE_BASE_PATHS_H_
 #define MINI_CHROMIUM_CRBASE_BASE_PATHS_H_
 
-// This file declares path keys for the base module.  These can be used with
+// This file declares path keys for the crbase module.  These can be used with
 // the PathService to access various special directories and files.
 
 #include "crbuild/build_config.h"
