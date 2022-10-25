@@ -12,7 +12,7 @@
 
 #include <windows.h>
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/strings/string16.h"
 
 namespace crbase {

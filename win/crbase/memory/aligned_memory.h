@@ -37,7 +37,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/compiler_specific.h"
 
 #if defined(MINI_CHROMIUM_COMPILER_MSVC)

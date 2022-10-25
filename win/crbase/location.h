@@ -10,8 +10,9 @@
 #include <cassert>
 #include <string>
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/containers/hash_tables.h"
+#include "crbuild/build_config.h"
 
 namespace crtracked_objects {
 
@@ -59,8 +60,15 @@ class CRBASE_EXPORT Location {
       // it comes from __FILE__, so no need to check the contents of the string.
       // See the definition of CR_FROM_HERE in location.h, and how it is used
       // elsewhere.
-      return crbase::HashPair(reinterpret_cast<uintptr_t>(location.file_name()),
-                              location.line_number());
+#if defined(MINI_CHROMIUM_ARCH_CPU_64_BITS)
+      return crbase::HashInts64(
+          reinterpret_cast<uintptr_t>(location.file_name()),
+          location.line_number());
+#else  // !defined(MINI_CHROMIUM_ARCH_CPU_64_BITS)
+      return crbase::HashInts32(
+          reinterpret_cast<uintptr_t>(location.file_name()),
+          location.line_number());
+#endif // defined(MINI_CHROMIUM_ARCH_CPU_64_BITS)
     }
   };
 

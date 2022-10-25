@@ -38,7 +38,7 @@
 #include <new>  // For placement new.
 
 #include "crbase/atomicops.h"
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 ///#include "crbase/debug/leak_annotations.h"
 #include "crbase/logging.h"
 #include "crbase/memory/aligned_memory.h"

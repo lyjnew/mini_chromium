@@ -5,7 +5,7 @@
 #ifndef MINI_CHROMIUM_CRBASE_THREADING_NON_THREAD_SAFE_IMPL_H_
 #define MINI_CHROMIUM_CRBASE_THREADING_NON_THREAD_SAFE_IMPL_H_
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/threading/thread_checker_impl.h"
 
 namespace crbase {

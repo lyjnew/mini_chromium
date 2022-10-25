@@ -8,7 +8,7 @@
 #include <memory>
 
 #include "crbase/atomicops.h"
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/compiler_specific.h"
 #include "crbase/macros.h"
 

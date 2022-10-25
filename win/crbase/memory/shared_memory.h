@@ -9,7 +9,7 @@
 
 #include <string>
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/macros.h"
 #include "crbase/memory/shared_memory_handle.h"
 #include "crbase/process/process_handle.h"

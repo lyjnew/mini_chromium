@@ -21,7 +21,7 @@
 
 #include "crbase/at_exit.h"
 #include "crbase/atomicops.h"
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/macros.h"
 #include "crbase/memory/aligned_memory.h"
 #include "crbase/threading/thread_restrictions.h"

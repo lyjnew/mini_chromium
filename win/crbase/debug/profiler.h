@@ -9,7 +9,7 @@
 
 #include <string>
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 
 // The Profiler functions allow usage of the underlying sampling based
 // profiler. If the application has not been built with the necessary

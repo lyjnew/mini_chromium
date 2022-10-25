@@ -9,7 +9,7 @@
 #include <iosfwd>
 
 #include "crbase/atomic_ref_count.h"
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/compiler_specific.h"
 #include "crbase/macros.h"
 #ifndef NDEBUG

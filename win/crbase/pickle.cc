@@ -398,7 +398,7 @@ inline void* Pickle::ClaimUninitializedBytesInternal(size_t length) {
   size_t data_len = bits::Align(length, sizeof(uint32_t));
   CR_DCHECK_GE(data_len, length);
 #ifdef MINI_CHROMIUM_ARCH_CPU_64_BITS
-  DCHECK_LE(data_len, std::numeric_limits<uint32_t>::max());
+  CR_DCHECK_LE(data_len, std::numeric_limits<uint32_t>::max());
 #endif
   CR_DCHECK_LE(write_offset_, std::numeric_limits<uint32_t>::max() - data_len);
   size_t new_size = write_offset_ + data_len;

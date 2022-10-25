@@ -10,7 +10,7 @@
 #include <iosfwd>
 #include <string>
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbuild/build_config.h"
 
 struct _EXCEPTION_POINTERS;

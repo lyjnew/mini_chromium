@@ -36,7 +36,7 @@
 // - libstdc++: captures bits/c++config.h for __GLIBCXX__
 #include <cstddef>
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbuild/build_config.h"
 
 #if defined(MINI_CHROMIUM_ARCH_CPU_64_BITS)

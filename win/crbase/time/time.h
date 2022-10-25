@@ -59,7 +59,7 @@
 #include <iosfwd>
 #include <limits>
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/bit_cast.h"
 #include "crbase/numerics/safe_math.h"
 #include "crbuild/build_config.h"

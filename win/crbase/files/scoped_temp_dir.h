@@ -15,7 +15,7 @@
 // (CreateUniqueTempDir, CreateUniqueTempDirUnderPath, and Set) must have
 // intervening calls to Delete or Take, or the calls will fail.
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/files/file_path.h"
 #include "crbase/macros.h"
 

@@ -13,7 +13,7 @@
 
 #include <string>
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 ///#include "crbase/gtest_prod_util.h"
 #include "crbase/macros.h"
 #include "crbase/process/process_handle.h"

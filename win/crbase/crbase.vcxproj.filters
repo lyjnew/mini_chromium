@@ -60,7 +60,6 @@
     <ClInclude Include="strings\string_piece.h">
       <Filter>strings</Filter>
     </ClInclude>
-    <ClInclude Include="crbase_export.h" />
     <ClInclude Include="strings\string16.h">
       <Filter>strings</Filter>
     </ClInclude>
@@ -389,6 +388,7 @@
     <ClInclude Include="debug\stack_trace.h">
       <Filter>debug</Filter>
     </ClInclude>
+    <ClInclude Include="base_export.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="strings\string_piece.cc">

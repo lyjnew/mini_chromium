@@ -51,7 +51,7 @@
 #ifndef MINI_CHROMIUM_CRBASE_THREADING_THREAD_LOCAL_H_
 #define MINI_CHROMIUM_CRBASE_THREADING_THREAD_LOCAL_H_
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/macros.h"
 #include "crbase/threading/thread_local_storage.h"
 #include "crbuild/build_config.h"

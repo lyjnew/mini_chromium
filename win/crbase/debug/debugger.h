@@ -9,7 +9,7 @@
 #ifndef MINI_CHROMIUM_CRBASE_DEBUG_DEBUGGER_H_
 #define MINI_CHROMIUM_CRBASE_DEBUG_DEBUGGER_H_
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 
 namespace crbase {
 namespace debug {

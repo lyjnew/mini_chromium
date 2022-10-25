@@ -5,7 +5,7 @@
 #ifndef MINI_CHROMIUM_CRBASE_THREADING_THREAD_RESTRICTIONS_H_
 #define MINI_CHROMIUM_CRBASE_THREADING_THREAD_RESTRICTIONS_H_
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/macros.h"
 
 // See comment at top of thread_checker.h

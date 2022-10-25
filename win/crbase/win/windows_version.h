@@ -9,7 +9,7 @@
 
 #include <string>
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/macros.h"
 
 typedef void* HANDLE;

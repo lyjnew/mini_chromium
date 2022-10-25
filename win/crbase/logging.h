@@ -12,7 +12,7 @@
 #include <sstream>
 #include <string>
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/debug/debugger.h"
 #include "crbase/macros.h"
 #include "crbuild/build_config.h"

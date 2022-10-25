@@ -46,7 +46,7 @@
 #include <string>
 #include <vector>
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/compiler_specific.h"
 #include "crbase/synchronization/lock.h"
 #include "crbase/synchronization/waitable_event.h"

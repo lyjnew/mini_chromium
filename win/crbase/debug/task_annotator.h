@@ -7,7 +7,7 @@
 
 #include <stdint.h>
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/macros.h"
 
 namespace crbase {

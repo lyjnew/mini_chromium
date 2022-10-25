@@ -8,7 +8,7 @@
 #include <map>
 #include <string>
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/memory/scoped_ptr.h"
 #include "crbase/strings/string16.h"
 #include "crbuild/build_config.h"

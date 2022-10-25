@@ -15,7 +15,7 @@
 #include <vector>
 
 #include "crbase/atomicops.h"
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/containers/hash_tables.h"
 ///#include "crbase/gtest_prod_util.h"
 #include "crbase/lazy_instance.h"

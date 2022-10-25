@@ -7,7 +7,7 @@
 
 #include <stdint.h>
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/macros.h"
 
 #define CR_FILE_TRACING_PREFIX "File"

@@ -5,7 +5,7 @@
 #ifndef MINI_CHROMIUM_CRBASE_RUN_LOOP_H_
 #define MINI_CHROMIUM_CRBASE_RUN_LOOP_H_
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/callback.h"
 #include "crbase/macros.h"
 #include "crbase/memory/weak_ptr.h"

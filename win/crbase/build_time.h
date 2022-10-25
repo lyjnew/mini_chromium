@@ -5,7 +5,7 @@
 #ifndef MINI_CHROMIUM_CRBASE_BUILD_TIME_H_
 #define MINI_CHROMIUM_CRBASE_BUILD_TIME_H_
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/time/time.h"
 
 namespace crbase {

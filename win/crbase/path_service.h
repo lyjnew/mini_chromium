@@ -7,7 +7,7 @@
 
 #include <string>
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/base_paths.h"
 //#include "crbase/gtest_prod_util.h"
 #include "crbuild/build_config.h"

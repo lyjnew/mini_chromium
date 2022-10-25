@@ -108,7 +108,7 @@
 #include <string>
 #include <vector>
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/compiler_specific.h"
 #include "crbase/containers/hash_tables.h"
 #include "crbase/macros.h"

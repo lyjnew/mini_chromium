@@ -65,7 +65,7 @@
 #ifndef MINI_CHROMIUM_CRBASE_SYNCHRONIZATION_CONDITION_VARIABLE_H_
 #define MINI_CHROMIUM_CRBASE_SYNCHRONIZATION_CONDITION_VARIABLE_H_
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/logging.h"
 #include "crbase/macros.h"
 #include "crbase/synchronization/lock.h"

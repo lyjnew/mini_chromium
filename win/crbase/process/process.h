@@ -5,7 +5,7 @@
 #ifndef MINI_CHROMIUM_CRBASE_PROCESS_PROCESS_H_
 #define MINI_CHROMIUM_CRBASE_PROCESS_PROCESS_H_
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/move.h"
 #include "crbase/process/process_handle.h"
 #include "crbase/time/time.h"

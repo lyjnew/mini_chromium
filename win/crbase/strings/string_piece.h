@@ -27,7 +27,7 @@
 #include <iosfwd>
 #include <string>
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/containers/hash_tables.h"
 #include "crbase/strings/string16.h"
 

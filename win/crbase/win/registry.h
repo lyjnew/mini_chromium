@@ -10,7 +10,7 @@
 #include <string>
 #include <vector>
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/macros.h"
 //#include "crbase/win/object_watcher.h"
 #include "crbase/win/scoped_handle.h"

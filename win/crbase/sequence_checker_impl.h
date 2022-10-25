@@ -5,7 +5,7 @@
 #ifndef MINI_CHROMIUM_CRBASE_SEQUENCE_CHECKER_IMPL_H_
 #define MINI_CHROMIUM_CRBASE_SEQUENCE_CHECKER_IMPL_H_
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/macros.h"
 #include "crbase/synchronization/lock.h"
 #include "crbase/threading/sequenced_worker_pool.h"

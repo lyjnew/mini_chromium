@@ -13,7 +13,7 @@
 #include <type_traits>
 
 #include "crbase/atomic_ref_count.h"
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/macros.h"
 #include "crbase/memory/ref_counted.h"
 #include "crbase/memory/scoped_ptr.h"
@@ -63,7 +63,7 @@ class BindStateBase {
   CR_DISALLOW_COPY_AND_ASSIGN(BindStateBase);
 };
 
-// 持有Callback方法, 不要求特殊化去减少模板膨胀
+// 持有Callback方法, 不要求特殊化去减少模板膨胀.
 
 // Holds the Callback methods that don't require specialization to reduce
 // template bloat.
@@ -81,7 +81,7 @@ class CRBASE_EXPORT CallbackBase {
  protected:
   // 在C++里, 把函数指针转到另外一种类型的函数指针是安全的. 使用void*来保存函数指针是
   // 不好的. 我们创建了一个调用函数存储(InvokeFuncStorage)来储存函数指针, 然后把它转
-  // 回原始类型使用
+  // 回原始类型使用.
 
   // In C++, it is safe to cast function pointers to function pointers of
   // another type. It is not okay to use void*. We create a InvokeFuncStorage
@@ -103,7 +103,7 @@ class CRBASE_EXPORT CallbackBase {
   explicit CallbackBase(BindStateBase* bind_state);
 
   // 强制析构函数在此转换单元内部实例化, 因此我们的子类将将不会得到一个被内联的版本, 避免
-  // 更多的模板膨胀
+  // 更多的模板膨胀.
 
   // Force the destructor to be instantiated inside this translation unit so
   // that our subclasses will not get inlined versions.  Avoids more template
@@ -143,7 +143,7 @@ template <typename T> struct IsMoveOnlyType {
 };
 
 // 特殊处理IsMoveOnlyType, 让std::unique_ptr仍然被认为是仅移动的(move-only), 即使
-// 没有哨兵成员MoveOnlyTypeForCPP03
+// 没有哨兵成员MoveOnlyTypeForCPP03.
 
 // Specialization of IsMoveOnlyType so that std::unique_ptr is still considered
 // move-only, even without the sentinel member.
@@ -156,7 +156,7 @@ struct CallbackParamTraitsForMoveOnlyType;
 template <typename>
 struct CallbackParamTraitsForNonMoveOnlyType;
 
-// 代办事项(tzik): 一旦MSVS支持有默认值的可变参数模板, 请用一个默认的参数
+// 代办事项(tzik): 一旦MSVS支持有默认值的可变参数模板, 请用一个默认的参数.
 // http://connect.microsoft.com/VisualStudio/feedbackdetail/view/957801/compilation-error-with-variadic-templates
 //
 // 这是被用于带来一个参数类型的一个类型特征对象, 并且提取一个适合的类型来储存和转发参数.
@@ -165,7 +165,7 @@ struct CallbackParamTraitsForNonMoveOnlyType;
 // 是个引用类型时.
 //
 // 为数组类型存储将是一个问题, 因为我们是通过常量引用来传递参数的, 在这个案例上, 我们最终
-// 通过C++不允许的初始化列表里传递一个真实数组类型. 这将损坏C字符串的传递
+// 通过C++不允许的初始化列表里传递一个真实数组类型. 这将损坏C字符串的传递.
 
 // TODO(tzik): Use a default parameter once MSVS supports variadic templates
 // with default values.
@@ -195,6 +195,11 @@ struct CallbackParamTraitsForNonMoveOnlyType {
   using StorageType = T;
 };
 
+// 除非我们手动的指定绑定参数的类型, 否则储存不应该被触发, 不管怎样, 万一发生了, 
+// 这个将防止我们意外的储存一个引用参数.
+//
+// 转发类型(ForwardType)应该仅仅被用于解绑参数.
+
 // The Storage should almost be impossible to trigger unless someone manually
 // specifies type of the bind parameters.  However, in case they do,
 // this will guard against us accidentally storing a reference parameter.
@@ -205,6 +210,9 @@ struct CallbackParamTraitsForNonMoveOnlyType<T&> {
   using ForwardType = T&;
   using StorageType = T;
 };
+
+// 请注意数组类型, 我们在转换中暗中加入了const, 这意味着我们不可能给带有non-const指针的
+// 函数绑定数组参数
 
 // Note that for array types, we implicitly add a const in the conversion. This
 // means that it is not possible to bind array arguments to functions that take

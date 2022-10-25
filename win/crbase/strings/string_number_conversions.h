@@ -11,7 +11,7 @@
 #include <string>
 #include <vector>
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/strings/string16.h"
 #include "crbase/strings/string_piece.h"
 

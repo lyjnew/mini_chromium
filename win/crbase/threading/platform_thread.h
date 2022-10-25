@@ -11,7 +11,7 @@
 
 #include <stddef.h>
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/macros.h"
 #include "crbase/time/time.h"
 #include "crbuild/build_config.h"

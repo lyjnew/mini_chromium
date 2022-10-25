@@ -6,7 +6,7 @@
 #define MINI_CHROMIUM_CRBASE_SYNCHRONIZATION_CANCELLATION_FLAG_H_
 
 #include "crbase/atomicops.h"
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/macros.h"
 #include "crbase/threading/platform_thread.h"
 

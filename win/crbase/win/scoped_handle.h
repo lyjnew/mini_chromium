@@ -7,7 +7,7 @@
 
 #include <windows.h>
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/location.h"
 #include "crbase/logging.h"
 #include "crbase/macros.h"

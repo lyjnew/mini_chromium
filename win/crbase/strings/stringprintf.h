@@ -9,7 +9,7 @@
 
 #include <string>
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/compiler_specific.h"
 #include "crbuild/build_config.h"
 
@@ -53,7 +53,7 @@ CRBASE_EXPORT void StringAppendV(std::string* dst, const char* format, va_list a
     CR_PRINTF_FORMAT(2, 0);
 
 CRBASE_EXPORT void StringAppendV(std::wstring* dst,
-                               const wchar_t* format, va_list ap)
+                                 const wchar_t* format, va_list ap)
     CR_WPRINTF_FORMAT(2, 0);
 
 }  // namespace crbase

@@ -5,7 +5,7 @@
 #ifndef MINI_CHROMIUM_CRBASE_THREADING_THREAD_CHECKER_IMPL_H_
 #define MINI_CHROMIUM_CRBASE_THREADING_THREAD_CHECKER_IMPL_H_
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/compiler_specific.h"
 #include "crbase/synchronization/lock.h"
 #include "crbase/threading/platform_thread.h"

@@ -54,7 +54,7 @@
 
 #include <stdint.h>
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 
 typedef int8_t PRInt8;
 typedef int16_t PRInt16;

@@ -5,7 +5,7 @@
 #ifndef MINI_CHROMIUM_CRBASE_MESSAGE_LOOP_MESSAGE_PUMP_DEFAULT_H_
 #define MINI_CHROMIUM_CRBASE_MESSAGE_LOOP_MESSAGE_PUMP_DEFAULT_H_
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/macros.h"
 #include "crbase/message_loop/message_pump.h"
 #include "crbase/synchronization/waitable_event.h"

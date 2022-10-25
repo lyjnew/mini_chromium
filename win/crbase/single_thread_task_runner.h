@@ -5,7 +5,7 @@
 #ifndef MINI_CHROMIUM_CRBASE_SINGLE_THREAD_TASK_RUNNER_H_
 #define MINI_CHROMIUM_CRBASE_SINGLE_THREAD_TASK_RUNNER_H_
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/sequenced_task_runner.h"
 
 namespace crbase {

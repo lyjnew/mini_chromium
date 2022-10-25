@@ -5,7 +5,7 @@
 #ifndef MINI_CHROMIUM_CRBASE_MESSAGE_LOOP_MESSAGE_PUMP_H_
 #define MINI_CHROMIUM_CRBASE_MESSAGE_LOOP_MESSAGE_PUMP_H_
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/message_loop/timer_slack.h"
 #include "crbase/threading/non_thread_safe.h"
 

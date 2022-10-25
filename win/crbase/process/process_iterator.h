@@ -16,7 +16,7 @@
 #include <string>
 #include <vector>
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/files/file_path.h"
 #include "crbase/macros.h"
 #include "crbase/process/process.h"

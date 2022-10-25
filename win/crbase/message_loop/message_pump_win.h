@@ -9,7 +9,7 @@
 
 #include <list>
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/message_loop/message_pump.h"
 #include "crbase/message_loop/message_pump_dispatcher.h"
 #include "crbase/observer_list.h"

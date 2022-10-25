@@ -11,7 +11,7 @@
 #include <map>
 #include <string>
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/files/file_path.h"
 #include "crbase/time/time.h"
 #include "crbuild/build_config.h"

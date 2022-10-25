@@ -5,7 +5,7 @@
 #ifndef MINI_CHROMIUM_CRBASE_THREAD_TASK_RUNNER_HANDLE_H_
 #define MINI_CHROMIUM_CRBASE_THREAD_TASK_RUNNER_HANDLE_H_
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/memory/ref_counted.h"
 
 namespace crbase {

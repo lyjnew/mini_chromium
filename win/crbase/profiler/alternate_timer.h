@@ -8,7 +8,7 @@
 #ifndef MINI_CHROMIUM_CRBASE_PROFILER_ALTERNATE_TIMER_H_
 #define MINI_CHROMIUM_CRBASE_PROFILER_ALTERNATE_TIMER_H_
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 
 namespace crtracked_objects {
 

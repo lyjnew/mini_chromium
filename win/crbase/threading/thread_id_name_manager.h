@@ -8,7 +8,7 @@
 #include <map>
 #include <string>
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/macros.h"
 #include "crbase/synchronization/lock.h"
 #include "crbase/threading/platform_thread.h"

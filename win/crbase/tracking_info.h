@@ -11,7 +11,7 @@
 #ifndef MINI_CHROMIUM_CRBASE_TRACKING_INFO_H_
 #define MINI_CHROMIUM_CRBASE_TRACKING_INFO_H_
 
-#include "crbase/crbase_export.h"
+#include "crbase/base_export.h"
 #include "crbase/profiler/tracked_time.h"
 #include "crbase/time/time.h"
 
