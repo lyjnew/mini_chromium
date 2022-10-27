@@ -150,8 +150,8 @@ class CRBASE_EXPORT DelegateSimpleThread : public SimpleThread {
 // 代理简单线程池(DelegateSimpleThreadPool) 允许你启动一些数量的线程, 并且可以通知线程
 // 加入工作. 这很方便你用多线程来处理一些小工作, 但是不希望你为每个小工作生产一个线程.
 //
-// 增加一个代理到工作列表仅需要调用AddWork()就可以了, JoinAll()将确保所有工作被处理并等待
-// 到工作结束. 线程池可以复用, 因此你可以在调用完JoinAll()后重新调用Start().
+// 增加一个代理到工作列表仅需要调用AddWork()就可以了, JoinAll()将确保所有工作被处理并等
+// 待到工作结束. 线程池可以复用, 因此你可以在调用完JoinAll()后重新调用Start().
 // 
 
 // DelegateSimpleThreadPool allows you to start up a fixed number of threads,
