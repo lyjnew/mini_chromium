@@ -23,13 +23,13 @@ namespace crbase {
 namespace internal {
 class CallbackBase;
 
-// BindStateBase±»CallbackÀàÓÃÓÚÌá¹©Ò»¸ö²»Í¸Ã÷µÄ¾ä±ú, CallbackÀà¿ÉÒÔÈ¥´ú±íÒ»¸ö°ó¶¨ÁË
-// ²ÎÊıµÄº¯Êı¶ÔÏó. Ëü±íÏÖµÄÏñÒ»¸ö´æÔÚµÄÀàĞÍ±»ÓÃÓÚ¶ÔÓ¦µÄDoInvokeº¯ÊıÈ¥Ö´ĞĞº¯Êı. ÕâÔÊĞíÎÒ
-// ÃÇ¿ÉÒÔÍ¨¹ı"ÀàĞÍÄ¨³ı"±£»¤CallbackÀà²»ÊÜµ½ÒÑ°ó¶¨²ÎÊıµÄÀàĞÍµÄÓ°Ïì.
-// ÔÚ»ù´¡²ã, Î¨Ò»ÈÎÎñÊÇÔö¼ÓÒıÓÃ¼ÆÊıÊı¾İ, ×Ô´ÓRefCountedThreadSafeÒªÇóÎö¹¹º¯ÊıÊÇÒ»¸öĞé
-// º¯Êıºó¾Í²»ÒªÓÃËü.
-// ÎªÃ¿¸öBindStateÄ£°åÊµÀı»¯´´½¨Ò»¸öĞéº¯Êı±í»áµ¼ÖÂÅòÕÍ, ËüµÄÎ¨Ò»ÈÎÎñÊÇµ÷ÓÃÎö¹¹º¯Êı, Õâ¿É
-// ÒÔÓÃÒ»¸öº¯ÊıÖ¸ÕëÍê³É.
+// BindStateBaseè¢«Callbackç±»ç”¨äºæä¾›ä¸€ä¸ªä¸é€æ˜çš„å¥æŸ„, Callbackç±»å¯ä»¥å»ä»£è¡¨ä¸€ä¸ªç»‘å®šäº†
+// å‚æ•°çš„å‡½æ•°å¯¹è±¡. å®ƒè¡¨ç°çš„åƒä¸€ä¸ªå­˜åœ¨çš„ç±»å‹è¢«ç”¨äºå¯¹åº”çš„DoInvokeå‡½æ•°å»æ‰§è¡Œå‡½æ•°. è¿™å…è®¸æˆ‘
+// ä»¬å¯ä»¥é€šè¿‡"ç±»å‹æŠ¹é™¤"ä¿æŠ¤Callbackç±»ä¸å—åˆ°å·²ç»‘å®šå‚æ•°çš„ç±»å‹çš„å½±å“.
+// åœ¨åŸºç¡€å±‚, å”¯ä¸€ä»»åŠ¡æ˜¯å¢åŠ å¼•ç”¨è®¡æ•°æ•°æ®, è‡ªä»RefCountedThreadSafeè¦æ±‚ææ„å‡½æ•°æ˜¯ä¸€ä¸ªè™š
+// å‡½æ•°åå°±ä¸è¦ç”¨å®ƒ.
+// ä¸ºæ¯ä¸ªBindStateæ¨¡æ¿å®ä¾‹åŒ–åˆ›å»ºä¸€ä¸ªè™šå‡½æ•°è¡¨ä¼šå¯¼è‡´è†¨èƒ€, å®ƒçš„å”¯ä¸€ä»»åŠ¡æ˜¯è°ƒç”¨ææ„å‡½æ•°, è¿™å¯
+// ä»¥ç”¨ä¸€ä¸ªå‡½æ•°æŒ‡é’ˆå®Œæˆ.
 
 // BindStateBase is used to provide an opaque handle that the Callback
 // class can use to represent a function object with bound arguments. It
@@ -63,7 +63,7 @@ class BindStateBase {
   CR_DISALLOW_COPY_AND_ASSIGN(BindStateBase);
 };
 
-// ³ÖÓĞCallback·½·¨, ²»ÒªÇóÌØÊâ»¯È¥¼õÉÙÄ£°åÅòÕÍ.
+// æŒæœ‰Callbackæ–¹æ³•, ä¸è¦æ±‚ç‰¹æ®ŠåŒ–å»å‡å°‘æ¨¡æ¿è†¨èƒ€.
 
 // Holds the Callback methods that don't require specialization to reduce
 // template bloat.
@@ -79,9 +79,9 @@ class CRBASE_EXPORT CallbackBase {
   void Reset();
 
  protected:
-  // ÔÚC++Àï, °Ñº¯ÊıÖ¸Õë×ªµ½ÁíÍâÒ»ÖÖÀàĞÍµÄº¯ÊıÖ¸ÕëÊÇ°²È«µÄ. Ê¹ÓÃvoid*À´±£´æº¯ÊıÖ¸ÕëÊÇ
-  // ²»ºÃµÄ. ÎÒÃÇ´´½¨ÁËÒ»¸öµ÷ÓÃº¯Êı´æ´¢(InvokeFuncStorage)À´´¢´æº¯ÊıÖ¸Õë, È»ºó°ÑËü×ª
-  // »ØÔ­Ê¼ÀàĞÍÊ¹ÓÃ.
+  // åœ¨C++é‡Œ, æŠŠå‡½æ•°æŒ‡é’ˆè½¬åˆ°å¦å¤–ä¸€ç§ç±»å‹çš„å‡½æ•°æŒ‡é’ˆæ˜¯å®‰å…¨çš„. ä½¿ç”¨void*æ¥ä¿å­˜å‡½æ•°æŒ‡é’ˆæ˜¯
+  // ä¸å¥½çš„. æˆ‘ä»¬åˆ›å»ºäº†ä¸€ä¸ªè°ƒç”¨å‡½æ•°å­˜å‚¨(InvokeFuncStorage)æ¥å‚¨å­˜å‡½æ•°æŒ‡é’ˆ, ç„¶åæŠŠå®ƒè½¬
+  // å›åŸå§‹ç±»å‹ä½¿ç”¨.
 
   // In C++, it is safe to cast function pointers to function pointers of
   // another type. It is not okay to use void*. We create a InvokeFuncStorage
@@ -92,9 +92,9 @@ class CRBASE_EXPORT CallbackBase {
   // Returns true if this callback equals |other|. |other| may be null.
   bool Equals(const CallbackBase& other) const;
 
-  // ÔÊĞíÍ¨¹ı¹¹Ôìº¯ÊıÀ´³õÊ¼»¯Àà³ÉÔ±|bind_state_|, ÒÔ±ÜÃâscoped_refptrµÄÄ¬ÈÏ³õÊ¼»¯µ÷
-  // ÓÃ. ÎÒÃÇÒ²²»ÓÃÔÚÕâÀï³õÊ¼»¯Àà³ÉÔ±|polymorphic_invoke_|, ÒòÎªÔÚCallbackÄ£°åÅÉÉúÀï
-  // µÄÒ»¸öÕı³£¸³Öµ²Ù×÷¶ÔÓÚ±àÒëÆ÷´íÎóÀ´Ëµ¸üÓÑºÃ.
+  // å…è®¸é€šè¿‡æ„é€ å‡½æ•°æ¥åˆå§‹åŒ–ç±»æˆå‘˜|bind_state_|, ä»¥é¿å…scoped_refptrçš„é»˜è®¤åˆå§‹åŒ–è°ƒ
+  // ç”¨. æˆ‘ä»¬ä¹Ÿä¸ç”¨åœ¨è¿™é‡Œåˆå§‹åŒ–ç±»æˆå‘˜|polymorphic_invoke_|, å› ä¸ºåœ¨Callbackæ¨¡æ¿æ´¾ç”Ÿé‡Œ
+  // çš„ä¸€ä¸ªæ­£å¸¸èµ‹å€¼æ“ä½œå¯¹äºç¼–è¯‘å™¨é”™è¯¯æ¥è¯´æ›´å‹å¥½.
 
   // Allow initializing of |bind_state_| via the constructor to avoid default
   // initialization of the scoped_refptr.  We do not also initialize
@@ -102,8 +102,8 @@ class CRBASE_EXPORT CallbackBase {
   // derived Callback templates makes for much nicer compiler errors.
   explicit CallbackBase(BindStateBase* bind_state);
 
-  // Ç¿ÖÆÎö¹¹º¯ÊıÔÚ´Ë×ª»»µ¥ÔªÄÚ²¿ÊµÀı»¯, Òò´ËÎÒÃÇµÄ×ÓÀà½«½«²»»áµÃµ½Ò»¸ö±»ÄÚÁªµÄ°æ±¾, ±ÜÃâ
-  // ¸ü¶àµÄÄ£°åÅòÕÍ.
+  // å¼ºåˆ¶ææ„å‡½æ•°åœ¨æ­¤è½¬æ¢å•å…ƒå†…éƒ¨å®ä¾‹åŒ–, å› æ­¤æˆ‘ä»¬çš„å­ç±»å°†å°†ä¸ä¼šå¾—åˆ°ä¸€ä¸ªè¢«å†…è”çš„ç‰ˆæœ¬, é¿å…
+  // æ›´å¤šçš„æ¨¡æ¿è†¨èƒ€.
 
   // Force the destructor to be instantiated inside this translation unit so
   // that our subclasses will not get inlined versions.  Avoids more template
@@ -114,13 +114,13 @@ class CRBASE_EXPORT CallbackBase {
   InvokeFuncStorage polymorphic_invoke_;
 };
 
-// Ò»¸öÄ£°å¸¨ÖúÆ÷À´È·¶¨ÊÇ·ñµÃµ½µÄÀàĞÍÎªnon-const»¹ÊÇmove-only-type, Ò²¾ÍÊÇËµ(i.e.)
-// Ò»¸ö¸ø¶¨ÀàĞÍµÄÖµÊÇ·ñÓ¦¸ÃÍ¨¹ı´«¸østd::move()À´Îö¹¹. 
-// Èç¹ûÀàĞÍÓµÓĞÒ»¸öÉÚ±ø³ÉÔ±MoveOnlyTypeForCPP03Ôò±»¿¼ÂÇÎª½öÒÆ¶¯µÄ(move-only):
-// Ò»¸öÀàÍ¨³£»áÊ¹ÓÃCR_DISALLOW_COPY_AND_ASSIGN_WITH_MOVE_FOR_BINDÕâ¸öºêÀ´ÊµÏÖ´ËÌØĞÔ.
-// ÕâÑù¶ÔËùÓĞµÄ½öÒÆ¶¯(move-only)µÄÀàĞÍÀ´Ëµ¸üÈİÒ×Ğ©... µ«ÊÇÕâ»áÔÚVS2013ÀïµÄÄ³Ğ©ÀàĞÍ»ì
-// ÏıÄ£°åÍÆµ¼, Ïñstd::unique_ptr.
-// ´ú°ìÊÂÏî(dcheng): ÔÚÇĞ»»µ½VS2015µÄÊ±ºò, ÖØĞÂä¯ÀÀ´ËÄÚÈİ.
+// ä¸€ä¸ªæ¨¡æ¿è¾…åŠ©å™¨æ¥ç¡®å®šæ˜¯å¦å¾—åˆ°çš„ç±»å‹ä¸ºnon-constè¿˜æ˜¯move-only-type, ä¹Ÿå°±æ˜¯è¯´(i.e.)
+// ä¸€ä¸ªç»™å®šç±»å‹çš„å€¼æ˜¯å¦åº”è¯¥é€šè¿‡ä¼ ç»™std::move()æ¥ææ„. 
+// å¦‚æœç±»å‹æ‹¥æœ‰ä¸€ä¸ªå“¨å…µæˆå‘˜MoveOnlyTypeForCPP03åˆ™è¢«è€ƒè™‘ä¸ºä»…ç§»åŠ¨çš„(move-only):
+// ä¸€ä¸ªç±»é€šå¸¸ä¼šä½¿ç”¨CR_DISALLOW_COPY_AND_ASSIGN_WITH_MOVE_FOR_BINDè¿™ä¸ªå®æ¥å®ç°æ­¤ç‰¹æ€§.
+// è¿™æ ·å¯¹æ‰€æœ‰çš„ä»…ç§»åŠ¨(move-only)çš„ç±»å‹æ¥è¯´æ›´å®¹æ˜“äº›... ä½†æ˜¯è¿™ä¼šåœ¨VS2013é‡Œçš„æŸäº›ç±»å‹æ··
+// æ·†æ¨¡æ¿æ¨å¯¼, åƒstd::unique_ptr.
+// ä»£åŠäº‹é¡¹(dcheng): åœ¨åˆ‡æ¢åˆ°VS2015çš„æ—¶å€™, é‡æ–°æµè§ˆæ­¤å†…å®¹.
 
 // A helper template to determine if given type is non-const move-only-type,
 // i.e. if a value of the given type should be passed via std::move() in a
@@ -142,8 +142,8 @@ template <typename T> struct IsMoveOnlyType {
                             !is_const<T>::value;
 };
 
-// ÌØÊâ´¦ÀíIsMoveOnlyType, ÈÃstd::unique_ptrÈÔÈ»±»ÈÏÎªÊÇ½öÒÆ¶¯µÄ(move-only), ¼´Ê¹
-// Ã»ÓĞÉÚ±ø³ÉÔ±MoveOnlyTypeForCPP03.
+// ç‰¹æ®Šå¤„ç†IsMoveOnlyType, è®©std::unique_pträ»ç„¶è¢«è®¤ä¸ºæ˜¯ä»…ç§»åŠ¨çš„(move-only), å³ä½¿
+// æ²¡æœ‰å“¨å…µæˆå‘˜MoveOnlyTypeForCPP03.
 
 // Specialization of IsMoveOnlyType so that std::unique_ptr is still considered
 // move-only, even without the sentinel member.
@@ -156,16 +156,16 @@ struct CallbackParamTraitsForMoveOnlyType;
 template <typename>
 struct CallbackParamTraitsForNonMoveOnlyType;
 
-// ´ú°ìÊÂÏî(tzik): Ò»µ©MSVSÖ§³ÖÓĞÄ¬ÈÏÖµµÄ¿É±ä²ÎÊıÄ£°å, ÇëÓÃÒ»¸öÄ¬ÈÏµÄ²ÎÊı.
+// ä»£åŠäº‹é¡¹(tzik): ä¸€æ—¦MSVSæ”¯æŒæœ‰é»˜è®¤å€¼çš„å¯å˜å‚æ•°æ¨¡æ¿, è¯·ç”¨ä¸€ä¸ªé»˜è®¤çš„å‚æ•°.
 // http://connect.microsoft.com/VisualStudio/feedbackdetail/view/957801/compilation-error-with-variadic-templates
 //
-// ÕâÊÇ±»ÓÃÓÚ´øÀ´Ò»¸ö²ÎÊıÀàĞÍµÄÒ»¸öÀàĞÍÌØÕ÷¶ÔÏó, ²¢ÇÒÌáÈ¡Ò»¸öÊÊºÏµÄÀàĞÍÀ´´¢´æºÍ×ª·¢²ÎÊı.
+// è¿™æ˜¯è¢«ç”¨äºå¸¦æ¥ä¸€ä¸ªå‚æ•°ç±»å‹çš„ä¸€ä¸ªç±»å‹ç‰¹å¾å¯¹è±¡, å¹¶ä¸”æå–ä¸€ä¸ªé€‚åˆçš„ç±»å‹æ¥å‚¨å­˜å’Œè½¬å‘å‚æ•°.
 //
-// ÌØ±ğµÄ, Ëü¿ÉÒÔ³ıÈ¥ÒıÓÃ²¢ÇÒ°ÑÊı×é×ª»»³ÉÖ¸ÕëÀ´´¢´æ; »¹ÄÜ±ÜÃâÒâÍâ´´½¨Ò»¸öË«ÒıÓÃ²ÎÊıµ±²ÎÊı
-// ÊÇ¸öÒıÓÃÀàĞÍÊ±.
+// ç‰¹åˆ«çš„, å®ƒå¯ä»¥é™¤å»å¼•ç”¨å¹¶ä¸”æŠŠæ•°ç»„è½¬æ¢æˆæŒ‡é’ˆæ¥å‚¨å­˜; è¿˜èƒ½é¿å…æ„å¤–åˆ›å»ºä¸€ä¸ªåŒå¼•ç”¨å‚æ•°å½“å‚æ•°
+// æ˜¯ä¸ªå¼•ç”¨ç±»å‹æ—¶.
 //
-// ÎªÊı×éÀàĞÍ´æ´¢½«ÊÇÒ»¸öÎÊÌâ, ÒòÎªÎÒÃÇÊÇÍ¨¹ı³£Á¿ÒıÓÃÀ´´«µİ²ÎÊıµÄ, ÔÚÕâ¸ö°¸ÀıÉÏ, ÎÒÃÇ×îÖÕ
-// Í¨¹ıC++²»ÔÊĞíµÄ³õÊ¼»¯ÁĞ±íÀï´«µİÒ»¸öÕæÊµÊı×éÀàĞÍ. Õâ½«Ëğ»µC×Ö·û´®µÄ´«µİ.
+// ä¸ºæ•°ç»„ç±»å‹å­˜å‚¨å°†æ˜¯ä¸€ä¸ªé—®é¢˜, å› ä¸ºæˆ‘ä»¬æ˜¯é€šè¿‡å¸¸é‡å¼•ç”¨æ¥ä¼ é€’å‚æ•°çš„, åœ¨è¿™ä¸ªæ¡ˆä¾‹ä¸Š, æˆ‘ä»¬æœ€ç»ˆ
+// é€šè¿‡C++ä¸å…è®¸çš„åˆå§‹åŒ–åˆ—è¡¨é‡Œä¼ é€’ä¸€ä¸ªçœŸå®æ•°ç»„ç±»å‹. è¿™å°†æŸåCå­—ç¬¦ä¸²çš„ä¼ é€’.
 
 // TODO(tzik): Use a default parameter once MSVS supports variadic templates
 // with default values.
@@ -195,10 +195,10 @@ struct CallbackParamTraitsForNonMoveOnlyType {
   using StorageType = T;
 };
 
-// ³ı·ÇÎÒÃÇÊÖ¶¯µÄÖ¸¶¨°ó¶¨²ÎÊıµÄÀàĞÍ, ·ñÔò´¢´æ²»Ó¦¸Ã±»´¥·¢, ²»¹ÜÔõÑù, ÍòÒ»·¢ÉúÁË, 
-// Õâ¸ö½«·ÀÖ¹ÎÒÃÇÒâÍâµÄ´¢´æÒ»¸öÒıÓÃ²ÎÊı.
+// é™¤éæˆ‘ä»¬æ‰‹åŠ¨çš„æŒ‡å®šç»‘å®šå‚æ•°çš„ç±»å‹, å¦åˆ™å‚¨å­˜ä¸åº”è¯¥è¢«è§¦å‘, ä¸ç®¡æ€æ ·, ä¸‡ä¸€å‘ç”Ÿäº†, 
+// è¿™ä¸ªå°†é˜²æ­¢æˆ‘ä»¬æ„å¤–çš„å‚¨å­˜ä¸€ä¸ªå¼•ç”¨å‚æ•°.
 //
-// ×ª·¢ÀàĞÍ(ForwardType)Ó¦¸Ã½ö½ö±»ÓÃÓÚ½â°ó²ÎÊı.
+// è½¬å‘ç±»å‹(ForwardType)åº”è¯¥ä»…ä»…è¢«ç”¨äºè§£ç»‘å‚æ•°.
 
 // The Storage should almost be impossible to trigger unless someone manually
 // specifies type of the bind parameters.  However, in case they do,
@@ -211,8 +211,8 @@ struct CallbackParamTraitsForNonMoveOnlyType<T&> {
   using StorageType = T;
 };
 
-// Çë×¢ÒâÊı×éÀàĞÍ, ÎÒÃÇÔÚ×ª»»ÖĞ°µÖĞ¼ÓÈëÁËconst, ÕâÒâÎ¶×ÅÎÒÃÇ²»¿ÉÄÜ¸ø´øÓĞnon-constÖ¸ÕëµÄ
-// º¯Êı°ó¶¨Êı×é²ÎÊı
+// è¯·æ³¨æ„æ•°ç»„ç±»å‹, æˆ‘ä»¬åœ¨è½¬æ¢ä¸­æš—ä¸­åŠ å…¥äº†const, è¿™æ„å‘³ç€æˆ‘ä»¬ä¸å¯èƒ½ç»™å¸¦æœ‰non-constæŒ‡é’ˆçš„
+// å‡½æ•°ç»‘å®šæ•°ç»„å‚æ•°
 
 // Note that for array types, we implicitly add a const in the conversion. This
 // means that it is not possible to bind array arguments to functions that take
