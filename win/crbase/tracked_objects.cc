@@ -294,7 +294,8 @@ bool ThreadData::now_function_is_time_ = false;
 // We do a fake initialization here (zeroing out data), and then the real
 // in-place construction happens when we call tls_index_.Initialize().
 // static
-crbase::ThreadLocalStorage::StaticSlot ThreadData::tls_index_ = TLS_INITIALIZER;
+crbase::ThreadLocalStorage::StaticSlot ThreadData::tls_index_ 
+    = CR_TLS_INITIALIZER;
 
 // static
 int ThreadData::worker_thread_data_creation_count_ = 0;

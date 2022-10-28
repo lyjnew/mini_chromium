@@ -16,6 +16,10 @@ namespace crbase {
 
 namespace internal {
 
+// 警告: 你不应该直接使用此类.
+// 平台线程本地存储(PlatformThreadLocalStorage)是系统TLS的低级抽象接口,
+// 你应该使用ThreadLocalStorage::StaticSlot/Slot来替代此类.
+
 // WARNING: You should *NOT* be using this class directly.
 // PlatformThreadLocalStorage is low-level abstraction to the OS's TLS
 // interface, you should instead be using ThreadLocalStorage::StaticSlot/Slot.
@@ -55,6 +59,7 @@ class CRBASE_EXPORT PlatformThreadLocalStorage {
 
 }  // namespace internal
 
+// 本地线程存储的包装器. 这个类除了为可移植性提供API不用做其他事情.
 // Wrapper for thread local storage.  This class doesn't do much except provide
 // an API for portability.
 class CRBASE_EXPORT ThreadLocalStorage {
@@ -69,11 +74,11 @@ class CRBASE_EXPORT ThreadLocalStorage {
   // initialization, as base's LINKER_INITIALIZED requires a constructor and on
   // some compilers (notably gcc 4.4) this still ends up needing runtime
   // initialization.
-  #define TLS_INITIALIZER {0}
+  #define CR_TLS_INITIALIZER {0}
 
   // A key representing one value stored in TLS.
   // Initialize like
-  //   ThreadLocalStorage::StaticSlot my_slot = TLS_INITIALIZER;
+  //   ThreadLocalStorage::StaticSlot my_slot = CR_TLS_INITIALIZER;
   // If you're not using a static variable, use the convenience class
   // ThreadLocalStorage::Slot (below) instead.
   struct CRBASE_EXPORT StaticSlot {
