@@ -22,23 +22,24 @@ namespace crbase {
 // return strings ignore this error and just return the best conversion
 // possible.
 CRBASE_EXPORT bool WideToUTF8(const wchar_t* src, size_t src_len,
-                            std::string* output);
+                              std::string* output);
 CRBASE_EXPORT std::string WideToUTF8(const std::wstring& wide);
 CRBASE_EXPORT bool UTF8ToWide(const char* src, size_t src_len,
-                            std::wstring* output);
+                              std::wstring* output);
 CRBASE_EXPORT std::wstring UTF8ToWide(StringPiece utf8);
 
 CRBASE_EXPORT bool WideToUTF16(const wchar_t* src, size_t src_len,
-                             string16* output);
+                               string16* output);
 CRBASE_EXPORT string16 WideToUTF16(const std::wstring& wide);
 CRBASE_EXPORT bool UTF16ToWide(const char16* src, size_t src_len,
-                             std::wstring* output);
+                               std::wstring* output);
 CRBASE_EXPORT std::wstring UTF16ToWide(const string16& utf16);
 
-CRBASE_EXPORT bool UTF8ToUTF16(const char* src, size_t src_len, string16* output);
+CRBASE_EXPORT bool UTF8ToUTF16(const char* src, size_t src_len, 
+                               string16* output);
 CRBASE_EXPORT string16 UTF8ToUTF16(StringPiece utf8);
 CRBASE_EXPORT bool UTF16ToUTF8(const char16* src, size_t src_len,
-                             std::string* output);
+                               std::string* output);
 CRBASE_EXPORT std::string UTF16ToUTF8(StringPiece16 utf16);
 
 // This converts an ASCII string, typically a hardcoded constant, to a UTF16

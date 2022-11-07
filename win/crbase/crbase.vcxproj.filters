@@ -389,6 +389,9 @@
       <Filter>debug</Filter>
     </ClInclude>
     <ClInclude Include="base_export.h" />
+    <ClInclude Include="threading\worker_pool.h">
+      <Filter>threading</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="strings\string_piece.cc">
@@ -701,6 +704,12 @@
     </ClCompile>
     <ClCompile Include="debug\stack_trace_win.cc">
       <Filter>debug</Filter>
+    </ClCompile>
+    <ClCompile Include="threading\worker_pool.cc">
+      <Filter>threading</Filter>
+    </ClCompile>
+    <ClCompile Include="threading\worker_pool_win.cc">
+      <Filter>threading</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

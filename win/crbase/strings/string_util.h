@@ -173,11 +173,11 @@ CRBASE_EXPORT extern const char kUtf8ByteOrderMark[];
 // if any characters were removed.  |remove_chars| must be null-terminated.
 // NOTE: Safe to use the same variable for both |input| and |output|.
 CRBASE_EXPORT bool RemoveChars(const string16& input,
-                             const StringPiece16& remove_chars,
-                             string16* output);
+                               const StringPiece16& remove_chars,
+                               string16* output);
 CRBASE_EXPORT bool RemoveChars(const std::string& input,
-                             const StringPiece& remove_chars,
-                             std::string* output);
+                               const StringPiece& remove_chars,
+                               std::string* output);
 
 // Replaces characters in |replace_chars| from anywhere in |input| with
 // |replace_with|.  Each character in |replace_chars| will be replaced with
@@ -185,13 +185,13 @@ CRBASE_EXPORT bool RemoveChars(const std::string& input,
 // |replace_chars| must be null-terminated.
 // NOTE: Safe to use the same variable for both |input| and |output|.
 CRBASE_EXPORT bool ReplaceChars(const string16& input,
-                              const StringPiece16& replace_chars,
-                              const string16& replace_with,
-                              string16* output);
+                                const StringPiece16& replace_chars,
+                                const string16& replace_with,
+                                string16* output);
 CRBASE_EXPORT bool ReplaceChars(const std::string& input,
-                              const StringPiece& replace_chars,
-                              const std::string& replace_with,
-                              std::string* output);
+                                const StringPiece& replace_chars,
+                                const std::string& replace_with,
+                                std::string* output);
 
 enum TrimPositions {
   TRIM_NONE     = 0,
@@ -206,26 +206,26 @@ enum TrimPositions {
 // It is safe to use the same variable for both |input| and |output| (this is
 // the normal usage to trim in-place).
 CRBASE_EXPORT bool TrimString(const string16& input,
-                            StringPiece16 trim_chars,
-                            string16* output);
+                              StringPiece16 trim_chars,
+                              string16* output);
 CRBASE_EXPORT bool TrimString(const std::string& input,
-                            StringPiece trim_chars,
-                            std::string* output);
+                              StringPiece trim_chars,
+                              std::string* output);
 
 // StringPiece versions of the above. The returned pieces refer to the original
 // buffer.
 CRBASE_EXPORT StringPiece16 TrimString(StringPiece16 input,
-                                     const StringPiece16& trim_chars,
-                                     TrimPositions positions);
+                                       const StringPiece16& trim_chars,
+                                       TrimPositions positions);
 CRBASE_EXPORT StringPiece TrimString(StringPiece input,
-                                   const StringPiece& trim_chars,
-                                   TrimPositions positions);
+                                     const StringPiece& trim_chars,
+                                     TrimPositions positions);
 
 // Truncates a string to the nearest UTF-8 character that will leave
 // the string less than or equal to the specified byte size.
 CRBASE_EXPORT void TruncateUTF8ToByteSize(const std::string& input,
-                                        const size_t byte_size,
-                                        std::string* output);
+                                          const size_t byte_size,
+                                          std::string* output);
 
 // Trims any whitespace from either end of the input string.
 //
@@ -235,15 +235,15 @@ CRBASE_EXPORT void TruncateUTF8ToByteSize(const std::string& input,
 // The std::string versions return where whitespace was found.
 // NOTE: Safe to use the same variable for both input and output.
 CRBASE_EXPORT TrimPositions TrimWhitespace(const string16& input,
-                                         TrimPositions positions,
-                                         string16* output);
+                                           TrimPositions positions,
+                                           string16* output);
 CRBASE_EXPORT StringPiece16 TrimWhitespace(StringPiece16 input,
                                          TrimPositions positions);
 CRBASE_EXPORT TrimPositions TrimWhitespaceASCII(const std::string& input,
-                                              TrimPositions positions,
-                                              std::string* output);
+                                                TrimPositions positions,
+                                                std::string* output);
 CRBASE_EXPORT StringPiece TrimWhitespaceASCII(StringPiece input,
-                                            TrimPositions positions);
+                                              TrimPositions positions);
 
 // Searches  for CR or LF characters.  Removes all contiguous whitespace
 // strings that contain them.  This is useful when trying to deal with text
@@ -263,9 +263,9 @@ CRBASE_EXPORT std::string CollapseWhitespaceASCII(
 // Returns true if |input| is empty or contains only characters found in
 // |characters|.
 CRBASE_EXPORT bool ContainsOnlyChars(const StringPiece& input,
-                                   const StringPiece& characters);
+                                     const StringPiece& characters);
 CRBASE_EXPORT bool ContainsOnlyChars(const StringPiece16& input,
-                                   const StringPiece16& characters);
+                                     const StringPiece16& characters);
 
 // Returns true if the specified string matches the criteria. How can a wide
 // string be 8-bit or UTF8? It contains only characters that are < 256 (in the
@@ -291,9 +291,9 @@ CRBASE_EXPORT bool IsStringASCII(const string16& str);
 // Compare the lower-case form of the given string against the given
 // previously-lower-cased ASCII string (typically a constant).
 CRBASE_EXPORT bool LowerCaseEqualsASCII(StringPiece str,
-                                      StringPiece lowecase_ascii);
+                                        StringPiece lowecase_ascii);
 CRBASE_EXPORT bool LowerCaseEqualsASCII(StringPiece16 str,
-                                      StringPiece lowecase_ascii);
+                                        StringPiece lowecase_ascii);
 
 // Performs a case-sensitive string compare of the given 16-bit string against
 // the given 8-bit ASCII string (typically a constant). The behavior is
@@ -314,17 +314,17 @@ enum class CompareCase {
 };
 
 CRBASE_EXPORT bool StartsWith(StringPiece str,
+                              StringPiece search_for,
+                              CompareCase case_sensitivity);
+CRBASE_EXPORT bool StartsWith(StringPiece16 str,
+                              StringPiece16 search_for,
+                              CompareCase case_sensitivity);
+CRBASE_EXPORT bool EndsWith(StringPiece str,
                             StringPiece search_for,
                             CompareCase case_sensitivity);
-CRBASE_EXPORT bool StartsWith(StringPiece16 str,
+CRBASE_EXPORT bool EndsWith(StringPiece16 str,
                             StringPiece16 search_for,
                             CompareCase case_sensitivity);
-CRBASE_EXPORT bool EndsWith(StringPiece str,
-                          StringPiece search_for,
-                          CompareCase case_sensitivity);
-CRBASE_EXPORT bool EndsWith(StringPiece16 str,
-                          StringPiece16 search_for,
-                          CompareCase case_sensitivity);
 
 // Determines the type of ASCII character, independent of locale (the C
 // library versions will change based on locale).
@@ -419,9 +419,9 @@ CRBASE_EXPORT char16* WriteInto(string16* str, size_t length_with_null);
 
 // Does the opposite of SplitString().
 CRBASE_EXPORT std::string JoinString(const std::vector<std::string>& parts,
-                                   StringPiece separator);
+                                     StringPiece separator);
 CRBASE_EXPORT string16 JoinString(const std::vector<string16>& parts,
-                                StringPiece16 separator);
+                                  StringPiece16 separator);
 
 // Replace $1-$2-$3..$9 in the format string with |a|-|b|-|c|..|i| respectively.
 // Additionally, any number of consecutive '$' characters is replaced by that
@@ -439,8 +439,8 @@ CRBASE_EXPORT std::string ReplaceStringPlaceholders(
 
 // Single-string shortcut for ReplaceStringHolders. |offset| may be NULL.
 CRBASE_EXPORT string16 ReplaceStringPlaceholders(const string16& format_string,
-                                               const string16& a,
-                                               size_t* offset);
+                                                 const string16& a,
+                                                 size_t* offset);
 
 // Chromium code style is to not use malloc'd strings; this is only for use
 // for interaction with APIs that require it.

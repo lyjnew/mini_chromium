@@ -30,6 +30,36 @@ template <class T> class DeleteHelper;
 
 class SequencedTaskRunner;
 
+// 一个在任务集合之间强制排序的工作线程池. 它还允许你指定在结束时如何处理任务.
+// 
+// 如果要进行强制排序, 请从工作线程池获取一个唯一的令牌队列并且用权令来传递你想要的任务
+// 排序. 所有相同令牌的任务都被保证逐个执行, 即使不在同一个线程上.
+// 这意味着:
+// 
+//   - 不会有两个相同令牌的同时被运行.
+//
+//   - 给定两个相同令牌的T1和T2, 使得T2在T1之后运行, 此时T2将会在T1被销毁后启动.
+// 
+//   - 如果T2运行在T1后面的话, T1所有的内存变动和销毁将被T2可见.
+//
+// 例如:
+//   SequencedWorkerPool::SequenceToken token =
+//       SequencedWorkerPool::GetSequenceToken();
+//   pool.PostSequencedWorkerTask(token, SequencedWorkerPool::SKIP_ON_SHUTDOWN,
+//                                CR_FROM_HERE, crbase::Bind(...));
+//   pool.PostSequencedWorkerTask(token, SequencedWorkerPool::SKIP_ON_SHUTDOWN,
+//                                CR_FROM_HERE, crbase::Bind(...));
+// 
+// 你可以创建命名序列令牌, 以便更轻松的跨过不同组件共享令牌.
+//
+// 你也可以通过PostWorkerTask给工作线程池传递任务, 而无需进行排序. 这样将以无指定的顺序
+// 执行任务, 带有不同令牌的任务的执行顺序同样是未指定的.
+// 
+// 为了快速关闭, 此类可能在关闭时泄露. 然而, 预期用法是调用Shutdown(), 
+// 它认为CONTINUE_ON_SHUTDOWN行为是正确的, 并且BLOCK_SHUTDOWN行为是必须的.
+// 
+// 实现说明: 
+
 // A worker thread pool that enforces ordering between sets of tasks. It also
 // allows you to specify what should happen to your tasks on shutdown.
 //

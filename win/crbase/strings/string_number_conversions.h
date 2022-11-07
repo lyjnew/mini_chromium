@@ -34,8 +34,8 @@ namespace crbase {
 CRBASE_EXPORT std::string IntToString(int value);
 CRBASE_EXPORT string16 IntToString16(int value);
 
-CRBASE_EXPORT std::string UintToString(unsigned value);
-CRBASE_EXPORT string16 UintToString16(unsigned value);
+CRBASE_EXPORT std::string UintToString(unsigned int value);
+CRBASE_EXPORT string16 UintToString16(unsigned int value);
 
 CRBASE_EXPORT std::string Int64ToString(int64_t value);
 CRBASE_EXPORT string16 Int64ToString16(int64_t value);

@@ -284,6 +284,7 @@
     <ClInclude Include="threading\thread_local.h" />
     <ClInclude Include="threading\thread_local_storage.h" />
     <ClInclude Include="threading\thread_restrictions.h" />
+    <ClInclude Include="threading\worker_pool.h" />
     <ClInclude Include="thread_task_runner_handle.h" />
     <ClInclude Include="time\clock.h" />
     <ClInclude Include="time\default_clock.h" />
@@ -413,6 +414,8 @@
     <ClCompile Include="threading\thread_local_storage_win.cc" />
     <ClCompile Include="threading\thread_local_win.cc" />
     <ClCompile Include="threading\thread_restrictions.cc" />
+    <ClCompile Include="threading\worker_pool.cc" />
+    <ClCompile Include="threading\worker_pool_win.cc" />
     <ClCompile Include="thread_task_runner_handle.cc" />
     <ClCompile Include="time\clock.cc" />
     <ClCompile Include="time\default_clock.cc" />
