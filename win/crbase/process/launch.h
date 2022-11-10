@@ -151,7 +151,7 @@ CRBASE_EXPORT void RaiseProcessToHighPriority();
 
 // Creates a LaunchOptions object suitable for launching processes in a test
 // binary. This should not be called in production/released code.
-CRBASE_EXPORT LaunchOptions LaunchOptionsForTest();
+///CRBASE_EXPORT LaunchOptions LaunchOptionsForTest();
 
 }  // namespace crbase
 

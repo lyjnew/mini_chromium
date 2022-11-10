@@ -319,7 +319,7 @@ class SequencedWorkerPool::Inner {
 
   void SignalHasWorkForTesting();
 
-  int GetWorkSignalCountForTesting() const;
+  ///int GetWorkSignalCountForTesting() const;
 
   void Shutdown(int max_blocking_tasks_after_shutdown);
 
