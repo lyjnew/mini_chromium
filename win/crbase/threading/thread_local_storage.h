@@ -55,8 +55,6 @@ class CRBASE_EXPORT PlatformThreadLocalStorage {
 
 }  // namespace internal
 
-// 本地线程存储的包装器. 这个类不用做其他事情除非为了可移植性提供API.
-
 // Wrapper for thread local storage.  This class doesn't do much except provide
 // an API for portability.
 class CRBASE_EXPORT ThreadLocalStorage {
