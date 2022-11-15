@@ -54,9 +54,6 @@
 
 namespace crbase {
 
-// 这是基础的简单线程SimpleThread, 你可以继承它并且重载Run方法, 或者你也可以使用
-// DelegateSimpleThread 这个接口
-
 // This is the base SimpleThread.  You can derive from it and implement the
 // virtual Run method, or you can use the DelegateSimpleThread interface.
 class CRBASE_EXPORT SimpleThread : public PlatformThread::Delegate {
@@ -146,13 +143,6 @@ class CRBASE_EXPORT DelegateSimpleThread : public SimpleThread {
  private:
   Delegate* delegate_;
 };
-
-// 代理简单线程池(DelegateSimpleThreadPool) 允许你启动一些数量的线程, 并且可以通知线程
-// 加入工作. 这很方便你用多线程来处理一些小工作, 但是不希望你为每个小工作生产一个线程.
-//
-// 增加一个代理到工作列表仅需要调用AddWork()就可以了, JoinAll()将确保所有工作被处理并等
-// 待到工作结束. 线程池可以复用, 因此你可以在调用完JoinAll()后重新调用Start().
-// 
 
 // DelegateSimpleThreadPool allows you to start up a fixed number of threads,
 // and then add jobs which will be dispatched to the threads.  This is

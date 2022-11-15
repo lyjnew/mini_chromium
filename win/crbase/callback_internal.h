@@ -23,14 +23,6 @@ namespace crbase {
 namespace internal {
 class CallbackBase;
 
-// BindStateBase被Callback类用于提供一个不透明的句柄, Callback类可以去代表一个绑定了
-// 参数的函数对象. 它表现的像一个存在的类型被用于对应的DoInvoke函数去执行函数. 这允许我
-// 们可以通过"类型抹除"保护Callback类不受到已绑定参数的类型的影响.
-// 在基础层, 唯一任务是增加引用计数数据, 自从RefCountedThreadSafe要求析构函数是一个虚
-// 函数后就不要用它.
-// 为每个BindState模板实例化创建一个虚函数表会导致膨胀, 它的唯一任务是调用析构函数, 这可
-// 以用一个函数指针完成.
-
 // BindStateBase is used to provide an opaque handle that the Callback
 // class can use to represent a function object with bound arguments. It
 // behaves as an existential type that is used by a corresponding
@@ -63,8 +55,6 @@ class BindStateBase {
   CR_DISALLOW_COPY_AND_ASSIGN(BindStateBase);
 };
 
-// 持有Callback方法, 不要求特殊化去减少模板膨胀.
-
 // Holds the Callback methods that don't require specialization to reduce
 // template bloat.
 class CRBASE_EXPORT CallbackBase {
@@ -79,10 +69,6 @@ class CRBASE_EXPORT CallbackBase {
   void Reset();
 
  protected:
-  // 在C++里, 把函数指针转到另外一种类型的函数指针是安全的. 使用void*来保存函数指针是
-  // 不好的. 我们创建了一个调用函数存储(InvokeFuncStorage)来储存函数指针, 然后把它转
-  // 回原始类型使用.
-
   // In C++, it is safe to cast function pointers to function pointers of
   // another type. It is not okay to use void*. We create a InvokeFuncStorage
   // that that can store our function pointer, and then cast it back to
@@ -92,18 +78,11 @@ class CRBASE_EXPORT CallbackBase {
   // Returns true if this callback equals |other|. |other| may be null.
   bool Equals(const CallbackBase& other) const;
 
-  // 允许通过构造函数来初始化类成员|bind_state_|, 以避免scoped_refptr的默认初始化调
-  // 用. 我们也不用在这里初始化类成员|polymorphic_invoke_|, 因为在Callback模板派生里
-  // 的一个正常赋值操作对于编译器错误来说更友好.
-
   // Allow initializing of |bind_state_| via the constructor to avoid default
   // initialization of the scoped_refptr.  We do not also initialize
   // |polymorphic_invoke_| here because doing a normal assignment in the
   // derived Callback templates makes for much nicer compiler errors.
   explicit CallbackBase(BindStateBase* bind_state);
-
-  // 强制析构函数在此转换单元内部实例化, 因此我们的子类将将不会得到一个被内联的版本, 避免
-  // 更多的模板膨胀.
 
   // Force the destructor to be instantiated inside this translation unit so
   // that our subclasses will not get inlined versions.  Avoids more template
@@ -113,14 +92,6 @@ class CRBASE_EXPORT CallbackBase {
   scoped_refptr<BindStateBase> bind_state_;
   InvokeFuncStorage polymorphic_invoke_;
 };
-
-// 一个模板辅助器来确定是否得到的类型为non-const还是move-only-type, 也就是说(i.e.)
-// 一个给定类型的值是否应该通过传给std::move()来析构. 
-// 如果类型拥有一个哨兵成员MoveOnlyTypeForCPP03则被考虑为仅移动的(move-only):
-// 一个类通常会使用CR_DISALLOW_COPY_AND_ASSIGN_WITH_MOVE_FOR_BIND这个宏来实现此特性.
-// 这样对所有的仅移动(move-only)的类型来说更容易些... 但是这会在VS2013里的某些类型混
-// 淆模板推导, 像std::unique_ptr.
-// 代办事项(dcheng): 在切换到VS2015的时候, 重新浏览此内容.
 
 // A helper template to determine if given type is non-const move-only-type,
 // i.e. if a value of the given type should be passed via std::move() in a
@@ -142,9 +113,6 @@ template <typename T> struct IsMoveOnlyType {
                             !is_const<T>::value;
 };
 
-// 特殊处理IsMoveOnlyType, 让std::unique_ptr仍然被认为是仅移动的(move-only), 即使
-// 没有哨兵成员MoveOnlyTypeForCPP03.
-
 // Specialization of IsMoveOnlyType so that std::unique_ptr is still considered
 // move-only, even without the sentinel member.
 template <typename T>
@@ -155,17 +123,6 @@ struct CallbackParamTraitsForMoveOnlyType;
 
 template <typename>
 struct CallbackParamTraitsForNonMoveOnlyType;
-
-// 代办事项(tzik): 一旦MSVS支持有默认值的可变参数模板, 请用一个默认的参数.
-// http://connect.microsoft.com/VisualStudio/feedbackdetail/view/957801/compilation-error-with-variadic-templates
-//
-// 这是被用于带来一个参数类型的一个类型特征对象, 并且提取一个适合的类型来储存和转发参数.
-//
-// 特别的, 它可以除去引用并且把数组转换成指针来储存; 还能避免意外创建一个双引用参数当参数
-// 是个引用类型时.
-//
-// 为数组类型存储将是一个问题, 因为我们是通过常量引用来传递参数的, 在这个案例上, 我们最终
-// 通过C++不允许的初始化列表里传递一个真实数组类型. 这将损坏C字符串的传递.
 
 // TODO(tzik): Use a default parameter once MSVS supports variadic templates
 // with default values.
@@ -195,11 +152,6 @@ struct CallbackParamTraitsForNonMoveOnlyType {
   using StorageType = T;
 };
 
-// 除非我们手动的指定绑定参数的类型, 否则储存不应该被触发, 不管怎样, 万一发生了, 
-// 这个将防止我们意外的储存一个引用参数.
-//
-// 转发类型(ForwardType)应该仅仅被用于解绑参数.
-
 // The Storage should almost be impossible to trigger unless someone manually
 // specifies type of the bind parameters.  However, in case they do,
 // this will guard against us accidentally storing a reference parameter.
@@ -210,9 +162,6 @@ struct CallbackParamTraitsForNonMoveOnlyType<T&> {
   using ForwardType = T&;
   using StorageType = T;
 };
-
-// 请注意数组类型, 我们在转换中暗中加入了const, 这意味着我们不可能给带有non-const指针的
-// 函数绑定数组参数
 
 // Note that for array types, we implicitly add a const in the conversion. This
 // means that it is not possible to bind array arguments to functions that take

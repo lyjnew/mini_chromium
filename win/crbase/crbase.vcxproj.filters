@@ -392,6 +392,31 @@
     <ClInclude Include="threading\worker_pool.h">
       <Filter>threading</Filter>
     </ClInclude>
+    <ClInclude Include="win\scoped_hdc.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="win\scoped_hglobal.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="win\scoped_select_object.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="win\scoped_gdi_object.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="scoped_generic.h" />
+    <ClInclude Include="auto_reset.h" />
+    <ClInclude Include="supports_user_data.h" />
+    <ClInclude Include="scoped_observer.h" />
+    <ClInclude Include="containers\small_map.h">
+      <Filter>containers</Filter>
+    </ClInclude>
+    <ClInclude Include="containers\stack_container.h">
+      <Filter>containers</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\manual_constructor.h">
+      <Filter>memory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="strings\string_piece.cc">
@@ -711,5 +736,6 @@
     <ClCompile Include="threading\worker_pool_win.cc">
       <Filter>threading</Filter>
     </ClCompile>
+    <ClCompile Include="supports_user_data.cc" />
   </ItemGroup>
 </Project>

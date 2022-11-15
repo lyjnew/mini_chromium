@@ -19,11 +19,6 @@ namespace crbase {
 
 class TaskRunner;
 
-// 这是一个不要求任务运行在线程或者消息循环的设施
-// 警告: 除非绝对需要,否则不应该使用此类, 在结束的时候我们不等待工作池线程结束, 因此
-// 任务在工作池运行时访问其他对象必须十分注意(例如:消息循环, 单例). 结束的时候这些对
-// 可能不在存在.
-
 // This is a facility that runs tasks that don't require a specific thread or
 // a message loop.
 //

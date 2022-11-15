@@ -16,10 +16,6 @@ namespace crbase {
 
 namespace internal {
 
-// 警告: 你不应该直接使用此类.
-// 平台线程本地存储(PlatformThreadLocalStorage)是系统TLS的低级抽象接口,
-// 你应该使用ThreadLocalStorage::StaticSlot/Slot来替代此类.
-
 // WARNING: You should *NOT* be using this class directly.
 // PlatformThreadLocalStorage is low-level abstraction to the OS's TLS
 // interface, you should instead be using ThreadLocalStorage::StaticSlot/Slot.

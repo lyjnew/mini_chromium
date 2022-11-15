@@ -71,23 +71,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)\build.out\$(Configuration)_$(PlatformShortname)\</OutDir>
-    <IntDir>$(SolutionDir)\build.tmp\$(Configuration)_$(PlatformShortname)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)build.out\$(Configuration)_$(PlatformShortname)\</OutDir>
+    <IntDir>$(SolutionDir)build.tmp\$(Configuration)_$(PlatformShortname)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)\build.out\$(Configuration)_$(PlatformShortname)\</OutDir>
-    <IntDir>$(SolutionDir)\build.tmp\$(Configuration)_$(PlatformShortname)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)build.out\$(Configuration)_$(PlatformShortname)\</OutDir>
+    <IntDir>$(SolutionDir)build.tmp\$(Configuration)_$(PlatformShortname)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)\build.out\$(Configuration)_$(PlatformShortname)\</OutDir>
-    <IntDir>$(SolutionDir)\build.tmp\$(Configuration)_$(PlatformShortname)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)build.out\$(Configuration)_$(PlatformShortname)\</OutDir>
+    <IntDir>$(SolutionDir)build.tmp\$(Configuration)_$(PlatformShortname)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)\build.out\$(Configuration)_$(PlatformShortname)\</OutDir>
-    <IntDir>$(SolutionDir)\build.tmp\$(Configuration)_$(PlatformShortname)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)build.out\$(Configuration)_$(PlatformShortname)\</OutDir>
+    <IntDir>$(SolutionDir)build.tmp\$(Configuration)_$(PlatformShortname)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -167,6 +167,7 @@
     <ClInclude Include="atomic_ref_count.h" />
     <ClInclude Include="atomic_sequence_num.h" />
     <ClInclude Include="at_exit.h" />
+    <ClInclude Include="auto_reset.h" />
     <ClInclude Include="base_paths.h" />
     <ClInclude Include="base_paths_win.h" />
     <ClInclude Include="bind.h" />
@@ -182,6 +183,8 @@
     <ClInclude Include="command_line.h" />
     <ClInclude Include="compiler_specific.h" />
     <ClInclude Include="containers\hash_tables.h" />
+    <ClInclude Include="containers\small_map.h" />
+    <ClInclude Include="containers\stack_container.h" />
     <ClInclude Include="cpu.h" />
     <ClInclude Include="base_export.h" />
     <ClInclude Include="critical_closure.h" />
@@ -206,6 +209,7 @@
     <ClInclude Include="macros.h" />
     <ClInclude Include="memory\aligned_memory.h" />
     <ClInclude Include="memory\linked_ptr.h" />
+    <ClInclude Include="memory\manual_constructor.h" />
     <ClInclude Include="memory\raw_scoped_refptr_mismatch_checker.h" />
     <ClInclude Include="memory\ref_counted.h" />
     <ClInclude Include="memory\scoped_ptr.h" />
@@ -243,6 +247,8 @@
     <ClInclude Include="rand_util.h" />
     <ClInclude Include="run_loop.h" />
     <ClInclude Include="scoped_clear_errno.h" />
+    <ClInclude Include="scoped_generic.h" />
+    <ClInclude Include="scoped_observer.h" />
     <ClInclude Include="sequenced_task_runner.h" />
     <ClInclude Include="sequenced_task_runner_helpers.h" />
     <ClInclude Include="sequence_checker.h" />
@@ -258,6 +264,7 @@
     <ClInclude Include="strings\sys_string_conversions.h" />
     <ClInclude Include="strings\utf_string_conversions.h" />
     <ClInclude Include="strings\utf_string_conversion_utils.h" />
+    <ClInclude Include="supports_user_data.h" />
     <ClInclude Include="synchronization\cancellation_flag.h" />
     <ClInclude Include="synchronization\condition_variable.h" />
     <ClInclude Include="synchronization\lock.h" />
@@ -301,9 +308,13 @@
     <ClInclude Include="win\scoped_comptr.h" />
     <ClInclude Include="win\scoped_com_initializer.h" />
     <ClInclude Include="win\scoped_co_mem.h" />
+    <ClInclude Include="win\scoped_gdi_object.h" />
     <ClInclude Include="win\scoped_handle.h" />
+    <ClInclude Include="win\scoped_hdc.h" />
+    <ClInclude Include="win\scoped_hglobal.h" />
     <ClInclude Include="win\scoped_process_information.h" />
     <ClInclude Include="win\scoped_propvariant.h" />
+    <ClInclude Include="win\scoped_select_object.h" />
     <ClInclude Include="win\shortcut.h" />
     <ClInclude Include="win\startup_information.h" />
     <ClInclude Include="win\windows_version.h" />
@@ -389,6 +400,7 @@
     <ClCompile Include="strings\sys_string_conversions.cc" />
     <ClCompile Include="strings\utf_string_conversions.cc" />
     <ClCompile Include="strings\utf_string_conversion_utils.cc" />
+    <ClCompile Include="supports_user_data.cc" />
     <ClCompile Include="synchronization\cancellation_flag.cc" />
     <ClCompile Include="synchronization\condition_variable_win.cc" />
     <ClCompile Include="synchronization\lock.cc" />
