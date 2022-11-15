@@ -46,8 +46,14 @@ OSInfo::OSInfo()
   OSVERSIONINFOEX version_info;
   ZeroMemory(&version_info, sizeof(version_info));
   version_info.dwOSVersionInfoSize = sizeof(version_info);
-  rtl_get_version(&version_info);
-
+  if (rtl_get_version != nullptr) {
+    rtl_get_version(&version_info);
+  } else {
+#pragma warning(push)
+#pragma warning(disable:4996)
+    ::GetVersionEx(reinterpret_cast<OSVERSIONINFO*>(&version_info));
+#pragma warning(pop)
+  }
   // 'GetVersionExW': was declared deprecated on win8 latter.
   // ::GetVersionEx(reinterpret_cast<OSVERSIONINFO*>(&version_info));
   version_number_.major = version_info.dwMajorVersion;
