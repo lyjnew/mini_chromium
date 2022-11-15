@@ -36,7 +36,7 @@ class CRBASE_EXPORT OpenFileName {
   //  filters.push_back(crbase::MakeTuple(crbase::string16(L"PNG File(*.png)"), 
   //                                      crbase::string16(L"*.png")));
   //  foo.SetFilters(filters);
-  //  ::GetSaveFileNameW(foo.GetOPENFILENAME());
+  //  ::GetSaveFileName(foo.GetOPENFILENAME());
   void SetFilters(
       const std::vector<crbase::Tuple<crbase::string16, 
                                       crbase::string16>>& filters);
