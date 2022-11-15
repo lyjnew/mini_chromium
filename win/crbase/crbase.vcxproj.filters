@@ -417,6 +417,12 @@
     <ClInclude Include="memory\manual_constructor.h">
       <Filter>memory</Filter>
     </ClInclude>
+    <ClInclude Include="win\open_file_name_win.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="win\scoped_ole_initializer.h">
+      <Filter>win</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="strings\string_piece.cc">
@@ -737,5 +743,11 @@
       <Filter>threading</Filter>
     </ClCompile>
     <ClCompile Include="supports_user_data.cc" />
+    <ClCompile Include="win\open_file_name_win.cc">
+      <Filter>win</Filter>
+    </ClCompile>
+    <ClCompile Include="win\scoped_ole_initializer.cc">
+      <Filter>win</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

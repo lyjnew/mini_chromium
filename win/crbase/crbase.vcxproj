@@ -303,6 +303,7 @@
     <ClInclude Include="tuple.h" />
     <ClInclude Include="values.h" />
     <ClInclude Include="win\object_watcher.h" />
+    <ClInclude Include="win\open_file_name_win.h" />
     <ClInclude Include="win\pe_image.h" />
     <ClInclude Include="win\registry.h" />
     <ClInclude Include="win\scoped_comptr.h" />
@@ -312,6 +313,7 @@
     <ClInclude Include="win\scoped_handle.h" />
     <ClInclude Include="win\scoped_hdc.h" />
     <ClInclude Include="win\scoped_hglobal.h" />
+    <ClInclude Include="win\scoped_ole_initializer.h" />
     <ClInclude Include="win\scoped_process_information.h" />
     <ClInclude Include="win\scoped_propvariant.h" />
     <ClInclude Include="win\scoped_select_object.h" />
@@ -439,9 +441,11 @@
     <ClCompile Include="tracking_info.cc" />
     <ClCompile Include="values.cc" />
     <ClCompile Include="win\object_watcher.cc" />
+    <ClCompile Include="win\open_file_name_win.cc" />
     <ClCompile Include="win\pe_image.cc" />
     <ClCompile Include="win\registry.cc" />
     <ClCompile Include="win\scoped_handle.cc" />
+    <ClCompile Include="win\scoped_ole_initializer.cc" />
     <ClCompile Include="win\scoped_process_information.cc" />
     <ClCompile Include="win\shortcut.cc" />
     <ClCompile Include="win\startup_information.cc" />
