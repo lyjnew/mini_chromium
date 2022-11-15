@@ -7,6 +7,7 @@
 #include <windows.h>
 
 #include "crbase/logging.h"
+#include "crbase/compiler_specific.h"
 #include "crbase/strings/utf_string_conversions.h"
 #include "crbase/win/registry.h"
 
@@ -49,10 +50,9 @@ OSInfo::OSInfo()
   if (rtl_get_version != nullptr) {
     rtl_get_version(&version_info);
   } else {
-#pragma warning(push)
-#pragma warning(disable:4996)
+    CR_MSVC_PUSH_DISABLE_WARNING(4996)
     ::GetVersionEx(reinterpret_cast<OSVERSIONINFO*>(&version_info));
-#pragma warning(pop)
+    CR_MSVC_POP_WARNING()
   }
   // 'GetVersionExW': was declared deprecated on win8 latter.
   // ::GetVersionEx(reinterpret_cast<OSVERSIONINFO*>(&version_info));

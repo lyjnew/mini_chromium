@@ -124,7 +124,7 @@
 //   int foo() CR_WARN_UNUSED_RESULT;
 // To explicitly ignore a result, see |ignore_result()| in base/macros.h.
 #undef CR_WARN_UNUSED_RESULT
-#if defined(COMPILER_GCC) || defined(__clang__)
+#if defined(MINI_CHROMIUM_COMPILER_GCC) || defined(__clang__)
 #define CR_WARN_UNUSED_RESULT __attribute__((warn_unused_result))
 #else
 #define CR_WARN_UNUSED_RESULT
