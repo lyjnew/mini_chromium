@@ -18,7 +18,7 @@ ScopedOleInitializer::ScopedOleInitializer()
       hr_(OleInitialize(NULL)) {
 #ifndef NDEBUG
   if (hr_ == S_FALSE) {
-    LOG(ERROR) << "Multiple OleInitialize() calls for thread " << thread_id_;
+    CR_LOG(ERROR) << "Multiple OleInitialize() calls for thread " << thread_id_;
   } else {
     CR_DCHECK_NE(OLE_E_WRONGCOMPOBJ, hr_) << "Incompatible DLLs on machine";
     CR_DCHECK_NE(RPC_E_CHANGED_MODE, hr_) << "Invalid COM thread model change";

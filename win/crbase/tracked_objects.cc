@@ -796,7 +796,7 @@ void ThreadData::EnsureCleanupWasCalled(int major_threads_shutdown_count) {
   // Verify that we've at least shutdown/cleanup the major namesd threads.  The
   // caller should tell us how many thread shutdowns should have taken place by
   // now.
-  CHECK_GT(cleanup_count_, major_threads_shutdown_count);
+  CR_CHECK_GT(cleanup_count_, major_threads_shutdown_count);
 #endif
 }
 
