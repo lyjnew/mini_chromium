@@ -47,7 +47,7 @@ OSInfo::OSInfo()
   OSVERSIONINFOEX version_info;
   ZeroMemory(&version_info, sizeof(version_info));
   version_info.dwOSVersionInfoSize = sizeof(version_info);
-  if (rtl_get_version != nullptr) {
+  if (rtl_get_version != NULL) {
     rtl_get_version(&version_info);
   } else {
     CR_MSVC_PUSH_DISABLE_WARNING(4996)
