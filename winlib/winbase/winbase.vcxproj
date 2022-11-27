@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{AF5C4CD9-7A80-4DDF-908B-07349907D4DF}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>winbase</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)build.out\$(Configuration)_$(PlatformShortname)\</OutDir>
+    <IntDir>$(SolutionDir)build.tmp\$(Configuration)_$(PlatformShortname)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)build.out\$(Configuration)_$(PlatformShortname)\</OutDir>
+    <IntDir>$(SolutionDir)build.tmp\$(Configuration)_$(PlatformShortname)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)build.out\$(Configuration)_$(PlatformShortname)\</OutDir>
+    <IntDir>$(SolutionDir)build.tmp\$(Configuration)_$(PlatformShortname)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)build.out\$(Configuration)_$(PlatformShortname)\</OutDir>
+    <IntDir>$(SolutionDir)build.tmp\$(Configuration)_$(PlatformShortname)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_SCL_SECURE_NO_WARNINGS;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\;</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_SCL_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\;</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>Disabled</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>_SCL_SECURE_NO_WARNINGS;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\;</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>Disabled</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>_SCL_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\;</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="atomic\atomicops.h" />
+    <ClInclude Include="atomic\atomic_ref_count.h" />
+    <ClInclude Include="atomic\atomic_sequence_num.h" />
+    <ClInclude Include="at_exit.h" />
+    <ClInclude Include="base_export.h" />
+    <ClInclude Include="containers\circular_deque.h" />
+    <ClInclude Include="containers\stack.h" />
+    <ClInclude Include="containers\vector_buffer.h" />
+    <ClInclude Include="debug\activity_tracker.h" />
+    <ClInclude Include="debug\alias.h" />
+    <ClInclude Include="debug\debugger.h" />
+    <ClInclude Include="debug\stack_trace.h" />
+    <ClInclude Include="functional\bind.h" />
+    <ClInclude Include="functional\bind_helpers.h" />
+    <ClInclude Include="functional\bind_internal.h" />
+    <ClInclude Include="functional\callback.h" />
+    <ClInclude Include="functional\callback_forward.h" />
+    <ClInclude Include="functional\callback_helpers.h" />
+    <ClInclude Include="functional\callback_internal.h" />
+    <ClInclude Include="functional\callback_list.h" />
+    <ClInclude Include="functional\cancelable_callback.h" />
+    <ClInclude Include="lazy_instance.h" />
+    <ClInclude Include="lazy_instance_helpers.h" />
+    <ClInclude Include="location.h" />
+    <ClInclude Include="logging.h" />
+    <ClInclude Include="macros.h" />
+    <ClInclude Include="compiler_specific.h" />
+    <ClInclude Include="memory\ptr_util.h" />
+    <ClInclude Include="memory\raw_scoped_refptr_mismatch_checker.h" />
+    <ClInclude Include="memory\ref_counted.h" />
+    <ClInclude Include="memory\scoped_refptr.h" />
+    <ClInclude Include="memory\singleton.h" />
+    <ClInclude Include="memory\weak_ptr.h" />
+    <ClInclude Include="no_destructor.h" />
+    <ClInclude Include="numerics\checked_math.h" />
+    <ClInclude Include="numerics\checked_math_impl.h" />
+    <ClInclude Include="numerics\clamped_math.h" />
+    <ClInclude Include="numerics\clamped_math_impl.h" />
+    <ClInclude Include="numerics\math_constants.h" />
+    <ClInclude Include="numerics\ranges.h" />
+    <ClInclude Include="numerics\safe_conversions.h" />
+    <ClInclude Include="numerics\safe_conversions_impl.h" />
+    <ClInclude Include="numerics\safe_math.h" />
+    <ClInclude Include="numerics\safe_math_clang_gcc_impl.h" />
+    <ClInclude Include="numerics\safe_math_shared_impl.h" />
+    <ClInclude Include="optional.h" />
+    <ClInclude Include="strings\char_traits.h" />
+    <ClInclude Include="strings\safe_sprintf.h" />
+    <ClInclude Include="strings\string16.h" />
+    <ClInclude Include="strings\stringize_macros.h" />
+    <ClInclude Include="strings\stringprintf.h" />
+    <ClInclude Include="strings\string_number_conversions.h" />
+    <ClInclude Include="strings\string_piece.h" />
+    <ClInclude Include="strings\string_piece_forward.h" />
+    <ClInclude Include="strings\string_split.h" />
+    <ClInclude Include="strings\string_tokenizer.h" />
+    <ClInclude Include="strings\string_util.h" />
+    <ClInclude Include="strings\sys_string_conversions.h" />
+    <ClInclude Include="strings\utf_string_conversions.h" />
+    <ClInclude Include="strings\utf_string_conversion_utils.h" />
+    <ClInclude Include="synchronization\atomic_flag.h" />
+    <ClInclude Include="synchronization\lock.h" />
+    <ClInclude Include="synchronization\lock_impl.h" />
+    <ClInclude Include="template_util.h" />
+    <ClInclude Include="third_party\double-conversion\bignum-dtoa.h" />
+    <ClInclude Include="third_party\double-conversion\bignum.h" />
+    <ClInclude Include="third_party\double-conversion\cached-powers.h" />
+    <ClInclude Include="third_party\double-conversion\diy-fp.h" />
+    <ClInclude Include="third_party\double-conversion\double-conversion.h" />
+    <ClInclude Include="third_party\double-conversion\double-to-string.h" />
+    <ClInclude Include="third_party\double-conversion\fast-dtoa.h" />
+    <ClInclude Include="third_party\double-conversion\fixed-dtoa.h" />
+    <ClInclude Include="third_party\double-conversion\ieee.h" />
+    <ClInclude Include="third_party\double-conversion\string-to-double.h" />
+    <ClInclude Include="third_party\double-conversion\strtod.h" />
+    <ClInclude Include="third_party\double-conversion\utils.h" />
+    <ClInclude Include="third_party\icu\icu_utf.h" />
+    <ClInclude Include="third_party\nspr\prtime.h" />
+    <ClInclude Include="threading\platform_thread.h" />
+    <ClInclude Include="threading\thread_restrictions.h" />
+    <ClInclude Include="time\clock.h" />
+    <ClInclude Include="time\default_clock.h" />
+    <ClInclude Include="time\default_tick_clock.h" />
+    <ClInclude Include="time\tick_clock.h" />
+    <ClInclude Include="time\time.h" />
+    <ClInclude Include="time\time_override.h" />
+    <ClInclude Include="time\time_to_iso8601.h" />
+    <ClInclude Include="win\nominmax.h" />
+    <ClInclude Include="win\windows_types.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="at_exit.cc" />
+    <ClCompile Include="debug\activity_tracker.cc" />
+    <ClCompile Include="debug\alias.cc" />
+    <ClCompile Include="debug\debugger.cc" />
+    <ClCompile Include="debug\stack_trace.cc" />
+    <ClCompile Include="debug\stack_trace_win.cc" />
+    <ClCompile Include="functional\callback_helpers.cc" />
+    <ClCompile Include="functional\callback_internal.cc" />
+    <ClCompile Include="lazy_instance_helpers.cc" />
+    <ClCompile Include="location.cc" />
+    <ClCompile Include="logging.cc" />
+    <ClCompile Include="main.cc" />
+    <ClCompile Include="memory\ref_counted.cc" />
+    <ClCompile Include="memory\weak_ptr.cc" />
+    <ClCompile Include="strings\safe_sprintf.cc" />
+    <ClCompile Include="strings\stringprintf.cc" />
+    <ClCompile Include="strings\string_number_conversions.cc" />
+    <ClCompile Include="strings\string_piece.cc" />
+    <ClCompile Include="strings\string_split.cc" />
+    <ClCompile Include="strings\string_util.cc" />
+    <ClCompile Include="strings\string_util_constants.cc" />
+    <ClCompile Include="strings\sys_string_conversions.cc" />
+    <ClCompile Include="strings\utf_string_conversions.cc" />
+    <ClCompile Include="strings\utf_string_conversion_utils.cc" />
+    <ClCompile Include="synchronization\atomic_flag.cc" />
+    <ClCompile Include="synchronization\lock.cc" />
+    <ClCompile Include="synchronization\lock_impl.cc" />
+    <ClCompile Include="third_party\double-conversion\bignum-dtoa.cc" />
+    <ClCompile Include="third_party\double-conversion\bignum.cc" />
+    <ClCompile Include="third_party\double-conversion\cached-powers.cc" />
+    <ClCompile Include="third_party\double-conversion\double-to-string.cc" />
+    <ClCompile Include="third_party\double-conversion\fast-dtoa.cc" />
+    <ClCompile Include="third_party\double-conversion\fixed-dtoa.cc" />
+    <ClCompile Include="third_party\double-conversion\string-to-double.cc" />
+    <ClCompile Include="third_party\double-conversion\strtod.cc" />
+    <ClCompile Include="third_party\icu\icu_utf.cc" />
+    <ClCompile Include="third_party\nspr\prtime.cc" />
+    <ClCompile Include="threading\platform_thread.cc" />
+    <ClCompile Include="threading\thread_restrictions.cc" />
+    <ClCompile Include="time\clock.cc" />
+    <ClCompile Include="time\default_clock.cc" />
+    <ClCompile Include="time\default_tick_clock.cc" />
+    <ClCompile Include="time\tick_clock.cc" />
+    <ClCompile Include="time\time.cc" />
+    <ClCompile Include="time\time_override.cc" />
+    <ClCompile Include="time\time_to_iso8601.cc" />
+    <ClCompile Include="time\time_win.cc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

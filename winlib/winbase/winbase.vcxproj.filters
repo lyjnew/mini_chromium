@@ -1,0 +1,430 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cc" />
+    <ClCompile Include="strings\string_piece.cc">
+      <Filter>strings</Filter>
+    </ClCompile>
+    <ClCompile Include="strings\string_split.cc">
+      <Filter>strings</Filter>
+    </ClCompile>
+    <ClCompile Include="strings\string_util.cc">
+      <Filter>strings</Filter>
+    </ClCompile>
+    <ClCompile Include="strings\string_util_constants.cc">
+      <Filter>strings</Filter>
+    </ClCompile>
+    <ClCompile Include="strings\stringprintf.cc">
+      <Filter>strings</Filter>
+    </ClCompile>
+    <ClCompile Include="strings\utf_string_conversions.cc">
+      <Filter>strings</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\icu\icu_utf.cc">
+      <Filter>third_party\icu</Filter>
+    </ClCompile>
+    <ClCompile Include="strings\utf_string_conversion_utils.cc">
+      <Filter>strings</Filter>
+    </ClCompile>
+    <ClCompile Include="strings\sys_string_conversions.cc">
+      <Filter>strings</Filter>
+    </ClCompile>
+    <ClCompile Include="strings\safe_sprintf.cc">
+      <Filter>strings</Filter>
+    </ClCompile>
+    <ClCompile Include="strings\string_number_conversions.cc">
+      <Filter>strings</Filter>
+    </ClCompile>
+    <ClCompile Include="threading\thread_restrictions.cc">
+      <Filter>threading</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\ref_counted.cc">
+      <Filter>memory</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\double-conversion\bignum.cc">
+      <Filter>third_party\double-conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\double-conversion\bignum-dtoa.cc">
+      <Filter>third_party\double-conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\double-conversion\cached-powers.cc">
+      <Filter>third_party\double-conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\double-conversion\double-to-string.cc">
+      <Filter>third_party\double-conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\double-conversion\fast-dtoa.cc">
+      <Filter>third_party\double-conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\double-conversion\fixed-dtoa.cc">
+      <Filter>third_party\double-conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\double-conversion\string-to-double.cc">
+      <Filter>third_party\double-conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\double-conversion\strtod.cc">
+      <Filter>third_party\double-conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\alias.cc">
+      <Filter>debug</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\debugger.cc">
+      <Filter>debug</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\weak_ptr.cc">
+      <Filter>memory</Filter>
+    </ClCompile>
+    <ClCompile Include="synchronization\atomic_flag.cc">
+      <Filter>synchronization</Filter>
+    </ClCompile>
+    <ClCompile Include="synchronization\lock.cc">
+      <Filter>synchronization</Filter>
+    </ClCompile>
+    <ClCompile Include="synchronization\lock_impl.cc">
+      <Filter>synchronization</Filter>
+    </ClCompile>
+    <ClCompile Include="functional\callback_helpers.cc">
+      <Filter>functional</Filter>
+    </ClCompile>
+    <ClCompile Include="functional\callback_internal.cc">
+      <Filter>functional</Filter>
+    </ClCompile>
+    <ClCompile Include="lazy_instance_helpers.cc" />
+    <ClCompile Include="at_exit.cc" />
+    <ClCompile Include="third_party\nspr\prtime.cc">
+      <Filter>third_party\nspr</Filter>
+    </ClCompile>
+    <ClCompile Include="time\clock.cc">
+      <Filter>time</Filter>
+    </ClCompile>
+    <ClCompile Include="time\default_clock.cc">
+      <Filter>time</Filter>
+    </ClCompile>
+    <ClCompile Include="time\default_tick_clock.cc">
+      <Filter>time</Filter>
+    </ClCompile>
+    <ClCompile Include="time\tick_clock.cc">
+      <Filter>time</Filter>
+    </ClCompile>
+    <ClCompile Include="time\time.cc">
+      <Filter>time</Filter>
+    </ClCompile>
+    <ClCompile Include="time\time_override.cc">
+      <Filter>time</Filter>
+    </ClCompile>
+    <ClCompile Include="time\time_to_iso8601.cc">
+      <Filter>time</Filter>
+    </ClCompile>
+    <ClCompile Include="time\time_win.cc">
+      <Filter>time</Filter>
+    </ClCompile>
+    <ClCompile Include="logging.cc" />
+    <ClCompile Include="location.cc" />
+    <ClCompile Include="debug\stack_trace.cc">
+      <Filter>debug</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\stack_trace_win.cc">
+      <Filter>debug</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\activity_tracker.cc">
+      <Filter>debug</Filter>
+    </ClCompile>
+    <ClCompile Include="threading\platform_thread.cc">
+      <Filter>threading</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="base_export.h" />
+    <ClInclude Include="atomic\atomicops.h">
+      <Filter>atomic</Filter>
+    </ClInclude>
+    <ClInclude Include="win\windows_types.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="atomic\atomic_ref_count.h">
+      <Filter>atomic</Filter>
+    </ClInclude>
+    <ClInclude Include="atomic\atomic_sequence_num.h">
+      <Filter>atomic</Filter>
+    </ClInclude>
+    <ClInclude Include="strings\string_piece.h">
+      <Filter>strings</Filter>
+    </ClInclude>
+    <ClInclude Include="strings\string_piece_forward.h">
+      <Filter>strings</Filter>
+    </ClInclude>
+    <ClInclude Include="strings\string16.h">
+      <Filter>strings</Filter>
+    </ClInclude>
+    <ClInclude Include="strings\char_traits.h">
+      <Filter>strings</Filter>
+    </ClInclude>
+    <ClInclude Include="compiler_specific.h" />
+    <ClInclude Include="memory\scoped_refptr.h">
+      <Filter>memory</Filter>
+    </ClInclude>
+    <ClInclude Include="macros.h" />
+    <ClInclude Include="strings\string_split.h">
+      <Filter>strings</Filter>
+    </ClInclude>
+    <ClInclude Include="strings\string_util.h">
+      <Filter>strings</Filter>
+    </ClInclude>
+    <ClInclude Include="strings\stringprintf.h">
+      <Filter>strings</Filter>
+    </ClInclude>
+    <ClInclude Include="strings\utf_string_conversions.h">
+      <Filter>strings</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\icu\icu_utf.h">
+      <Filter>third_party\icu</Filter>
+    </ClInclude>
+    <ClInclude Include="strings\utf_string_conversion_utils.h">
+      <Filter>strings</Filter>
+    </ClInclude>
+    <ClInclude Include="strings\sys_string_conversions.h">
+      <Filter>strings</Filter>
+    </ClInclude>
+    <ClInclude Include="strings\stringize_macros.h">
+      <Filter>strings</Filter>
+    </ClInclude>
+    <ClInclude Include="win\nominmax.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="strings\string_tokenizer.h">
+      <Filter>strings</Filter>
+    </ClInclude>
+    <ClInclude Include="strings\safe_sprintf.h">
+      <Filter>strings</Filter>
+    </ClInclude>
+    <ClInclude Include="numerics\checked_math.h">
+      <Filter>numerics</Filter>
+    </ClInclude>
+    <ClInclude Include="numerics\checked_math_impl.h">
+      <Filter>numerics</Filter>
+    </ClInclude>
+    <ClInclude Include="numerics\clamped_math.h">
+      <Filter>numerics</Filter>
+    </ClInclude>
+    <ClInclude Include="numerics\clamped_math_impl.h">
+      <Filter>numerics</Filter>
+    </ClInclude>
+    <ClInclude Include="numerics\math_constants.h">
+      <Filter>numerics</Filter>
+    </ClInclude>
+    <ClInclude Include="numerics\ranges.h">
+      <Filter>numerics</Filter>
+    </ClInclude>
+    <ClInclude Include="numerics\safe_conversions.h">
+      <Filter>numerics</Filter>
+    </ClInclude>
+    <ClInclude Include="numerics\safe_conversions_impl.h">
+      <Filter>numerics</Filter>
+    </ClInclude>
+    <ClInclude Include="numerics\safe_math.h">
+      <Filter>numerics</Filter>
+    </ClInclude>
+    <ClInclude Include="numerics\safe_math_clang_gcc_impl.h">
+      <Filter>numerics</Filter>
+    </ClInclude>
+    <ClInclude Include="numerics\safe_math_shared_impl.h">
+      <Filter>numerics</Filter>
+    </ClInclude>
+    <ClInclude Include="strings\string_number_conversions.h">
+      <Filter>strings</Filter>
+    </ClInclude>
+    <ClInclude Include="template_util.h" />
+    <ClInclude Include="optional.h" />
+    <ClInclude Include="threading\thread_restrictions.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\ref_counted.h">
+      <Filter>memory</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\double-conversion\bignum.h">
+      <Filter>third_party\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\double-conversion\bignum-dtoa.h">
+      <Filter>third_party\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\double-conversion\cached-powers.h">
+      <Filter>third_party\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\double-conversion\diy-fp.h">
+      <Filter>third_party\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\double-conversion\double-conversion.h">
+      <Filter>third_party\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\double-conversion\double-to-string.h">
+      <Filter>third_party\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\double-conversion\fast-dtoa.h">
+      <Filter>third_party\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\double-conversion\fixed-dtoa.h">
+      <Filter>third_party\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\double-conversion\ieee.h">
+      <Filter>third_party\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\double-conversion\string-to-double.h">
+      <Filter>third_party\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\double-conversion\strtod.h">
+      <Filter>third_party\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\double-conversion\utils.h">
+      <Filter>third_party\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="debug\alias.h">
+      <Filter>debug</Filter>
+    </ClInclude>
+    <ClInclude Include="debug\debugger.h">
+      <Filter>debug</Filter>
+    </ClInclude>
+    <ClInclude Include="debug\stack_trace.h">
+      <Filter>debug</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\ptr_util.h">
+      <Filter>memory</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\weak_ptr.h">
+      <Filter>memory</Filter>
+    </ClInclude>
+    <ClInclude Include="synchronization\atomic_flag.h">
+      <Filter>synchronization</Filter>
+    </ClInclude>
+    <ClInclude Include="synchronization\lock.h">
+      <Filter>synchronization</Filter>
+    </ClInclude>
+    <ClInclude Include="synchronization\lock_impl.h">
+      <Filter>synchronization</Filter>
+    </ClInclude>
+    <ClInclude Include="functional\bind.h">
+      <Filter>functional</Filter>
+    </ClInclude>
+    <ClInclude Include="functional\bind_helpers.h">
+      <Filter>functional</Filter>
+    </ClInclude>
+    <ClInclude Include="functional\bind_internal.h">
+      <Filter>functional</Filter>
+    </ClInclude>
+    <ClInclude Include="functional\callback_forward.h">
+      <Filter>functional</Filter>
+    </ClInclude>
+    <ClInclude Include="functional\callback_helpers.h">
+      <Filter>functional</Filter>
+    </ClInclude>
+    <ClInclude Include="functional\callback_internal.h">
+      <Filter>functional</Filter>
+    </ClInclude>
+    <ClInclude Include="functional\callback.h">
+      <Filter>functional</Filter>
+    </ClInclude>
+    <ClInclude Include="functional\callback_list.h">
+      <Filter>functional</Filter>
+    </ClInclude>
+    <ClInclude Include="functional\cancelable_callback.h">
+      <Filter>functional</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\raw_scoped_refptr_mismatch_checker.h">
+      <Filter>functional</Filter>
+    </ClInclude>
+    <ClInclude Include="lazy_instance_helpers.h" />
+    <ClInclude Include="at_exit.h" />
+    <ClInclude Include="third_party\nspr\prtime.h">
+      <Filter>third_party\nspr</Filter>
+    </ClInclude>
+    <ClInclude Include="time\clock.h">
+      <Filter>time</Filter>
+    </ClInclude>
+    <ClInclude Include="time\default_clock.h">
+      <Filter>time</Filter>
+    </ClInclude>
+    <ClInclude Include="time\default_tick_clock.h">
+      <Filter>time</Filter>
+    </ClInclude>
+    <ClInclude Include="time\tick_clock.h">
+      <Filter>time</Filter>
+    </ClInclude>
+    <ClInclude Include="time\time.h">
+      <Filter>time</Filter>
+    </ClInclude>
+    <ClInclude Include="time\time_override.h">
+      <Filter>time</Filter>
+    </ClInclude>
+    <ClInclude Include="time\time_to_iso8601.h">
+      <Filter>time</Filter>
+    </ClInclude>
+    <ClInclude Include="lazy_instance.h" />
+    <ClInclude Include="no_destructor.h" />
+    <ClInclude Include="containers\circular_deque.h">
+      <Filter>containers</Filter>
+    </ClInclude>
+    <ClInclude Include="containers\stack.h">
+      <Filter>containers</Filter>
+    </ClInclude>
+    <ClInclude Include="containers\vector_buffer.h">
+      <Filter>containers</Filter>
+    </ClInclude>
+    <ClInclude Include="logging.h" />
+    <ClInclude Include="location.h" />
+    <ClInclude Include="debug\activity_tracker.h">
+      <Filter>debug</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\singleton.h">
+      <Filter>memory</Filter>
+    </ClInclude>
+    <ClInclude Include="threading\platform_thread.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="atomic">
+      <UniqueIdentifier>{37f33e22-7095-4521-b16c-31262e553c98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="win">
+      <UniqueIdentifier>{d09a83c6-fd63-4a7b-9edc-e567878030c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="strings">
+      <UniqueIdentifier>{1071cdab-0005-4a1f-8875-8314a9821ff5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="memory">
+      <UniqueIdentifier>{2f0df700-ff2b-4071-9387-d23e903457bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_party">
+      <UniqueIdentifier>{fd4e4809-b5f0-42bc-b8aa-0e94ac2e0eb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_party\icu">
+      <UniqueIdentifier>{713df951-f887-404e-8271-f41d33c69ebe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="numerics">
+      <UniqueIdentifier>{e5fcaf3b-b424-4956-9f5b-2ba1a1ec6654}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="threading">
+      <UniqueIdentifier>{f9a5c5b0-9297-4c07-a975-7da05e736f93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_party\double-conversion">
+      <UniqueIdentifier>{bd375144-d623-424f-97b4-506a30dbc957}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="debug">
+      <UniqueIdentifier>{a9688e5c-a758-4ec8-8356-0d5ee25d86cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="synchronization">
+      <UniqueIdentifier>{b3a8b9f2-0827-44d7-a4e4-9c13ed0309f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="functional">
+      <UniqueIdentifier>{ccc498de-6db4-49d2-97a7-0ada55e2a3c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_party\nspr">
+      <UniqueIdentifier>{7a83040e-4972-45ed-a8f9-37c4952b15d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="time">
+      <UniqueIdentifier>{70b4ec96-7904-488e-a21e-ec2a093a1677}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="containers">
+      <UniqueIdentifier>{9ea72394-92bd-4db8-b895-d1beb81c8fb4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
