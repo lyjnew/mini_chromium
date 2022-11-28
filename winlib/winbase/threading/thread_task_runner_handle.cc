@@ -11,8 +11,8 @@
 #include "winbase\logging.h"
 #include "winbase\memory\ptr_util.h"
 #include "winbase\run_loop.h"
-#include "winbase\threading/sequenced_task_runner_handle.h"
-#include "winbase\threading/thread_local.h"
+#include "winbase\threading\sequenced_task_runner_handle.h"
+#include "winbase\threading\thread_local.h"
 
 namespace winbase {
 
@@ -86,7 +86,7 @@ ScopedClosureRunner ThreadTaskRunnerHandle::OverrideForTesting(
         ttrh->task_runner_.swap(task_runner_to_restore);
       },
       std::move(overriding_task_runner),
-      base::Unretained(ttrh->task_runner_.get()),
+      winbase::Unretained(ttrh->task_runner_.get()),
       std::move(no_running_during_override)));
 }
 

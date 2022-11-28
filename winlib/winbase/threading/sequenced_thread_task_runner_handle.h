@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 #ifndef WINLIB_WINBASE_THREADING_SEQUENCED_TASK_RUNNER_HANDLE_H_
-#define WINBASE_THREADING_SEQUENCED_TASK_RUNNER_HANDLE_H_
+#define WINLIB_WINBASE_THREADING_SEQUENCED_TASK_RUNNER_HANDLE_H_
 
 #include "winbase\compiler_specific.h"
 #include "winbase\macros.h"

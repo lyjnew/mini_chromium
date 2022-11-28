@@ -619,6 +619,5 @@ WINBASE_EXPORT void LogErrorNotReached(const char* file, int line) {
 }  // namespace winbase
 
 std::ostream& std::operator<<(std::ostream& out, const wchar_t* wstr) {
-  ///return out << (wstr ? winbase::WideToUTF8(wstr) : std::string());
-  return out << (wstr ? WINBASE_WideToUTF8(wstr) : std::string());
+  return out << (wstr ? winbase::WideToUTF8(wstr) : std::string());
 }

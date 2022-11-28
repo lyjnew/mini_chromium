@@ -59,7 +59,6 @@ template <typename Type>
 class ThreadLocalPointer {
  public:
   ThreadLocalPointer() = default;
-
   ThreadLocalPointer(const ThreadLocalPointer&) = delete;
   ThreadLocalPointer& operator=(const ThreadLocalPointer&) = delete;
 

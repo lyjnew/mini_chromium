@@ -139,6 +139,103 @@
     <ClCompile Include="third_party\superfasthash\superfasthash.c">
       <Filter>third_party\superfasthash</Filter>
     </ClCompile>
+    <ClCompile Include="threading\thread_local_storage_win.cc">
+      <Filter>threading</Filter>
+    </ClCompile>
+    <ClCompile Include="threading\thread_local_storage.cc">
+      <Filter>threading</Filter>
+    </ClCompile>
+    <ClCompile Include="threading\post_task_and_reply_impl.cc">
+      <Filter>threading</Filter>
+    </ClCompile>
+    <ClCompile Include="threading\sequenced_task_runner_handle.cc">
+      <Filter>threading</Filter>
+    </ClCompile>
+    <ClCompile Include="observer_list_threadsafe.cc" />
+    <ClCompile Include="sequenced_task_runner.cc" />
+    <ClCompile Include="task_runner.cc" />
+    <ClCompile Include="threading\sequenced_thread_task_runner_handle.cc">
+      <Filter>threading</Filter>
+    </ClCompile>
+    <ClCompile Include="threading\thread_task_runner_handle.cc">
+      <Filter>threading</Filter>
+    </ClCompile>
+    <ClCompile Include="threading\scoped_blocking_call.cc">
+      <Filter>threading</Filter>
+    </ClCompile>
+    <ClCompile Include="threading\sequence_local_storage_map.cc">
+      <Filter>threading</Filter>
+    </ClCompile>
+    <ClCompile Include="threading\sequence_local_storage_slot.cc">
+      <Filter>threading</Filter>
+    </ClCompile>
+    <ClCompile Include="threading\simple_thread.cc">
+      <Filter>threading</Filter>
+    </ClCompile>
+    <ClCompile Include="threading\thread.cc">
+      <Filter>threading</Filter>
+    </ClCompile>
+    <ClCompile Include="threading\thread_checker_impl.cc">
+      <Filter>threading</Filter>
+    </ClCompile>
+    <ClCompile Include="threading\thread_collision_warner.cc">
+      <Filter>threading</Filter>
+    </ClCompile>
+    <ClCompile Include="threading\watchdog.cc">
+      <Filter>threading</Filter>
+    </ClCompile>
+    <ClCompile Include="threading\thread_id_name_manager.cc">
+      <Filter>threading</Filter>
+    </ClCompile>
+    <ClCompile Include="files\file.cc">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="files\file_enumerator.cc">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="files\file_enumerator_win.cc">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="files\file_path.cc">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="files\file_path_constants.cc">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="files\file_path_watcher.cc">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="files\file_path_watcher_win.cc">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="files\file_proxy.cc">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="files\file_tracing.cc">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="files\file_util.cc">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="files\file_util_win.cc">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="files\file_win.cc">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="files\important_file_writer.cc">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="files\memory_mapped_file.cc">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="files\memory_mapped_file_win.cc">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="files\scoped_temp_dir.cc">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="pickle.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base_export.h" />
@@ -393,6 +490,101 @@
       <Filter>win</Filter>
     </ClInclude>
     <ClInclude Include="hash.h" />
+    <ClInclude Include="threading\thread_local.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="threading\thread_local_storage.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="threading\post_task_and_reply_impl.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="threading\sequenced_task_runner_handle.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="observer_list.h" />
+    <ClInclude Include="observer_list_threadsafe.h" />
+    <ClInclude Include="sequenced_task_runner.h" />
+    <ClInclude Include="sequenced_task_runner_helpers.h" />
+    <ClInclude Include="task_runner.h" />
+    <ClInclude Include="task_runner_util.h" />
+    <ClInclude Include="post_task_and_reply_with_result_internal.h" />
+    <ClInclude Include="threading\sequenced_thread_task_runner_handle.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="threading\thread_task_runner_handle.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="single_thread_task_runner.h" />
+    <ClInclude Include="threading\scoped_blocking_call.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="threading\sequence_local_storage_map.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="threading\sequence_local_storage_slot.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="threading\simple_thread.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="threading\thread.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="threading\thread_checker.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="threading\thread_checker_impl.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="threading\thread_collision_warner.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="threading\watchdog.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="threading\thread_id_name_manager.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="files\file.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="files\file_enumerator.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="files\file_path.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="files\file_path_watcher.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="files\file_proxy.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="files\file_tracing.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="files\file_util.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="files\important_file_writer.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="files\memory_mapped_file.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="files\platform_file.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="files\scoped_file.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="files\scoped_temp_dir.h">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="scoped_generic.h" />
+    <ClInclude Include="pickle.h" />
+    <ClInclude Include="bits.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="atomic">
@@ -442,6 +634,9 @@
     </Filter>
     <Filter Include="third_party\superfasthash">
       <UniqueIdentifier>{3d4b8bcc-b8f9-4d62-bddf-3d71aa0e1fce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="files">
+      <UniqueIdentifier>{1dd50ba2-ba66-4c20-9672-b8c02cb77620}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -207,6 +207,7 @@ class WINBASE_EXPORT ThreadCollisionWarner {
 
     ScopedRecursiveCheck(const ScopedRecursiveCheck&) = delete;
     ScopedRecursiveCheck& operator=(const ScopedRecursiveCheck&) = delete;
+
     ~ScopedRecursiveCheck() {
       warner_->Leave();
     }
