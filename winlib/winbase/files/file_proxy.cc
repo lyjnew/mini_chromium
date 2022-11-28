@@ -26,7 +26,7 @@ namespace winbase {
 
 class FileHelper {
  public:
-   FileHelper(FileProxy* proxy, File file)
+   explicit FileHelper(FileProxy* proxy, File file)
       : file_(std::move(file)),
         error_(File::FILE_ERROR_FAILED),
         task_runner_(proxy->task_runner()),
@@ -278,7 +278,7 @@ bool FileProxy::IsValid() const {
 }
 
 void FileProxy::SetFile(File file) {
-  DCHECK(!file_.IsValid());
+  WINBASE_DCHECK(!file_.IsValid());
   file_ = std::move(file);
 }
 

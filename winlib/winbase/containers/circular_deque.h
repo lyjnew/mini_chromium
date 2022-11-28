@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef BASE_CONTAINERS_CIRCULAR_DEQUE_H_
-#define BASE_CONTAINERS_CIRCULAR_DEQUE_H_
+#ifndef WINLIB_WINBASE_CONTAINERS_CIRCULAR_DEQUE_H_
+#define WINLIB_WINBASE_CONTAINERS_CIRCULAR_DEQUE_H_
 
 #include <algorithm>
 #include <cstddef>
@@ -114,7 +114,7 @@
 // General:
 //   void swap(circular_deque&);
 
-namespace base {
+namespace winbase {
 
 template <class T>
 class circular_deque;

@@ -5,7 +5,7 @@
 #include "winbase\files\file.h"
 #include "winbase\files\file_path.h"
 #include "winbase\files\file_tracing.h"
-///#include "winbase\metrics/histogram.h"
+///#include "winbase\metrics\histogram.h"
 #include "winbase\timer\elapsed_timer.h"
 #include "winbase\logging.h"
 #include "winlib\build_config.h"

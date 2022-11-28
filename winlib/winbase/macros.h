@@ -19,4 +19,9 @@ char (*WinBaseArraySizeHelper(T(&array)[N]))[N] {};
 
 #define array_size(array) (sizeof(*WinBaseArraySizeHelper(array)))
 
+namespace winbase {
+template <typename T>
+inline void ignore_result(const T&) {}
+}  // namespace winbase
+
 #endif  // WINLIB_WINBASE_BASIC_MACROS_H_

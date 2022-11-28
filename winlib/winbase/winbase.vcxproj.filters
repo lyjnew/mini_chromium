@@ -236,6 +236,52 @@
       <Filter>files</Filter>
     </ClCompile>
     <ClCompile Include="pickle.cc" />
+    <ClCompile Include="sequence_checker_impl.cc" />
+    <ClCompile Include="sequence_token.cc" />
+    <ClCompile Include="win\scoped_com_initializer.cc">
+      <Filter>win</Filter>
+    </ClCompile>
+    <ClCompile Include="message_loop\incoming_task_queue.cc">
+      <Filter>messagel_loop</Filter>
+    </ClCompile>
+    <ClCompile Include="message_loop\message_loop.cc">
+      <Filter>messagel_loop</Filter>
+    </ClCompile>
+    <ClCompile Include="message_loop\message_loop_current.cc">
+      <Filter>messagel_loop</Filter>
+    </ClCompile>
+    <ClCompile Include="message_loop\message_loop_task_runner.cc">
+      <Filter>messagel_loop</Filter>
+    </ClCompile>
+    <ClCompile Include="message_loop\message_pump.cc">
+      <Filter>messagel_loop</Filter>
+    </ClCompile>
+    <ClCompile Include="message_loop\message_pump_default.cc">
+      <Filter>messagel_loop</Filter>
+    </ClCompile>
+    <ClCompile Include="message_loop\message_pump_win.cc">
+      <Filter>messagel_loop</Filter>
+    </ClCompile>
+    <ClCompile Include="pending_task.cc" />
+    <ClCompile Include="win\object_watcher.cc">
+      <Filter>win</Filter>
+    </ClCompile>
+    <ClCompile Include="win\registry.cc">
+      <Filter>win</Filter>
+    </ClCompile>
+    <ClCompile Include="rand_util_win.cc" />
+    <ClCompile Include="rand_util.cc" />
+    <ClCompile Include="process\process_handle.cc">
+      <Filter>process</Filter>
+    </ClCompile>
+    <ClCompile Include="process\process_handle_win.cc">
+      <Filter>process</Filter>
+    </ClCompile>
+    <ClCompile Include="version.cc" />
+    <ClCompile Include="file_version_info_win.cc" />
+    <ClCompile Include="win\windows_version.cc">
+      <Filter>win</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base_export.h" />
@@ -585,6 +631,78 @@
     <ClInclude Include="scoped_generic.h" />
     <ClInclude Include="pickle.h" />
     <ClInclude Include="bits.h" />
+    <ClInclude Include="functional\critical_closure.h">
+      <Filter>functional</Filter>
+    </ClInclude>
+    <ClInclude Include="sequence_checker.h" />
+    <ClInclude Include="sequence_checker_impl.h" />
+    <ClInclude Include="sequence_token.h" />
+    <ClInclude Include="win\scoped_com_initializer.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="win\scoped_windows_thread_environment.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="message_loop\incoming_task_queue.h">
+      <Filter>messagel_loop</Filter>
+    </ClInclude>
+    <ClInclude Include="message_loop\message_loop.h">
+      <Filter>messagel_loop</Filter>
+    </ClInclude>
+    <ClInclude Include="message_loop\message_loop_current.h">
+      <Filter>messagel_loop</Filter>
+    </ClInclude>
+    <ClInclude Include="message_loop\message_loop_task_runner.h">
+      <Filter>messagel_loop</Filter>
+    </ClInclude>
+    <ClInclude Include="message_loop\message_pump.h">
+      <Filter>messagel_loop</Filter>
+    </ClInclude>
+    <ClInclude Include="message_loop\message_pump_default.h">
+      <Filter>messagel_loop</Filter>
+    </ClInclude>
+    <ClInclude Include="message_loop\message_pump_win.h">
+      <Filter>messagel_loop</Filter>
+    </ClInclude>
+    <ClInclude Include="message_loop\timer_slack.h">
+      <Filter>messagel_loop</Filter>
+    </ClInclude>
+    <ClInclude Include="message_loop\message_pump_for_io.h">
+      <Filter>messagel_loop</Filter>
+    </ClInclude>
+    <ClInclude Include="message_loop\message_pump_for_ui.h">
+      <Filter>messagel_loop</Filter>
+    </ClInclude>
+    <ClInclude Include="containers\flat_map.h">
+      <Filter>containers</Filter>
+    </ClInclude>
+    <ClInclude Include="containers\queue.h">
+      <Filter>containers</Filter>
+    </ClInclude>
+    <ClInclude Include="containers\flat_tree.h">
+      <Filter>containers</Filter>
+    </ClInclude>
+    <ClInclude Include="pending_task.h" />
+    <ClInclude Include="bit_cast.h" />
+    <ClInclude Include="win\object_watcher.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="win\registry.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="rand_util.h" />
+    <ClInclude Include="process\process.h">
+      <Filter>process</Filter>
+    </ClInclude>
+    <ClInclude Include="process\process_handle.h">
+      <Filter>process</Filter>
+    </ClInclude>
+    <ClInclude Include="version.h" />
+    <ClInclude Include="file_version_info.h" />
+    <ClInclude Include="file_version_info_win.h" />
+    <ClInclude Include="win\windows_version.h">
+      <Filter>win</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="atomic">
@@ -637,6 +755,12 @@
     </Filter>
     <Filter Include="files">
       <UniqueIdentifier>{1dd50ba2-ba66-4c20-9672-b8c02cb77620}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="messagel_loop">
+      <UniqueIdentifier>{a43f995d-3d40-43c8-9ea4-f90fe9f90ffd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="process">
+      <UniqueIdentifier>{cdbd04a7-bcb9-4e29-b6bc-265da3795a59}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

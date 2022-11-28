@@ -22,7 +22,7 @@
     <ProjectGuid>{AF5C4CD9-7A80-4DDF-908B-07349907D4DF}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>winbase</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -164,7 +164,11 @@
     <ClInclude Include="at_exit.h" />
     <ClInclude Include="base_export.h" />
     <ClInclude Include="bits.h" />
+    <ClInclude Include="bit_cast.h" />
     <ClInclude Include="containers\circular_deque.h" />
+    <ClInclude Include="containers\flat_map.h" />
+    <ClInclude Include="containers\flat_tree.h" />
+    <ClInclude Include="containers\queue.h" />
     <ClInclude Include="containers\stack.h" />
     <ClInclude Include="containers\vector_buffer.h" />
     <ClInclude Include="debug\activity_tracker.h" />
@@ -183,6 +187,8 @@
     <ClInclude Include="files\platform_file.h" />
     <ClInclude Include="files\scoped_file.h" />
     <ClInclude Include="files\scoped_temp_dir.h" />
+    <ClInclude Include="file_version_info.h" />
+    <ClInclude Include="file_version_info_win.h" />
     <ClInclude Include="functional\bind.h" />
     <ClInclude Include="functional\bind_helpers.h" />
     <ClInclude Include="functional\bind_internal.h" />
@@ -192,6 +198,7 @@
     <ClInclude Include="functional\callback_internal.h" />
     <ClInclude Include="functional\callback_list.h" />
     <ClInclude Include="functional\cancelable_callback.h" />
+    <ClInclude Include="functional\critical_closure.h" />
     <ClInclude Include="hash.h" />
     <ClInclude Include="lazy_instance.h" />
     <ClInclude Include="lazy_instance_helpers.h" />
@@ -205,6 +212,16 @@
     <ClInclude Include="memory\scoped_refptr.h" />
     <ClInclude Include="memory\singleton.h" />
     <ClInclude Include="memory\weak_ptr.h" />
+    <ClInclude Include="message_loop\incoming_task_queue.h" />
+    <ClInclude Include="message_loop\message_loop.h" />
+    <ClInclude Include="message_loop\message_loop_current.h" />
+    <ClInclude Include="message_loop\message_loop_task_runner.h" />
+    <ClInclude Include="message_loop\message_pump.h" />
+    <ClInclude Include="message_loop\message_pump_default.h" />
+    <ClInclude Include="message_loop\message_pump_for_io.h" />
+    <ClInclude Include="message_loop\message_pump_for_ui.h" />
+    <ClInclude Include="message_loop\message_pump_win.h" />
+    <ClInclude Include="message_loop\timer_slack.h" />
     <ClInclude Include="no_destructor.h" />
     <ClInclude Include="numerics\checked_math.h" />
     <ClInclude Include="numerics\checked_math_impl.h" />
@@ -220,11 +237,18 @@
     <ClInclude Include="observer_list.h" />
     <ClInclude Include="observer_list_threadsafe.h" />
     <ClInclude Include="optional.h" />
+    <ClInclude Include="pending_task.h" />
     <ClInclude Include="pickle.h" />
     <ClInclude Include="post_task_and_reply_with_result_internal.h" />
+    <ClInclude Include="process\process.h" />
+    <ClInclude Include="process\process_handle.h" />
+    <ClInclude Include="rand_util.h" />
     <ClInclude Include="scoped_generic.h" />
     <ClInclude Include="sequenced_task_runner.h" />
     <ClInclude Include="sequenced_task_runner_helpers.h" />
+    <ClInclude Include="sequence_checker.h" />
+    <ClInclude Include="sequence_checker_impl.h" />
+    <ClInclude Include="sequence_token.h" />
     <ClInclude Include="single_thread_task_runner.h" />
     <ClInclude Include="strings\char_traits.h" />
     <ClInclude Include="strings\safe_sprintf.h" />
@@ -285,10 +309,16 @@
     <ClInclude Include="time\time.h" />
     <ClInclude Include="time\time_override.h" />
     <ClInclude Include="time\time_to_iso8601.h" />
+    <ClInclude Include="version.h" />
     <ClInclude Include="win\nominmax.h" />
+    <ClInclude Include="win\object_watcher.h" />
+    <ClInclude Include="win\registry.h" />
+    <ClInclude Include="win\scoped_com_initializer.h" />
     <ClInclude Include="win\scoped_handle.h" />
     <ClInclude Include="win\scoped_handle_verifier.h" />
+    <ClInclude Include="win\scoped_windows_thread_environment.h" />
     <ClInclude Include="win\windows_types.h" />
+    <ClInclude Include="win\windows_version.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="at_exit.cc" />
@@ -313,6 +343,7 @@
     <ClCompile Include="files\memory_mapped_file.cc" />
     <ClCompile Include="files\memory_mapped_file_win.cc" />
     <ClCompile Include="files\scoped_temp_dir.cc" />
+    <ClCompile Include="file_version_info_win.cc" />
     <ClCompile Include="functional\callback_helpers.cc" />
     <ClCompile Include="functional\callback_internal.cc" />
     <ClCompile Include="hash.cc" />
@@ -322,9 +353,23 @@
     <ClCompile Include="main.cc" />
     <ClCompile Include="memory\ref_counted.cc" />
     <ClCompile Include="memory\weak_ptr.cc" />
+    <ClCompile Include="message_loop\incoming_task_queue.cc" />
+    <ClCompile Include="message_loop\message_loop.cc" />
+    <ClCompile Include="message_loop\message_loop_current.cc" />
+    <ClCompile Include="message_loop\message_loop_task_runner.cc" />
+    <ClCompile Include="message_loop\message_pump.cc" />
+    <ClCompile Include="message_loop\message_pump_default.cc" />
+    <ClCompile Include="message_loop\message_pump_win.cc" />
     <ClCompile Include="observer_list_threadsafe.cc" />
+    <ClCompile Include="pending_task.cc" />
     <ClCompile Include="pickle.cc" />
+    <ClCompile Include="process\process_handle.cc" />
+    <ClCompile Include="process\process_handle_win.cc" />
+    <ClCompile Include="rand_util.cc" />
+    <ClCompile Include="rand_util_win.cc" />
     <ClCompile Include="sequenced_task_runner.cc" />
+    <ClCompile Include="sequence_checker_impl.cc" />
+    <ClCompile Include="sequence_token.cc" />
     <ClCompile Include="strings\safe_sprintf.cc" />
     <ClCompile Include="strings\stringprintf.cc" />
     <ClCompile Include="strings\string_number_conversions.cc" />
@@ -375,7 +420,12 @@
     <ClCompile Include="time\time_override.cc" />
     <ClCompile Include="time\time_to_iso8601.cc" />
     <ClCompile Include="time\time_win.cc" />
+    <ClCompile Include="version.cc" />
+    <ClCompile Include="win\object_watcher.cc" />
+    <ClCompile Include="win\registry.cc" />
+    <ClCompile Include="win\scoped_com_initializer.cc" />
     <ClCompile Include="win\scoped_handle.cc" />
+    <ClCompile Include="win\windows_version.cc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
