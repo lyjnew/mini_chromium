@@ -99,7 +99,7 @@ struct DestructorAtExitLazyInstanceTraits {
 };
 
 // Use LazyInstance<T>::Leaky for a less-verbose call-site typedef; e.g.:
-// base::LazyInstance<T>::Leaky my_leaky_lazy_instance;
+// winbase::LazyInstance<T>::Leaky my_leaky_lazy_instance;
 // instead of:
 // base::LazyInstance<T, base::internal::LeakyLazyInstanceTraits<T> >
 // my_leaky_lazy_instance;

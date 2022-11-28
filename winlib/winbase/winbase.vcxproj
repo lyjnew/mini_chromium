@@ -179,6 +179,7 @@
     <ClInclude Include="functional\callback_internal.h" />
     <ClInclude Include="functional\callback_list.h" />
     <ClInclude Include="functional\cancelable_callback.h" />
+    <ClInclude Include="hash.h" />
     <ClInclude Include="lazy_instance.h" />
     <ClInclude Include="lazy_instance_helpers.h" />
     <ClInclude Include="location.h" />
@@ -246,6 +247,8 @@
     <ClInclude Include="time\time_override.h" />
     <ClInclude Include="time\time_to_iso8601.h" />
     <ClInclude Include="win\nominmax.h" />
+    <ClInclude Include="win\scoped_handle.h" />
+    <ClInclude Include="win\scoped_handle_verifier.h" />
     <ClInclude Include="win\windows_types.h" />
   </ItemGroup>
   <ItemGroup>
@@ -257,6 +260,7 @@
     <ClCompile Include="debug\stack_trace_win.cc" />
     <ClCompile Include="functional\callback_helpers.cc" />
     <ClCompile Include="functional\callback_internal.cc" />
+    <ClCompile Include="hash.cc" />
     <ClCompile Include="lazy_instance_helpers.cc" />
     <ClCompile Include="location.cc" />
     <ClCompile Include="logging.cc" />
@@ -286,6 +290,7 @@
     <ClCompile Include="third_party\double-conversion\strtod.cc" />
     <ClCompile Include="third_party\icu\icu_utf.cc" />
     <ClCompile Include="third_party\nspr\prtime.cc" />
+    <ClCompile Include="third_party\superfasthash\superfasthash.c" />
     <ClCompile Include="threading\platform_thread.cc" />
     <ClCompile Include="threading\thread_restrictions.cc" />
     <ClCompile Include="time\clock.cc" />
@@ -296,6 +301,7 @@
     <ClCompile Include="time\time_override.cc" />
     <ClCompile Include="time\time_to_iso8601.cc" />
     <ClCompile Include="time\time_win.cc" />
+    <ClCompile Include="win\scoped_handle.cc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -132,6 +132,13 @@
     <ClCompile Include="threading\platform_thread.cc">
       <Filter>threading</Filter>
     </ClCompile>
+    <ClCompile Include="win\scoped_handle.cc">
+      <Filter>win</Filter>
+    </ClCompile>
+    <ClCompile Include="hash.cc" />
+    <ClCompile Include="third_party\superfasthash\superfasthash.c">
+      <Filter>third_party\superfasthash</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base_export.h" />
@@ -379,6 +386,13 @@
     <ClInclude Include="threading\platform_thread.h">
       <Filter>threading</Filter>
     </ClInclude>
+    <ClInclude Include="win\scoped_handle.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="win\scoped_handle_verifier.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="hash.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="atomic">
@@ -425,6 +439,9 @@
     </Filter>
     <Filter Include="containers">
       <UniqueIdentifier>{9ea72394-92bd-4db8-b895-d1beb81c8fb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_party\superfasthash">
+      <UniqueIdentifier>{3d4b8bcc-b8f9-4d62-bddf-3d71aa0e1fce}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -28,8 +28,18 @@ WINBASE_EXPORT bool UTF16ToUTF8(const char16* src, size_t src_len,
                                 std::string* output);
 WINBASE_EXPORT std::string UTF16ToUTF8(StringPiece16 utf16);
 
-#define WINBASE_UTF8ToWide winbase::UTF8ToUTF16
-#define WINBASE_WideToUTF8 winbase::UTF16ToUTF8
+inline bool UTF8ToWide(const char* src, size_t src_len, string16* output) {
+  return UTF8ToUTF16(src, src_len, output);
+}
+inline string16 UTF8ToWide(StringPiece utf8) {
+  return UTF8ToUTF16(utf8);
+}
+inline bool WideToUTF8(const char16* src, size_t src_len, std::string* output) {
+  return UTF16ToUTF8(src, src_len, output);
+}
+inline std::string WideToUTF8(StringPiece16 utf16) {
+  return UTF16ToUTF8(utf16);
+}
 
 // This converts an ASCII string, typically a hardcoded constant, to a UTF16
 // string.

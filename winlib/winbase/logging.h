@@ -110,10 +110,10 @@
 //
 //   if (WINBASE_VLOG_IS_ON(2)) {
 //     // do some logging preparation and logging
-//     // that can't be accomplished with just VLOG(2) << ...;
+//     // that can't be accomplished with just WINBASE_VLOG(2) << ...;
 //   }
 //
-// There is also a VLOG_IF "verbose level" condition macro for sample
+// There is also a WINBASE_VLOG_IF "verbose level" condition macro for sample
 // cases, when some extra computation and preparation for logs is not
 // needed.
 //
@@ -523,7 +523,7 @@ class CheckOpResult {
 
 #if defined(ARCH_CPU_X86_FAMILY)
 // int 3 will generate a SIGTRAP.
-#define TRAP_SEQUENCE() \
+#define WINBASE_TRAP_SEQUENCE() \
   asm volatile(         \
       "int3; ud2; push %0;" ::"i"(static_cast<unsigned char>(__COUNTER__)))
 
@@ -666,7 +666,7 @@ class CheckOpResult {
 // The 'switch' is used to prevent the 'else' from being ambiguous when the
 // macro is used in an 'if' clause such as:
 // if (a == 1)
-//   CHECK_EQ(2, a);
+//   WINBASE_CHECK_EQ(2, a);
 #define WINBASE_CHECK_OP(name, op, val1, val2)                                 \
   switch (0) case 0: default:                                                  \
   if (::winbase::logging::CheckOpResult true_if_passed =                       \
@@ -750,26 +750,26 @@ extern template WINBASE_EXPORT
 std::string* MakeCheckOpString<std::string, std::string>(
     const std::string&, const std::string&, const char* name);
 
-// Helper functions for CHECK_OP macro.
+// Helper functions for WINBASE_CHECK_OP macro.
 // The (int, int) specialization works around the issue that the compiler
 // will not instantiate the template version of the function on values of
 // unnamed enum type - see comment below.
 //
-// The checked condition is wrapped with ANALYZER_ASSUME_TRUE, which under
-// static analysis builds, blocks analysis of the current path if the
+// The checked condition is wrapped with WINBASE_ANALYZER_ASSUME_TRUE, which
+// under static analysis builds, blocks analysis of the current path if the
 // condition is false.
 #define DEFINE_CHECK_OP_IMPL(name, op)                                       \
   template <class t1, class t2>                                              \
   inline std::string* Check##name##Impl(const t1& v1, const t2& v2,          \
                                         const char* names) {                 \
     if (WINBASE_ANALYZER_ASSUME_TRUE(v1 op v2))                              \
-      return NULL;                                                           \
+      return nullptr;                                                        \
     else                                                                     \
       return ::winbase::logging::MakeCheckOpString(v1, v2, names);           \
   }                                                                          \
   inline std::string* Check##name##Impl(int v1, int v2, const char* names) { \
     if (WINBASE_ANALYZER_ASSUME_TRUE(v1 op v2))                              \
-      return NULL;                                                           \
+      return nullptr;                                                        \
     else                                                                     \
       return ::winbase::::logging::MakeCheckOpString(v1, v2, names);         \
   }
@@ -830,8 +830,9 @@ DEFINE_CHECK_OP_IMPL(GT, > )
   WINBASE_LAZY_STREAM(WINBASE_LOG_STREAM(severity), \
                       WINBASE_DLOG_IS_ON(severity))
 
-#define WINBASE_DPLOG(severity)                                         \
-  WINBASE_LAZY_STREAM(PLOG_STREAM(severity), WINBASE_DLOG_IS_ON(severity))
+#define WINBASE_DPLOG(severity)                      \
+  WINBASE_LAZY_STREAM(WINBASE_PLOG_STREAM(severity), \
+                      WINBASE_DLOG_IS_ON(severity))
 
 #define WINBASE_DVLOG(verboselevel) \
   WINBASE_DVLOG_IF(verboselevel, WINBASE_VLOG_IS_ON(verboselevel))

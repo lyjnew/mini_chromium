@@ -182,7 +182,7 @@ void PlatformThread::SetName(const std::string& name) {
           ::GetModuleHandle(L"Kernel32.dll"), "SetThreadDescription"));
   if (set_thread_description_func) {
     set_thread_description_func(::GetCurrentThread(),
-                                base::UTF8ToWide(name).c_str());
+                                winbase::UTF8ToWide(name).c_str());
   }
 
   // The debugger needs to be around to catch the name in the exception.  If
