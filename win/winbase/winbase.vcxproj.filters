@@ -399,6 +399,10 @@
       <Filter>json</Filter>
     </ClCompile>
     <ClCompile Include="command_line.cc" />
+    <ClCompile Include="base_paths.cc" />
+    <ClCompile Include="base_paths_win.cc" />
+    <ClCompile Include="environment.cc" />
+    <ClCompile Include="path_service.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base_export.h" />
@@ -955,6 +959,10 @@
       <Filter>json</Filter>
     </ClInclude>
     <ClInclude Include="command_line.h" />
+    <ClInclude Include="base_paths.h" />
+    <ClInclude Include="base_paths_win.h" />
+    <ClInclude Include="environment.h" />
+    <ClInclude Include="path_service.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="atomic">
