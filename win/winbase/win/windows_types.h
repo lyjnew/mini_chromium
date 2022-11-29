@@ -16,4 +16,12 @@
 
 #include <windows.h>
 
+struct WINBASE_SRWLOCK {
+  PVOID Ptr;
+};
+
+struct WINBASE_CONDITION_VARIABLE {
+  PVOID Ptr;
+};
+
 #endif  // WINLIB_WINBASE_WIN_WINDOWS_TYPES_H

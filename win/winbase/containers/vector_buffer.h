@@ -11,13 +11,14 @@
 #include <type_traits>
 #include <utility>
 
-///#include "winbase\logging.h"
+#include "winbase\logging.h"
 #include "winbase\macros.h"
+#include "winbase\template_util.h"
 
 namespace winbase {
 namespace internal {
 
-// Internal implementation detail of base/containers.
+// Internal implementation detail of winbase\containers.
 //
 // Implements a vector-like buffer that holds a certain capacity of T. Unlike
 // std::vector, VectorBuffer never constructs or destructs its arguments, and
@@ -108,19 +109,20 @@ class VectorBuffer {
   // Trivially copyable types can use memcpy. trivially copyable implies
   // that there is a trivial destructor as we don't have to call it.
   template <typename T2 = T,
-            typename std::enable_if<base::is_trivially_copyable<T2>::value,
+            typename std::enable_if<winbase::is_trivially_copyable<T2>::value,
                                     int>::type = 0>
   static void MoveRange(T* from_begin, T* from_end, T* to) {
-    ///DCHECK(!RangesOverlap(from_begin, from_end, to));
+    ///WINBASE_DCHECK(!RangesOverlap(from_begin, from_end, to));
     memcpy(to, from_begin, (from_end - from_begin) * sizeof(T));
   }
 
   // Not trivially copyable, but movable: call the move constructor and
   // destruct the original.
   template <typename T2 = T,
-            typename std::enable_if<std::is_move_constructible<T2>::value &&
-                                        !base::is_trivially_copyable<T2>::value,
-                                    int>::type = 0>
+            typename std::enable_if<
+                std::is_move_constructible<T2>::value &&
+                    !winbase::is_trivially_copyable<T2>::value,
+                int>::type = 0>
   static void MoveRange(T* from_begin, T* from_end, T* to) {
     ///DCHECK(!RangesOverlap(from_begin, from_end, to));
     while (from_begin != from_end) {
@@ -134,9 +136,10 @@ class VectorBuffer {
   // Not movable, not trivially copyable: call the copy constructor and
   // destruct the original.
   template <typename T2 = T,
-            typename std::enable_if<!std::is_move_constructible<T2>::value &&
-                                        !base::is_trivially_copyable<T2>::value,
-                                    int>::type = 0>
+            typename std::enable_if<
+                !std::is_move_constructible<T2>::value &&
+                    !winbase::is_trivially_copyable<T2>::value,
+                int>::type = 0>
   static void MoveRange(T* from_begin, T* from_end, T* to) {
     ///DCHECK(!RangesOverlap(from_begin, from_end, to));
     while (from_begin != from_end) {

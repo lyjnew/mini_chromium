@@ -282,6 +282,71 @@
     <ClCompile Include="win\windows_version.cc">
       <Filter>win</Filter>
     </ClCompile>
+    <ClCompile Include="synchronization\condition_variable.cc">
+      <Filter>synchronization</Filter>
+    </ClCompile>
+    <ClCompile Include="synchronization\waitable_event.cc">
+      <Filter>synchronization</Filter>
+    </ClCompile>
+    <ClCompile Include="synchronization\waitable_event_watcher.cc">
+      <Filter>synchronization</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\task_annotator.cc">
+      <Filter>debug</Filter>
+    </ClCompile>
+    <ClCompile Include="timer\elapsed_timer.cc">
+      <Filter>timer</Filter>
+    </ClCompile>
+    <ClCompile Include="timer\hi_res_timer_manager.cc">
+      <Filter>timer</Filter>
+    </ClCompile>
+    <ClCompile Include="timer\timer.cc">
+      <Filter>timer</Filter>
+    </ClCompile>
+    <ClCompile Include="run_loop.cc" />
+    <ClCompile Include="cpu.cc" />
+    <ClCompile Include="win\message_window.cc">
+      <Filter>win</Filter>
+    </ClCompile>
+    <ClCompile Include="win\shortcut.cc">
+      <Filter>win</Filter>
+    </ClCompile>
+    <ClCompile Include="win\win_util.cc">
+      <Filter>win</Filter>
+    </ClCompile>
+    <ClCompile Include="win\wrapped_window_proc.cc">
+      <Filter>win</Filter>
+    </ClCompile>
+    <ClCompile Include="guid.cc" />
+    <ClCompile Include="system\sys_info.cc">
+      <Filter>system</Filter>
+    </ClCompile>
+    <ClCompile Include="system\sys_info_win.cc">
+      <Filter>system</Filter>
+    </ClCompile>
+    <ClCompile Include="process\process_metrics.cc">
+      <Filter>process</Filter>
+    </ClCompile>
+    <ClCompile Include="process\process_metrics_win.cc">
+      <Filter>process</Filter>
+    </ClCompile>
+    <ClCompile Include="process\memory.cc">
+      <Filter>process</Filter>
+    </ClCompile>
+    <ClCompile Include="process\memory_win.cc">
+      <Filter>process</Filter>
+    </ClCompile>
+    <ClCompile Include="values.cc" />
+    <ClCompile Include="value_iterators.cc" />
+    <ClCompile Include="json\json_parser.cc">
+      <Filter>json</Filter>
+    </ClCompile>
+    <ClCompile Include="json\json_writer.cc">
+      <Filter>json</Filter>
+    </ClCompile>
+    <ClCompile Include="json\string_escape.cc">
+      <Filter>json</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base_export.h" />
@@ -703,6 +768,79 @@
     <ClInclude Include="win\windows_version.h">
       <Filter>win</Filter>
     </ClInclude>
+    <ClInclude Include="synchronization\cancellation_flag.h">
+      <Filter>synchronization</Filter>
+    </ClInclude>
+    <ClInclude Include="synchronization\condition_variable.h">
+      <Filter>synchronization</Filter>
+    </ClInclude>
+    <ClInclude Include="synchronization\spin_wait.h">
+      <Filter>synchronization</Filter>
+    </ClInclude>
+    <ClInclude Include="synchronization\waitable_event.h">
+      <Filter>synchronization</Filter>
+    </ClInclude>
+    <ClInclude Include="synchronization\waitable_event_watcher.h">
+      <Filter>synchronization</Filter>
+    </ClInclude>
+    <ClInclude Include="stl_util.h" />
+    <ClInclude Include="debug\task_annotator.h">
+      <Filter>debug</Filter>
+    </ClInclude>
+    <ClInclude Include="timer\elapsed_timer.h">
+      <Filter>timer</Filter>
+    </ClInclude>
+    <ClInclude Include="timer\hi_res_timer_manager.h">
+      <Filter>timer</Filter>
+    </ClInclude>
+    <ClInclude Include="timer\timer.h">
+      <Filter>timer</Filter>
+    </ClInclude>
+    <ClInclude Include="run_loop.h" />
+    <ClInclude Include="cpu.h" />
+    <ClInclude Include="win\message_window.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="win\shortcut.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="win\win_util.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="win\wrapped_window_proc.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="win\current_module.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="auto_reset.h" />
+    <ClInclude Include="guid.h" />
+    <ClInclude Include="system\sys_info.h">
+      <Filter>system</Filter>
+    </ClInclude>
+    <ClInclude Include="system\sys_info_internal.h">
+      <Filter>system</Filter>
+    </ClInclude>
+    <ClInclude Include="process\process_metrics.h">
+      <Filter>process</Filter>
+    </ClInclude>
+    <ClInclude Include="process\memory.h">
+      <Filter>process</Filter>
+    </ClInclude>
+    <ClInclude Include="process\process_metrics_iocounters.h">
+      <Filter>process</Filter>
+    </ClInclude>
+    <ClInclude Include="values.h" />
+    <ClInclude Include="value_iterators.h" />
+    <ClInclude Include="json\json_parser.h">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="json\json_writer.h">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="json\string_escape.h">
+      <Filter>json</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="atomic">
@@ -761,6 +899,15 @@
     </Filter>
     <Filter Include="process">
       <UniqueIdentifier>{cdbd04a7-bcb9-4e29-b6bc-265da3795a59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="timer">
+      <UniqueIdentifier>{3bd05ead-b7bc-4132-b999-804c85cc6c92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system">
+      <UniqueIdentifier>{c8f29a65-aebe-4cb8-a987-6d4993b8ffb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="json">
+      <UniqueIdentifier>{c4308fb8-3836-4cd1-803e-6c513ea030a4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

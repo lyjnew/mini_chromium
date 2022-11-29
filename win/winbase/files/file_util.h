@@ -16,7 +16,7 @@
 #include <string>
 #include <vector>
 
-#include "winbase\WINBASE_EXPORT.h"
+#include "winbase\base_export.h"
 #include "winbase\files\file.h"
 #include "winbase\files\file_path.h"
 #include "winbase\strings\string16.h"

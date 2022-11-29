@@ -2,10 +2,10 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef BASE_MESSAGE_LOOP_TIMER_SLACK_H_
-#define BASE_MESSAGE_LOOP_TIMER_SLACK_H_
+#ifndef WINLIB_WINBASE_MESSAGE_LOOP_TIMER_SLACK_H_
+#define WINLIB_WINBASE_MESSAGE_LOOP_TIMER_SLACK_H_
 
-namespace base {
+namespace winbase {
 
 // Amount of timer slack to use for delayed timers.  Increasing timer slack
 // allows the OS to coalesce timers more effectively.
@@ -17,6 +17,6 @@ enum TimerSlack {
   TIMER_SLACK_MAXIMUM
 };
 
-}  // namespace base
+}  // namespace winbase
 
-#endif  // BASE_MESSAGE_LOOP_TIMER_SLACK_H_
+#endif  // WINLIB_WINBASE_MESSAGE_LOOP_TIMER_SLACK_H_

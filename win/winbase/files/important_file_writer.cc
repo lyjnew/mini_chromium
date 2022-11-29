@@ -143,21 +143,21 @@ bool ImportantFileWriter::WriteFileAtomically(const FilePath& path,
   // is securely created.
   FilePath tmp_file_path;
   if (!CreateTemporaryFileInDir(path.DirName(), &tmp_file_path)) {
-    UmaHistogramExactLinearWithSuffix(
-        "ImportantFile.FileCreateError", histogram_suffix,
-        -base::File::GetLastFileError(), -base::File::FILE_ERROR_MAX);
-    LogFailure(path, histogram_suffix, FAILED_CREATING,
-               "could not create temporary file");
+    ///UmaHistogramExactLinearWithSuffix(
+    ///    "ImportantFile.FileCreateError", histogram_suffix,
+    ///    -base::File::GetLastFileError(), -base::File::FILE_ERROR_MAX);
+    ///LogFailure(path, histogram_suffix, FAILED_CREATING,
+    ///           "could not create temporary file");
     return false;
   }
 
   File tmp_file(tmp_file_path, File::FLAG_OPEN | File::FLAG_WRITE);
   if (!tmp_file.IsValid()) {
-    UmaHistogramExactLinearWithSuffix(
-        "ImportantFile.FileOpenError", histogram_suffix,
-        -tmp_file.error_details(), -base::File::FILE_ERROR_MAX);
-    LogFailure(path, histogram_suffix, FAILED_OPENING,
-               "could not open temporary file");
+    ///UmaHistogramExactLinearWithSuffix(
+    ///    "ImportantFile.FileOpenError", histogram_suffix,
+    ///    -tmp_file.error_details(), -base::File::FILE_ERROR_MAX);
+    ///LogFailure(path, histogram_suffix, FAILED_OPENING,
+    ///           "could not open temporary file");
     DeleteFile(tmp_file_path, false);
     return false;
   }
@@ -165,34 +165,34 @@ bool ImportantFileWriter::WriteFileAtomically(const FilePath& path,
   // If this fails in the wild, something really bad is going on.
   const int data_length = checked_cast<int32_t>(data.length());
   int bytes_written = tmp_file.Write(0, data.data(), data_length);
-  if (bytes_written < data_length) {
-    UmaHistogramExactLinearWithSuffix(
-        "ImportantFile.FileWriteError", histogram_suffix,
-        -winbase::File::GetLastFileError(), -winbase::File::FILE_ERROR_MAX);
-  }
+  ///if (bytes_written < data_length) {
+  ///  UmaHistogramExactLinearWithSuffix(
+  ///      "ImportantFile.FileWriteError", histogram_suffix,
+  ///      -winbase::File::GetLastFileError(), -winbase::File::FILE_ERROR_MAX);
+  ///}
   bool flush_success = tmp_file.Flush();
   tmp_file.Close();
 
   if (bytes_written < data_length) {
-    LogFailure(path, histogram_suffix, FAILED_WRITING,
-               "error writing, bytes_written=" + IntToString(bytes_written));
+    ///LogFailure(path, histogram_suffix, FAILED_WRITING,
+    ///           "error writing, bytes_written=" + IntToString(bytes_written));
     DeleteTmpFile(tmp_file_path, histogram_suffix);
     return false;
   }
 
   if (!flush_success) {
-    LogFailure(path, histogram_suffix, FAILED_FLUSHING, "error flushing");
+    ///LogFailure(path, histogram_suffix, FAILED_FLUSHING, "error flushing");
     DeleteTmpFile(tmp_file_path, histogram_suffix);
     return false;
   }
 
-  base::File::Error replace_file_error = base::File::FILE_OK;
+  winbase::File::Error replace_file_error = winbase::File::FILE_OK;
   if (!ReplaceFile(tmp_file_path, path, &replace_file_error)) {
-    UmaHistogramExactLinearWithSuffix("ImportantFile.FileRenameError",
-                                      histogram_suffix, -replace_file_error,
-                                      -base::File::FILE_ERROR_MAX);
-    LogFailure(path, histogram_suffix, FAILED_RENAMING,
-               "could not rename temporary file");
+    ///UmaHistogramExactLinearWithSuffix("ImportantFile.FileRenameError",
+    ///                                  histogram_suffix, -replace_file_error,
+    ///                                  -base::File::FILE_ERROR_MAX);
+    ///LogFailure(path, histogram_suffix, FAILED_RENAMING,
+    ///           "could not rename temporary file");
     DeleteTmpFile(tmp_file_path, histogram_suffix);
     return false;
   }
@@ -224,7 +224,7 @@ ImportantFileWriter::ImportantFileWriter(
 }
 
 ImportantFileWriter::~ImportantFileWriter() {
-  DCHECK_CALLED_ON_VALID_SEQUENCE(sequence_checker_);
+  WINBASE_DCHECK_CALLED_ON_VALID_SEQUENCE(sequence_checker_);
   // We're usually a member variable of some other object, which also tends
   // to be our serializer. It may not be safe to call back to the parent object
   // being destructed.
@@ -239,7 +239,7 @@ bool ImportantFileWriter::HasPendingWrite() const {
 void ImportantFileWriter::WriteNow(std::unique_ptr<std::string> data) {
   WINBASE_DCHECK_CALLED_ON_VALID_SEQUENCE(sequence_checker_);
   if (!IsValueInRangeForNumericType<int32_t>(data->length())) {
-    NOTREACHED();
+    WINBASE_NOTREACHED();
     return;
   }
 
@@ -248,7 +248,7 @@ void ImportantFileWriter::WriteNow(std::unique_ptr<std::string> data) {
                std::move(before_next_write_callback_),
                std::move(after_next_write_callback_), histogram_suffix_));
 
-  if (!task_runner_->PostTask(FROM_HERE, MakeCriticalClosure(task))) {
+  if (!task_runner_->PostTask(WINBASE_FROM_HERE, MakeCriticalClosure(task))) {
     // Posting the task to background message loop is not expected
     // to fail, but if it does, avoid losing data and just hit the disk
     // on the current thread.
@@ -273,7 +273,7 @@ void ImportantFileWriter::ScheduleWrite(DataSerializer* serializer) {
 }
 
 void ImportantFileWriter::DoScheduledWrite() {
-  DCHECK(serializer_);
+  WINBASE_DCHECK(serializer_);
   std::unique_ptr<std::string> data(new std::string);
   if (serializer_->SerializeData(data.get())) {
     WriteNow(std::move(data));

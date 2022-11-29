@@ -2,21 +2,22 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef BASE_MESSAGE_LOOP_MESSAGE_PUMP_DEFAULT_H_
-#define BASE_MESSAGE_LOOP_MESSAGE_PUMP_DEFAULT_H_
+#ifndef WINLIB_WINBASE_MESSAGE_LOOP_MESSAGE_PUMP_DEFAULT_H_
+#define WINLIB_WINBASE_MESSAGE_LOOP_MESSAGE_PUMP_DEFAULT_H_
 
-#include "base/base_export.h"
-#include "base/macros.h"
-#include "base/message_loop/message_pump.h"
-#include "base/synchronization/waitable_event.h"
-#include "base/time/time.h"
-#include "build/build_config.h"
+#include "winbase\base_export.h"
+#include "winbase\macros.h"
+#include "winbase\message_loop\message_pump.h"
+#include "winbase\synchronization\waitable_event.h"
+#include "winbase\time\time.h"
 
-namespace base {
+namespace winbase {
 
-class BASE_EXPORT MessagePumpDefault : public MessagePump {
+class WINBASE_EXPORT MessagePumpDefault : public MessagePump {
  public:
   MessagePumpDefault();
+  MessagePumpDefault(const MessagePumpDefault&) = delete;
+  MessagePumpDefault& operator=(const MessagePumpDefault&) = delete;
   ~MessagePumpDefault() override;
 
   // MessagePump methods:
@@ -24,9 +25,6 @@ class BASE_EXPORT MessagePumpDefault : public MessagePump {
   void Quit() override;
   void ScheduleWork() override;
   void ScheduleDelayedWork(const TimeTicks& delayed_work_time) override;
-#if defined(OS_MACOSX)
-  void SetTimerSlack(TimerSlack timer_slack) override;
-#endif
 
  private:
   // This flag is set to false when Run should return.
@@ -37,10 +35,8 @@ class BASE_EXPORT MessagePumpDefault : public MessagePump {
 
   // The time at which we should call DoDelayedWork.
   TimeTicks delayed_work_time_;
-
-  DISALLOW_COPY_AND_ASSIGN(MessagePumpDefault);
 };
 
 }  // namespace base
 
-#endif  // BASE_MESSAGE_LOOP_MESSAGE_PUMP_DEFAULT_H_
+#endif  // WINLIB_WINBASE_MESSAGE_LOOP_MESSAGE_PUMP_DEFAULT_H_

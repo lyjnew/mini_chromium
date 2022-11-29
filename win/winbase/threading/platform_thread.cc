@@ -241,7 +241,7 @@ void PlatformThread::Join(PlatformThreadHandle thread_handle) {
   winbase::debug::Alias(&last_error);
 
   // Record the event that this thread is blocking upon (for hang diagnosis).
-  winbase::debug::ScopedThreadJoinActivity thread_activity(&thread_handle);
+  ///winbase::debug::ScopedThreadJoinActivity thread_activity(&thread_handle);
 
   // Wait for the thread to exit.  It should already have terminated but make
   // sure this assumption is valid.

@@ -64,7 +64,7 @@ class WINBASE_EXPORT AtExitManager {
 
  private:
   winbase::Lock lock_;
-  winbase::stack<base::Closure> stack_;
+  winbase::stack<winbase::Closure> stack_;
   bool processing_callbacks_;
   AtExitManager* next_manager_;  // Stack of managers to allow shadowing.
 };

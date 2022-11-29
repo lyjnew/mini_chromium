@@ -149,16 +149,16 @@ struct GetKeyFromValuePairFirst {
 //   bool operator<=(const flat_map&, const flat_map);
 //
 template <class Key, class Mapped, class Compare = std::less<>>
-class flat_map : public ::base::internal::flat_tree<
+class flat_map : public ::winbase::internal::flat_tree<
                      Key,
                      std::pair<Key, Mapped>,
-                     ::base::internal::GetKeyFromValuePairFirst<Key, Mapped>,
+                     ::winbase::internal::GetKeyFromValuePairFirst<Key, Mapped>,
                      Compare> {
  private:
-  using tree = typename ::base::internal::flat_tree<
+  using tree = typename ::winbase::internal::flat_tree<
       Key,
       std::pair<Key, Mapped>,
-      ::base::internal::GetKeyFromValuePairFirst<Key, Mapped>,
+      ::winbase::internal::GetKeyFromValuePairFirst<Key, Mapped>,
       Compare>;
 
  public:

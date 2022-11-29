@@ -432,8 +432,8 @@ const LogSeverity LOG_0 = LOG_ERROR;
   WINBASE_LAZY_STREAM(WINBASE_VLOG_STREAM(verbose_level), \
                       WINBASE_VLOG_IS_ON(verbose_level))
 
-#define WINBASE_VLOG_IF(verbose_level, condition) \
-  WINBASE_LAZY_STREAM(VLOG_STREAM(verbose_level), \
+#define WINBASE_VLOG_IF(verbose_level, condition)         \
+  WINBASE_LAZY_STREAM(WINBASE_VLOG_STREAM(verbose_level), \
       WINBASE_VLOG_IS_ON(verbose_level) && (condition))
 
 #define WINBASE_VPLOG_STREAM(verbose_level)                                    \
@@ -448,7 +448,7 @@ const LogSeverity LOG_0 = LOG_ERROR;
   WINBASE_LAZY_STREAM(WINBASE_VPLOG_STREAM(verbose_level), \
                       WINBASE_VLOG_IS_ON(verbose_level) && (condition))
 
-// TODO(akalin): Add more VLOG variants, e.g. VPLOG.
+// TODO(akalin): Add more WINBASE_VLOG variants, e.g. VPLOG.
 
 #define WINBASE_LOG_ASSERT(condition)                               \
   WINBASE_LOG_IF(FATAL, !(WINBASE_ANALYZER_ASSUME_TRUE(condition))) \
@@ -458,7 +458,8 @@ const LogSeverity LOG_0 = LOG_ERROR;
   COMPACT_WINBASE_LOG_EX_##severity(Win32ErrorLogMessage, \
       ::winbase::logging::GetLastSystemErrorCode()).stream()
 #define WINBASE_PLOG(severity)                                          \
-  WINBASE_LAZY_STREAM(WINBASE_PLOG_STREAM(severity), LOG_IS_ON(severity))
+  WINBASE_LAZY_STREAM(WINBASE_PLOG_STREAM(severity), \
+                      WINBASE_LOG_IS_ON(severity))
 
 #define WINBASE_PLOG_IF(severity, condition)         \
   WINBASE_LAZY_STREAM(WINBASE_PLOG_STREAM(severity), \
@@ -483,8 +484,8 @@ WINBASE_EXPORT extern std::ostream* g_swallow_stream;
        : ::winbase::logging::LogMessageVoidify() &   \
              (*::winbase::logging::g_swallow_stream)
 
-// Captures the result of a CHECK_EQ (for example) and facilitates testing as a
-// boolean.
+// Captures the result of a WINBASE_CHECK_EQ (for example) and facilitates 
+// testing as a boolean.
 class CheckOpResult {
  public:
   // |message| must be non-null if and only if the check failed.
@@ -662,7 +663,7 @@ class CheckOpResult {
 #endif  // _PREFAST_
 
 // Helper macro for binary operators.
-// Don't use this macro directly in your code, use CHECK_EQ et al below.
+// Don't use this macro directly in your code, use WINBASE_CHECK_EQ et al below.
 // The 'switch' is used to prevent the 'else' from being ambiguous when the
 // macro is used in an 'if' clause such as:
 // if (a == 1)
@@ -670,7 +671,7 @@ class CheckOpResult {
 #define WINBASE_CHECK_OP(name, op, val1, val2)                                 \
   switch (0) case 0: default:                                                  \
   if (::winbase::logging::CheckOpResult true_if_passed =                       \
-      ::winbase::::logging::Check##name##Impl((val1), (val2),                  \
+      ::winbase::logging::Check##name##Impl((val1), (val2),                    \
                                    #val1 " " #op " " #val2))                   \
    ;                                                                           \
   else                                                                         \
@@ -755,9 +756,9 @@ std::string* MakeCheckOpString<std::string, std::string>(
 // will not instantiate the template version of the function on values of
 // unnamed enum type - see comment below.
 //
-// The checked condition is wrapped with WINBASE_ANALYZER_ASSUME_TRUE, which
-// under static analysis builds, blocks analysis of the current path if the
-// condition is false.
+// The checked condition is wrapped with WINBASE_WINBASE_ANALYZER_ASSUME_TRUE, 
+// which under static analysis builds, blocks analysis of the current path if
+// the condition is false.
 #define DEFINE_CHECK_OP_IMPL(name, op)                                       \
   template <class t1, class t2>                                              \
   inline std::string* Check##name##Impl(const t1& v1, const t2& v2,          \
@@ -771,7 +772,7 @@ std::string* MakeCheckOpString<std::string, std::string>(
     if (WINBASE_ANALYZER_ASSUME_TRUE(v1 op v2))                              \
       return nullptr;                                                        \
     else                                                                     \
-      return ::winbase::::logging::MakeCheckOpString(v1, v2, names);         \
+      return ::winbase::logging::MakeCheckOpString(v1, v2, names);           \
   }
 DEFINE_CHECK_OP_IMPL(EQ, ==)
 DEFINE_CHECK_OP_IMPL(NE, !=)
@@ -813,8 +814,9 @@ DEFINE_CHECK_OP_IMPL(GT, > )
 
 #else  // WINBASE_DCHECK_IS_ON()
 
-// If !DCHECK_IS_ON(), we want to avoid emitting any references to |condition|
-// (which may reference a variable defined only if DCHECK_IS_ON()).
+// If !WINBASE_DCHECK_IS_ON(), 
+// we want to avoid emitting any references to |condition|
+// (which may reference a variable defined only if WINBASE_DCHECK_IS_ON()).
 // Contrast this with DCHECK et al., which has different behavior.
 
 #define WINBASE_DLOG_IS_ON(severity) false
@@ -840,7 +842,7 @@ DEFINE_CHECK_OP_IMPL(GT, > )
 #define WINBASE_DVPLOG(verboselevel) \
   WINBASE_DVPLOG_IF(verboselevel, WINBASE_VLOG_IS_ON(verboselevel))
 
-// Definitions for DCHECK et al.
+// Definitions for WINBASE_DCHECK et al.
 
 #if WINBASE_DCHECK_IS_ON()
 
@@ -852,31 +854,33 @@ const LogSeverity LOG_DCHECK = LOG_FATAL;
 
 #else  // WINBASE_DCHECK_IS_ON()
 
-// There may be users of LOG_DCHECK that are enabled independently
-// of DCHECK_IS_ON(), so default to FATAL logging for those.
+// There may be users of WINBASE_LOG_DCHECK that are enabled independently
+// of WINBASE_DCHECK_IS_ON(), so default to FATAL logging for those.
 const LogSeverity LOG_DCHECK = LOG_FATAL;
 
 #endif  // WINBASE_DCHECK_IS_ON()
 
-// DCHECK et al. make sure to reference |condition| regardless of
+// WINBASE_DCHECK et al. make sure to reference |condition| regardless of
 // whether DCHECKs are enabled; this is so that we don't get unused
 // variable warnings if the only use of a variable is in a DCHECK.
-// This behavior is different from DLOG_IF et al.
+// This behavior is different from WINBASE_DLOG_IF et al.
 //
-// Note that the definition of the DCHECK macros depends on whether or not
-// DCHECK_IS_ON() is true. When DCHECK_IS_ON() is false, the macros use
-// EAT_STREAM_PARAMETERS to avoid expressions that would create temporaries.
+// Note that the definition of the WINBASE_DCHECK macros depends on whether
+// or not WINBASE_DCHECK_IS_ON() is true. 
+// When WINBASE_DCHECK_IS_ON() is false, the macros use
+// WINBASE_EAT_STREAM_PARAMETERS to avoid expressions that would create 
+// temporaries.
 
 #if defined(_PREFAST_)
 // See comments on the previous use of __analysis_assume.
 
 #define WINBASE_DCHECK(condition)                    \
   __analysis_assume(!!(condition)),          \
-      WINBASE_LAZY_STREAM(WINBASE_LOG_STREAM(DCHECK), false) \
+      WINBASE_LAZY_STREAM(WINBASE_LOG_STREAM(DCHECK), false)  \
           << "Check failed: " #condition ". "
 
-#define WINBASE_DPCHECK(condition)                    \
-  __analysis_assume(!!(condition)),           \
+#define WINBASE_DPCHECK(condition)                            \
+  __analysis_assume(!!(condition)),                           \
       WINBASE_LAZY_STREAM(WINBASE_PLOG_STREAM(DCHECK), false) \
           << "Check failed: " #condition ". "
 

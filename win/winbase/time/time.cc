@@ -50,7 +50,7 @@ int TimeDelta::InDaysFloored() const {
     // Preserve max to prevent overflow.
     return std::numeric_limits<int>::max();
   }
-  int result = delta_ / Time::kMicrosecondsPerDay;
+  int result = static_cast<int>(delta_ / Time::kMicrosecondsPerDay);
   int64_t remainder = delta_ - (result * Time::kMicrosecondsPerDay);
   if (remainder < 0) {
     --result;  // Use floor(), not trunc() rounding behavior.

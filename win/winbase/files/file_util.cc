@@ -147,10 +147,11 @@ bool ReadFileToStringWithMaxSize(const FilePath& path,
   size_t bytes_read_so_far = 0;
   bool read_status = true;
   std::string local_contents;
-  local_contents.resize(chunk_size);
+  local_contents.resize(static_cast<size_t>(chunk_size));
 
   while ((bytes_read_this_pass = fread(&local_contents[bytes_read_so_far], 1,
-                                       chunk_size, file)) > 0) {
+                                       static_cast<size_t>(chunk_size), file)) >
+         0) {
     if ((max_size - bytes_read_so_far) < bytes_read_this_pass) {
       // Read more than max_size bytes, bail out.
       bytes_read_so_far = max_size;
@@ -167,7 +168,7 @@ bool ReadFileToStringWithMaxSize(const FilePath& path,
     // flag check.
     if (feof(file))
       break;
-    local_contents.resize(bytes_read_so_far + chunk_size);
+    local_contents.resize(bytes_read_so_far + static_cast<size_t>(chunk_size));
   }
   read_status = read_status && !ferror(file);
   CloseFile(file);

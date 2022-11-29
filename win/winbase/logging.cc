@@ -57,7 +57,7 @@ namespace {
 ///VlogInfo* g_vlog_info_prev = nullptr;
 
 const char* const log_severity_names[] = {"INFO", "WARNING", "ERROR", "FATAL"};
-static_assert(LOG_NUM_SEVERITIES == arraysize(log_severity_names),
+static_assert(LOG_NUM_SEVERITIES == array_size(log_severity_names),
               "Incorrect number of log_severity_names");
 
 const char* log_severity_name(int severity) {
@@ -157,9 +157,9 @@ bool InitializeLogFileHandle() {
       // try the current directory
       wchar_t system_buffer[MAX_PATH];
       system_buffer[0] = 0;
-      DWORD len = ::GetCurrentDirectory(arraysize(system_buffer),
+      DWORD len = ::GetCurrentDirectory(array_size(system_buffer),
                                         system_buffer);
-      if (len == 0 || len > arraysize(system_buffer))
+      if (len == 0 || len > array_size(system_buffer))
         return false;
 
       *g_log_file_name = system_buffer;
@@ -383,7 +383,7 @@ LogMessage::LogMessage(const char* file, int line, LogSeverity severity,
 }
 
 LogMessage::~LogMessage() {
-  size_t stack_start = stream_.tellp();
+  size_t stack_start = static_cast<size_t>(stream_.tellp());
 #if !defined(OFFICIAL_BUILD) 
   if (severity_ == LOG_FATAL && !winbase::debug::BeingDebugged()) {
     // Include a stack trace on a fatal, unless a debugger is attached.
@@ -572,9 +572,8 @@ void RawLog(int level, const char* message) {
     const size_t message_len = strlen(message);
     int rv;
     while (bytes_written < message_len) {
-      rv = HANDLE_EINTR(
-          write(STDERR_FILENO, message + bytes_written,
-                message_len - bytes_written));
+      rv = write(STDERR_FILENO, message + bytes_written,
+                 message_len - bytes_written);
       if (rv < 0) {
         // Give up, nothing we can do now.
         break;
@@ -584,7 +583,7 @@ void RawLog(int level, const char* message) {
 
     if (message_len > 0 && message[message_len - 1] != '\n') {
       do {
-        rv = HANDLE_EINTR(write(STDERR_FILENO, "\n", 1));
+        rv = write(STDERR_FILENO, "\n", 1);
         if (rv < 0) {
           // Give up, nothing we can do now.
           break;

@@ -246,7 +246,8 @@ FileProxy::FileProxy(TaskRunner* task_runner) : task_runner_(task_runner) {
 
 FileProxy::~FileProxy() {
   if (file_.IsValid())
-    task_runner_->PostTask(FROM_HERE, BindOnce(&FileDeleter, std::move(file_)));
+    task_runner_->PostTask(WINBASE_FROM_HERE, 
+                           BindOnce(&FileDeleter, std::move(file_)));
 }
 
 bool FileProxy::CreateOrOpen(const FilePath& file_path,
@@ -255,7 +256,7 @@ bool FileProxy::CreateOrOpen(const FilePath& file_path,
   WINBASE_DCHECK(!file_.IsValid());
   CreateOrOpenHelper* helper = new CreateOrOpenHelper(this, File());
   return task_runner_->PostTaskAndReply(
-      FROM_HERE,
+      WINBASE_FROM_HERE,
       BindOnce(&CreateOrOpenHelper::RunWork, Unretained(helper), file_path,
                file_flags),
       BindOnce(&CreateOrOpenHelper::Reply, Owned(helper), std::move(callback)));

@@ -41,7 +41,7 @@ bool PostTaskAndReplyTaskRunner::PostTask(const Location& from_here,
 }  // namespace
 
 bool TaskRunner::PostTask(const Location& from_here, OnceClosure task) {
-  return PostDelayedTask(from_here, std::move(task), base::TimeDelta());
+  return PostDelayedTask(from_here, std::move(task), winbase::TimeDelta());
 }
 
 bool TaskRunner::PostTaskAndReply(const Location& from_here,

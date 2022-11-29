@@ -24,6 +24,7 @@
 #endif
 
 namespace {
+typedef HRESULT (WINAPI* RtlGetVersionPtr)(LPOSVERSIONINFOEXW);
 typedef BOOL (WINAPI *GetProductInfoPtr)(DWORD, DWORD, DWORD, DWORD, PDWORD);
 }  // namespace
 
@@ -142,7 +143,14 @@ OSInfo::OSInfo()
       architecture_(WindowsArchitecture::OTHER_ARCHITECTURE),
       wow64_status_(GetWOW64StatusForProcess(GetCurrentProcess())) {
   OSVERSIONINFOEX version_info = { sizeof version_info };
+#if defined(_MSC_VER)
+#pragma warning(push)
+#pragma warning(disable:4996)
+#endif
   ::GetVersionEx(reinterpret_cast<OSVERSIONINFO*>(&version_info));
+#if defined(_MSC_VER)
+#pragma warning(pop)
+#endif
   version_number_.major = version_info.dwMajorVersion;
   version_number_.minor = version_info.dwMinorVersion;
   version_number_.build = version_info.dwBuildNumber;

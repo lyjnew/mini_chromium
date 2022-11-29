@@ -2,22 +2,22 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef BASE_MESSAGE_LOOP_MESSAGE_PUMP_H_
-#define BASE_MESSAGE_LOOP_MESSAGE_PUMP_H_
+#ifndef WINLIB_WINBASE_MESSAGE_LOOP_MESSAGE_PUMP_H_
+#define WINLIB_WINBASE_MESSAGE_LOOP_MESSAGE_PUMP_H_
 
-#include "base/base_export.h"
-#include "base/message_loop/timer_slack.h"
-#include "base/sequence_checker.h"
+#include "winbase\base_export.h"
+#include "winbase\message_loop/timer_slack.h"
+#include "winbase\sequence_checker.h"
 
-namespace base {
+namespace winbase {
 
 class TimeTicks;
 
-class BASE_EXPORT MessagePump {
+class WINBASE_EXPORT MessagePump {
  public:
   // Please see the comments above the Run method for an illustration of how
   // these delegate methods are used.
-  class BASE_EXPORT Delegate {
+  class WINBASE_EXPORT Delegate {
    public:
     virtual ~Delegate() = default;
 
@@ -126,6 +126,6 @@ class BASE_EXPORT MessagePump {
   virtual void SetTimerSlack(TimerSlack timer_slack);
 };
 
-}  // namespace base
+}  // namespace winbase
 
-#endif  // BASE_MESSAGE_LOOP_MESSAGE_PUMP_H_
+#endif  // WINLIB_WINBASE_MESSAGE_LOOP_MESSAGE_PUMP_H_

@@ -68,14 +68,14 @@ ScopedClosureRunner ThreadTaskRunnerHandle::OverrideForTesting(
   // previous one, as the |task_runner_to_restore|).
   ttrh->task_runner_.swap(overriding_task_runner);
 
-  auto no_running_during_override =
-      std::make_unique<RunLoop::ScopedDisallowRunningForTesting>();
+  ///auto no_running_during_override =
+  ///    std::make_unique<RunLoop::ScopedDisallowRunningForTesting>();
 
   return ScopedClosureRunner(winbase::BindOnce(
       [](scoped_refptr<SingleThreadTaskRunner> task_runner_to_restore,
-         SingleThreadTaskRunner* expected_task_runner_before_restore,
+         SingleThreadTaskRunner* expected_task_runner_before_restore /*,
          std::unique_ptr<RunLoop::ScopedDisallowRunningForTesting>
-             no_running_during_override) {
+             no_running_during_override*/) {
         ThreadTaskRunnerHandle* ttrh = thread_task_runner_tls.Pointer()->Get();
 
         WINBASE_DCHECK_EQ(expected_task_runner_before_restore,
@@ -86,8 +86,8 @@ ScopedClosureRunner ThreadTaskRunnerHandle::OverrideForTesting(
         ttrh->task_runner_.swap(task_runner_to_restore);
       },
       std::move(overriding_task_runner),
-      winbase::Unretained(ttrh->task_runner_.get()),
-      std::move(no_running_during_override)));
+      winbase::Unretained(ttrh->task_runner_.get())/*,
+      std::move(no_running_during_override)*/));
 }
 
 ThreadTaskRunnerHandle::ThreadTaskRunnerHandle(

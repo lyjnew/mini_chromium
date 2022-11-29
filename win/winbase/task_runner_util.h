@@ -14,7 +14,7 @@
 #include "winbase\post_task_and_reply_with_result_internal.h"
 #include "winbase\task_runner.h"
 
-namespace base {
+namespace winbase {
 
 // When you have these methods
 //

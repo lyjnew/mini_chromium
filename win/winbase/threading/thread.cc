@@ -25,7 +25,7 @@ namespace {
 // because its Stop method was called.  This allows us to catch cases where
 // MessageLoop::QuitWhenIdle() is called directly, which is unexpected when
 // using a Thread to setup and run a MessageLoop.
-winbase::LazyInstance<base::ThreadLocalBoolean>::Leaky lazy_tls_bool =
+winbase::LazyInstance<winbase::ThreadLocalBoolean>::Leaky lazy_tls_bool =
     WINBASE_LAZY_INSTANCE_INITIALIZER;
 
 }  // namespace
@@ -169,7 +169,7 @@ void Thread::Stop() {
   // the thread exits.  Some consumers are abusing the API.  Make them stop.
   //
   PlatformThread::Join(thread_);
-  thread_ = base::PlatformThreadHandle();
+  thread_ = winbase::PlatformThreadHandle();
 
   // The thread should nullify |message_loop_| on exit (note: Join() adds an
   // implicit memory barrier and no lock is thus required for this check).

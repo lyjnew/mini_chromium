@@ -12,7 +12,7 @@
 #include "winbase\base_export.h"
 #include "winbase\files\file_path.h"
 #include "winbase\files\file_tracing.h"
-#include "winbase\files\platform_file.h"win
+#include "winbase\files\platform_file.h"
 #include "winbase\files\scoped_file.h"
 #include "winbase\macros.h"
 #include "winbase\time\time.h"

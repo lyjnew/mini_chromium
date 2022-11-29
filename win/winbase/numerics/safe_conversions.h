@@ -177,7 +177,7 @@ struct SaturateFastOp<
     Dst saturated = CommonMaxOrMin<Dst, Src>(
         IsMaxInRangeForNumericType<Dst, Src>() ||
         (!IsMinInRangeForNumericType<Dst, Src>() && IsValueNegative(value)));
-    return BASE_NUMERICS_LIKELY(IsValueInRangeForNumericType<Dst>(value))
+    return WINBASE_NUMERICS_LIKELY(IsValueInRangeForNumericType<Dst>(value))
                ? static_cast<Dst>(value)
                : saturated;
   }

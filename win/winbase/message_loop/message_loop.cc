@@ -304,7 +304,7 @@ void MessageLoop::BindToCurrentThread() {
 }
 
 std::string MessageLoop::GetThreadName() const {
-  DCHECK_NE(kInvalidThreadId, thread_id_)
+  WINBASE_DCHECK_NE(kInvalidThreadId, thread_id_)
       << "GetThreadName() must only be called after BindToCurrentThread()'s "
       << "side-effects have been synchronized with this thread.";
   return ThreadIdNameManager::GetInstance()->GetName(thread_id_);
@@ -322,9 +322,9 @@ void MessageLoop::SetTaskRunner(
 }
 
 void MessageLoop::ClearTaskRunnerForTesting() {
-  DCHECK_CALLED_ON_VALID_THREAD(bound_thread_checker_);
+  WINBASE_DCHECK_CALLED_ON_VALID_THREAD(bound_thread_checker_);
 
-  DCHECK(!unbound_task_runner_);
+  WINBASE_DCHECK(!unbound_task_runner_);
   task_runner_ = nullptr;
   thread_task_runner_handle_.reset();
 }
@@ -543,7 +543,7 @@ bool MessageLoopForUI::IsCurrent() {
   return MessageLoopCurrentForUI::IsSet();
 }
 
-#oid MessageLoopForUI::EnableWmQuit() {
+void MessageLoopForUI::EnableWmQuit() {
   static_cast<MessagePumpForUI*>(pump_.get())->EnableWmQuit();
 }
 

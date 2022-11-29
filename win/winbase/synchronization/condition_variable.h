@@ -97,8 +97,8 @@ class WINBASE_EXPORT ConditionVariable {
 
  private:
 
-  CHROME_CONDITION_VARIABLE cv_;
-  CHROME_SRWLOCK* const srwlock_;
+  WINBASE_CONDITION_VARIABLE cv_;
+  WINBASE_SRWLOCK* const srwlock_;
 
 #if WINBASE_DCHECK_IS_ON()
   winbase::Lock* const user_lock_;  // Needed to adjust shadow lock state on wait.
