@@ -35,7 +35,7 @@
 //      In most of the anticipated use cases, that's probably the preferred
 //      behavior.
 #include "winbase\logging.h"
-#define DEBUG_CHECK RAW_CHECK
+#define DEBUG_CHECK WINBASE_RAW_CHECK
 #else
 #define DEBUG_CHECK(x) do { if (x) { } } while (0)
 #endif

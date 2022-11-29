@@ -330,7 +330,7 @@ void ThreadLocalStorage::Slot::Initialize(TLSDestructorFunc destructor) {
         g_tls_metadata[slot_candidate].destructor = destructor;
         g_last_assigned_slot = slot_candidate;
         WINBASE_DCHECK_EQ(kInvalidSlotValue, slot_);
-        slot_ = slot_candidate;
+        slot_ = static_cast<int>(slot_candidate);
         version_ = g_tls_metadata[slot_candidate].version;
         break;
       }

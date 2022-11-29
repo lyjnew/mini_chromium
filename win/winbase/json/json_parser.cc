@@ -727,8 +727,8 @@ Optional<Value> JSONParser::ConsumeLiteral() {
 }
 
 bool JSONParser::ConsumeIfMatch(StringPiece match) {
-  if (match == PeekChars(match.size())) {
-    ConsumeChars(match.size());
+  if (match == PeekChars(static_cast<int>(match.size()))) {
+    ConsumeChars(static_cast<int>(match.size()));
     return true;
   }
   return false;

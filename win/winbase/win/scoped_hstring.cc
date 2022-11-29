@@ -88,7 +88,8 @@ namespace win {
 ScopedHString ScopedHString::Create(StringPiece16 str) {
   WINBASE_DCHECK(g_load_succeeded);
   HSTRING hstr;
-  HRESULT hr = winbase::WindowsCreateString(str.data(), str.length(), &hstr);
+  HRESULT hr = winbase::WindowsCreateString(
+      str.data(), static_cast<uint32_t>(str.length()), &hstr);
   if (SUCCEEDED(hr))
     return ScopedHString(hstr);
   WINBASE_DLOG(ERROR) << "Failed to create HSTRING" << std::hex << hr;

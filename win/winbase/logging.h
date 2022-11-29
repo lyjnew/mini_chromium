@@ -808,7 +808,7 @@ DEFINE_CHECK_OP_IMPL(GT, > )
 #define WINBASE_DPLOG_IF(severity, condition) \
   WINBASE_PLOG_IF(severity, condition)
 #define WINBASE_DVLOG_IF(verboselevel, condition) \
-  WINBASE_ VLOG_IF(verboselevel, condition)
+  WINBASE_VLOG_IF(verboselevel, condition)
 #define WINBASE_DVPLOG_IF(verboselevel, condition) \
   WINBASE_VPLOG_IF(verboselevel, condition)
 

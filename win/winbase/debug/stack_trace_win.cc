@@ -286,7 +286,7 @@ StackTrace::StackTrace(size_t count) {
   count = std::min(array_size(trace_), count);
 
   // When walking our own stack, use CaptureStackBackTrace().
-  count_ = CaptureStackBackTrace(0, count, trace_, NULL);
+  count_ = CaptureStackBackTrace(0, static_cast<DWORD>(count), trace_, NULL);
 }
 
 #if defined(COMPILER_MSVC)

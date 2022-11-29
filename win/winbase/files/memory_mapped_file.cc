@@ -119,7 +119,7 @@ void MemoryMappedFile::CalculateVMAlignedBoundaries(int64_t start,
   // Sadly, on Windows, the mmap alignment is not just equal to the page size.
   auto mask = SysInfo::VMAllocationGranularity() - 1;
   WINBASE_DCHECK(IsValueInRangeForNumericType<int32_t>(mask));
-  *offset = start & mask;
+  *offset = static_cast<int32_t>(start & mask);
   *aligned_start = start & ~mask;
   *aligned_size = (size + *offset + mask) & ~mask;
 }

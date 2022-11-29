@@ -1087,11 +1087,11 @@ class circular_deque {
   size_type begin_ = 0;
   size_type end_ = 0;
 
-///#if DCHECK_IS_ON()
-///  // Incremented every time a modification is made that could affect iterator
-///  // invalidations.
-///  uint64_t generation_ = 0;
-///#endif
+#if WINBASE_DCHECK_IS_ON()
+  // Incremented every time a modification is made that could affect iterator
+  // invalidations.
+  uint64_t generation_ = 0;
+#endif
 };
 
 // Implementations of winbase::Erase[If] (see winbase\stl_util.h).

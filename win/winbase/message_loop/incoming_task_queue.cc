@@ -17,6 +17,12 @@
 namespace winbase {
 namespace internal {
 
+#if WINBASE_DCHECK_IS_ON()
+// Delays larger than this are often bogus, and a warning should be emitted in
+// debug builds to warn developers.  http://crbug.com/450045
+constexpr TimeDelta kTaskDelayWarningThreshold = TimeDelta::FromDays(14);
+#endif
+
 namespace {
 
 TimeTicks CalculateDelayedRuntime(TimeDelta delay) {

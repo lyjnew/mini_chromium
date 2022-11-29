@@ -84,7 +84,7 @@ class WorkingSetInformationBuffer {
       // On success, |buffer_| is populated with info about the working set of
       // |process|. On ERROR_BAD_LENGTH failure, increase the size of the
       // buffer and try again.
-      if (QueryWorkingSet(process, buffer_, buffer_size))
+      if (QueryWorkingSet(process, buffer_, static_cast<DWORD>(buffer_size)))
         break;  // Success
 
       if (GetLastError() != ERROR_BAD_LENGTH)
@@ -97,7 +97,7 @@ class WorkingSetInformationBuffer {
       // especially considering the potentially low memory condition during the
       // call (when called from OomMemoryDetails) and the potentially high
       // number of entries (300K was observed in crash dumps).
-      number_of_entries *= 1.1;
+      number_of_entries =  static_cast<size_t>(number_of_entries * 1.1);
 
       if (--retries == 0) {
         // If we're looping, eventually fail.
@@ -192,10 +192,10 @@ bool GetSystemMemoryInfo(SystemMemoryInfoKB* meminfo) {
   if (!::GlobalMemoryStatusEx(&mem_status))
     return false;
 
-  meminfo->total = mem_status.ullTotalPhys / 1024;
-  meminfo->avail_phys = mem_status.ullAvailPhys / 1024;
-  meminfo->swap_total = mem_status.ullTotalPageFile / 1024;
-  meminfo->swap_free = mem_status.ullAvailPageFile / 1024;
+  meminfo->total = static_cast<int>(mem_status.ullTotalPhys / 1024);
+  meminfo->avail_phys = static_cast<int>(mem_status.ullAvailPhys / 1024);
+  meminfo->swap_total = static_cast<int>(mem_status.ullTotalPageFile / 1024);
+  meminfo->swap_free = static_cast<int>(mem_status.ullAvailPageFile / 1024);
 
   return true;
 }

@@ -87,17 +87,17 @@ ScopedAllowBaseSyncPrimitivesOutsideBlockingScope::
   g_base_sync_primitives_disallowed.Get().Set(was_disallowed_);
 }
 
-ScopedAllowBaseSyncPrimitivesForTesting::
-    ScopedAllowBaseSyncPrimitivesForTesting()
-    : was_disallowed_(g_base_sync_primitives_disallowed.Get().Get()) {
-  g_base_sync_primitives_disallowed.Get().Set(false);
-}
-
-ScopedAllowBaseSyncPrimitivesForTesting::
-    ~ScopedAllowBaseSyncPrimitivesForTesting() {
-  WINBASE_DCHECK(!g_base_sync_primitives_disallowed.Get().Get());
-  g_base_sync_primitives_disallowed.Get().Set(was_disallowed_);
-}
+///ScopedAllowBaseSyncPrimitivesForTesting::
+///    ScopedAllowBaseSyncPrimitivesForTesting()
+///    : was_disallowed_(g_base_sync_primitives_disallowed.Get().Get()) {
+///  g_base_sync_primitives_disallowed.Get().Set(false);
+///}
+///
+///ScopedAllowBaseSyncPrimitivesForTesting::
+///    ~ScopedAllowBaseSyncPrimitivesForTesting() {
+///  WINBASE_DCHECK(!g_base_sync_primitives_disallowed.Get().Get());
+///  g_base_sync_primitives_disallowed.Get().Set(was_disallowed_);
+///}
 
 namespace internal {
 

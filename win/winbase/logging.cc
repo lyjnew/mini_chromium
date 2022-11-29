@@ -344,7 +344,7 @@ void DisplayDebugMessageInDialog(const std::string& str) {
 
   // We intentionally don't implement a dialog on other platforms.
   // You can just look at stderr.
-  MessageBoxW(nullptr, base::UTF8ToUTF16(str).c_str(), L"Fatal error",
+  MessageBoxW(nullptr, winbase::UTF8ToUTF16(str).c_str(), L"Fatal error",
               MB_OK | MB_ICONHAND | MB_TOPMOST);
 }
 #endif  // !defined(NDEBUG)
