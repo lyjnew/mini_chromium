@@ -27,7 +27,7 @@ void ProxyToTaskRunner(scoped_refptr<SequencedTaskRunner> task_runner,
     std::move(closure).Run();
     return;
   }
-  task_runner->PostTask(FROM_HERE, std::move(closure));
+  task_runner->PostTask(WINBASE_FROM_HERE, std::move(closure));
 }
 
 }  // namespace
@@ -123,7 +123,7 @@ void RunLoop::Quit() {
   // |origin_task_runner_|).
   if (!origin_task_runner_->RunsTasksInCurrentSequence()) {
     origin_task_runner_->PostTask(
-        WINBASE_FROM_HERE, base::BindOnce(&RunLoop::Quit, Unretained(this)));
+        WINBASE_FROM_HERE, winbase::BindOnce(&RunLoop::Quit, Unretained(this)));
     return;
   }
 

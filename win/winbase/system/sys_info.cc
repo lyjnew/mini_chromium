@@ -2,14 +2,14 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#include "winbase\sys_info.h"
+#include "winbase\system\sys_info.h"
 
 #include <algorithm>
 
 ///#include "winbase\base_switches.h"
 ///#include "winbase\command_line.h"
 #include "winbase\lazy_instance.h"
-#include "winbase\sys_info_internal.h"
+#include "winbase\system\sys_info_internal.h"
 #include "winbase\time\time.h"
 
 namespace winbase {
@@ -65,7 +65,7 @@ bool DetectLowEndDevice() {
 
 static LazyInstance<
   internal::LazySysInfoValue<bool, DetectLowEndDevice> >::Leaky
-  g_lazy_low_end_device = LAZY_INSTANCE_INITIALIZER;
+  g_lazy_low_end_device = WINBASE_LAZY_INSTANCE_INITIALIZER;
 
 // static
 bool SysInfo::IsLowEndDeviceImpl() {

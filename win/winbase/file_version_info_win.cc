@@ -10,9 +10,11 @@
 #include "winbase\files\file_path.h"
 #include "winbase\logging.h"
 #include "winbase\threading\thread_restrictions.h"
-#include "winbase\win\resource_util.h"
+///#include "winbase\win\resource_util.h"
 
 using winbase::FilePath;
+
+namespace winbase {
 
 namespace {
 
@@ -216,3 +218,5 @@ FileVersionInfoWin::FileVersionInfoWin(void* data,
       fixed_file_info_(GetVsFixedFileInfo(data)) {
   WINBASE_DCHECK(data_);
 }
+
+}  // namespace winbase

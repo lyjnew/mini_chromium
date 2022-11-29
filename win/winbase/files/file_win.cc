@@ -88,7 +88,7 @@ int File::ReadAtCurrentPos(char* data, int size) {
   if (size < 0)
     return -1;
 
-  SWINBASE_COPED_FILE_TRACE_WITH_SIZE("ReadAtCurrentPos", size);
+  WINBASE_SCOPED_FILE_TRACE_WITH_SIZE("ReadAtCurrentPos", size);
 
   DWORD bytes_read;
   if (::ReadFile(file_.Get(), data, size, &bytes_read, NULL))

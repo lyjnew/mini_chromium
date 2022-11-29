@@ -525,7 +525,7 @@ bool CreateTemporaryFileInDir(const FilePath& dir, FilePath* temp_file) {
   // Although it is nearly impossible to get a duplicate name with GUID, we
   // still use a loop here in case it happens.
   for (int i = 0; i < 100; ++i) {
-    temp_name = dir.Append(ASCIIToUTF16(base::GenerateGUID()) + L".tmp");
+    temp_name = dir.Append(ASCIIToUTF16(winbase::GenerateGUID()) + L".tmp");
     File file(temp_name,
               File::FLAG_CREATE | File::FLAG_READ | File::FLAG_WRITE);
     if (file.IsValid()) {

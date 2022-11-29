@@ -9,7 +9,7 @@
 #include "winbase\atomic\atomicops.h"
 ///#include "winbase\metrics\histogram_macros.h"
 #include "winbase\power_monitor\power_monitor.h"
-#include "winbase\task_scheduler\post_task.h"
+///#include "winbase\task_scheduler\post_task.h"
 #include "winbase\time\time.h"
 
 namespace winbase {

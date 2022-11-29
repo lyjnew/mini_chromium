@@ -15,6 +15,7 @@
 #include "winbase\logging.h"
 #include "winbase\macros.h"
 #include "winbase\template_util.h"
+#include "winbase\win\nominmax.h"
 
 // base::circular_deque is similar to std::deque. Unlike std::deque, the
 // storage is provided in a flat circular buffer conceptually similar to a

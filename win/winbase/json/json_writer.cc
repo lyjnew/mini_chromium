@@ -194,7 +194,8 @@ bool JSONWriter::BuildJSONString(const Value& node, size_t depth) {
 
     case Value::Type::BINARY:
       // Successful only if we're allowed to omit it.
-      DLOG_IF(ERROR, !omit_binary_values_) << "Cannot serialize binary value.";
+      WINBASE_DLOG_IF(ERROR, !omit_binary_values_) 
+          << "Cannot serialize binary value.";
       return omit_binary_values_;
   }
   WINBASE_NOTREACHED();

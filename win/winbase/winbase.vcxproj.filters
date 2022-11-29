@@ -347,6 +347,18 @@
     <ClCompile Include="json\string_escape.cc">
       <Filter>json</Filter>
     </ClCompile>
+    <ClCompile Include="power_monitor\power_monitor.cc">
+      <Filter>power_monitor</Filter>
+    </ClCompile>
+    <ClCompile Include="power_monitor\power_monitor_device_source_win.cc">
+      <Filter>power_monitor</Filter>
+    </ClCompile>
+    <ClCompile Include="power_monitor\power_monitor_source.cc">
+      <Filter>power_monitor</Filter>
+    </ClCompile>
+    <ClCompile Include="power_monitor\power_monitor_device_source.cc">
+      <Filter>power_monitor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base_export.h" />
@@ -844,6 +856,18 @@
     <ClInclude Include="containers\span.h">
       <Filter>containers</Filter>
     </ClInclude>
+    <ClInclude Include="power_monitor\power_observer.h">
+      <Filter>power_monitor</Filter>
+    </ClInclude>
+    <ClInclude Include="power_monitor\power_monitor.h">
+      <Filter>power_monitor</Filter>
+    </ClInclude>
+    <ClInclude Include="power_monitor\power_monitor_source.h">
+      <Filter>power_monitor</Filter>
+    </ClInclude>
+    <ClInclude Include="power_monitor\power_monitor_device_source.h">
+      <Filter>power_monitor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="atomic">
@@ -911,6 +935,9 @@
     </Filter>
     <Filter Include="json">
       <UniqueIdentifier>{c4308fb8-3836-4cd1-803e-6c513ea030a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="power_monitor">
+      <UniqueIdentifier>{89502c83-8823-4749-8e7d-8aeddf21d9d9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

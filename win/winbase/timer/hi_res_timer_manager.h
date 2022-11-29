@@ -24,7 +24,7 @@ class WINBASE_EXPORT HighResolutionTimerManager
       = delete;
   ~HighResolutionTimerManager() override;
 
-  // base::PowerObserver methods.
+  // winbase::PowerObserver methods.
   void OnPowerStateChange(bool on_battery_power) override;
   void OnSuspend() override;
   void OnResume() override;
