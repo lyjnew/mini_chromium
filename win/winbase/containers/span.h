@@ -57,7 +57,7 @@ using ContainerHasConvertibleData = IsLegalDataConversion<
 
 template <typename Container>
 using ContainerHasIntegralSize =
-    std::is_integral<decltype(base::size(std::declval<Container>()))>;
+    std::is_integral<decltype(winbase::size(std::declval<Container>()))>;
 
 template <typename From, size_t FromExtent, typename To, size_t ToExtent>
 using EnableIfLegalSpanConversion =
