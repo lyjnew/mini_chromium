@@ -154,9 +154,6 @@
     <ClCompile Include="observer_list_threadsafe.cc" />
     <ClCompile Include="sequenced_task_runner.cc" />
     <ClCompile Include="task_runner.cc" />
-    <ClCompile Include="threading\sequenced_thread_task_runner_handle.cc">
-      <Filter>threading</Filter>
-    </ClCompile>
     <ClCompile Include="threading\thread_task_runner_handle.cc">
       <Filter>threading</Filter>
     </ClCompile>
@@ -358,6 +355,48 @@
     </ClCompile>
     <ClCompile Include="power_monitor\power_monitor_device_source.cc">
       <Filter>power_monitor</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\md5.cc">
+      <Filter>crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\sha1.cc">
+      <Filter>crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\sha2.cc">
+      <Filter>crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="win\resource_util.cc">
+      <Filter>win</Filter>
+    </ClCompile>
+    <ClCompile Include="win\scoped_native_library.cc">
+      <Filter>win</Filter>
+    </ClCompile>
+    <ClCompile Include="win\scoped_hstring.cc">
+      <Filter>win</Filter>
+    </ClCompile>
+    <ClCompile Include="win\native_library.cc">
+      <Filter>win</Filter>
+    </ClCompile>
+    <ClCompile Include="win\core_winrt_util.cc">
+      <Filter>win</Filter>
+    </ClCompile>
+    <ClCompile Include="win\import_lib.cc">
+      <Filter>win</Filter>
+    </ClCompile>
+    <ClCompile Include="win\scoped_handle_verifier.cc">
+      <Filter>win</Filter>
+    </ClCompile>
+    <ClCompile Include="endecode\base64.cc">
+      <Filter>endecode</Filter>
+    </ClCompile>
+    <ClCompile Include="endecode\base64url.cc">
+      <Filter>endecode</Filter>
+    </ClCompile>
+    <ClCompile Include="third_party\modp_b64\modp_b64.cc">
+      <Filter>third_party\modp_b64</Filter>
+    </ClCompile>
+    <ClCompile Include="json\json_reader.cc">
+      <Filter>json</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -632,9 +671,6 @@
     <ClInclude Include="task_runner.h" />
     <ClInclude Include="task_runner_util.h" />
     <ClInclude Include="post_task_and_reply_with_result_internal.h" />
-    <ClInclude Include="threading\sequenced_thread_task_runner_handle.h">
-      <Filter>threading</Filter>
-    </ClInclude>
     <ClInclude Include="threading\thread_task_runner_handle.h">
       <Filter>threading</Filter>
     </ClInclude>
@@ -868,6 +904,55 @@
     <ClInclude Include="power_monitor\power_monitor_device_source.h">
       <Filter>power_monitor</Filter>
     </ClInclude>
+    <ClInclude Include="crypto\md5.h">
+      <Filter>crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\sha1.h">
+      <Filter>crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\sha2.h">
+      <Filter>crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="win\resource_util.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="win\scoped_propvariant.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="win\win_client_metrics.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="win\scoped_native_library.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="win\scoped_hstring.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="win\native_library.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="win\scoped_co_mem.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="win\core_winrt_util.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="endecode\base64.h">
+      <Filter>endecode</Filter>
+    </ClInclude>
+    <ClInclude Include="endecode\base64url.h">
+      <Filter>endecode</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\modp_b64\modp_b64.h">
+      <Filter>third_party\modp_b64</Filter>
+    </ClInclude>
+    <ClInclude Include="third_party\modp_b64\modp_b64_data.h">
+      <Filter>third_party\modp_b64</Filter>
+    </ClInclude>
+    <ClInclude Include="sys_byteorder.h" />
+    <ClInclude Include="json\json_reader.h">
+      <Filter>json</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="atomic">
@@ -938,6 +1023,15 @@
     </Filter>
     <Filter Include="power_monitor">
       <UniqueIdentifier>{89502c83-8823-4749-8e7d-8aeddf21d9d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="crypto">
+      <UniqueIdentifier>{f5e0c3b8-d5c4-4721-a0e1-c208b2cf2a9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="endecode">
+      <UniqueIdentifier>{56f0b7b2-ad63-4452-a63c-e5b705c3658b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_party\modp_b64">
+      <UniqueIdentifier>{58cf33b1-a373-4ad3-bcdf-2898dd81be60}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

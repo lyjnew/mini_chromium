@@ -10,7 +10,7 @@
 #include "winbase\files\file_path.h"
 #include "winbase\logging.h"
 #include "winbase\threading\thread_restrictions.h"
-///#include "winbase\win\resource_util.h"
+#include "winbase\win\resource_util.h"
 
 using winbase::FilePath;
 
@@ -54,7 +54,7 @@ FileVersionInfo* FileVersionInfo::CreateFileVersionInfoForModule(
     HMODULE module) {
   void* data;
   size_t version_info_length;
-  const bool has_version_resource = winbase::win::GetResourceFromModule(
+  const bool has_version_resource = win::GetResourceFromModule(
       module, VS_VERSION_INFO, RT_VERSION, &data, &version_info_length);
   if (!has_version_resource)
     return nullptr;

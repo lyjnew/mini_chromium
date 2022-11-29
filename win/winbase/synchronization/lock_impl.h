@@ -8,8 +8,7 @@
 #include "winbase\base_export.h"
 ///#include "winbase\logging.h"
 #include "winbase\macros.h"
-#include "winlib\build_config.h"
-
+#include "winbase\win\windows_types.h"
 
 namespace winbase {
 namespace internal {
@@ -19,7 +18,7 @@ namespace internal {
 // should instead use Lock.
 class WINBASE_EXPORT LockImpl {
  public:
-  using NativeHandle = struct { void* ptr; };
+  using NativeHandle = WINBASE_SRWLOCK;
 
   LockImpl();
   ~LockImpl();
@@ -36,7 +35,7 @@ class WINBASE_EXPORT LockImpl {
 
   // Release the lock.  This must only be called by the lock's holder: after
   // a successful call to Try, or a call to Lock.
-  inline void Unlock();
+  void Unlock();
 
   // Return the native underlying lock.
   // TODO(awalker): refactor lock and condition variables so that this is
