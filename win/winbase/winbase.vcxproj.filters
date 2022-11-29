@@ -841,6 +841,9 @@
     <ClInclude Include="json\string_escape.h">
       <Filter>json</Filter>
     </ClInclude>
+    <ClInclude Include="containers\span.h">
+      <Filter>containers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="atomic">

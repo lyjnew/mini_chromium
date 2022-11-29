@@ -170,6 +170,7 @@
     <ClInclude Include="containers\flat_map.h" />
     <ClInclude Include="containers\flat_tree.h" />
     <ClInclude Include="containers\queue.h" />
+    <ClInclude Include="containers\span.h" />
     <ClInclude Include="containers\stack.h" />
     <ClInclude Include="containers\vector_buffer.h" />
     <ClInclude Include="cpu.h" />
