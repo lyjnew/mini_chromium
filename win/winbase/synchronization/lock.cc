@@ -8,31 +8,31 @@
 
 #include "winbase\synchronization\lock.h"
 
-///#if DCHECK_IS_ON()
-///
-///namespace winbase {
-///
-///Lock::Lock() : lock_() {
-///}
-///
-///Lock::~Lock() {
-///  DCHECK(owning_thread_ref_.is_null());
-///}
-///
-///void Lock::AssertAcquired() const {
-///  DCHECK(owning_thread_ref_ == PlatformThread::CurrentRef());
-///}
-///
-///void Lock::CheckHeldAndUnmark() {
-///  DCHECK(owning_thread_ref_ == PlatformThread::CurrentRef());
-///  owning_thread_ref_ = PlatformThreadRef();
-///}
-///
-///void Lock::CheckUnheldAndMark() {
-///  DCHECK(owning_thread_ref_.is_null());
-///  owning_thread_ref_ = PlatformThread::CurrentRef();
-///}
-///
-///}  // namespace winbase
-///
-///#endif  // DCHECK_IS_ON()
+#if WINBASE_DCHECK_IS_ON()
+
+namespace winbase {
+
+Lock::Lock() : lock_() {
+}
+
+Lock::~Lock() {
+  WINBASE_DCHECK(owning_thread_ref_.is_null());
+}
+
+void Lock::AssertAcquired() const {
+  WINBASE_DCHECK(owning_thread_ref_ == PlatformThread::CurrentRef());
+}
+
+void Lock::CheckHeldAndUnmark() {
+  WINBASE_DCHECK(owning_thread_ref_ == PlatformThread::CurrentRef());
+  owning_thread_ref_ = PlatformThreadRef();
+}
+
+void Lock::CheckUnheldAndMark() {
+  WINBASE_DCHECK(owning_thread_ref_.is_null());
+  owning_thread_ref_ = PlatformThread::CurrentRef();
+}
+
+}  // namespace winbase
+
+#endif  // WINBASE_DCHECK_IS_ON()

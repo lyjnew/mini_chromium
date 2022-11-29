@@ -8,7 +8,7 @@
 #include "winbase\atomic\atomicops.h"
 #include "winbase\base_export.h"
 #include "winbase\macros.h"
-///#include "winbase\sequence_checker.h"
+#include "winbase\sequence_checker.h"
 
 namespace winbase {
 
@@ -37,7 +37,7 @@ class WINBASE_EXPORT AtomicFlag {
 
  private:
   winbase::subtle::Atomic32 flag_ = 0;
-  ///SEQUENCE_CHECKER(set_sequence_checker_);
+  WINBASE_SEQUENCE_CHECKER(set_sequence_checker_);
 };
 
 }  // namespace winbase

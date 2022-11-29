@@ -4,7 +4,7 @@
 
 #include "winbase\synchronization\atomic_flag.h"
 
-///#include "winbase\logging.h"
+#include "winbase\logging.h"
 
 namespace winbase {
 
@@ -13,11 +13,11 @@ AtomicFlag::AtomicFlag() {
   // Set() from the same sequence after. Note: the sequencing requirements are
   // necessary for IsSet()'s callers to know which sequence's memory operations
   // they are synchronized with.
-  ///DETACH_FROM_SEQUENCE(set_sequence_checker_);
+  WINBASE_DETACH_FROM_SEQUENCE(set_sequence_checker_);
 }
 
 void AtomicFlag::Set() {
-  ///DCHECK_CALLED_ON_VALID_SEQUENCE(set_sequence_checker_);
+  WINBASE_DCHECK_CALLED_ON_VALID_SEQUENCE(set_sequence_checker_);
   winbase::subtle::Release_Store(&flag_, 1);
 }
 
