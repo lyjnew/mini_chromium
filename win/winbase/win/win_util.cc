@@ -116,7 +116,7 @@ bool SetProcessDpiAwarenessWrapper(PROCESS_DPI_AWARENESS value) {
     return false;
   }
 
-  WINBASE_DCHECK_LT(GetVersion(), Version::VERSION_WIN8_1)
+  WINBASE_DCHECK_LT(GetVersion(), OSVersion::VERSION_WIN8_1)
       << "SetProcessDpiAwarenessInternal "
           "should be available on all "
           "platforms >= Windows 8.1";
@@ -131,7 +131,7 @@ bool SetProcessDpiAwarenessWrapper(PROCESS_DPI_AWARENESS value) {
 // it to always return UserInteractionMode_Touch which as per documentation
 // indicates tablet mode.
 bool IsWindows10TabletMode(HWND hwnd) {
-  if (GetVersion() < Version::VERSION_WIN10)
+  if (GetVersion() < OSVersion::VERSION_WIN10)
     return false;
 
   if (!ResolveCoreWinRTDelayload() ||
@@ -167,7 +167,7 @@ bool IsWindows10TabletMode(HWND hwnd) {
 bool IsKeyboardPresentOnSlate(std::string* reason, HWND hwnd) {
   bool result = false;
 
-  if (GetVersion() < Version::VERSION_WIN8) {
+  if (GetVersion() < OSVersion::VERSION_WIN8) {
     if (reason)
       *reason = "Detection not supported";
     return false;
@@ -450,7 +450,7 @@ void SetAbortBehaviorForCrashReporting() {
 }
 
 bool IsTabletDevice(std::string* reason, HWND hwnd) {
-  if (GetVersion() < Version::VERSION_WIN8) {
+  if (GetVersion() < OSVersion::VERSION_WIN8) {
     if (reason)
       *reason = "Tablet device detection not supported below Windows 8\n";
     return false;
@@ -468,7 +468,7 @@ bool IsTabletDevice(std::string* reason, HWND hwnd) {
 // input configuration of the device and can be manually triggered by the user
 // independently from the hardware state.
 bool IsDeviceUsedAsATablet(std::string* reason) {
-  if (GetVersion() < Version::VERSION_WIN8) {
+  if (GetVersion() < OSVersion::VERSION_WIN8) {
     if (reason)
       *reason = "Tablet device detection not supported below Windows 8\n";
     return false;
@@ -590,7 +590,7 @@ bool IsUser32AndGdi32Available() {
     // If win32k syscalls aren't disabled, then user32 and gdi32 are available.
 
     // Can't disable win32k prior to windows 8.
-    if (GetVersion() < Version::VERSION_WIN8)
+    if (GetVersion() < OSVersion::VERSION_WIN8)
       return true;
 
     typedef decltype(
@@ -697,8 +697,8 @@ void EnableHighDPISupport() {
   // does not have EnableChildWindowDpiMessage, necessary for correct non-client
   // area scaling across monitors.
   PROCESS_DPI_AWARENESS process_dpi_awareness =
-      GetVersion() >= Version::VERSION_WIN10 ? PROCESS_PER_MONITOR_DPI_AWARE
-                                             : PROCESS_SYSTEM_DPI_AWARE;
+      GetVersion() >= OSVersion::VERSION_WIN10 ? PROCESS_PER_MONITOR_DPI_AWARE
+                                               : PROCESS_SYSTEM_DPI_AWARE;
   if (!SetProcessDpiAwarenessWrapper(process_dpi_awareness)) {
     // For windows versions where SetProcessDpiAwareness is not available or
     // failed, try its predecessor.

@@ -403,6 +403,36 @@
     <ClCompile Include="base_paths_win.cc" />
     <ClCompile Include="environment.cc" />
     <ClCompile Include="path_service.cc" />
+    <ClCompile Include="process\kill.cc">
+      <Filter>process</Filter>
+    </ClCompile>
+    <ClCompile Include="process\kill_win.cc">
+      <Filter>process</Filter>
+    </ClCompile>
+    <ClCompile Include="process\launch.cc">
+      <Filter>process</Filter>
+    </ClCompile>
+    <ClCompile Include="process\launch_win.cc">
+      <Filter>process</Filter>
+    </ClCompile>
+    <ClCompile Include="process\process_info.cc">
+      <Filter>process</Filter>
+    </ClCompile>
+    <ClCompile Include="process\process_iterator.cc">
+      <Filter>process</Filter>
+    </ClCompile>
+    <ClCompile Include="process\process_iterator_win.cc">
+      <Filter>process</Filter>
+    </ClCompile>
+    <ClCompile Include="process\process_win.cc">
+      <Filter>process</Filter>
+    </ClCompile>
+    <ClCompile Include="win\scoped_process_information.cc">
+      <Filter>win</Filter>
+    </ClCompile>
+    <ClCompile Include="win\startup_information.cc">
+      <Filter>win</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base_export.h" />
@@ -963,6 +993,24 @@
     <ClInclude Include="base_paths_win.h" />
     <ClInclude Include="environment.h" />
     <ClInclude Include="path_service.h" />
+    <ClInclude Include="process\kill.h">
+      <Filter>process</Filter>
+    </ClInclude>
+    <ClInclude Include="process\launch.h">
+      <Filter>process</Filter>
+    </ClInclude>
+    <ClInclude Include="process\process_info.h">
+      <Filter>process</Filter>
+    </ClInclude>
+    <ClInclude Include="process\process_iterator.h">
+      <Filter>process</Filter>
+    </ClInclude>
+    <ClInclude Include="win\scoped_process_information.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="win\startup_information.h">
+      <Filter>win</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="atomic">

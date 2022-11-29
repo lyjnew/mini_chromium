@@ -8,5 +8,6 @@
 #pragma comment(lib, "propsys.lib ")
 #pragma comment(lib, "setupapi.lib ")
 #pragma comment(lib, "powrprof.lib ")
+#pragma comment(lib, "userenv.lib ")  // For CreateEnvironmentBlock
 
 #endif  // defined(_MSC_VER)

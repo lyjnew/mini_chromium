@@ -24,7 +24,7 @@ namespace win {
 //
 // This enum is used in metrics histograms, so they shouldn't be reordered or
 // removed. New values can be added before VERSION_WIN_LAST.
-enum class Version {
+enum class OSVersion {
   VERSION_PRE_XP = 0,       // Not supported.
   VERSION_XP = 1,
   VERSION_SERVER_2003 = 2,  // Also includes XP Pro x64 and Server 2003 R2.
@@ -101,8 +101,8 @@ class WINBASE_EXPORT OSInfo {
   OSInfo(const OSInfo&) = delete;
   OSInfo& operator=(const OSInfo&) = delete;
 
-  Version version() const { return version_; }
-  Version Kernel32Version() const;
+  OSVersion version() const { return version_; }
+  OSVersion Kernel32Version() const;
   // The next two functions return arrays of values, [major, minor(, build)].
   VersionNumber version_number() const { return version_number_; }
   VersionType version_type() const { return version_type_; }
@@ -122,8 +122,8 @@ class WINBASE_EXPORT OSInfo {
   OSInfo();
   ~OSInfo();
 
-  Version version_;
-  mutable Version kernel32_version_;
+  OSVersion version_;
+  mutable OSVersion kernel32_version_;
   mutable bool got_kernel32_version_;
   VersionNumber version_number_;
   VersionType version_type_;
@@ -142,7 +142,7 @@ class WINBASE_EXPORT OSInfo {
 
 // Because this is by far the most commonly-requested value from the above
 // singleton, we add a global-scope accessor here as syntactic sugar.
-WINBASE_EXPORT Version GetVersion();
+WINBASE_EXPORT OSVersion GetVersion();
 
 }  // namespace win
 }  // namespace winbase

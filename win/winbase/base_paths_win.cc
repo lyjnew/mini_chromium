@@ -136,7 +136,7 @@ bool PathProviderWin(int key, FilePath* result) {
       break;
     }
     case winbase::DIR_APP_SHORTCUTS: {
-      if (win::GetVersion() < win::Version::VERSION_WIN8)
+      if (win::GetVersion() < win::OSVersion::VERSION_WIN8)
         return false;
 
       winbase::win::ScopedCoMem<wchar_t> path_buf;
