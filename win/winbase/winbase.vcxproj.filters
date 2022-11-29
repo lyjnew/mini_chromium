@@ -398,6 +398,7 @@
     <ClCompile Include="json\json_reader.cc">
       <Filter>json</Filter>
     </ClCompile>
+    <ClCompile Include="command_line.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base_export.h" />
@@ -953,6 +954,7 @@
     <ClInclude Include="json\json_reader.h">
       <Filter>json</Filter>
     </ClInclude>
+    <ClInclude Include="command_line.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="atomic">

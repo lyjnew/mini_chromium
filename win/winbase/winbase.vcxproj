@@ -166,6 +166,7 @@
     <ClInclude Include="base_export.h" />
     <ClInclude Include="bits.h" />
     <ClInclude Include="bit_cast.h" />
+    <ClInclude Include="command_line.h" />
     <ClInclude Include="containers\circular_deque.h" />
     <ClInclude Include="containers\flat_map.h" />
     <ClInclude Include="containers\flat_tree.h" />
@@ -372,6 +373,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="at_exit.cc" />
+    <ClCompile Include="command_line.cc" />
     <ClCompile Include="cpu.cc" />
     <ClCompile Include="crypto\md5.cc" />
     <ClCompile Include="crypto\sha1.cc" />
