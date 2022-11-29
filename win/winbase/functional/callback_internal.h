@@ -5,8 +5,8 @@
 // This file contains utility functions and classes that help the
 // implementation, and management of the Callback objects.
 
-#ifndef WINLIB_WINBASE_CALLBACK_INTERNAL_H_
-#define WINLIB_WINBASE_CALLBACK_INTERNAL_H_
+#ifndef WINLIB_WINBASE_FUNCTIONAL_CALLBACK_INTERNAL_H_
+#define WINLIB_WINBASE_FUNCTIONAL_CALLBACK_INTERNAL_H_
 
 #include "winbase\base_export.h"
 #include "winbase\functional\callback_forward.h"
@@ -163,4 +163,4 @@ class WINBASE_EXPORT CallbackBaseCopyable : public CallbackBase {
 }  // namespace internal
 }  // namespace winbase
 
-#endif  // WINLIB_WINBASE_CALLBACK_INTERNAL_H_
+#endif  // WINLIB_WINBASE_FUNCTIONAL_CALLBACK_INTERNAL_H_

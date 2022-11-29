@@ -25,8 +25,8 @@
 // to use these.
 //
 
-#ifndef WINLIB_WINBASE_ATOMICOPS_H_
-#define WINLIB_WINBASE_ATOMICOPS_H_
+#ifndef WINLIB_WINBASE_ATOMIC_ATOMICOPS_H_
+#define WINLIB_WINBASE_ATOMIC_ATOMICOPS_H_
 
 #include <stdint.h>
 
@@ -304,4 +304,4 @@ inline Atomic64 Release_CompareAndSwap(volatile Atomic64* ptr,
 }  // namespace subtle
 }  // namespace winbase
 
-#endif  // WINLIB_WINBASE_ATOMICOPS_H_
+#endif  // WINLIB_WINBASE_ATOMIC_ATOMICOPS_H_

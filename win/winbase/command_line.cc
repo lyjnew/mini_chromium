@@ -371,7 +371,6 @@ void CommandLine::PrependWrapper(const CommandLine::StringType& wrapper) {
   begin_args_ += wrapper_argv.size();
 }
 
-#if defined(OS_WIN)
 void CommandLine::ParseFromString(const string16& command_line) {
   string16 command_line_string;
   TrimWhitespace(command_line, TRIM_ALL, &command_line_string);
@@ -388,7 +387,6 @@ void CommandLine::ParseFromString(const string16& command_line) {
   InitFromArgv(num_args, args);
   LocalFree(args);
 }
-#endif
 
 CommandLine::StringType CommandLine::GetCommandLineStringInternal(
     bool quote_placeholders) const {

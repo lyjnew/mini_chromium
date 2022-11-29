@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef WINLIB_WINBASE_CALLBACK_FORWARD_H_
-#define WINLIB_WINBASE_CALLBACK_FORWARD_H_
+#ifndef WINLIB_WINBASE_FUNCTIONAL_CALLBACK_FORWARD_H_
+#define WINLIB_WINBASE_FUNCTIONAL_CALLBACK_FORWARD_H_
 
 namespace winbase {
 
@@ -24,4 +24,4 @@ using Closure = Callback<void()>;
 
 }  // namespace winbase
 
-#endif  // WINLIB_WINBASE_CALLBACK_FORWARD_H_
+#endif  // WINLIB_WINBASE_FUNCTIONAL_CALLBACK_FORWARD_H_

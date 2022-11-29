@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef WINLIB_WINBASE_CALLBACK_LIST_H_
-#define WINLIB_WINBASE_CALLBACK_LIST_H_
+#ifndef WINLIB_WINBASE_FUNCTIONAL_CALLBACK_LIST_H_
+#define WINLIB_WINBASE_FUNCTIONAL_CALLBACK_LIST_H_
 
 #include <list>
 #include <memory>
@@ -226,4 +226,4 @@ class CallbackList<void(Args...)>
 
 }  // namespace winbase
 
-#endif  // WINLIB_WINBASE_CALLBACK_LIST_H_
+#endif  // WINLIB_WINBASE_FUNCTIONAL_CALLBACK_LIST_H_

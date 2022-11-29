@@ -41,8 +41,8 @@
 // timeout.Cancel();  // Hopefully this is hit before the timeout callback runs.
 //
 
-#ifndef WINLIB_WINBASE_CANCELABLE_CALLBACK_H_
-#define WINLIB_WINBASE_CANCELABLE_CALLBACK_H_
+#ifndef WINLIB_WINBASE_FUNCTIONAL_CANCELABLE_CALLBACK_H_
+#define WINLIB_WINBASE_FUNCTIONAL_CANCELABLE_CALLBACK_H_
 
 #include <utility>
 
@@ -154,4 +154,4 @@ using CancelableClosure = CancelableCallback<void()>;
 
 }  // namespace winbase
 
-#endif  // WINLIB_WINBASE_CANCELABLE_CALLBACK_H_
+#endif  // WINLIB_WINBASE_FUNCTIONAL_CANCELABLE_CALLBACK_H_

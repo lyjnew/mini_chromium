@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef WINLIB_WINBASE_BASE64URL_H_
-#define WINLIB_WINBASE_BASE64URL_H_
+#ifndef WINLIB_WINBASE_ENDECODE_BASE64URL_H_
+#define WINLIB_WINBASE_ENDECODE_BASE64URL_H_
 
 #include <string>
 
@@ -53,4 +53,4 @@ WINBASE_EXPORT bool Base64UrlDecode(const StringPiece& input,
 
 }  // namespace winbase
 
-#endif  // WINLIB_WINBASE_BASE64URL_H_
+#endif  // WINLIB_WINBASE_ENDECODE_BASE64URL_H_

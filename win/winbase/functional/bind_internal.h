@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef WINLIB_WINBASE_BIND_INTERNAL_H_
-#define WINLIB_WINBASE_BIND_INTERNAL_H_
+#ifndef WINLIB_WINBASE_FUNCTIONAL_BIND_INTERNAL_H_
+#define WINLIB_WINBASE_FUNCTIONAL_BIND_INTERNAL_H_
 
 #include <stddef.h>
 
@@ -908,4 +908,4 @@ using MakeUnboundRunType =
 
 }  // namespace winbase
 
-#endif  // WINLIB_WINBASE_BIND_INTERNAL_H_
+#endif  // WINLIB_WINBASE_FUNCTIONAL_BIND_INTERNAL_H_

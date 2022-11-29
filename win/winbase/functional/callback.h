@@ -5,8 +5,8 @@
 // NOTE: Header files that do not require the full definition of Callback or
 // Closure should #include "base/callback_forward.h" instead of this file.
 
-#ifndef WINLIB_WINBASE_CALLBACK_H_
-#define WINLIB_WINBASE_CALLBACK_H_
+#ifndef WINLIB_WINBASE_FUNCTIONAL_CALLBACK_H_
+#define WINLIB_WINBASE_FUNCTIONAL_CALLBACK_H_
 
 #include <stddef.h>
 
@@ -143,4 +143,4 @@ class RepeatingCallback<R(Args...)> : public internal::CallbackBaseCopyable {
 
 }  // namespace winbase
 
-#endif  // WINLIB_WINBASE_CALLBACK_H_
+#endif  // WINLIB_WINBASE_FUNCTIONAL_CALLBACK_H_

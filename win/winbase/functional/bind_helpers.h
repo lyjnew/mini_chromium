@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef WINLIB_WINBASE_BIND_HELPERS_H_
-#define WINLIB_WINBASE_BIND_HELPERS_H_
+#ifndef WINLIB_WINBASE_FUNCTIONAL_BIND_HELPERS_H_
+#define WINLIB_WINBASE_FUNCTIONAL_BIND_HELPERS_H_
 
 #include <stddef.h>
 
@@ -66,4 +66,4 @@ void DeletePointer(T* obj) {
 
 }  // namespace winbase
 
-#endif  // WINLIB_WINBASE_BIND_HELPERS_H_
+#endif  // WINLIB_WINBASE_FUNCTIONAL_BIND_HELPERS_H_

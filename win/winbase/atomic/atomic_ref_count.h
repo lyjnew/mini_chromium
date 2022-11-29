@@ -5,8 +5,8 @@
 // This is a low level implementation of atomic semantics for reference
 // counting.  Please use base/memory/ref_counted.h directly instead.
 
-#ifndef WINLIB_WINBASE_ATOMIC_REF_COUNT_H_
-#define WINLIB_WINBASE_ATOMIC_REF_COUNT_H_
+#ifndef WINLIB_WINBASE_ATOMIC_ATOMIC_REF_COUNT_H_
+#define WINLIB_WINBASE_ATOMIC_ATOMIC_REF_COUNT_H_
 
 #include <atomic>
 
@@ -66,4 +66,4 @@ class AtomicRefCount {
 
 }  // namespace winbase
 
-#endif  // WINLIB_WINBASE_ATOMIC_REF_COUNT_H_
+#endif  // WINLIB_WINBASE_ATOMIC_ATOMIC_REF_COUNT_H_

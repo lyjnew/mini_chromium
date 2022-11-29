@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef WINLIB_WINBASE_CRITICAL_CLOSURE_H_
-#define WINLIB_WINBASE_CRITICAL_CLOSURE_H_
+#ifndef WINLIB_WINBASE_FUNCTIONAL_CRITICAL_CLOSURE_H_
+#define WINLIB_WINBASE_FUNCTIONAL_CRITICAL_CLOSURE_H_
 
 #include <utility>
 
@@ -34,4 +34,4 @@ inline OnceClosure MakeCriticalClosure(OnceClosure closure) {
 
 }  // namespace winbase
 
-#endif  // WINLIB_WINBASE_CRITICAL_CLOSURE_H_
+#endif  // WINLIB_WINBASE_FUNCTIONAL_CRITICAL_CLOSURE_H_

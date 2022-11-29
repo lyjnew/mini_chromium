@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef WINLIB_WINBASE_BIND_H_
-#define WINLIB_WINBASE_BIND_H_
+#ifndef WINLIB_WINBASE_FUNCTIONAL_BIND_H_
+#define WINLIB_WINBASE_FUNCTIONAL_BIND_H_
 
 #include <utility>
 
@@ -455,4 +455,4 @@ static inline internal::IgnoreResultHelper<T> IgnoreResult(T data) {
 
 }  // namespace winbase
 
-#endif  // WINLIB_WINBASE_BIND_H_
+#endif  // WINLIB_WINBASE_FUNCTIONAL_BIND_H_

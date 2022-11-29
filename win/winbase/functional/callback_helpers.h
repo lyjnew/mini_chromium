@@ -7,8 +7,8 @@
 // methods to Callback<> itself is unattractive (lots of extra code gets
 // generated).  Instead, consider adding methods here.
 
-#ifndef WINLIB_WINBASE_CALLBACK_HELPERS_H_
-#define WINLIB_WINBASE_CALLBACK_HELPERS_H_
+#ifndef WINLIB_WINBASE_FUNCTIONAL_CALLBACK_HELPERS_H_
+#define WINLIB_WINBASE_FUNCTIONAL_CALLBACK_HELPERS_H_
 
 #include <utility>
 
@@ -105,4 +105,4 @@ class WINBASE_EXPORT ScopedClosureRunner {
 
 }  // namespace winbase
 
-#endif  // WINLIB_WINBASE_CALLBACK_HELPERS_H_
+#endif  // WINLIB_WINBASE_FUNCTIONAL_CALLBACK_HELPERS_H_

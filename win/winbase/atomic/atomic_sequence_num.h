@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef WINLIB_WINBASE_ATOMIC_SEQUENCE_NUM_H_
-#define WINLIB_WINBASE_ATOMIC_SEQUENCE_NUM_H_
+#ifndef WINLIB_WINBASE_ATOMIC_ATOMIC_SEQUENCE_NUM_H_
+#define WINLIB_WINBASE_ATOMIC_ATOMIC_SEQUENCE_NUM_H_
 
 #include <atomic>
 
@@ -31,4 +31,4 @@ class AtomicSequenceNumber {
 
 }  // namespace winbase
 
-#endif  // WINLIB_WINBASE_ATOMIC_SEQUENCE_NUM_H_
+#endif  // WINLIB_WINBASE_ATOMIC_ATOMIC_SEQUENCE_NUM_H_
