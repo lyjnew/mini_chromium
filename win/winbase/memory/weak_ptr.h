@@ -320,8 +320,8 @@ class WeakPtrFactory : public internal::WeakPtrFactoryBase {
   ~WeakPtrFactory() = default;
 
   WeakPtrFactory() = delete;
-  WeakPtrFactory(const WeakPtrFactory&) = delete;
-  WeakPtrFactory& operator=(const WeakPtrFactory&) = delete;
+  WeakPtrFactory(const WeakPtrFactory<T>&) = delete;
+  WeakPtrFactory<T>& operator=(const WeakPtrFactory<T>&) = delete;
 
   WeakPtr<T> GetWeakPtr() {
     return WeakPtr<T>(weak_reference_owner_.GetRef(),
@@ -351,8 +351,8 @@ class SupportsWeakPtr : public internal::SupportsWeakPtrBase {
  public:
   SupportsWeakPtr() = default;
 
-  SupportsWeakPtr(const SupportsWeakPtr&) = delete;
-  SupportsWeakPtr& operator=(const SupportsWeakPtr&) = delete;
+  SupportsWeakPtr(const SupportsWeakPtr<T>&) = delete;
+  SupportsWeakPtr<T>& operator=(const SupportsWeakPtr<T>&) = delete;
 
   WeakPtr<T> AsWeakPtr() {
     return WeakPtr<T>(weak_reference_owner_.GetRef(), static_cast<T*>(this));
