@@ -540,7 +540,7 @@
     <ClCompile Include="task_scheduler\task.cc" />
     <ClCompile Include="task_scheduler\task_scheduler.cc" />
     <ClCompile Include="task_scheduler\task_scheduler_impl.cc" />
-    <ClCompile Include="task_scheduler\task_tracker_stub.cc" />
+    <ClCompile Include="task_scheduler\task_tracker.cc" />
     <ClCompile Include="task_scheduler\task_traits.cc" />
     <ClCompile Include="third_party\double-conversion\bignum-dtoa.cc" />
     <ClCompile Include="third_party\double-conversion\bignum.cc" />

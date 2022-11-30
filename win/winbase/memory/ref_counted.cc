@@ -4,14 +4,14 @@
 
 #include "winbase\memory\ref_counted.h"
 
-///#include "winbase\threading\thread_collision_warner.h"
+#include "winbase\threading\thread_collision_warner.h"
 
 namespace winbase {
 namespace {
 
-///#if DCHECK_IS_ON()
-///std::atomic_int g_cross_thread_ref_count_access_allow_count(0);
-///#endif
+#if WINBASE_DCHECK_IS_ON()
+std::atomic_int g_cross_thread_ref_count_access_allow_count(0);
+#endif
 
 }  // namespace
 
@@ -21,12 +21,12 @@ bool RefCountedThreadSafeBase::HasOneRef() const {
   return ref_count_.IsOne();
 }
 
-///#if DCHECK_IS_ON()
-///RefCountedThreadSafeBase::~RefCountedThreadSafeBase() {
-///  DCHECK(in_dtor_) << "RefCountedThreadSafe object deleted without "
-///                      "calling Release()";
-///}
-///#endif
+#if WINBASE_DCHECK_IS_ON()
+RefCountedThreadSafeBase::~RefCountedThreadSafeBase() {
+  WINBASE_DCHECK(in_dtor_) << "RefCountedThreadSafe object deleted without "
+                              "calling Release()";
+}
+#endif
 
 #if defined(ARCH_CPU_64_BITS)
 void RefCountedBase::AddRefImpl() const {
@@ -48,23 +48,23 @@ void RefCountedThreadSafeBase::AddRef() const {
 }
 #endif
 
-///#if DCHECK_IS_ON()
-///bool RefCountedBase::CalledOnValidSequence() const {
-///  return sequence_checker_.CalledOnValidSequence() ||
-///         g_cross_thread_ref_count_access_allow_count.load() != 0;
-///}
-///#endif
+#if WINBASE_DCHECK_IS_ON()
+bool RefCountedBase::CalledOnValidSequence() const {
+  return sequence_checker_.CalledOnValidSequence() ||
+         g_cross_thread_ref_count_access_allow_count.load() != 0;
+}
+#endif
 
 }  // namespace subtle
 
-///#if DCHECK_IS_ON()
-///ScopedAllowCrossThreadRefCountAccess::ScopedAllowCrossThreadRefCountAccess() {
-///  ++g_cross_thread_ref_count_access_allow_count;
-///}
-///
-///ScopedAllowCrossThreadRefCountAccess::~ScopedAllowCrossThreadRefCountAccess() {
-///  --g_cross_thread_ref_count_access_allow_count;
-///}
-///#endif
+#if WINBASE_DCHECK_IS_ON()
+ScopedAllowCrossThreadRefCountAccess::ScopedAllowCrossThreadRefCountAccess() {
+  ++g_cross_thread_ref_count_access_allow_count;
+}
+
+ScopedAllowCrossThreadRefCountAccess::~ScopedAllowCrossThreadRefCountAccess() {
+  --g_cross_thread_ref_count_access_allow_count;
+}
+#endif
 
 }  // namespace winbase

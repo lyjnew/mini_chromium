@@ -505,14 +505,14 @@
     <ClCompile Include="win\com_init_check_hook.cc">
       <Filter>win</Filter>
     </ClCompile>
-    <ClCompile Include="task_scheduler\task_tracker_stub.cc">
-      <Filter>task_scheduler</Filter>
-    </ClCompile>
     <ClCompile Include="win\com_init_util.cc">
       <Filter>win</Filter>
     </ClCompile>
     <ClCompile Include="win\scoped_winrt_initializer.cc">
       <Filter>win</Filter>
+    </ClCompile>
+    <ClCompile Include="task_scheduler\task_tracker.cc">
+      <Filter>task_scheduler</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -34,94 +34,94 @@ constexpr char kParallelExecutionMode[] = "parallel";
 constexpr char kSequencedExecutionMode[] = "sequenced";
 constexpr char kSingleThreadExecutionMode[] = "single thread";
 
-// An immutable copy of a scheduler task's info required by tracing.
-class TaskTracingInfo : public trace_event::ConvertableToTraceFormat {
- public:
-  TaskTracingInfo(const TaskTraits& task_traits,
-                  const char* execution_mode,
-                  const SequenceToken& sequence_token)
-      : task_traits_(task_traits),
-        execution_mode_(execution_mode),
-        sequence_token_(sequence_token) {}
+///// An immutable copy of a scheduler task's info required by tracing.
+///class TaskTracingInfo : public trace_event::ConvertableToTraceFormat {
+/// public:
+///  TaskTracingInfo(const TaskTraits& task_traits,
+///                  const char* execution_mode,
+///                  const SequenceToken& sequence_token)
+///      : task_traits_(task_traits),
+///        execution_mode_(execution_mode),
+///        sequence_token_(sequence_token) {}
+///
+///  TaskTracingInfo(const TaskTracingInfo&) = delete;
+///  TaskTracingInfo& operator=(const TaskTracingInfo&) = delete;
+///
+///  // trace_event::ConvertableToTraceFormat implementation.
+///  void AppendAsTraceFormat(std::string* out) const override;
+///
+/// private:
+///  const TaskTraits task_traits_;
+///  const char* const execution_mode_;
+///  const SequenceToken sequence_token_;
+///};
 
-  TaskTracingInfo(const TaskTracingInfo&) = delete;
-  TaskTracingInfo& operator=(const TaskTracingInfo&) = delete;
-
-  // trace_event::ConvertableToTraceFormat implementation.
-  void AppendAsTraceFormat(std::string* out) const override;
-
- private:
-  const TaskTraits task_traits_;
-  const char* const execution_mode_;
-  const SequenceToken sequence_token_;
-};
-
-void TaskTracingInfo::AppendAsTraceFormat(std::string* out) const {
-  DictionaryValue dict;
-
-  dict.SetString("task_priority",
-                 winbase::TaskPriorityToString(task_traits_.priority()));
-  dict.SetString("execution_mode", execution_mode_);
-  if (execution_mode_ != kParallelExecutionMode)
-    dict.SetInteger("sequence_token", sequence_token_.ToInternalValue());
-
-  std::string tmp;
-  JSONWriter::Write(dict, &tmp);
-  out->append(tmp);
-}
+///void TaskTracingInfo::AppendAsTraceFormat(std::string* out) const {
+///  DictionaryValue dict;
+///
+///  dict.SetString("task_priority",
+///                 winbase::TaskPriorityToString(task_traits_.priority()));
+///  dict.SetString("execution_mode", execution_mode_);
+///  if (execution_mode_ != kParallelExecutionMode)
+///    dict.SetInteger("sequence_token", sequence_token_.ToInternalValue());
+///
+///  std::string tmp;
+///  JSONWriter::Write(dict, &tmp);
+///  out->append(tmp);
+///}
 
 // These name conveys that a Task is posted to/run by the task scheduler without
 // revealing its implementation details.
 constexpr char kQueueFunctionName[] = "TaskScheduler PostTask";
 constexpr char kRunFunctionName[] = "TaskScheduler RunTask";
 
-constexpr char kTaskSchedulerFlowTracingCategory[] =
-    TRACE_DISABLED_BY_DEFAULT("task_scheduler.flow");
-
-// Constructs a histogram to track latency which is logging to
-// "TaskScheduler.{histogram_name}.{histogram_label}.{task_type_suffix}".
-HistogramBase* GetLatencyHistogram(StringPiece histogram_name,
-                                   StringPiece histogram_label,
-                                   StringPiece task_type_suffix) {
-  WINBASE_DCHECK(!histogram_name.empty());
-  WINBASE_DCHECK(!histogram_label.empty());
-  WINBASE_DCHECK(!task_type_suffix.empty());
-  // Mimics the UMA_HISTOGRAM_HIGH_RESOLUTION_CUSTOM_TIMES macro. The minimums
-  // and maximums were chosen to place the 1ms mark at around the 70% range
-  // coverage for buckets giving us good info for tasks that have a latency
-  // below 1ms (most of them) and enough info to assess how bad the latency is
-  // for tasks that exceed this threshold.
-  const std::string histogram = JoinString(
-      {"TaskScheduler", histogram_name, histogram_label, task_type_suffix},
-      ".");
-  return Histogram::FactoryMicrosecondsTimeGet(
-      histogram, TimeDelta::FromMicroseconds(1),
-      TimeDelta::FromMilliseconds(20), 50,
-      HistogramBase::kUmaTargetedHistogramFlag);
-}
+///constexpr char kTaskSchedulerFlowTracingCategory[] =
+///    TRACE_DISABLED_BY_DEFAULT("task_scheduler.flow");
+///
+///// Constructs a histogram to track latency which is logging to
+///// "TaskScheduler.{histogram_name}.{histogram_label}.{task_type_suffix}".
+///HistogramBase* GetLatencyHistogram(StringPiece histogram_name,
+///                                   StringPiece histogram_label,
+///                                   StringPiece task_type_suffix) {
+///  WINBASE_DCHECK(!histogram_name.empty());
+///  WINBASE_DCHECK(!histogram_label.empty());
+///  WINBASE_DCHECK(!task_type_suffix.empty());
+///  // Mimics the UMA_HISTOGRAM_HIGH_RESOLUTION_CUSTOM_TIMES macro. The minimums
+///  // and maximums were chosen to place the 1ms mark at around the 70% range
+///  // coverage for buckets giving us good info for tasks that have a latency
+///  // below 1ms (most of them) and enough info to assess how bad the latency is
+///  // for tasks that exceed this threshold.
+///  const std::string histogram = JoinString(
+///      {"TaskScheduler", histogram_name, histogram_label, task_type_suffix},
+///      ".");
+///  return Histogram::FactoryMicrosecondsTimeGet(
+///      histogram, TimeDelta::FromMicroseconds(1),
+///      TimeDelta::FromMilliseconds(20), 50,
+///      HistogramBase::kUmaTargetedHistogramFlag);
+///}
 
 // Upper bound for the
 // TaskScheduler.BlockShutdownTasksPostedDuringShutdown histogram.
-constexpr HistogramBase::Sample kMaxBlockShutdownTasksPostedDuringShutdown =
-    1000;
-
-void RecordNumBlockShutdownTasksPostedDuringShutdown(
-    HistogramBase::Sample value) {
-  UMA_HISTOGRAM_CUSTOM_COUNTS(
-      "TaskScheduler.BlockShutdownTasksPostedDuringShutdown", value, 1,
-      kMaxBlockShutdownTasksPostedDuringShutdown, 50);
-}
+///constexpr HistogramBase::Sample kMaxBlockShutdownTasksPostedDuringShutdown =
+///    1000;
+///
+///void RecordNumBlockShutdownTasksPostedDuringShutdown(
+///    HistogramBase::Sample value) {
+///  UMA_HISTOGRAM_CUSTOM_COUNTS(
+///      "TaskScheduler.BlockShutdownTasksPostedDuringShutdown", value, 1,
+///      kMaxBlockShutdownTasksPostedDuringShutdown, 50);
+///}
 
 // Returns the maximum number of TaskPriority::BACKGROUND sequences that can be
 // scheduled concurrently based on command line flags.
 int GetMaxNumScheduledBackgroundSequences() {
   // The CommandLine might not be initialized if TaskScheduler is initialized
   // in a dynamic library which doesn't have access to argc/argv.
-  if (CommandLine::InitializedForCurrentProcess() &&
-      CommandLine::ForCurrentProcess()->HasSwitch(
-          switches::kDisableBackgroundTasks)) {
-    return 0;
-  }
+  ///if (CommandLine::InitializedForCurrentProcess() &&
+  ///    CommandLine::ForCurrentProcess()->HasSwitch(
+  ///        switches::kDisableBackgroundTasks)) {
+  ///  return 0;
+  ///}
   return std::numeric_limits<int>::max();
 }
 
@@ -255,7 +255,7 @@ TaskTracker::TaskTracker(StringPiece histogram_label,
       flush_cv_(flush_lock_.CreateConditionVariable()),
       shutdown_lock_(&flush_lock_),
       max_num_scheduled_background_sequences_(
-          max_num_scheduled_background_sequences),
+          max_num_scheduled_background_sequences), /*
       task_latency_histograms_{
           {GetLatencyHistogram("TaskLatencyMicroseconds",
                                histogram_label,
@@ -293,12 +293,12 @@ TaskTracker::TaskTracker(StringPiece histogram_label,
                                "UserBlockingTaskPriority"),
            GetLatencyHistogram("HeartbeatLatencyMicroseconds",
                                histogram_label,
-                               "UserBlockingTaskPriority_MayBlock")}},
+                               "UserBlockingTaskPriority_MayBlock")}},*/
       tracked_ref_factory_(this) {
   // Confirm that all |task_latency_histograms_| have been initialized above.
-  WINBASE_DCHECK(
-      *(&task_latency_histograms_[static_cast<int>(TaskPriority::HIGHEST) +
-          1][0] - 1));
+  ///WINBASE_DCHECK(
+  ///    *(&task_latency_histograms_[static_cast<int>(TaskPriority::HIGHEST) +
+  ///        1][0] - 1));
 }
 
 TaskTracker::~TaskTracker() = default;
@@ -348,12 +348,12 @@ bool TaskTracker::WillPostTask(Task* task) {
   if (task->delayed_run_time.is_null())
     subtle::NoBarrier_AtomicIncrement(&num_incomplete_undelayed_tasks_, 1);
 
-  {
-    TRACE_EVENT_WITH_FLOW0(
-        kTaskSchedulerFlowTracingCategory, kQueueFunctionName,
-        TRACE_ID_MANGLE(task_annotator_.GetTaskTraceID(*task)),
-        TRACE_EVENT_FLAG_FLOW_OUT);
-  }
+  ///{
+  ///  TRACE_EVENT_WITH_FLOW0(
+  ///      kTaskSchedulerFlowTracingCategory, kQueueFunctionName,
+  ///      TRACE_ID_MANGLE(task_annotator_.GetTaskTraceID(*task)),
+  ///      TRACE_EVENT_FLAG_FLOW_OUT);
+  ///}
 
   task_annotator_.WillQueueTask(nullptr, task);
 
@@ -445,32 +445,32 @@ void TaskTracker::SetHasShutdownStartedForTesting() {
   state_->StartShutdown();
 }
 
-void TaskTracker::RecordLatencyHistogram(
-    LatencyHistogramType latency_histogram_type,
-    TaskTraits task_traits,
-    TimeTicks posted_time) const {
-  const TimeDelta task_latency = TimeTicks::Now() - posted_time;
-
-  WINBASE_DCHECK(
-      latency_histogram_type == LatencyHistogramType::TASK_LATENCY ||
-      latency_histogram_type == LatencyHistogramType::HEARTBEAT_LATENCY);
-  const auto& histograms =
-      latency_histogram_type == LatencyHistogramType::TASK_LATENCY
-          ? task_latency_histograms_
-          : heartbeat_latency_histograms_;
-  histograms[static_cast<int>(task_traits.priority())]
-            [task_traits.may_block() || task_traits.with_base_sync_primitives()
-                 ? 1
-                 : 0]
-                ->AddTimeMicrosecondsGranularity(task_latency);
-}
+///void TaskTracker::RecordLatencyHistogram(
+///    LatencyHistogramType latency_histogram_type,
+///    TaskTraits task_traits,
+///    TimeTicks posted_time) const {
+///  const TimeDelta task_latency = TimeTicks::Now() - posted_time;
+///
+///  WINBASE_DCHECK(
+///      latency_histogram_type == LatencyHistogramType::TASK_LATENCY ||
+///      latency_histogram_type == LatencyHistogramType::HEARTBEAT_LATENCY);
+///  const auto& histograms =
+///      latency_histogram_type == LatencyHistogramType::TASK_LATENCY
+///          ? task_latency_histograms_
+///          : heartbeat_latency_histograms_;
+///  histograms[static_cast<int>(task_traits.priority())]
+///            [task_traits.may_block() || task_traits.with_base_sync_primitives()
+///                 ? 1
+///                 : 0]
+///                ->AddTimeMicrosecondsGranularity(task_latency);
+///}
 
 void TaskTracker::RunOrSkipTask(Task task,
                                 Sequence* sequence,
                                 bool can_run_task) {
-  RecordLatencyHistogram(LatencyHistogramType::TASK_LATENCY, task.traits,
-                         task.sequenced_time);
-
+  ///RecordLatencyHistogram(LatencyHistogramType::TASK_LATENCY, task.traits,
+  ///                       task.sequenced_time);
+  
   const bool previous_singleton_allowed =
       ThreadRestrictions::SetSingletonAllowed(
           task.traits.shutdown_behavior() !=
@@ -505,28 +505,28 @@ void TaskTracker::RunOrSkipTask(Task task,
     }
 
     if (can_run_task) {
-      TRACE_TASK_EXECUTION(kRunFunctionName, task);
+      ///TRACE_TASK_EXECUTION(kRunFunctionName, task);
 
-      const char* const execution_mode =
-          task.single_thread_task_runner_ref
-              ? kSingleThreadExecutionMode
-              : (task.sequenced_task_runner_ref ? kSequencedExecutionMode
-                                                : kParallelExecutionMode);
-      // TODO(gab): In a better world this would be tacked on as an extra arg
-      // to the trace event generated above. This is not possible however until
-      // http://crbug.com/652692 is resolved.
-      TRACE_EVENT1("task_scheduler", "TaskTracker::RunTask", "task_info",
-                   std::make_unique<TaskTracingInfo>(
-                       task.traits, execution_mode, sequence_token));
-
-      {
-        // Put this in its own scope so it preceeds rather than overlaps with
-        // RunTask() in the trace view.
-        ///TRACE_EVENT_WITH_FLOW0(
-        ///    kTaskSchedulerFlowTracingCategory, kQueueFunctionName,
-        ///    TRACE_ID_MANGLE(task_annotator_.GetTaskTraceID(task)),
-        ///    TRACE_EVENT_FLAG_FLOW_IN);
-      }
+      ///const char* const execution_mode =
+      ///    task.single_thread_task_runner_ref
+      ///        ? kSingleThreadExecutionMode
+      ///        : (task.sequenced_task_runner_ref ? kSequencedExecutionMode
+      ///                                          : kParallelExecutionMode);
+      ///// TODO(gab): In a better world this would be tacked on as an extra arg
+      ///// to the trace event generated above. This is not possible however until
+      ///// http://crbug.com/652692 is resolved.
+      ///TRACE_EVENT1("task_scheduler", "TaskTracker::RunTask", "task_info",
+      ///             std::make_unique<TaskTracingInfo>(
+      ///                 task.traits, execution_mode, sequence_token));
+      ///
+      ///{
+      ///  // Put this in its own scope so it preceeds rather than overlaps with
+      ///  // RunTask() in the trace view.
+      ///  TRACE_EVENT_WITH_FLOW0(
+      ///      kTaskSchedulerFlowTracingCategory, kQueueFunctionName,
+      ///      TRACE_ID_MANGLE(task_annotator_.GetTaskTraceID(task)),
+      ///      TRACE_EVENT_FLAG_FLOW_IN);
+      ///}
 
       task_annotator_.RunTask(nullptr, &task);
     }
@@ -547,7 +547,7 @@ void TaskTracker::PerformShutdown() {
 
     // This method can only be called once.
     WINBASE_DCHECK(!shutdown_event_);
-    WINBASE_DCHECK(!num_block_shutdown_tasks_posted_during_shutdown_);
+    ///WINBASE_DCHECK(!num_block_shutdown_tasks_posted_during_shutdown_);
     WINBASE_DCHECK(!state_->HasShutdownStarted());
 
     shutdown_event_ = std::make_unique<WaitableEvent>();
@@ -582,17 +582,17 @@ void TaskTracker::PerformShutdown() {
   }
 
   {
-    AutoSchedulerLock auto_lock(shutdown_lock_);
+    ///AutoSchedulerLock auto_lock(shutdown_lock_);
 
     // Record TaskScheduler.BlockShutdownTasksPostedDuringShutdown if less than
     // |kMaxBlockShutdownTasksPostedDuringShutdown| BLOCK_SHUTDOWN tasks were
     // posted during shutdown. Otherwise, the histogram has already been
     // recorded in BeforePostTask().
-    if (num_block_shutdown_tasks_posted_during_shutdown_ <
-        kMaxBlockShutdownTasksPostedDuringShutdown) {
-      RecordNumBlockShutdownTasksPostedDuringShutdown(
-          num_block_shutdown_tasks_posted_during_shutdown_);
-    }
+    ///if (num_block_shutdown_tasks_posted_during_shutdown_ <
+    ///    kMaxBlockShutdownTasksPostedDuringShutdown) {
+    ///  RecordNumBlockShutdownTasksPostedDuringShutdown(
+    ///      num_block_shutdown_tasks_posted_during_shutdown_);
+    ///}
   }
 }
 
@@ -684,17 +684,17 @@ bool TaskTracker::BeforePostTask(TaskShutdownBehavior shutdown_behavior) {
         return false;
       }
 
-      ++num_block_shutdown_tasks_posted_during_shutdown_;
-
-      if (num_block_shutdown_tasks_posted_during_shutdown_ ==
-          kMaxBlockShutdownTasksPostedDuringShutdown) {
-        // Record the TaskScheduler.BlockShutdownTasksPostedDuringShutdown
-        // histogram as soon as its upper bound is hit. That way, a value will
-        // be recorded even if an infinite number of BLOCK_SHUTDOWN tasks are
-        // posted, preventing shutdown to complete.
-        RecordNumBlockShutdownTasksPostedDuringShutdown(
-            num_block_shutdown_tasks_posted_during_shutdown_);
-      }
+      ///++num_block_shutdown_tasks_posted_during_shutdown_;
+      ///
+      ///if (num_block_shutdown_tasks_posted_during_shutdown_ ==
+      ///    kMaxBlockShutdownTasksPostedDuringShutdown) {
+      ///  // Record the TaskScheduler.BlockShutdownTasksPostedDuringShutdown
+      ///  // histogram as soon as its upper bound is hit. That way, a value will
+      ///  // be recorded even if an infinite number of BLOCK_SHUTDOWN tasks are
+      ///  // posted, preventing shutdown to complete.
+      ///  RecordNumBlockShutdownTasksPostedDuringShutdown(
+      ///      num_block_shutdown_tasks_posted_during_shutdown_);
+      ///}
     }
 
     return true;

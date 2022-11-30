@@ -11,7 +11,7 @@
 #include "winbase\logging.h"
 #include "winbase\macros.h"
 #include "winbase\memory\ptr_util.h"
-#include "winbase\synchronization/waitable_event.h"
+#include "winbase\synchronization\waitable_event.h"
 
 namespace winbase {
 namespace internal {

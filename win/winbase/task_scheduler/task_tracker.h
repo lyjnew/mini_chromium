@@ -186,9 +186,9 @@ class WINBASE_EXPORT TaskTracker {
 
   // Records |Now() - posted_time| to the appropriate |latency_histogram_type|
   // based on |task_traits|.
-  void RecordLatencyHistogram(LatencyHistogramType latency_histogram_type,
-                              TaskTraits task_traits,
-                              TimeTicks posted_time) const;
+  ///void RecordLatencyHistogram(LatencyHistogramType latency_histogram_type,
+  ///                            TaskTraits task_traits,
+  ///                            TimeTicks posted_time) const;
 
   TrackedRef<TaskTracker> GetTrackedRef() {
     return tracked_ref_factory_.GetTrackedRef();

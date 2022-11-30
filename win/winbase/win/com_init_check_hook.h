@@ -20,7 +20,7 @@ namespace win {
     defined(ARCH_CPU_32_BITS) && !defined(GOOGLE_CHROME_BUILD) && \
     !defined(OFFICIAL_BUILD) &&                                   \
     !defined(COM_INIT_CHECK_HOOK_DISABLED)  // See crbug/737090 for details.
-#define COM_INIT_CHECK_HOOK_ENABLED
+///#define COM_INIT_CHECK_HOOK_ENABLED
 #endif
 
 // Manages the installation of consistency DCHECK hooks of COM APIs that require
