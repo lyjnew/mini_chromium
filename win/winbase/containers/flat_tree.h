@@ -243,7 +243,7 @@ class flat_tree {
   // erase(position), erase(first, last) can take O(size).
   // erase(key) may take O(size) + O(log(size)).
   //
-  // Prefer base::EraseIf() or some other variation on erase(remove(), end())
+  // Prefer winbase::EraseIf() or some other variation on erase(remove(), end())
   // idiom when deleting multiple non-consecutive elements.
 
   iterator erase(iterator position);

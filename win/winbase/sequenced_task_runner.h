@@ -150,10 +150,10 @@ class WINBASE_EXPORT SequencedTaskRunner : public TaskRunner {
 };
 
 // Sample usage with std::unique_ptr :
-// std::unique_ptr<Foo, base::OnTaskRunnerDeleter> ptr(
-//     new Foo, base::OnTaskRunnerDeleter(my_task_runner));
+// std::unique_ptr<Foo, winbase::OnTaskRunnerDeleter> ptr(
+//     new Foo, winbase::OnTaskRunnerDeleter(my_task_runner));
 //
-// For RefCounted see base::RefCountedDeleteOnSequence.
+// For RefCounted see winbase::RefCountedDeleteOnSequence.
 struct WINBASE_EXPORT OnTaskRunnerDeleter {
   explicit OnTaskRunnerDeleter(scoped_refptr<SequencedTaskRunner> task_runner);
   ~OnTaskRunnerDeleter();

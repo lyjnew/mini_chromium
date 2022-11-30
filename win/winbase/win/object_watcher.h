@@ -31,7 +31,7 @@ namespace win {
 //
 // Typical usage:
 //
-//   class MyClass : public base::win::ObjectWatcher::Delegate {
+//   class MyClass : public winbase::win::ObjectWatcher::Delegate {
 //    public:
 //     void DoStuffWhenSignaled(HANDLE object) {
 //       watcher_.StartWatchingOnce(object, this);

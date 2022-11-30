@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 //
-// CancelableCallback is a wrapper around base::Callback that allows
+// CancelableCallback is a wrapper around winbase::Callback that allows
 // cancellation of a callback. CancelableCallback takes a reference on the
 // wrapped callback until this object is destroyed or Reset()/Cancel() are
 // called.
@@ -33,7 +33,7 @@
 //   run_loop.QuitWhenIdle();
 // }
 //
-// CancelableClosure timeout(base::Bind(&TimeoutCallback, "Test timed out."));
+// CancelableClosure timeout(winbase::Bind(&TimeoutCallback, "Test timed out."));
 // ThreadTaskRunnerHandle::Get()->PostDelayedTask(FROM_HERE, timeout.callback(),
 //                                                TimeDelta::FromSeconds(4));
 // RunIntensiveTest();
@@ -136,8 +136,8 @@ class CancelableCallbackImpl {
 
 }  // namespace internal
 
-// Consider using base::WeakPtr directly instead of base::CancelableCallback for
-// the task cancellation.
+// Consider using winbase::WeakPtr directly instead of 
+// winbase::CancelableCallback for the task cancellation.
 template <typename Signature>
 using CancelableOnceCallback =
     internal::CancelableCallbackImpl<OnceCallback<Signature>>;

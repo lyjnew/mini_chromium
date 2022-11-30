@@ -46,8 +46,9 @@ struct WINBASE_EXPORT LaunchOptions {
   // for a good overview of Windows handle inheritance.
   //
   // Implementation note: it might be nice to implement in terms of
-  // base::Optional<>, but then the natural default state (vector not present)
-  // would be "all inheritable handles" while we want "no inheritance."
+  // winbase::Optional<>, 
+  // but then the natural default state (vector not present) would be 
+  // "all inheritable handles" while we want "no inheritance."
   enum class Inherit {
     // Only those handles in |handles_to_inherit| vector are inherited. If the
     // vector is empty, no handles are inherited. The handles in the vector must

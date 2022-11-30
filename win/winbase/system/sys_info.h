@@ -77,9 +77,8 @@ class WINBASE_EXPORT SysInfo {
   // Retrieves detailed numeric values for the OS version.
   // DON'T USE THIS ON THE MAC OR WINDOWS to determine the current OS release
   // for OS version-specific feature checks and workarounds. If you must use
-  // an OS version check instead of a feature check, use the base::mac::IsOS*
-  // family from base/mac/mac_util.h, or winbase::win::GetVersion from
-  // winbase/win/windows_version.h.
+  // an OS version check instead of a feature check, use 
+  // winbase::win::GetVersion from winbase/win/windows_version.h.
   static void OperatingSystemVersionNumbers(int32_t* major_version,
                                             int32_t* minor_version,
                                             int32_t* bugfix_version);

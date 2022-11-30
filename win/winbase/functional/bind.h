@@ -15,8 +15,8 @@
 // -----------------------------------------------------------------------------
 //
 // Overview:
-// winbase::BindOnce() and base::BindRepeating() are helpers for creating
-// winbase::OnceCallback and base::RepeatingCallback objects respectively.
+// winbase::BindOnce() and winbase::BindRepeating() are helpers for creating
+// winbase::OnceCallback and winbase::RepeatingCallback objects respectively.
 //
 // For a runnable object of n-arity, the winbase::Bind*() family allows partial
 // application of the first m arguments. The remaining n - m arguments must be
@@ -36,8 +36,8 @@
 //   auto cb = winbase::BindOnce(&C::F, instance);
 //   cb.Run();  // Identical to instance->F()
 //
-// winbase::Bind is currently a type alias for base::BindRepeating(). In the
-// future, we expect to flip this to default to base::BindOnce().
+// winbase::Bind is currently a type alias for winbase::BindRepeating(). In the
+// future, we expect to flip this to default to winbase::BindOnce().
 //
 // See //docs/callback.md for the full documentation.
 //
@@ -75,12 +75,12 @@ struct AssertConstructible {
   // Unlike the check for binding into storage below, the check for
   // forwardability drops the const qualifier for repeating callbacks. This is
   // to try to catch instances where std::move()--which forwards as a const
-  // reference with repeating callbacks--is used instead of base::Passed().
+  // reference with repeating callbacks--is used instead of winbase::Passed().
   static_assert(
       param_is_forwardable ||
           !std::is_constructible<Param, std::decay_t<Unwrapped>&&>::value,
       "Bound argument |i| is move-only but will be forwarded by copy. "
-      "Ensure |Arg| is bound using base::Passed(), not std::move().");
+      "Ensure |Arg| is bound using winbase::Passed(), not std::move().");
   static_assert(
       param_is_forwardable,
       "Bound argument |i| of type |Arg| cannot be forwarded as "
@@ -182,7 +182,7 @@ BindOnce(Functor&& functor, Args&&... args) {
                     (std::is_rvalue_reference<Functor&&>() &&
                      !std::is_const<std::remove_reference_t<Functor>>()),
                 "BindOnce requires non-const rvalue for OnceCallback binding."
-                " I.e.: base::BindOnce(std::move(callback)).");
+                " I.e.: winbase::BindOnce(std::move(callback)).");
 
   // This block checks if each |args| matches to the corresponding params of the
   // target function. This check does not affect the behavior of Bind, but its
@@ -268,7 +268,8 @@ Bind(Functor&& functor, Args&&... args) {
                                 std::forward<Args>(args)...);
 }
 
-// Special cases for binding to a base::Callback without extra bound arguments.
+// Special cases for binding to a winbase::Callback without extra bound 
+// arguments.
 template <typename Signature>
 OnceCallback<Signature> BindOnce(OnceCallback<Signature> closure) {
   return closure;
@@ -316,7 +317,7 @@ static inline internal::UnretainedWrapper<T> Unretained(T* o) {
 //    void foo(RefCountedBytes* bytes) {}
 //
 //    scoped_refptr<RefCountedBytes> bytes = ...;
-//    Closure callback = Bind(&foo, base::RetainedRef(bytes));
+//    Closure callback = Bind(&foo, winbase::RetainedRef(bytes));
 //    callback.Run();
 //
 // Without RetainedRef, the scoped_refptr would try to implicitly convert to

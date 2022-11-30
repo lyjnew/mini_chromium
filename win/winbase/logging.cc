@@ -214,7 +214,7 @@ LoggingSettings::LoggingSettings()
       delete_old(APPEND_TO_OLD_LOG_FILE) {}
 
 bool WinBaseInitLoggingImpl(const LoggingSettings& settings) {
-  ///base::CommandLine* command_line = base::CommandLine::ForCurrentProcess();
+  ///winbase::CommandLine* command_line = winbase::CommandLine::ForCurrentProcess();
   ///// Don't bother initializing |g_vlog_info| unless we use one of the
   ///// vlog switches.
   ///if (command_line->HasSwitch(switches::kV) ||

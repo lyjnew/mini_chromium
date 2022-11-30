@@ -68,7 +68,7 @@
 //     }
 //
 //    private:
-//     base::ObserverList<Observer> observers_;
+//     winbase::ObserverList<Observer> observers_;
 //   };
 //
 //

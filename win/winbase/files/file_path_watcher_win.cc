@@ -37,7 +37,7 @@ class FilePathWatcherImpl : public FilePathWatcher::PlatformDelegate,
              const FilePathWatcher::Callback& callback) override;
   void Cancel() override;
 
-  // base::win::ObjectWatcher::Delegate:
+  // winbase::win::ObjectWatcher::Delegate:
   void OnObjectSignaled(HANDLE object) override;
 
  private:

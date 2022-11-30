@@ -17,7 +17,7 @@
 #include "winbase\template_util.h"
 #include "winbase\win\nominmax.h"
 
-// base::circular_deque is similar to std::deque. Unlike std::deque, the
+// winbase::circular_deque is similar to std::deque. Unlike std::deque, the
 // storage is provided in a flat circular buffer conceptually similar to a
 // vector. The beginning and end will wrap around as necessary so that
 // pushes and pops will be constant time as long as a capacity expansion is
@@ -34,8 +34,8 @@
 //  - Container-wide comparisons are not implemented. If you want to compare
 //    two containers, use an algorithm so the expensive iteration is explicit.
 //
-// If you want a similar container with only a queue API, use base::queue in
-// base/containers/queue.h.
+// If you want a similar container with only a queue API, use winbase::queue in
+// winbase/containers/queue.h.
 //
 // Constructors:
 //   circular_deque();

@@ -126,7 +126,7 @@ void DeleteTmpFile(const FilePath& tmp_file_path,
   ///if (!DeleteFile(tmp_file_path, false)) {
   ///  UmaHistogramExactLinearWithSuffix(
   ///      "ImportantFile.FileDeleteError", histogram_suffix,
-  ///      -base::File::GetLastFileError(), -base::File::FILE_ERROR_MAX);
+  ///      -winbase::File::GetLastFileError(), -winbase::File::FILE_ERROR_MAX);
   ///}
   winbase::DeleteFile(tmp_file_path, false);
 }
@@ -145,7 +145,7 @@ bool ImportantFileWriter::WriteFileAtomically(const FilePath& path,
   if (!CreateTemporaryFileInDir(path.DirName(), &tmp_file_path)) {
     ///UmaHistogramExactLinearWithSuffix(
     ///    "ImportantFile.FileCreateError", histogram_suffix,
-    ///    -base::File::GetLastFileError(), -base::File::FILE_ERROR_MAX);
+    ///    -winbase::File::GetLastFileError(), -winbase::File::FILE_ERROR_MAX);
     ///LogFailure(path, histogram_suffix, FAILED_CREATING,
     ///           "could not create temporary file");
     return false;
@@ -155,7 +155,7 @@ bool ImportantFileWriter::WriteFileAtomically(const FilePath& path,
   if (!tmp_file.IsValid()) {
     ///UmaHistogramExactLinearWithSuffix(
     ///    "ImportantFile.FileOpenError", histogram_suffix,
-    ///    -tmp_file.error_details(), -base::File::FILE_ERROR_MAX);
+    ///    -tmp_file.error_details(), -winbase::File::FILE_ERROR_MAX);
     ///LogFailure(path, histogram_suffix, FAILED_OPENING,
     ///           "could not open temporary file");
     DeleteFile(tmp_file_path, false);
@@ -190,7 +190,7 @@ bool ImportantFileWriter::WriteFileAtomically(const FilePath& path,
   if (!ReplaceFile(tmp_file_path, path, &replace_file_error)) {
     ///UmaHistogramExactLinearWithSuffix("ImportantFile.FileRenameError",
     ///                                  histogram_suffix, -replace_file_error,
-    ///                                  -base::File::FILE_ERROR_MAX);
+    ///                                  -winbase::File::FILE_ERROR_MAX);
     ///LogFailure(path, histogram_suffix, FAILED_RENAMING,
     ///           "could not rename temporary file");
     DeleteTmpFile(tmp_file_path, histogram_suffix);

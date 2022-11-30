@@ -22,16 +22,16 @@
 // object such as a function, method, lambda, or even another callback, allowing
 // the runnable object to be invoked later via the callback object.
 //
-// Unlike function pointers, callbacks are created with base::BindOnce() or
-// base::BindRepeating() and support partial function application.
+// Unlike function pointers, callbacks are created with winbase::BindOnce() or
+// winbase::BindRepeating() and support partial function application.
 //
-// A base::OnceCallback may be Run() at most once; a base::RepeatingCallback may
-// be Run() any number of times. |is_null()| is guaranteed to return true for a
-// moved-from callback.
+// A winbase::OnceCallback may be Run() at most once; 
+// a winbase::RepeatingCallback may be Run() any number of times. |is_null()| 
+// is guaranteed to return true for a moved-from callback.
 //
 //   // The lambda takes two arguments, but the first argument |x| is bound at
 //   // callback creation.
-//   base::OnceCallback<int(int)> cb = base::BindOnce([] (int x, int y) {
+//   winbase::OnceCallback<int(int)> cb = winbase::BindOnce([] (int x, int y) {
 //     return x + y;
 //   }, 1);
 //   // Run() only needs the remaining unbound argument |y|.
@@ -45,8 +45,8 @@
 // will be a no-op. Note that |is_cancelled()| and |is_null()| are distinct:
 // simply cancelling a callback will not also make it null.
 //
-// base::Callback is currently a type alias for base::RepeatingCallback. In the
-// future, we expect to flip this to default to base::OnceCallback.
+// winbase::Callback is currently a type alias for winbase::RepeatingCallback.
+// In the future, we expect to flip this to default to winbase::OnceCallback.
 //
 // See //docs/callback.md for the full documentation.
 

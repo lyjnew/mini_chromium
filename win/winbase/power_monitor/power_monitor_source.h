@@ -58,7 +58,7 @@ class WINBASE_EXPORT PowerMonitorSource {
 
   // Sets the initial state for |on_battery_power_|, which defaults to false
   // since not all implementations can provide the value at construction. May
-  // only be called before a base::PowerMonitor has been created.
+  // only be called before a winbase::PowerMonitor has been created.
   void SetInitialOnBatteryPowerState(bool on_battery_power);
 
  private:

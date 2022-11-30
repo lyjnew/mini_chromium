@@ -17,8 +17,8 @@
 // production.
 //
 // Usage of this class should be *rare* as most classes require thread-safety
-// but not thread-affinity. Prefer base::SequenceChecker to verify thread-safe
-// access.
+// but not thread-affinity. Prefer winbase::SequenceChecker to verify 
+// thread-safe access.
 //
 // Thread-affinity checks should only be required in classes that use thread-
 // local-storage or a third-party API that does.

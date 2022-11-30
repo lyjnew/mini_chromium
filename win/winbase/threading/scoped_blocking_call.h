@@ -61,11 +61,11 @@ class BlockingObserver;
 //   CPUIntensiveProcessing(b);  // CPU usage within a ScopedBlockingCall.
 //
 // Good:
-//   base::WaitableEvent waitable_event(...);
+//   winbase::WaitableEvent waitable_event(...);
 //   waitable_event.Wait();
 //
 // Bad:
-//  base::WaitableEvent waitable_event(...);
+//  winbase::WaitableEvent waitable_event(...);
 //  ScopedBlockingCall scoped_blocking_call(BlockingType::WILL_BLOCK);
 //  waitable_event.Wait();  // Wait() instantiates its own ScopedBlockingCall.
 //

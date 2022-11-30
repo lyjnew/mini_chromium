@@ -111,7 +111,7 @@ WINBASE_EXPORT size_t wcslcpy(wchar_t* dst, const
 // Note that there is no portable conversion specifier for char data when
 // working with wprintf.
 //
-// This function is intended to be called from base::vswprintf.
+// This function is intended to be called from winbase::vswprintf.
 WINBASE_EXPORT bool IsWprintfFormatPortable(const wchar_t* format);
 
 // ASCII-specific tolower.  The standard library's tolower is locale sensitive,
@@ -146,7 +146,7 @@ WINBASE_EXPORT string16 ToUpperASCII(StringPiece16 str);
 // Note that a full Unicode version of this functor is not possible to write
 // because case mappings might change the number of characters, depend on
 // context (combining accents), and require handling UTF-16. If you need
-// proper Unicode support, use base::i18n::ToLower/FoldCase and then just
+// proper Unicode support, use winbase::i18n::ToLower/FoldCase and then just
 // use a normal operator== on the result.
 template<typename Char> struct CaseInsensitiveCompareASCII {
  public:
@@ -160,15 +160,15 @@ template<typename Char> struct CaseInsensitiveCompareASCII {
 //    0  (a == b)
 //    1  (a > b)
 // (unlike strcasecmp which can return values greater or less than 1/-1). For
-// full Unicode support, use base::i18n::ToLower or base::i18h::FoldCase
+// full Unicode support, use winbase::i18n::ToLower or winbase::i18h::FoldCase
 // and then just call the normal string operators on the result.
 WINBASE_EXPORT int CompareCaseInsensitiveASCII(StringPiece a, StringPiece b);
 WINBASE_EXPORT int CompareCaseInsensitiveASCII(StringPiece16 a, 
                                                StringPiece16 b);
 
 // Equality for ASCII case-insensitive comparisons. For full Unicode support,
-// use base::i18n::ToLower or base::i18h::FoldCase and then compare with either
-// == or !=.
+// use winbase::i18n::ToLower or winbase::i18h::FoldCase and then compare with 
+// either == or !=.
 WINBASE_EXPORT bool EqualsCaseInsensitiveASCII(StringPiece a, StringPiece b);
 WINBASE_EXPORT bool EqualsCaseInsensitiveASCII(StringPiece16 a, 
                                                StringPiece16 b);
@@ -332,7 +332,7 @@ WINBASE_EXPORT bool EqualsASCII(StringPiece16 str, StringPiece ascii);
 // base/i18n so it can use ICU.
 //
 // If you need to do Unicode-aware case-insensitive StartsWith/EndsWith, it's
-// best to call base::i18n::ToLower() or base::i18n::FoldCase() (see
+// best to call winbase::i18n::ToLower() or winbase::i18n::FoldCase() (see
 // base/i18n/case_conversion.h for usage advice) on the arguments, and then use
 // the results to a case-sensitive comparison.
 enum class CompareCase {

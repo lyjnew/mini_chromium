@@ -106,7 +106,7 @@ class WINBASE_EXPORT File {
   // Used to hold information about a given file.
   // If you add more fields to this structure (platform-specific fields are OK),
   // make sure to update all functions that use it in file_util_{win|posix}.cc,
-  // too, and the ParamTraits<base::File::Info> implementation in
+  // too, and the ParamTraits<winbase::File::Info> implementation in
   // ipc/ipc_message_utils.cc.
   struct WINBASE_EXPORT Info {
     Info();
@@ -315,9 +315,9 @@ class WINBASE_EXPORT File {
   static Error OSErrorToFileError(DWORD last_error);
 
   // Gets the last global error (errno or GetLastError()) and converts it to the
-  // closest base::File::Error equivalent via OSErrorToFileError(). The returned
-  // value is only trustworthy immediately after another base::File method
-  // fails. base::File never resets the global error to zero.
+  // closest winbase::File::Error equivalent via OSErrorToFileError(). The 
+  // returned value is only trustworthy immediately after another winbase::File 
+  // method fails. winbase::File never resets the global error to zero.
   static Error GetLastFileError();
 
   // Converts an error value to a human-readable form. Used for logging.

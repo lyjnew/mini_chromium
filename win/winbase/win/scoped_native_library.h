@@ -13,8 +13,8 @@ namespace winbase {
 
 class FilePath;
 
-// A class which encapsulates a base::NativeLibrary object available only in a
-// scope.
+// A class which encapsulates a winbase::NativeLibrary object available only in 
+// a scope.
 // This class automatically unloads the loaded library in its destructor.
 class WINBASE_EXPORT ScopedNativeLibrary {
  public:

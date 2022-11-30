@@ -27,9 +27,10 @@ namespace winbase {
 //
 // Example:
 //
-//   base::FileEnumerator enum(my_dir, false, base::FileEnumerator::FILES,
-//                             FILE_PATH_LITERAL("*.txt"));
-//   for (base::FilePath name = enum.Next(); !name.empty(); name = enum.Next())
+//   winbase::FileEnumerator enum(my_dir, false, winbase::FileEnumerator::FILES,
+//                             WINBASE_FILE_PATH_LITERAL("*.txt"));
+//   for (winbase::FilePath name = enum.Next(); !name.empty(); 
+//        name = enum.Next())
 //     ...
 class WINBASE_EXPORT FileEnumerator {
  public:

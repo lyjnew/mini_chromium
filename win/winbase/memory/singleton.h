@@ -4,10 +4,10 @@
 //
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // PLEASE READ: Do you really need a singleton? If possible, use a
-// function-local static of type base::NoDestructor<T> instead:
+// function-local static of type winbase::NoDestructor<T> instead:
 //
 // Factory& Factory::GetInstance() {
-//   static base::NoDestructor<Factory> instance;
+//   static winbase::NoDestructor<Factory> instance;
 //   return *instance;
 // }
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

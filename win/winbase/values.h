@@ -50,32 +50,32 @@ class Value;
 //
 // See the file-level comment above for more information.
 //
-// base::Value is currently in the process of being refactored. Design doc:
+// winbase::Value is currently in the process of being refactored. Design doc:
 // https://docs.google.com/document/d/1uDLu5uTRlCWePxQUEHc8yNQdEoE1BDISYdpggWEABnw
 //
 // Previously (which is how most code that currently exists is written), Value
-// used derived types to implement the individual data types, and base::Value
+// used derived types to implement the individual data types, and winbase::Value
 // was just a base class to refer to them. This required everything be heap
 // allocated.
 //
 // OLD WAY:
 //
-//   std::unique_ptr<base::Value> GetFoo() {
+//   std::unique_ptr<winbase::Value> GetFoo() {
 //     std::unique_ptr<DictionaryValue> dict;
 //     dict->SetString("mykey", foo);
 //     return dict;
 //   }
 //
-// The new design makes base::Value a variant type that holds everything in
+// The new design makes winbase::Value a variant type that holds everything in
 // a union. It is now recommended to pass by value with std::move rather than
 // use heap allocated values. The DictionaryValue and ListValue subclasses
 // exist only as a compatibility shim that we're in the process of removing.
 //
 // NEW WAY:
 //
-//   base::Value GetFoo() {
-//     base::Value dict(base::Value::Type::DICTIONARY);
-//     dict.SetKey("mykey", base::Value(foo));
+//   winbase::Value GetFoo() {
+//     winbase::Value dict(winbase::Value::Type::DICTIONARY);
+//     dict.SetKey("mykey", winbase::Value(foo));
 //     return dict;
 //   }
 class WINBASE_EXPORT Value {

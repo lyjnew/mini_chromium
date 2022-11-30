@@ -23,9 +23,9 @@ typedef HANDLE UserTokenHandle;
 const ProcessHandle kNullProcessHandle = NULL;
 const ProcessId kNullProcessId = 0;
 
-// To print ProcessIds portably use CrPRIdPid (based on PRIuS and friends from
-// C99 and format_macros.h) like this:
-// base::StringPrintf("PID is %" CrPRIdPid ".\n", pid);
+// To print ProcessIds portably use WinBasePRIdPid (based on PRIuS and friends 
+// from C99 and format_macros.h) like this:
+// winbase::StringPrintf("PID is %" WinBasePRIdPid ".\n", pid);
 #define WinBasePRIdPid "ld"
 
 // Returns the id of the current process.

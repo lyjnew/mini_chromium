@@ -10,8 +10,8 @@
 #include "winbase\win\windows_types.h"
 
 // This file defines platform-independent types for dealing with
-// platform-dependent files. If possible, use the higher-level base::File class
-// rather than these primitives.
+// platform-dependent files. If possible, use the higher-level winbase::File 
+// class rather than these primitives.
 
 namespace winbase {
 

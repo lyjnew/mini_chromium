@@ -40,8 +40,8 @@ WINBASE_EXPORT int GetNextSequenceLocalStorageSlotNumber();
 //   // will read the value "42". A Read() running on a different
 //   // sequence would not see that value.
 //   scoped_refptr<winbase::SequencedTaskRunner> task_runner = ...;
-//   task_runner->PostTask(WINBASE_FROM_HERE, base::BindOnce(&Write));
-//   task_runner->PostTask(WINBASE_FROM_HERE, base::BindOnce(&Read));
+//   task_runner->PostTask(WINBASE_FROM_HERE, winbase::BindOnce(&Write));
+//   task_runner->PostTask(WINBASE_FROM_HERE, winbase::BindOnce(&Read));
 // }
 //
 // SequenceLocalStorageSlot must be used within the scope of a

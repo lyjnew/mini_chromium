@@ -16,7 +16,7 @@ namespace winbase {
 // If |num_closures| is 0, |done_closure| is executed immediately.
 //
 // BarrierClosure is thread-safe - the count of remaining closures is
-// maintained as a base::AtomicRefCount. |done_closure| will be run on
+// maintained as a winbase::AtomicRefCount. |done_closure| will be run on
 // the thread that calls the final Run() on the returned closures.
 //
 // |done_closure| is also cleared on the final calling thread.

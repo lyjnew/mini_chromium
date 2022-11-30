@@ -16,7 +16,7 @@ namespace winbase {
 // This class provides a facility similar to the CRT atexit(), except that
 // we control when the callbacks are executed. Under Windows for a DLL they
 // happen at a really bad time and under the loader lock. This facility is
-// mostly used by base::Singleton.
+// mostly used by winbase::Singleton.
 //
 // The usage is simple. Early in the main() or WinMain() scope create an
 // AtExitManager object on the stack:

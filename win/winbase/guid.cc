@@ -46,7 +46,7 @@ bool IsValidGUIDInternal(StringPieceType guid, bool strict) {
 
 std::string GenerateGUID() {
   uint64_t sixteen_bytes[2];
-  // Use base::RandBytes instead of crypto::RandBytes, because crypto calls the
+  // Use winbase::RandBytes instead of crypto::RandBytes, because crypto calls the
   // base version directly, and to prevent the dependency from base/ to crypto/.
   winbase::RandBytes(&sixteen_bytes, sizeof(sixteen_bytes));
 

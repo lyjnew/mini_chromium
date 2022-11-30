@@ -33,7 +33,7 @@
 //       // This method is called every second to do stuff.
 //       ...
 //     }
-//     base::RepeatingTimer timer_;
+//     winbase::RepeatingTimer timer_;
 //   };
 //
 // Timers also support a Reset method, which allows you to easily defer the
@@ -146,7 +146,7 @@ class WINBASE_EXPORT TimerBase {
              Receiver* receiver,
              void (Receiver::*method)()) {
     Start(posted_from, delay,
-          winbase::BindRepeating(method, base::Unretained(receiver)));
+          winbase::BindRepeating(method, winbase::Unretained(receiver)));
   }
 
   // Call this method to stop and cancel the timer.  It is a no-op if the timer

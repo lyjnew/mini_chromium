@@ -49,8 +49,8 @@ class WINBASE_EXPORT JSONParser {
 
   // Parses the input string according to the set options and returns the
   // result as a Value.
-  // Wrap this in base::FooValue::From() to check the Value is of type Foo and
-  // convert to a FooValue at the same time.
+  // Wrap this in winbase::FooValue::From() to check the Value is of type Foo 
+  // and convert to a FooValue at the same time.
   Optional<Value> Parse(StringPiece input);
 
   // Returns the error code.
@@ -85,7 +85,7 @@ class WINBASE_EXPORT JSONParser {
   };
 
   // A helper class used for parsing strings. One optimization performed is to
-  // create base::Value with a StringPiece to avoid unnecessary std::string
+  // create winbase::Value with a StringPiece to avoid unnecessary std::string
   // copies. This is not possible if the input string needs to be decoded from
   // UTF-16 to UTF-8, or if an escape sequence causes characters to be skipped.
   // This class centralizes that logic.
@@ -212,7 +212,7 @@ class WINBASE_EXPORT JSONParser {
   static std::string FormatErrorMessage(int line, int column,
                                         const std::string& description);
 
-  // base::JSONParserOptions that control parsing.
+  // winbase::JSONParserOptions that control parsing.
   const int options_;
 
   // Maximum depth to parse.

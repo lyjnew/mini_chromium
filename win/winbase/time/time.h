@@ -482,12 +482,12 @@ class WINBASE_EXPORT Time : public time_internal::TimeBase<Time> {
   // deserialization of time values, e.g.
   //
   //   // Serialization:
-  //   base::Time last_updated = ...;
+  //   winbase::Time last_updated = ...;
   //   SaveToDatabase(last_updated.ToDeltaSinceWindowsEpoch().InMicroseconds());
   //
   //   // Deserialization:
-  //   base::Time last_updated = base::Time::FromDeltaSinceWindowsEpoch(
-  //       base::TimeDelta::FromMicroseconds(LoadFromDatabase()));
+  //   winbase::Time last_updated = winbase::Time::FromDeltaSinceWindowsEpoch(
+  //       winbase::TimeDelta::FromMicroseconds(LoadFromDatabase()));
   static Time FromDeltaSinceWindowsEpoch(TimeDelta delta);
   TimeDelta ToDeltaSinceWindowsEpoch() const;
 

@@ -48,7 +48,7 @@ class Thread;
 // void ReadFile() {
 //   PreWork();
 //
-//   base::AssertBlockingAllowed();
+//   winbase::AssertBlockingAllowed();
 //   fopen(...);
 //
 //   PostWork();
@@ -86,7 +86,7 @@ class WINBASE_EXPORT ScopedDisallowBlocking {
 // they are normally disallowed.
 //
 // Avoid using this. Prefer making blocking calls from tasks posted to
-// winbase::TaskScheduler with base::MayBlock().
+// winbase::TaskScheduler with winbase::MayBlock().
 //
 // Where unavoidable, put ScopedAllow* instances in the narrowest scope possible
 // in the caller making the blocking call but no further down. That is: if a
@@ -153,7 +153,7 @@ INLINE_IF_DCHECK_IS_OFF void DisallowBaseSyncPrimitives()
 // something needs to be scheduled after many tasks have executed, use
 // winbase::BarrierClosure.
 //
-// On Windows, join processes asynchronously using base::win::ObjectWatcher.
+// On Windows, join processes asynchronously using winbase::win::ObjectWatcher.
 
 // This can only be used in a scope where blocking is allowed.
 class WINBASE_EXPORT ScopedAllowBaseSyncPrimitives {

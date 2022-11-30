@@ -75,7 +75,8 @@ bool MemoryMappedFile::Initialize(File file,
         CheckedNumeric<int64_t> region_end(region.offset);
         region_end += region.size;
         if (!region_end.IsValid()) {
-          WINBASE_DLOG(ERROR) << "Region bounds exceed maximum for base::File.";
+          WINBASE_DLOG(ERROR) 
+              << "Region bounds exceed maximum for winbase::File.";
           return false;
         }
       }

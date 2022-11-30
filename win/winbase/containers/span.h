@@ -117,12 +117,12 @@ using EnableIfSpanCompatibleContainer =
 //
 // With span:
 //   Read-Only:
-//     // std::string HexEncode(base::span<const uint8_t> data);
+//     // std::string HexEncode(winbase::span<const uint8_t> data);
 //     std::vector<uint8_t> data_buffer = GenerateData();
 //     std::string r = HexEncode(data_buffer);
 //
 //  Mutable:
-//     // ssize_t SafeSNPrintf(base::span<char>, const char* fmt, Args...);
+//     // ssize_t SafeSNPrintf(winbase::span<char>, const char* fmt, Args...);
 //     char str_buffer[100];
 //     SafeSNPrintf(str_buffer, "Pi ~= %lf", 3.14);
 //
@@ -132,9 +132,9 @@ using EnableIfSpanCompatibleContainer =
 // Const and pointers can get confusing. Here are vectors of pointers and their
 // corresponding spans:
 //
-//   const std::vector<int*>        =>  base::span<int* const>
-//   std::vector<const int*>        =>  base::span<const int*>
-//   const std::vector<const int*>  =>  base::span<const int* const>
+//   const std::vector<int*>        =>  winbase::span<int* const>
+//   std::vector<const int*>        =>  winbase::span<const int*>
+//   const std::vector<const int*>  =>  winbase::span<const int* const>
 //
 // Differences from the working group proposal
 // -------------------------------------------

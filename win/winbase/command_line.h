@@ -81,7 +81,7 @@ class WINBASE_EXPORT CommandLine {
   // you want to reset the base library to its initial state (for example, in an
   // outer library that needs to be able to terminate, and be re-initialized).
   // If Init is called only once, as in main(), Reset() is not necessary.
-  // Do not call this in tests. Use base::test::ScopedCommandLine instead.
+  // Do not call this in tests. Use winbase::test::ScopedCommandLine instead.
   static void Reset();
 
   // Get the singleton CommandLine representing the current process's

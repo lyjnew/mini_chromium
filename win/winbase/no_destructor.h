@@ -81,10 +81,10 @@ class NoDestructor {
   // TODO(https://crbug.com/812277): This is a hack to work around the fact
   // that LSan doesn't seem to treat NoDestructor as a root for reachability
   // analysis. This means that code like this:
-  //   static base::NoDestructor<std::vector<int>> v({1, 2, 3});
+  //   static winbase::NoDestructor<std::vector<int>> v({1, 2, 3});
   // is considered a leak. Using the standard leak sanitizer annotations to
   // suppress leaks doesn't work: std::vector is implicitly constructed before
-  // calling the base::NoDestructor constructor.
+  // calling the winbase::NoDestructor constructor.
   //
   // Unfortunately, I haven't been able to demonstrate this issue in simpler
   // reproductions: until that's resolved, hold an explicit pointer to the

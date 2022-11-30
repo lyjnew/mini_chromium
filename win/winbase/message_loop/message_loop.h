@@ -42,11 +42,11 @@ class ThreadTaskRunnerHandle;
 // The MessageLoop's API should only be used directly by its owner (and users
 // which the owner opts to share a MessageLoop* with). Other ways to access
 // subsets of the MessageLoop API:
-//   - base::RunLoop : Drive the MessageLoop from the thread it's bound to.
-//   - base::Thread/SequencedTaskRunnerHandle : Post back to the MessageLoop
+//   - winbase::RunLoop : Drive the MessageLoop from the thread it's bound to.
+//   - winbase::Thread/SequencedTaskRunnerHandle : Post back to the MessageLoop
 //     from a task running on it.
 //   - SequenceLocalStorageSlot : Bind external state to this MessageLoop.
-//   - base::MessageLoopCurrent : Access statically exposed APIs of this
+//   - winbase::MessageLoopCurrent : Access statically exposed APIs of this
 //     MessageLoop.
 //   - Embedders may provide their own static accessors to post tasks on
 //     specific loops (e.g. content::BrowserThreads).
@@ -129,7 +129,7 @@ class WINBASE_EXPORT MessageLoop : public MessagePump::Delegate,
   static MessageLoopCurrent current();
 
   using MessagePumpFactory = std::unique_ptr<MessagePump>();
-  // Uses the given base::MessagePumpForUIFactory to override the default
+  // Uses the given winbase::MessagePumpForUIFactory to override the default
   // MessagePump implementation for 'TYPE_UI'. Returns true if the factory
   // was successfully registered.
   static bool InitMessagePumpForUIFactory(MessagePumpFactory* factory);

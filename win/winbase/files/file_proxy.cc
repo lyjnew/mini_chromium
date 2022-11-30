@@ -125,7 +125,7 @@ class CreateTemporaryHelper : public FileHelper {
     // TODO(darin): file_util should have a variant of CreateTemporaryFile
     // that returns a FilePath and a File.
     if (!CreateTemporaryFile(&file_path_)) {
-      // TODO(davidben): base::CreateTemporaryFile should preserve the error
+      // TODO(davidben): winbase::CreateTemporaryFile should preserve the error
       // code.
       error_ = File::FILE_ERROR_FAILED;
       return;

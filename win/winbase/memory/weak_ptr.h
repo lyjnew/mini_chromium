@@ -178,7 +178,7 @@ class SupportsWeakPtrBase {
  public:
   // A safe static downcast of a WeakPtr<Base> to WeakPtr<Derived>. This
   // conversion will only compile if there is exists a Base which inherits
-  // from SupportsWeakPtr<Base>. See base::AsWeakPtr() below for a helper
+  // from SupportsWeakPtr<Base>. See winbase::AsWeakPtr() below for a helper
   // function that makes calling this easier.
   //
   // Precondition: t != nullptr
@@ -374,14 +374,14 @@ class SupportsWeakPtr : public internal::SupportsWeakPtrBase {
 //   class Derived : public Base {};
 //
 //   Derived derived;
-//   winbase::WeakPtr<Derived> ptr = base::AsWeakPtr(&derived);
+//   winbase::WeakPtr<Derived> ptr = winbase::AsWeakPtr(&derived);
 //
 // Note that the following doesn't work (invalid type conversion) since
 // Derived::AsWeakPtr() is WeakPtr<Base> SupportsWeakPtr<Base>::AsWeakPtr(),
 // and there's no way to safely cast WeakPtr<Base> to WeakPtr<Derived> at
 // the caller.
 //
-//   base::WeakPtr<Derived> ptr = derived.AsWeakPtr();  // Fails.
+//   winbase::WeakPtr<Derived> ptr = derived.AsWeakPtr();  // Fails.
 
 template <typename Derived>
 WeakPtr<Derived> AsWeakPtr(Derived* t) {

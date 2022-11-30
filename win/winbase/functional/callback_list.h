@@ -26,8 +26,8 @@
 //  public:
 //   ...
 //
-//   std::unique_ptr<base::CallbackList<void(const Foo&)>::Subscription>
-//   RegisterCallback(const base::RepeatingCallback<void(const Foo&)>& cb) {
+//   std::unique_ptr<winbase::CallbackList<void(const Foo&)>::Subscription>
+//   RegisterCallback(const winbase::RepeatingCallback<void(const Foo&)>& cb) {
 //     return callback_list_.Add(cb);
 //   }
 //
@@ -36,7 +36,7 @@
 //      callback_list_.Notify(foo);
 //   }
 //
-//   base::CallbackList<void(const Foo&)> callback_list_;
+//   winbase::CallbackList<void(const Foo&)> callback_list_;
 //
 //   DISALLOW_COPY_AND_ASSIGN(MyWidget);
 // };
@@ -46,7 +46,7 @@
 //  public:
 //   MyWidgetListener::MyWidgetListener() {
 //     foo_subscription_ = MyWidget::GetCurrent()->RegisterCallback(
-//             base::BindRepeating(&MyWidgetListener::OnFoo, this)));
+//             winbase::BindRepeating(&MyWidgetListener::OnFoo, this)));
 //   }
 //
 //   MyWidgetListener::~MyWidgetListener() {

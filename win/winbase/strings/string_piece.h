@@ -156,7 +156,7 @@ WINBASE_EXPORT StringPiece16 substr(const StringPiece16& self,
 // rather to BasicStringPiece, StringPiece, or StringPiece16.
 //
 // This is templatized by string class type rather than character type, so
-// BasicStringPiece<std::string> or BasicStringPiece<base::string16>.
+// BasicStringPiece<std::string> or BasicStringPiece<winbase::string16>.
 template <typename STRING_TYPE> class BasicStringPiece {
  public:
   // Standard STL container boilerplate.

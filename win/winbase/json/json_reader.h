@@ -93,8 +93,8 @@ class WINBASE_EXPORT JSONReader {
 
   // Reads and parses |json|, returning a Value.
   // If |json| is not a properly formed JSON string, returns nullptr.
-  // Wrap this in base::FooValue::From() to check the Value is of type Foo and
-  // convert to a FooValue at the same time.
+  // Wrap this in winbase::FooValue::From() to check the Value is of type Foo 
+  // and convert to a FooValue at the same time.
   static std::unique_ptr<Value> Read(StringPiece json,
                                      int options = JSON_PARSE_RFC,
                                      int max_depth = kStackMaxDepth);

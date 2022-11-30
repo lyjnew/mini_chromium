@@ -358,7 +358,7 @@ struct FunctorTraits;
 
 // For empty callable types.
 // This specialization is intended to allow binding captureless lambdas by
-// base::Bind(), based on the fact that captureless lambdas are empty while
+// winbase::Bind(), based on the fact that captureless lambdas are empty while
 // capturing lambdas are not. This also allows any functors as far as it's an
 // empty class.
 // Example:
@@ -770,8 +770,8 @@ struct MakeBindStateTypeImpl<true, Functor, Receiver, BoundArgs...> {
       !std::is_pointer<DecayedReceiver>::value ||
           IsRefCountedType<std::remove_pointer_t<DecayedReceiver>>::value,
       "Receivers may not be raw pointers. If using a raw pointer here is safe"
-      " and has no lifetime concerns, use base::Unretained() and document why"
-      " it's safe.");
+      " and has no lifetime concerns, use winbase::Unretained() and document"
+      " why it's safe.");
   static_assert(!HasRefCountedTypeAsRawPtr<std::decay_t<BoundArgs>...>::value,
                 "A parameter is a refcounted type and needs scoped_refptr.");
 
@@ -794,15 +794,15 @@ using MakeBindStateType =
 
 // An injection point to control |this| pointer behavior on a method invocation.
 // If IsWeakReceiver<> is true_type for |T| and |T| is used for a receiver of a
-// method, base::Bind cancels the method invocation if the receiver is tested as
+// method, winbase::Bind cancels the method invocation if the receiver is tested as
 // false.
 // E.g. Foo::bar() is not called:
-//   struct Foo : base::SupportsWeakPtr<Foo> {
+//   struct Foo : winbase::SupportsWeakPtr<Foo> {
 //     void bar() {}
 //   };
 //
 //   WeakPtr<Foo> oo = nullptr;
-//   base::Bind(&Foo::bar, oo).Run();
+//   winbase::Bind(&Foo::bar, oo).Run();
 template <typename T>
 struct IsWeakReceiver : std::false_type {};
 

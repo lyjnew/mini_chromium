@@ -18,7 +18,7 @@ namespace internal {
 // custom execution context.
 //
 // If you're looking for a concrete implementation of PostTaskAndReply, you
-// probably want base::TaskRunner or base/task_scheduler/post_task.h
+// probably want winbase::TaskRunner or winbase/task_scheduler/post_task.h
 class WINBASE_EXPORT PostTaskAndReplyImpl {
  public:
   virtual ~PostTaskAndReplyImpl() = default;

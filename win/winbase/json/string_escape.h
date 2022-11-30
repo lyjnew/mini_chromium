@@ -48,8 +48,8 @@ WINBASE_EXPORT std::string GetQuotedJSONString(StringPiece16 str);
 //
 // CAVEAT CALLER: The output of this function may not be valid JSON, since
 // JSON requires escape sequences to be valid UTF-16 code units. This output
-// will be mangled if passed to to the base::JSONReader, since the reader will
-// interpret it as UTF-16 and convert it to UTF-8.
+// will be mangled if passed to to the winbase::JSONReader, since the reader 
+// will interpret it as UTF-16 and convert it to UTF-8.
 //
 // The output of this function takes the *appearance* of JSON but is not in
 // fact valid according to RFC 4627.
