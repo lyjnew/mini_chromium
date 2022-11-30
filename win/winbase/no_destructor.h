@@ -60,8 +60,8 @@ class NoDestructor {
   explicit NoDestructor(const T& x) { new (storage_) T(x); }
   explicit NoDestructor(T&& x) { new (storage_) T(std::move(x)); }
 
-  NoDestructor(const NoDestructor&) = delete;
-  NoDestructor& operator=(const NoDestructor&) = delete;
+  NoDestructor(const NoDestructor<T>&) = delete;
+  NoDestructor<T>& operator=(const NoDestructor<T>&) = delete;
 
   ~NoDestructor() = default;
 
