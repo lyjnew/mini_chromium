@@ -44,14 +44,14 @@ class WINBASE_EXPORT ServiceThread : public Thread {
 
   // Kicks off a single async task which will record a histogram on the latency
   // of a randomly chosen set of TaskTraits.
-  void PerformHeartbeatLatencyReport() const;
+  ///void PerformHeartbeatLatencyReport() const;
 
   const TaskTracker* const task_tracker_;
 
   // Fires a recurring heartbeat task to record latency histograms which are
   // independent from any execution sequence. This is done on the service thread
   // to avoid all external dependencies (even main thread).
-  winbase::RepeatingTimer heartbeat_latency_timer_;
+  ///winbase::RepeatingTimer heartbeat_latency_timer_;
 };
 
 }  // namespace internal
