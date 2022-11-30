@@ -22,7 +22,7 @@
 
 ///#include "winbase\logging.h"
 #include "winbase\macros.h"
-///#include "winbase\memory\singleton.h"
+#include "winbase\memory\singleton.h"
 #include "winbase\strings\utf_string_conversion_utils.h"
 #include "winbase\strings\utf_string_conversions.h"
 #include "winbase\third_party\icu\icu_utf.h"
@@ -35,15 +35,15 @@ namespace {
 // Force the singleton used by EmptyString[16] to be a unique type. This
 // prevents other code that might accidentally use Singleton<string> from
 // getting our internal one.
-///struct EmptyStrings {
-///  EmptyStrings() = default;
-///  const std::string s;
-///  const string16 s16;
-///
-///  static EmptyStrings* GetInstance() {
-///    return Singleton<EmptyStrings>::get();
-///  }
-///};
+struct EmptyStrings {
+  EmptyStrings() = default;
+  const std::string s;
+  const string16 s16;
+
+  static EmptyStrings* GetInstance() {
+    return Singleton<EmptyStrings>::get();
+  }
+};
 
 // Used by ReplaceStringPlaceholders to track the position in the string of
 // replaced parameters.
@@ -229,13 +229,13 @@ bool EqualsCaseInsensitiveASCII(StringPiece16 a, StringPiece16 b) {
   return CompareCaseInsensitiveASCIIT<string16>(a, b) == 0;
 }
 
-///const std::string& EmptyString() {
-///  return EmptyStrings::GetInstance()->s;
-///}
-///
-///const string16& EmptyString16() {
-///  return EmptyStrings::GetInstance()->s16;
-///}
+const std::string& EmptyString() {
+  return EmptyStrings::GetInstance()->s;
+}
+
+const string16& EmptyString16() {
+  return EmptyStrings::GetInstance()->s16;
+}
 
 template <class StringType>
 bool ReplaceCharsT(const StringType& input,

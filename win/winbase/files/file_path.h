@@ -60,7 +60,8 @@
 // FILE_PATH_LITERAL.  At runtime, a FilePath object can be created from the
 // character array.  Example:
 //
-// | const FilePath::CharType kLogFileName[] = FILE_PATH_LITERAL("log.txt");
+// | const FilePath::CharType kLogFileName[] = 
+// |     WINBASE_FILE_PATH_LITERAL("log.txt");
 // |
 // | void Function() {
 // |   FilePath log_file_path(kLogFileName);
@@ -415,7 +416,7 @@ class WINBASE_EXPORT FilePath {
 WINBASE_EXPORT std::ostream& operator<<(std::ostream& out,
                                         const FilePath& file_path);
 
-}  // namespace base
+}  // namespace winbase
 
 // Macros for string literal initialization of FilePath::CharType[], and for
 // using a FilePath::CharType[] in a printf-style format string.

@@ -186,8 +186,8 @@ WINBASE_EXPORT bool EqualsCaseInsensitiveASCII(StringPiece16 a,
 // accessor), and don't have an empty string to use (e.g. in an error case).
 // These should not be used as initializers, function arguments, or return
 // values for functions which return by value or outparam.
-///WINBASE_EXPORT const std::string& EmptyString();
-///WINBASE_EXPORT const string16& EmptyString16();
+WINBASE_EXPORT const std::string& EmptyString();
+WINBASE_EXPORT const string16& EmptyString16();
 
 // Contains the set of characters representing whitespace in the corresponding
 // encoding. Null-terminated. The ASCII versions are the whitespaces as defined
