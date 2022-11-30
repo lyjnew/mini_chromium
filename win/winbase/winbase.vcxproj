@@ -26,26 +26,26 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -310,6 +310,36 @@
     <ClInclude Include="sys_byteorder.h" />
     <ClInclude Include="task_runner.h" />
     <ClInclude Include="task_runner_util.h" />
+    <ClInclude Include="task_scheduler\can_schedule_sequence_observer.h" />
+    <ClInclude Include="task_scheduler\delayed_task_manager.h" />
+    <ClInclude Include="task_scheduler\environment_config.h" />
+    <ClInclude Include="task_scheduler\initialization_util.h" />
+    <ClInclude Include="task_scheduler\lazy_task_runner.h" />
+    <ClInclude Include="task_scheduler\platform_native_worker_pool_win.h" />
+    <ClInclude Include="task_scheduler\post_task.h" />
+    <ClInclude Include="task_scheduler\priority_queue.h" />
+    <ClInclude Include="task_scheduler\scheduler_lock.h" />
+    <ClInclude Include="task_scheduler\scheduler_lock_impl.h" />
+    <ClInclude Include="task_scheduler\scheduler_single_thread_task_runner_manager.h" />
+    <ClInclude Include="task_scheduler\scheduler_worker.h" />
+    <ClInclude Include="task_scheduler\scheduler_worker_observer.h" />
+    <ClInclude Include="task_scheduler\scheduler_worker_params.h" />
+    <ClInclude Include="task_scheduler\scheduler_worker_pool.h" />
+    <ClInclude Include="task_scheduler\scheduler_worker_pool_impl.h" />
+    <ClInclude Include="task_scheduler\scheduler_worker_pool_params.h" />
+    <ClInclude Include="task_scheduler\scheduler_worker_stack.h" />
+    <ClInclude Include="task_scheduler\scoped_set_task_priority_for_current_thread.h" />
+    <ClInclude Include="task_scheduler\sequence.h" />
+    <ClInclude Include="task_scheduler\sequence_sort_key.h" />
+    <ClInclude Include="task_scheduler\service_thread.h" />
+    <ClInclude Include="task_scheduler\single_thread_task_runner_thread_mode.h" />
+    <ClInclude Include="task_scheduler\task.h" />
+    <ClInclude Include="task_scheduler\task_scheduler.h" />
+    <ClInclude Include="task_scheduler\task_scheduler_impl.h" />
+    <ClInclude Include="task_scheduler\task_tracker.h" />
+    <ClInclude Include="task_scheduler\task_traits.h" />
+    <ClInclude Include="task_scheduler\task_traits_details.h" />
+    <ClInclude Include="task_scheduler\tracked_ref.h" />
     <ClInclude Include="template_util.h" />
     <ClInclude Include="third_party\double-conversion\bignum-dtoa.h" />
     <ClInclude Include="third_party\double-conversion\bignum.h" />
@@ -357,6 +387,8 @@
     <ClInclude Include="values.h" />
     <ClInclude Include="value_iterators.h" />
     <ClInclude Include="version.h" />
+    <ClInclude Include="win\com_init_check_hook.h" />
+    <ClInclude Include="win\com_init_util.h" />
     <ClInclude Include="win\core_winrt_util.h" />
     <ClInclude Include="win\current_module.h" />
     <ClInclude Include="win\message_window.h" />
@@ -374,6 +406,7 @@
     <ClInclude Include="win\scoped_process_information.h" />
     <ClInclude Include="win\scoped_propvariant.h" />
     <ClInclude Include="win\scoped_windows_thread_environment.h" />
+    <ClInclude Include="win\scoped_winrt_initializer.h" />
     <ClInclude Include="win\shortcut.h" />
     <ClInclude Include="win\startup_information.h" />
     <ClInclude Include="win\windows_types.h" />
@@ -486,6 +519,29 @@
     <ClCompile Include="system\sys_info.cc" />
     <ClCompile Include="system\sys_info_win.cc" />
     <ClCompile Include="task_runner.cc" />
+    <ClCompile Include="task_scheduler\delayed_task_manager.cc" />
+    <ClCompile Include="task_scheduler\environment_config.cc" />
+    <ClCompile Include="task_scheduler\initialization_util.cc" />
+    <ClCompile Include="task_scheduler\lazy_task_runner.cc" />
+    <ClCompile Include="task_scheduler\platform_native_worker_pool_win.cc" />
+    <ClCompile Include="task_scheduler\post_task.cc" />
+    <ClCompile Include="task_scheduler\priority_queue.cc" />
+    <ClCompile Include="task_scheduler\scheduler_lock_impl.cc" />
+    <ClCompile Include="task_scheduler\scheduler_single_thread_task_runner_manager.cc" />
+    <ClCompile Include="task_scheduler\scheduler_worker.cc" />
+    <ClCompile Include="task_scheduler\scheduler_worker_pool.cc" />
+    <ClCompile Include="task_scheduler\scheduler_worker_pool_impl.cc" />
+    <ClCompile Include="task_scheduler\scheduler_worker_pool_params.cc" />
+    <ClCompile Include="task_scheduler\scheduler_worker_stack.cc" />
+    <ClCompile Include="task_scheduler\scoped_set_task_priority_for_current_thread.cc" />
+    <ClCompile Include="task_scheduler\sequence.cc" />
+    <ClCompile Include="task_scheduler\sequence_sort_key.cc" />
+    <ClCompile Include="task_scheduler\service_thread.cc" />
+    <ClCompile Include="task_scheduler\task.cc" />
+    <ClCompile Include="task_scheduler\task_scheduler.cc" />
+    <ClCompile Include="task_scheduler\task_scheduler_impl.cc" />
+    <ClCompile Include="task_scheduler\task_tracker_stub.cc" />
+    <ClCompile Include="task_scheduler\task_traits.cc" />
     <ClCompile Include="third_party\double-conversion\bignum-dtoa.cc" />
     <ClCompile Include="third_party\double-conversion\bignum.cc" />
     <ClCompile Include="third_party\double-conversion\cached-powers.cc" />
@@ -528,6 +584,8 @@
     <ClCompile Include="values.cc" />
     <ClCompile Include="value_iterators.cc" />
     <ClCompile Include="version.cc" />
+    <ClCompile Include="win\com_init_check_hook.cc" />
+    <ClCompile Include="win\com_init_util.cc" />
     <ClCompile Include="win\core_winrt_util.cc" />
     <ClCompile Include="win\import_lib.cc" />
     <ClCompile Include="win\message_window.cc" />
@@ -541,6 +599,7 @@
     <ClCompile Include="win\scoped_hstring.cc" />
     <ClCompile Include="win\scoped_native_library.cc" />
     <ClCompile Include="win\scoped_process_information.cc" />
+    <ClCompile Include="win\scoped_winrt_initializer.cc" />
     <ClCompile Include="win\shortcut.cc" />
     <ClCompile Include="win\startup_information.cc" />
     <ClCompile Include="win\windows_version.cc" />

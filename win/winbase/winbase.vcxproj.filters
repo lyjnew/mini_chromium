@@ -436,6 +436,84 @@
     <ClCompile Include="functional\barrier_closure.cc">
       <Filter>functional</Filter>
     </ClCompile>
+    <ClCompile Include="task_scheduler\task_traits.cc">
+      <Filter>task_scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="task_scheduler\task_scheduler.cc">
+      <Filter>task_scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="task_scheduler\task_scheduler_impl.cc">
+      <Filter>task_scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="task_scheduler\post_task.cc">
+      <Filter>task_scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="task_scheduler\delayed_task_manager.cc">
+      <Filter>task_scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="task_scheduler\environment_config.cc">
+      <Filter>task_scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="task_scheduler\initialization_util.cc">
+      <Filter>task_scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="task_scheduler\lazy_task_runner.cc">
+      <Filter>task_scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="task_scheduler\platform_native_worker_pool_win.cc">
+      <Filter>task_scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="task_scheduler\priority_queue.cc">
+      <Filter>task_scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="task_scheduler\scheduler_lock_impl.cc">
+      <Filter>task_scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="task_scheduler\scheduler_single_thread_task_runner_manager.cc">
+      <Filter>task_scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="task_scheduler\scheduler_worker.cc">
+      <Filter>task_scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="task_scheduler\scheduler_worker_pool.cc">
+      <Filter>task_scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="task_scheduler\scheduler_worker_pool_impl.cc">
+      <Filter>task_scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="task_scheduler\scheduler_worker_pool_params.cc">
+      <Filter>task_scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="task_scheduler\scheduler_worker_stack.cc">
+      <Filter>task_scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="task_scheduler\scoped_set_task_priority_for_current_thread.cc">
+      <Filter>task_scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="task_scheduler\sequence.cc">
+      <Filter>task_scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="task_scheduler\sequence_sort_key.cc">
+      <Filter>task_scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="task_scheduler\service_thread.cc">
+      <Filter>task_scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="task_scheduler\task.cc">
+      <Filter>task_scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="win\com_init_check_hook.cc">
+      <Filter>win</Filter>
+    </ClCompile>
+    <ClCompile Include="task_scheduler\task_tracker_stub.cc">
+      <Filter>task_scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="win\com_init_util.cc">
+      <Filter>win</Filter>
+    </ClCompile>
+    <ClCompile Include="win\scoped_winrt_initializer.cc">
+      <Filter>win</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base_export.h" />
@@ -1017,6 +1095,105 @@
     <ClInclude Include="functional\barrier_closure.h">
       <Filter>functional</Filter>
     </ClInclude>
+    <ClInclude Include="task_scheduler\task_traits.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="task_scheduler\task_traits_details.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="task_scheduler\task_scheduler.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="task_scheduler\task_scheduler_impl.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="task_scheduler\post_task.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="task_scheduler\can_schedule_sequence_observer.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="task_scheduler\delayed_task_manager.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="task_scheduler\environment_config.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="task_scheduler\initialization_util.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="task_scheduler\lazy_task_runner.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="task_scheduler\platform_native_worker_pool_win.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="task_scheduler\priority_queue.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="task_scheduler\scheduler_lock.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="task_scheduler\scheduler_lock_impl.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="task_scheduler\scheduler_single_thread_task_runner_manager.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="task_scheduler\scheduler_worker.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="task_scheduler\scheduler_worker_params.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="task_scheduler\scheduler_worker_pool.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="task_scheduler\scheduler_worker_pool_impl.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="task_scheduler\scheduler_worker_pool_params.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="task_scheduler\scheduler_worker_stack.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="task_scheduler\scoped_set_task_priority_for_current_thread.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="task_scheduler\sequence.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="task_scheduler\sequence_sort_key.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="task_scheduler\service_thread.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="task_scheduler\single_thread_task_runner_thread_mode.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="task_scheduler\task_tracker.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="task_scheduler\task.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="task_scheduler\scheduler_worker_observer.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="task_scheduler\tracked_ref.h">
+      <Filter>task_scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="win\com_init_check_hook.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="win\com_init_util.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="win\scoped_winrt_initializer.h">
+      <Filter>win</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="atomic">
@@ -1096,6 +1273,9 @@
     </Filter>
     <Filter Include="third_party\modp_b64">
       <UniqueIdentifier>{58cf33b1-a373-4ad3-bcdf-2898dd81be60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="task_scheduler">
+      <UniqueIdentifier>{6f549817-7710-43a3-8680-3c4117d8acd1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

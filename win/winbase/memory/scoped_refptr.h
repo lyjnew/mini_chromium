@@ -12,7 +12,7 @@
 #include <utility>
 
 #include "winbase\compiler_specific.h"
-///#include "winbase\logging.h"
+#include "winbase\logging.h"
 #include "winbase\macros.h"
 
 namespace winbase {
@@ -32,9 +32,8 @@ namespace subtle {
 
 enum AdoptRefTag { kAdoptRefTag };
 enum StartRefCountFromZeroTag { kStartRefCountFromZeroTag };
-enum StartRefCountFromOneTag { kStartRefCountFromOneTag};
+enum StartRefCountFromOneTag { kStartRefCountFromOneTag };
 
-// Always failed in MSVC2015
 template <typename T, typename U, typename V>
 constexpr bool IsRefCountPreferenceOverridden(const T*,
                                               const RefCounted<U, V>*) {
@@ -42,7 +41,6 @@ constexpr bool IsRefCountPreferenceOverridden(const T*,
                        std::decay_t<decltype(U::kRefCountPreference)>>::value;
 }
 
-// Always failed in MSVC2015
 template <typename T, typename U, typename V>
 constexpr bool IsRefCountPreferenceOverridden(
     const T*,
@@ -66,8 +64,8 @@ scoped_refptr<T> AdoptRef(T* obj) {
   static_assert(std::is_same<subtle::StartRefCountFromOneTag, Tag>::value,
                 "Use AdoptRef only for the reference count starts from one.");
 
-  ///DCHECK(obj);
-  ///DCHECK(obj->HasOneRef());
+  WINBASE_DCHECK(obj);
+  WINBASE_DCHECK(obj->HasOneRef());
   obj->Adopted();
   return scoped_refptr<T>(obj, subtle::kAdoptRefTag);
 }
@@ -107,24 +105,21 @@ scoped_refptr<T> WrapRefCounted(T* t) {
 // avoid common memory leaks caused by forgetting to Release an object
 // reference.  Sample usage:
 //
-//   class MyFoo : public winbase::RefCounted<MyFoo> {
+//   class MyFoo : public RefCounted<MyFoo> {
 //    ...
 //    private:
-//     // Allow destruction by winbase::RefCounted<>.
-//     friend class winbase::RefCounted<MyFoo>;
-//
-//     // Destructor must be private/protected.
-//     ~MyFoo();
+//     friend class RefCounted<MyFoo>;  // Allow destruction by RefCounted<>.
+//     ~MyFoo();                        // Destructor must be private/protected.
 //   };
 //
 //   void some_function() {
-//     winbase::scoped_refptr<MyFoo> foo = winbase::MakeRefCounted<MyFoo>();
+//     scoped_refptr<MyFoo> foo = MakeRefCounted<MyFoo>();
 //     foo->Method(param);
 //     // |foo| is released when this function returns
 //   }
 //
 //   void some_other_function() {
-//     winbase::scoped_refptr<MyFoo> foo = winbase::MakeRefCounted<MyFoo>();
+//     scoped_refptr<MyFoo> foo = MakeRefCounted<MyFoo>();
 //     ...
 //     foo.reset();  // explicitly releases |foo|
 //     ...
@@ -132,13 +127,13 @@ scoped_refptr<T> WrapRefCounted(T* t) {
 //       foo->Method(param);
 //   }
 //
-// The above examples show how scoped_refptr<T> acts like a pointer to T. 
-// Given two scoped_refptr<T> classes, it is also possible to 
-// exchange references between the two objects, like so:
+// The above examples show how scoped_refptr<T> acts like a pointer to T.
+// Given two scoped_refptr<T> classes, it is also possible to exchange
+// references between the two objects, like so:
 //
 //   {
-//     winbase::scoped_refptr<MyFoo> a = winbase::MakeRefCounted<MyFoo>();
-//     winbase::scoped_refptr<MyFoo> b;
+//     scoped_refptr<MyFoo> a = MakeRefCounted<MyFoo>();
+//     scoped_refptr<MyFoo> b;
 //
 //     b.swap(a);
 //     // now, |b| references the MyFoo object, and |a| references nullptr.
@@ -148,8 +143,8 @@ scoped_refptr<T> WrapRefCounted(T* t) {
 // object, simply use the assignment operator:
 //
 //   {
-//     winbase::scoped_refptr<MyFoo> a = winbase::MakeRefCounted<MyFoo>();
-//     winbase::scoped_refptr<MyFoo> b;
+//     scoped_refptr<MyFoo> a = MakeRefCounted<MyFoo>();
+//     scoped_refptr<MyFoo> b;
 //
 //     b = a;
 //     // now, |a| and |b| each own a reference to the same MyFoo object.
@@ -205,7 +200,7 @@ class scoped_refptr {
     static_assert(!winbase::subtle::IsRefCountPreferenceOverridden(
                       static_cast<T*>(nullptr), static_cast<T*>(nullptr)),
                   "It's unsafe to override the ref count preference."
-                  " Please remove WINBASE_REQUIRE_ADOPTION_FOR_REFCOUNTED_TYPE"
+                  " Please remove REQUIRE_ADOPTION_FOR_REFCOUNTED_TYPE"
                   " from subclasses.");
     if (ptr_)
       Release(ptr_);
@@ -214,12 +209,12 @@ class scoped_refptr {
   T* get() const { return ptr_; }
 
   T& operator*() const {
-    ///DCHECK(ptr_);
+    WINBASE_DCHECK(ptr_);
     return *ptr_;
   }
 
   T* operator->() const {
-    ///DCHECK(ptr_);
+    WINBASE_DCHECK(ptr_);
     return ptr_;
   }
 
@@ -261,7 +256,7 @@ class scoped_refptr {
   template <typename U>
   friend scoped_refptr<U> winbase::AdoptRef(U*);
 
-  scoped_refptr(T* p, subtle::AdoptRefTag) : ptr_(p) {}
+  scoped_refptr(T* p, winbase::subtle::AdoptRefTag) : ptr_(p) {}
 
   // Friend required for move constructors that set r.ptr_ to null.
   template <typename U>
@@ -287,58 +282,56 @@ void scoped_refptr<T>::Release(T* ptr) {
   ptr->Release();
 }
 
-}  // namespace winbase
-
 template <typename T, typename U>
-bool operator==(const winbase::scoped_refptr<T>& lhs, const U* rhs) {
+bool operator==(const scoped_refptr<T>& lhs, const U* rhs) {
   return lhs.get() == rhs;
 }
 
 template <typename T, typename U>
-bool operator==(const T* lhs, const winbase::scoped_refptr<U>& rhs) {
+bool operator==(const T* lhs, const scoped_refptr<U>& rhs) {
   return lhs == rhs.get();
 }
 
 template <typename T>
-bool operator==(const winbase::scoped_refptr<T>& lhs, std::nullptr_t null) {
+bool operator==(const scoped_refptr<T>& lhs, std::nullptr_t null) {
   return !static_cast<bool>(lhs);
 }
 
 template <typename T>
-bool operator==(std::nullptr_t null, const winbase::scoped_refptr<T>& rhs) {
+bool operator==(std::nullptr_t null, const scoped_refptr<T>& rhs) {
   return !static_cast<bool>(rhs);
 }
 
 template <typename T, typename U>
-bool operator!=(const winbase::scoped_refptr<T>& lhs, const U* rhs) {
+bool operator!=(const scoped_refptr<T>& lhs, const U* rhs) {
   return !operator==(lhs, rhs);
 }
 
 template <typename T, typename U>
-bool operator!=(const T* lhs, const winbase::scoped_refptr<U>& rhs) {
+bool operator!=(const T* lhs, const scoped_refptr<U>& rhs) {
   return !operator==(lhs, rhs);
 }
 
 template <typename T>
-bool operator!=(const winbase::scoped_refptr<T>& lhs, std::nullptr_t null) {
+bool operator!=(const scoped_refptr<T>& lhs, std::nullptr_t null) {
   return !operator==(lhs, null);
 }
 
 template <typename T>
-bool operator!=(std::nullptr_t null, const winbase::scoped_refptr<T>& rhs) {
+bool operator!=(std::nullptr_t null, const scoped_refptr<T>& rhs) {
   return !operator==(null, rhs);
 }
 
 template <typename T>
-std::ostream& operator<<(std::ostream& out, 
-                         const winbase::scoped_refptr<T>& p) {
+std::ostream& operator<<(std::ostream& out, const scoped_refptr<T>& p) {
   return out << p.get();
 }
 
 template <typename T>
-void swap(winbase::scoped_refptr<T>& lhs, 
-          winbase::scoped_refptr<T>& rhs) noexcept {
+void swap(scoped_refptr<T>& lhs, scoped_refptr<T>& rhs) noexcept {
   lhs.swap(rhs);
 }
+
+}  // namespace winbase
 
 #endif  // WINLIB_WINBASE_MEMORY_SCOPED_REFPTR_H_

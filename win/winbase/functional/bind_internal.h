@@ -504,7 +504,7 @@ struct FunctorTraits<OnceCallback<R(Args...)>> {
 
   template <typename CallbackType, typename... RunArgs>
   static R Invoke(CallbackType&& callback, RunArgs&&... args) {
-    DCHECK(!callback.is_null());
+    WINBASE_DCHECK(!callback.is_null());
     return std::forward<CallbackType>(callback).Run(
         std::forward<RunArgs>(args)...);
   }

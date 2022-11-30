@@ -9,14 +9,14 @@
 
 #include <utility>
 
+#include "winbase\atomic\atomic_ref_count.h"
 #include "winbase\base_export.h"
 #include "winbase\compiler_specific.h"
-///#include "winbase\logging.h"
+#include "winbase\logging.h"
 #include "winbase\macros.h"
-#include "winbase\atomic\atomic_ref_count.h"
 #include "winbase\memory\scoped_refptr.h"
-///#include "winbase\sequence_checker.h"
-///#include "winbase\threading\thread_collision_warner.h"
+#include "winbase\sequence_checker.h"
+#include "winbase\threading\thread_collision_warner.h"
 #include "winlib\build_config.h"
 
 namespace winbase {
@@ -28,42 +28,43 @@ class WINBASE_EXPORT RefCountedBase {
 
  protected:
   explicit RefCountedBase(StartRefCountFromZeroTag) {
-///#if DCHECK_IS_ON()
-///    sequence_checker_.DetachFromSequence();
-///#endif
+#if WINBASE_DCHECK_IS_ON()
+    sequence_checker_.DetachFromSequence();
+#endif
   }
 
   explicit RefCountedBase(StartRefCountFromOneTag) : ref_count_(1) {
-///#if DCHECK_IS_ON()
-///    needs_adopt_ref_ = true;
-///    sequence_checker_.DetachFromSequence();
-///#endif
-  }
-
-  ~RefCountedBase() {
-///#if DCHECK_IS_ON()
-///    DCHECK(in_dtor_) << "RefCounted object deleted without calling Release()";
-///#endif
+#if WINBASE_DCHECK_IS_ON()
+    needs_adopt_ref_ = true;
+    sequence_checker_.DetachFromSequence();
+#endif
   }
 
   RefCountedBase(const RefCountedBase&) = delete;
   RefCountedBase& operator=(const RefCountedBase&) = delete;
 
+  ~RefCountedBase() {
+#if WINBASE_DCHECK_IS_ON()
+    WINBASE_DCHECK(in_dtor_)
+        << "RefCounted object deleted without calling Release()";
+#endif
+  }
+
   void AddRef() const {
     // TODO(maruel): Add back once it doesn't assert 500 times/sec.
     // Current thread books the critical section "AddRelease"
     // without release it.
-    // WINBASE_DFAKE_SCOPED_LOCK_THREAD_LOCKED(add_release_);
-///#if DCHECK_IS_ON()
-///    DCHECK(!in_dtor_);
-///    DCHECK(!needs_adopt_ref_)
-///        << "This RefCounted object is created with non-zero reference count."
-///        << " The first reference to such a object has to be made by AdoptRef or"
-///        << " MakeRefCounted.";
-///    if (ref_count_ >= 1) {
-///      DCHECK(CalledOnValidSequence());
-///    }
-///#endif
+    // DFAKE_SCOPED_LOCK_THREAD_LOCKED(add_release_);
+#if WINBASE_DCHECK_IS_ON()
+    WINBASE_DCHECK(!in_dtor_);
+    WINBASE_DCHECK(!needs_adopt_ref_)
+        << "This RefCounted object is created with non-zero reference count."
+        << " The first reference to such a object has to be made by AdoptRef or"
+        << " MakeRefCounted.";
+    if (ref_count_ >= 1) {
+      WINBASE_DCHECK(CalledOnValidSequence());
+    }
+#endif
 
     AddRefImpl();
   }
@@ -75,18 +76,18 @@ class WINBASE_EXPORT RefCountedBase {
     // TODO(maruel): Add back once it doesn't assert 500 times/sec.
     // Current thread books the critical section "AddRelease"
     // without release it.
-    // WINBASE_DFAKE_SCOPED_LOCK_THREAD_LOCKED(add_release_);
+    // DFAKE_SCOPED_LOCK_THREAD_LOCKED(add_release_);
 
-///#if DCHECK_IS_ON()
-///    DCHECK(!in_dtor_);
-///    if (ref_count_ == 0)
-///      in_dtor_ = true;
-///
-///    if (ref_count_ >= 1)
-///      DCHECK(CalledOnValidSequence());
-///    if (ref_count_ == 1)
-///      sequence_checker_.DetachFromSequence();
-///#endif
+#if WINBASE_DCHECK_IS_ON()
+    WINBASE_DCHECK(!in_dtor_);
+    if (ref_count_ == 0)
+      in_dtor_ = true;
+
+    if (ref_count_ >= 1)
+      WINBASE_DCHECK(CalledOnValidSequence());
+    if (ref_count_ == 1)
+      sequence_checker_.DetachFromSequence();
+#endif
 
     return ref_count_ == 0;
   }
@@ -105,11 +106,11 @@ class WINBASE_EXPORT RefCountedBase {
   // reference, or if the object is accessed from multiple threads
   // simultaneously.
   bool IsOnValidSequence() const {
-///#if DCHECK_IS_ON()
-///    return ref_count_ <= 1 || CalledOnValidSequence();
-///#else
+#if WINBASE_DCHECK_IS_ON()
+    return ref_count_ <= 1 || CalledOnValidSequence();
+#else
     return true;
-///#endif
+#endif
   }
 
  private:
@@ -117,54 +118,54 @@ class WINBASE_EXPORT RefCountedBase {
   friend scoped_refptr<U> winbase::AdoptRef(U*);
 
   void Adopted() const {
-///#if DCHECK_IS_ON()
-///    DCHECK(needs_adopt_ref_);
-///    needs_adopt_ref_ = false;
-///#endif
+#if WINBASE_DCHECK_IS_ON()
+    WINBASE_DCHECK(needs_adopt_ref_);
+    needs_adopt_ref_ = false;
+#endif
   }
 
-#if defined(ARCH_CPU_64_BITS)
+#if defined(ARCH_CPU_64_BIT)
   void AddRefImpl() const;
 #else
   void AddRefImpl() const { ++ref_count_; }
 #endif
 
-///#if DCHECK_IS_ON()
-///  bool CalledOnValidSequence() const;
-///#endif
+#if WINBASE_DCHECK_IS_ON()
+  bool CalledOnValidSequence() const;
+#endif
 
   mutable uint32_t ref_count_ = 0;
 
-///#if DCHECK_IS_ON()
-///  mutable bool needs_adopt_ref_ = false;
-///  mutable bool in_dtor_ = false;
-///  mutable SequenceChecker sequence_checker_;
-///#endif
+#if WINBASE_DCHECK_IS_ON()
+  mutable bool needs_adopt_ref_ = false;
+  mutable bool in_dtor_ = false;
+  mutable SequenceChecker sequence_checker_;
+#endif
 
-///  WINBASE_DFAKE_MUTEX(add_release_);
+  WINBASE_DFAKE_MUTEX(add_release_);
 };
 
 class WINBASE_EXPORT RefCountedThreadSafeBase {
  public:
   bool HasOneRef() const;
 
+  RefCountedThreadSafeBase(const RefCountedThreadSafeBase&) = delete;
+  RefCountedThreadSafeBase& operator=(const RefCountedThreadSafeBase&) = delete;
+
  protected:
   explicit constexpr RefCountedThreadSafeBase(StartRefCountFromZeroTag) {}
   explicit constexpr RefCountedThreadSafeBase(StartRefCountFromOneTag)
       : ref_count_(1) {
-///#if DCHECK_IS_ON()
-///    needs_adopt_ref_ = true;
-///#endif
+#if WINBASE_DCHECK_IS_ON()
+    needs_adopt_ref_ = true;
+#endif
   }
 
-///#if DCHECK_IS_ON()
-///  ~RefCountedThreadSafeBase();
-///#else
+#if WINBASE_DCHECK_IS_ON()
+  ~RefCountedThreadSafeBase();
+#else
   ~RefCountedThreadSafeBase() = default;
-///#endif
-
-  RefCountedThreadSafeBase(const RefCountedThreadSafeBase&) = delete;
-  RefCountedThreadSafeBase& operator=(const RefCountedThreadSafeBase&) = delete;
+#endif
 
 // Release and AddRef are suitable for inlining on X86 because they generate
 // very small code sequences. On other platforms (ARM), it causes a size
@@ -184,42 +185,42 @@ class WINBASE_EXPORT RefCountedThreadSafeBase {
   friend scoped_refptr<U> winbase::AdoptRef(U*);
 
   void Adopted() const {
-///#if DCHECK_IS_ON()
-///    DCHECK(needs_adopt_ref_);
-///    needs_adopt_ref_ = false;
-///#endif
+#if WINBASE_DCHECK_IS_ON()
+    WINBASE_DCHECK(needs_adopt_ref_);
+    needs_adopt_ref_ = false;
+#endif
   }
 
   ALWAYS_INLINE void AddRefImpl() const {
-///#if DCHECK_IS_ON()
-///    DCHECK(!in_dtor_);
-///    DCHECK(!needs_adopt_ref_)
-///        << "This RefCounted object is created with non-zero reference count."
-///        << " The first reference to such a object has to be made by AdoptRef or"
-///        << " MakeRefCounted.";
-///#endif
+#if WINBASE_DCHECK_IS_ON()
+    WINBASE_DCHECK(!in_dtor_);
+    WINBASE_DCHECK(!needs_adopt_ref_)
+        << "This RefCounted object is created with non-zero reference count."
+        << " The first reference to such a object has to be made by AdoptRef or"
+        << " MakeRefCounted.";
+#endif
     ref_count_.Increment();
   }
 
   ALWAYS_INLINE bool ReleaseImpl() const {
-///#if DCHECK_IS_ON()
-///    DCHECK(!in_dtor_);
-///    DCHECK(!ref_count_.IsZero());
-///#endif
+#if WINBASE_DCHECK_IS_ON()
+    WINBASE_DCHECK(!in_dtor_);
+    WINBASE_DCHECK(!ref_count_.IsZero());
+#endif
     if (!ref_count_.Decrement()) {
-///#if DCHECK_IS_ON()
-///      in_dtor_ = true;
-///#endif
+#if WINBASE_DCHECK_IS_ON()
+      in_dtor_ = true;
+#endif
       return true;
     }
     return false;
   }
 
   mutable AtomicRefCount ref_count_{0};
-///#if DCHECK_IS_ON()
-///  mutable bool needs_adopt_ref_ = false;
-///  mutable bool in_dtor_ = false;
-///#endif
+#if WINBASE_DCHECK_IS_ON()
+  mutable bool needs_adopt_ref_ = false;
+  mutable bool in_dtor_ = false;
+#endif
 };
 
 }  // namespace subtle
@@ -236,13 +237,13 @@ class WINBASE_EXPORT RefCountedThreadSafeBase {
 // ScopedAllowCrossThreadRefCountAccess.
 class WINBASE_EXPORT ScopedAllowCrossThreadRefCountAccess final {
  public:
-///#if DCHECK_IS_ON()
-///  ScopedAllowCrossThreadRefCountAccess();
-///  ~ScopedAllowCrossThreadRefCountAccess();
-///#else
+#if WINBASE_DCHECK_IS_ON()
+  ScopedAllowCrossThreadRefCountAccess();
+  ~ScopedAllowCrossThreadRefCountAccess();
+#else
   ScopedAllowCrossThreadRefCountAccess() {}
   ~ScopedAllowCrossThreadRefCountAccess() {}
-///#endif
+#endif
 };
 
 //
@@ -250,10 +251,10 @@ class WINBASE_EXPORT ScopedAllowCrossThreadRefCountAccess final {
 // knock-off of WebKit's RefCounted<T> class.  To use this, just extend your
 // class from it like so:
 //
-//   class MyFoo : public winbase::RefCounted<MyFoo> {
+//   class MyFoo : public base::RefCounted<MyFoo> {
 //    ...
 //    private:
-//     friend class winbase::RefCounted<MyFoo>;
+//     friend class base::RefCounted<MyFoo>;
 //     ~MyFoo();
 //   };
 //
@@ -271,13 +272,12 @@ class WINBASE_EXPORT ScopedAllowCrossThreadRefCountAccess final {
 //
 //
 // The reference count starts from zero by default, and we intended to migrate
-// to start-from-one ref count. 
-// Put WINBASE_REQUIRE_ADOPTION_FOR_REFCOUNTED_TYPE() to the ref counted class 
-// to opt-in.
+// to start-from-one ref count. Put REQUIRE_ADOPTION_FOR_REFCOUNTED_TYPE() to
+// the ref counted class to opt-in.
 //
 // If an object has start-from-one ref count, the first scoped_refptr need to be
-// created by winbase::AdoptRef() or winbase::MakeRefCounted(). We can use
-// winbase::MakeRefCounted() to create create both type of ref counted object.
+// created by base::AdoptRef() or base::MakeRefCounted(). We can use
+// base::MakeRefCounted() to create create both type of ref counted object.
 //
 // The motivations to use start-from-one ref count are:
 //  - Start-from-one ref count doesn't need the ref count increment for the
@@ -288,10 +288,10 @@ class WINBASE_EXPORT ScopedAllowCrossThreadRefCountAccess final {
 //    TODO(tzik): Implement invalid acquisition detection.
 //  - Behavior parity to Blink's WTF::RefCounted, whose count starts from one.
 //    And start-from-one ref count is a step to merge WTF::RefCounted into
-//    winbase::RefCounted.
+//    base::RefCounted.
 //
-#define WINBASE_REQUIRE_ADOPTION_FOR_REFCOUNTED_TYPE()        \
-  static constexpr ::winbase::subtle::StartRefCountFromOneTag \
+#define WINBASE_REQUIRE_ADOPTION_FOR_REFCOUNTED_TYPE()             \
+  static constexpr ::winbase::subtle::StartRefCountFromOneTag      \
       kRefCountPreference = ::winbase::subtle::kStartRefCountFromOneTag
 
 template <class T, typename Traits>
@@ -312,8 +312,8 @@ class RefCounted : public subtle::RefCountedBase {
 
   RefCounted() : subtle::RefCountedBase(T::kRefCountPreference) {}
 
-  RefCounted(const RefCounted&) = delete;
-  RefCounted& operator=(const RefCounted&) = delete;
+  RefCounted(const RefCounted<T, Traits>&) = delete;
+  RefCounted<T, Traits>& operator=(const RefCounted<T, Traits>&) = delete;
 
   void AddRef() const {
     subtle::RefCountedBase::AddRef();
@@ -360,19 +360,18 @@ struct DefaultRefCountedThreadSafeTraits {
 //
 // A thread-safe variant of RefCounted<T>
 //
-//   class MyFoo : public winbase::RefCountedThreadSafe<MyFoo> {
+//   class MyFoo : public base::RefCountedThreadSafe<MyFoo> {
 //    ...
 //   };
 //
 // If you're using the default trait, then you should add compile time
 // asserts that no one else is deleting your object.  i.e.
 //    private:
-//     friend class winbase::RefCountedThreadSafe<MyFoo>;
+//     friend class base::RefCountedThreadSafe<MyFoo>;
 //     ~MyFoo();
 //
-// We can use WINBASE_REQUIRE_ADOPTION_FOR_REFCOUNTED_TYPE() with 
-// RefCountedThreadSafe too. See the comment above the RefCounted 
-// definition for details.
+// We can use REQUIRE_ADOPTION_FOR_REFCOUNTED_TYPE() with RefCountedThreadSafe
+// too. See the comment above the RefCounted definition for details.
 template <class T, typename Traits = DefaultRefCountedThreadSafeTraits<T> >
 class RefCountedThreadSafe : public subtle::RefCountedThreadSafeBase {
  public:
@@ -382,8 +381,9 @@ class RefCountedThreadSafe : public subtle::RefCountedThreadSafeBase {
   explicit RefCountedThreadSafe()
       : subtle::RefCountedThreadSafeBase(T::kRefCountPreference) {}
 
-  RefCountedThreadSafe(const RefCountedThreadSafe&) = delete;
-  RefCountedThreadSafe& operator=(const RefCountedThreadSafe&) = delete;
+  RefCountedThreadSafe(const RefCountedThreadSafe<T, Traits>&) = delete;
+  RefCountedThreadSafe<T, Traits>& operator=(
+      const RefCountedThreadSafe<T, Traits>&) = delete;
 
   void AddRef() const {
     subtle::RefCountedThreadSafeBase::AddRef();

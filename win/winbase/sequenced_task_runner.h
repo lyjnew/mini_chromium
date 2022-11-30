@@ -165,7 +165,7 @@ struct WINBASE_EXPORT OnTaskRunnerDeleter {
   template <typename T>
   void operator()(const T* ptr) {
     if (ptr)
-      task_runner_->DeleteSoon(FROM_HERE, ptr);
+      task_runner_->DeleteSoon(WINBASE_FROM_HERE, ptr);
   }
 
   scoped_refptr<SequencedTaskRunner> task_runner_;
