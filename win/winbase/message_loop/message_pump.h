@@ -6,7 +6,7 @@
 #define WINLIB_WINBASE_MESSAGE_LOOP_MESSAGE_PUMP_H_
 
 #include "winbase\base_export.h"
-#include "winbase\message_loop/timer_slack.h"
+#include "winbase\message_loop\timer_slack.h"
 #include "winbase\sequence_checker.h"
 
 namespace winbase {

@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 #ifndef WINLIB_WINBASE_AUTO_RESET_H_
-#define BASE_AUTO_RESET_H_
+#define WINLIB_WINBASE_AUTO_RESET_H_
 
 #include <utility>
 

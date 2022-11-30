@@ -433,6 +433,9 @@
     <ClCompile Include="win\startup_information.cc">
       <Filter>win</Filter>
     </ClCompile>
+    <ClCompile Include="functional\barrier_closure.cc">
+      <Filter>functional</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base_export.h" />
@@ -1010,6 +1013,9 @@
     </ClInclude>
     <ClInclude Include="win\startup_information.h">
       <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="functional\barrier_closure.h">
+      <Filter>functional</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

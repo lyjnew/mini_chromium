@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef WINLIB_WINBASE_SCOPED_NATIVE_LIBRARY_H_
-#define WINLIB_WINBASE_SCOPED_NATIVE_LIBRARY_H_
+#ifndef WINLIB_WINBASE_WIN_SCOPED_NATIVE_LIBRARY_H_
+#define WINLIB_WINBASE_WIN_SCOPED_NATIVE_LIBRARY_H_
 
 #include "winbase\base_export.h"
 #include "winbase\macros.h"
@@ -52,4 +52,4 @@ class WINBASE_EXPORT ScopedNativeLibrary {
 
 }  // namespace winbase
 
-#endif  // WINLIB_WINBASE_SCOPED_NATIVE_LIBRARY_H_
+#endif  // WINLIB_WINBASE_WIN_SCOPED_NATIVE_LIBRARY_H_

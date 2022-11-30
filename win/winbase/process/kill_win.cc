@@ -12,7 +12,7 @@
 
 #include "winbase\logging.h"
 #include "winbase\macros.h"
-#include "winbase\process/memory.h"
+#include "winbase\process\memory.h"
 #include "winbase\process\process_iterator.h"
 
 namespace winbase {

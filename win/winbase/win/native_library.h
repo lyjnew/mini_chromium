@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef WINLIB_WINBASE_NATIVE_LIBRARY_H_
-#define WINLIB_WINBASE_NATIVE_LIBRARY_H_
+#ifndef WINLIB_WINBASE_WIN_NATIVE_LIBRARY_H_
+#define WINLIB_WINBASE_WIN_NATIVE_LIBRARY_H_
 
 // This file defines a cross-platform "NativeLibrary" type which represents
 // a loadable module.
@@ -80,4 +80,4 @@ WINBASE_EXPORT std::string GetLoadableModuleName(StringPiece name);
 
 }  // namespace winbase
 
-#endif  // WINLIB_WINBASE_NATIVE_LIBRARY_H_
+#endif  // WINLIB_WINBASE_WIN_NATIVE_LIBRARY_H_
