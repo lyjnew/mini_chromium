@@ -21,7 +21,7 @@ namespace win {
 // syntactic sugar reasons; see the declaration of GetVersion() below.
 // NOTE: Keep these in order so callers can do things like
 // "if (winbase::win::GetVersion() >= 
-//          winbase::win::OSVersion::VERSION_VISTA) ...".
+//          winbase::win::OSVersion::VISTA) ...".
 //
 // This enum is used in metrics histograms, so they shouldn't be reordered or
 // removed. New values can be added before VERSION_WIN_LAST.
