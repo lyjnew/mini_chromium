@@ -6,10 +6,12 @@ This is the basic module(Windows Only) of chromium 69.0.3497.128.
 
 2.Windows 10 SDK (minimum 10.0.17134.0)
 
-# supported client
-Windows Vista(x86,x64) or higher
+3.C++17
+
+4.Windows Vista(x86,x64) or higher
 
 # progress
 Updating
+
 # build status
 Successed
