@@ -37,43 +37,47 @@ namespace {
 OSVersion MajorMinorBuildToVersion(int major, int minor, int build) {
   if ((major == 5) && (minor > 0)) {
     // Treat XP Pro x64, Home Server, and Server 2003 R2 as Server 2003.
-    return (minor == 1) ? OSVersion::VERSION_XP
-                        : OSVersion::VERSION_SERVER_2003;
+    return (minor == 1) ? OSVersion::XP
+                        : OSVersion::SERVER_2003;
   } else if (major == 6) {
     switch (minor) {
       case 0:
         // Treat Windows Server 2008 the same as Windows Vista.
-        return OSVersion::VERSION_VISTA;
+        return OSVersion::VISTA;
       case 1:
         // Treat Windows Server 2008 R2 the same as Windows 7.
-        return OSVersion::VERSION_WIN7;
+        return OSVersion::WIN7;
       case 2:
         // Treat Windows Server 2012 the same as Windows 8.
-        return OSVersion::VERSION_WIN8;
+        return OSVersion::WIN8;
       default:
         WINBASE_DCHECK_EQ(minor, 3);
-        return OSVersion::VERSION_WIN8_1;
+        return OSVersion::WIN8_1;
     }
   } else if (major == 10) {
-    if (build < 10586) {
-      return OSVersion::VERSION_WIN10;
-    } else if (build < 14393) {
-      return OSVersion::VERSION_WIN10_TH2;
-    } else if (build < 15063) {
-      return OSVersion::VERSION_WIN10_RS1;
-    } else if (build < 16299) {
-      return OSVersion::VERSION_WIN10_RS2;
-    } else if (build < 17134) {
-      return OSVersion::VERSION_WIN10_RS3;
-    } else {
-      return OSVersion::VERSION_WIN10_RS4;
-    }
+    if (build >= 22000) return OSVersion::WIN11;
+    if (build >= 20348) return OSVersion::SERVER_2022;
+    if (build >= 19044) return OSVersion::WIN10_21H2;
+    if (build >= 19043) return OSVersion::WIN10_21H1;
+    if (build >= 19042) return OSVersion::WIN10_20H2;
+    if (build >= 19041) return OSVersion::WIN10_20H1;
+    if (build >= 18363) return OSVersion::WIN10_19H2;
+    if (build >= 18362) return OSVersion::WIN10_19H1;
+    if (build >= 17763) return OSVersion::WIN10_RS5;
+    if (build >= 17134) return OSVersion::WIN10_RS4;
+    if (build >= 16299) return OSVersion::WIN10_RS3;
+    if (build >= 15063) return OSVersion::WIN10_RS2;
+    if (build >= 14393) return OSVersion::WIN10_RS1;
+    if (build >= 10586) return OSVersion::WIN10_TH2;
+    return OSVersion::WIN10;
+  } else if (major == 11) {
+    return OSVersion::WIN11;
   } else if (major > 6) {
     WINBASE_NOTREACHED();
-    return OSVersion::VERSION_WIN_LAST;
+    return OSVersion::WIN_LAST;
   }
 
-  return OSVersion::VERSION_PRE_XP;
+  return OSVersion::PRE_XP;
 }
 
 // Retrieve a version from kernel32. This is useful because when running in
@@ -95,7 +99,7 @@ OSVersion GetVersionFromKernel32() {
   }
 
   WINBASE_NOTREACHED();
-  return OSVersion::VERSION_WIN_LAST;
+  return OSVersion::WIN_LAST;
 }
 
 // Returns the the "UBR" value from the registry. Introduced in Windows 10,
@@ -138,8 +142,8 @@ OSInfo* OSInfo::GetInstance() {
 }
 
 OSInfo::OSInfo()
-    : version_(OSVersion::VERSION_PRE_XP),
-      kernel32_version_(OSVersion::VERSION_PRE_XP),
+    : version_(OSVersion::PRE_XP),
+      kernel32_version_(OSVersion::PRE_XP),
       got_kernel32_version_(false),
       architecture_(WindowsArchitecture::OTHER_ARCHITECTURE),
       wow64_status_(GetWOW64StatusForProcess(GetCurrentProcess())) {
