@@ -23,9 +23,9 @@ namespace win {
 // The running version of Windows.  This is declared outside OSInfo for
 // syntactic sugar reasons; see the declaration of GetVersion() below.
 // NOTE: Keep these in order so callers can do things like
-// "if (base::win::GetVersion() >= base::win::Version::VISTA) ...".
+// "if (winbase::win::GetVersion() >= winbase::win::Version::VISTA) ...".
 enum class Version {
-  PRE_XP = 0,  // Not supported.
+  PRE_XP = 0,        // Not supported.
   XP = 1,
   SERVER_2003 = 2,   // Also includes XP Pro x64 and Server 2003 R2.
   VISTA = 3,         // Also includes Windows Server 2008.
