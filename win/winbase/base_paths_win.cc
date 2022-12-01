@@ -53,7 +53,7 @@ bool PathProviderWin(int key, FilePath* result) {
       cur = FilePath(system_buffer);
       break;
     case winbase::DIR_PROGRAM_FILESX86:
-      if (winbase::win::OSInfo::GetInstance()->architecture() !=
+      if (winbase::win::OSInfo::GetInstance()->GetArchitecture() !=
           winbase::win::OSInfo::WindowsArchitecture::X86_ARCHITECTURE) {
         if (FAILED(SHGetFolderPath(NULL, CSIDL_PROGRAM_FILESX86, NULL,
                                    SHGFP_TYPE_CURRENT, system_buffer)))
@@ -71,8 +71,7 @@ bool PathProviderWin(int key, FilePath* result) {
       break;
     case winbase::DIR_PROGRAM_FILES6432:
 #if !defined(_WIN64)
-      if (winbase::win::OSInfo::GetInstance()->wow64_status() ==
-          winbase::win::OSInfo::WOW64Status::WOW64_ENABLED) {
+      if (winbase::win::OSInfo::GetInstance()->IsWowX86OnAMD64()) {
         std::unique_ptr<winbase::Environment> env(
             winbase::Environment::Create());
         std::string programfiles_w6432;
@@ -136,7 +135,7 @@ bool PathProviderWin(int key, FilePath* result) {
       break;
     }
     case winbase::DIR_APP_SHORTCUTS: {
-      if (win::GetVersion() < win::OSVersion::WIN8)
+      if (win::GetVersion() < win::Version::WIN8)
         return false;
 
       winbase::win::ScopedCoMem<wchar_t> path_buf;

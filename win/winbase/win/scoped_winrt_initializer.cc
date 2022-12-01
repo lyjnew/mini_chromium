@@ -15,7 +15,7 @@ namespace win {
 ScopedWinrtInitializer::ScopedWinrtInitializer()
     : hr_(winbase::win::RoInitialize(RO_INIT_MULTITHREADED)) {
   WINBASE_DCHECK_CALLED_ON_VALID_THREAD(thread_checker_);
-  WINBASE_DCHECK_GE(GetVersion(), OSVersion::WIN8);
+  WINBASE_DCHECK_GE(GetVersion(), Version::WIN8);
 #if WINBASE_DCHECK_IS_ON()
   if (SUCCEEDED(hr_))
     AssertComApartmentType(ComApartmentType::MTA);

@@ -127,7 +127,7 @@ std::string SysInfo::OperatingSystemVersion() {
 // static
 std::string SysInfo::OperatingSystemArchitecture() {
   win::OSInfo::WindowsArchitecture arch =
-      win::OSInfo::GetInstance()->architecture();
+      win::OSInfo::GetInstance()->GetArchitecture();
   switch (arch) {
     case win::OSInfo::WindowsArchitecture::X86_ARCHITECTURE:
       return "x86";
@@ -135,6 +135,8 @@ std::string SysInfo::OperatingSystemArchitecture() {
       return "x86_64";
     case win::OSInfo::WindowsArchitecture::IA64_ARCHITECTURE:
       return "ia64";
+    case win::OSInfo::WindowsArchitecture::ARM64_ARCHITECTURE:
+      return "arm64";
     default:
       return "";
   }

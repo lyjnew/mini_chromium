@@ -198,6 +198,15 @@ std::wstring FileVersionInfoWin::GetStringValue(const wchar_t* name) {
     return L"";
 }
 
+winbase::Version FileVersionInfoWin::GetVersion() {
+  std::vector<uint32_t> vec = { 
+    HIWORD(fixed_file_info_->dwFileVersionMS),
+    LOWORD(fixed_file_info_->dwFileVersionMS),
+    HIWORD(fixed_file_info_->dwFileVersionLS),
+    LOWORD(fixed_file_info_->dwFileVersionLS) };
+  return winbase::Version(vec);
+}
+
 FileVersionInfoWin::FileVersionInfoWin(std::vector<uint8_t>&& data,
                                        WORD language,
                                        WORD code_page)

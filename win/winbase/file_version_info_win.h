@@ -14,6 +14,7 @@
 #include <vector>
 
 #include "winbase\base_export.h"
+#include "winbase\version.h"
 #include "winbase\file_version_info.h"
 #include "winbase\macros.h"
 
@@ -53,6 +54,9 @@ class WINBASE_EXPORT FileVersionInfoWin : public FileVersionInfo {
   // Similar to GetValue but returns a wstring (empty string if the property
   // does not exist).
   std::wstring GetStringValue(const wchar_t* name);
+
+  // Get file version number in dotted version format.
+  winbase::Version GetVersion();
 
   // Get the fixed file info if it exists. Otherwise NULL
   const VS_FIXEDFILEINFO* fixed_file_info() const { return fixed_file_info_; }
