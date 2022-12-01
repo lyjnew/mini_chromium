@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef WINLIB_WINBASE_CRYPTO_MD5_H_
-#define WINLIB_WINBASE_CRYPTO_MD5_H_
+#ifndef WINLIB_WINBASE_HASH_MD5_H_
+#define WINLIB_WINBASE_HASH_MD5_H_
 
 #include <stddef.h>
 #include <stdint.h>
@@ -73,6 +73,6 @@ WINBASE_EXPORT void MD5Sum(const void* data, size_t length, MD5Digest* digest);
 // Returns the MD5 (in hexadecimal) of a string.
 WINBASE_EXPORT std::string MD5String(const StringPiece& str);
 
-}  // namespace base
+}  // namespace winbase
 
-#endif  // WINLIB_WINBASE_CRYPTO_MD5_H_
+#endif  // WINLIB_WINBASE_HASH_MD5_H_

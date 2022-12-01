@@ -21,7 +21,7 @@
  * will fill a supplied 16-byte array with the digest.
  */
 
-#include "winbase\crypto\md5.h"
+#include "winbase\hash\md5.h"
 
 #include <stddef.h>
 

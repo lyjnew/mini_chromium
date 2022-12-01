@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef WINLIB_WINBASE_CRYPTO_SHA1_H_
-#define WINLIB_WINBASE_CRYPTO_SHA1_H_
+#ifndef WINLIB_WINBASE_HASH_SHA1_H_
+#define WINLIB_WINBASE_HASH_SHA1_H_
 
 #include <stddef.h>
 
@@ -28,4 +28,4 @@ WINBASE_EXPORT void SHA1HashBytes(const unsigned char* data, size_t len,
 
 }  // namespace base
 
-#endif  // WINLIB_WINBASE_CRYPTO_SHA1_H_
+#endif  // WINLIB_WINBASE_HASH_SHA1_H_
