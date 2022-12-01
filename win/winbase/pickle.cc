@@ -11,8 +11,8 @@
 
 #include "winbase\bits.h"
 #include "winbase\macros.h"
-#include "winbase\numerics/safe_conversions.h"
-#include "winbase\numerics/safe_math.h"
+#include "winbase\numerics\safe_conversions.h"
+#include "winbase\numerics\safe_math.h"
 
 namespace winbase {
 
