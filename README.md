@@ -6,6 +6,9 @@ This is the basic module(Windows Only) of chromium 69.0.3497.128.
 
 2.Windows 10 SDK (minimum 10.0.17134.0)
 
+# minimum supported os
+Windows Vista(x86,x64) or higher
+
 # progress
 Updating
 # build status
