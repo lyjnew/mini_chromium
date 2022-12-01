@@ -76,7 +76,7 @@ OSInfo** OSInfo::GetInstanceStorage() {
   static OSInfo* info = []() {
     _OSVERSIONINFOEXW version_info = {sizeof(version_info)};
 
-#if defined(_clang_)
+#if defined(__clang__)
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 #elif defined(_MSC_VER)
@@ -91,7 +91,7 @@ OSInfo** OSInfo::GetInstanceStorage() {
     //   since they sometimes change behavior in ways that matter.
     // - There is no IsWindows11OrGreater() function yet.
     ::GetVersionEx(reinterpret_cast<_OSVERSIONINFOW*>(&version_info));
-#if defined(_clang_)
+#if defined(__clang__)
 #pragma clang diagnostic pop
 #elif defined(_MSC_VER)
 #pragma warning(pop)
