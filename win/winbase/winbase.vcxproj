@@ -177,9 +177,6 @@
     <ClInclude Include="containers\stack.h" />
     <ClInclude Include="containers\vector_buffer.h" />
     <ClInclude Include="cpu.h" />
-    <ClInclude Include="crypto\md5.h" />
-    <ClInclude Include="crypto\sha1.h" />
-    <ClInclude Include="crypto\sha2.h" />
     <ClInclude Include="debug\activity_tracker.h" />
     <ClInclude Include="debug\alias.h" />
     <ClInclude Include="debug\debugger.h" />
@@ -215,6 +212,9 @@
     <ClInclude Include="functional\critical_closure.h" />
     <ClInclude Include="guid.h" />
     <ClInclude Include="hash.h" />
+    <ClInclude Include="hash\md5.h" />
+    <ClInclude Include="hash\sha1.h" />
+    <ClInclude Include="hash\sha2.h" />
     <ClInclude Include="json\json_parser.h" />
     <ClInclude Include="json\json_reader.h" />
     <ClInclude Include="json\json_writer.h" />
@@ -421,9 +421,6 @@
     <ClCompile Include="base_paths_win.cc" />
     <ClCompile Include="command_line.cc" />
     <ClCompile Include="cpu.cc" />
-    <ClCompile Include="crypto\md5.cc" />
-    <ClCompile Include="crypto\sha1.cc" />
-    <ClCompile Include="crypto\sha2.cc" />
     <ClCompile Include="debug\activity_tracker.cc" />
     <ClCompile Include="debug\alias.cc" />
     <ClCompile Include="debug\debugger.cc" />
@@ -455,6 +452,9 @@
     <ClCompile Include="functional\callback_internal.cc" />
     <ClCompile Include="guid.cc" />
     <ClCompile Include="hash.cc" />
+    <ClCompile Include="hash\md5.cc" />
+    <ClCompile Include="hash\sha1.cc" />
+    <ClCompile Include="hash\sha2.cc" />
     <ClCompile Include="json\json_parser.cc" />
     <ClCompile Include="json\json_reader.cc" />
     <ClCompile Include="json\json_writer.cc" />

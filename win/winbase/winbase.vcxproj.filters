@@ -356,15 +356,6 @@
     <ClCompile Include="power_monitor\power_monitor_device_source.cc">
       <Filter>power_monitor</Filter>
     </ClCompile>
-    <ClCompile Include="crypto\md5.cc">
-      <Filter>crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\sha1.cc">
-      <Filter>crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\sha2.cc">
-      <Filter>crypto</Filter>
-    </ClCompile>
     <ClCompile Include="win\resource_util.cc">
       <Filter>win</Filter>
     </ClCompile>
@@ -513,6 +504,15 @@
     </ClCompile>
     <ClCompile Include="task_scheduler\task_tracker.cc">
       <Filter>task_scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="hash\md5.cc">
+      <Filter>hash</Filter>
+    </ClCompile>
+    <ClCompile Include="hash\sha1.cc">
+      <Filter>hash</Filter>
+    </ClCompile>
+    <ClCompile Include="hash\sha2.cc">
+      <Filter>hash</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1020,15 +1020,6 @@
     <ClInclude Include="power_monitor\power_monitor_device_source.h">
       <Filter>power_monitor</Filter>
     </ClInclude>
-    <ClInclude Include="crypto\md5.h">
-      <Filter>crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\sha1.h">
-      <Filter>crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\sha2.h">
-      <Filter>crypto</Filter>
-    </ClInclude>
     <ClInclude Include="win\resource_util.h">
       <Filter>win</Filter>
     </ClInclude>
@@ -1194,6 +1185,15 @@
     <ClInclude Include="win\scoped_winrt_initializer.h">
       <Filter>win</Filter>
     </ClInclude>
+    <ClInclude Include="hash\md5.h">
+      <Filter>hash</Filter>
+    </ClInclude>
+    <ClInclude Include="hash\sha1.h">
+      <Filter>hash</Filter>
+    </ClInclude>
+    <ClInclude Include="hash\sha2.h">
+      <Filter>hash</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="atomic">
@@ -1265,9 +1265,6 @@
     <Filter Include="power_monitor">
       <UniqueIdentifier>{89502c83-8823-4749-8e7d-8aeddf21d9d9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="crypto">
-      <UniqueIdentifier>{f5e0c3b8-d5c4-4721-a0e1-c208b2cf2a9a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="endecode">
       <UniqueIdentifier>{56f0b7b2-ad63-4452-a63c-e5b705c3658b}</UniqueIdentifier>
     </Filter>
@@ -1276,6 +1273,9 @@
     </Filter>
     <Filter Include="task_scheduler">
       <UniqueIdentifier>{6f549817-7710-43a3-8680-3c4117d8acd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hash">
+      <UniqueIdentifier>{4413fb34-9f17-45dc-8696-3854c0a24a4f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

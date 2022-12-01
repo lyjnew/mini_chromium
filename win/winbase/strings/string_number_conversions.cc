@@ -13,12 +13,12 @@
 #include <type_traits>
 
 ///#include "winbase\logging.h"
-#include "winbase\numerics/safe_math.h"
+#include "winbase\numerics\safe_math.h"
 ///#include "winbase\scoped_clear_errno.h"
 #include "winbase\strings\string_util.h"
 #include "winbase\strings\utf_string_conversions.h"
 #include "winbase\third_party\double-conversion\double-conversion.h"
-///#include "winbase\third_party\dmg_fp/dmg_fp.h"
+///#include "winbase\third_party\dmg_fp\dmg_fp.h"
 
 namespace winbase {
 

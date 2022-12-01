@@ -22,6 +22,6 @@ class CanScheduleSequenceObserver {
 };
 
 }  // namespace internal
-}  // namespace base
+}  // namespace winbase
 
 #endif  // WINLIB_WINBASE_TASK_SCHEDULER_CAN_SCHEDULE_SEQUENCE_OBSERVER_H_
