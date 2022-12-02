@@ -279,6 +279,7 @@ namespace winbase {
 
 namespace internal {
 
+// static
 void PlatformThreadLocalStorage::OnThreadExit() {
   PlatformThreadLocalStorage::TLSKey key =
       winbase::subtle::NoBarrier_Load(&g_native_tls_key);
