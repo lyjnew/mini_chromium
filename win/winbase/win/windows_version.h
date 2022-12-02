@@ -173,7 +173,7 @@ class WINBASE_EXPORT OSInfo {
          DWORD os_type);
   ~OSInfo();
 
-  static OSInfo** OSInfo::GetInstanceStorage();
+  static OSInfo** GetInstanceStorage();
 
   // Returns a Version value for a given OS version tuple.
   static Version MajorMinorBuildToVersion(uint32_t major,
