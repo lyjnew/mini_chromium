@@ -5,7 +5,6 @@
 #include "winbase\win\windows_version.h"
 
 #include <windows.h>
-
 #include <memory>
 
 #include "winbase\file_version_info_win.h"
@@ -29,6 +28,9 @@ namespace winbase {
 namespace win {
 
 namespace {
+
+// needs ntdll.lib
+EXTERN_C HRESULT WINAPI RtlGetVersion(OSVERSIONINFOEXW*);
 
 // The values under the CurrentVersion registry hive are mirrored under
 // the corresponding Wow6432 hive.
@@ -76,13 +78,7 @@ OSInfo** OSInfo::GetInstanceStorage() {
   static OSInfo* info = []() {
     _OSVERSIONINFOEXW version_info = {sizeof(version_info)};
 
-#if defined(__clang__)
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(_MSC_VER)
-#pragma warning(push)
-#pragma warning(disable:4996)
-#endif
+#if !defined(_MSC_VER)
     // GetVersionEx() is deprecated, and the suggested replacement are
     // the IsWindows*OrGreater() functions in VersionHelpers.h. We can't
     // use that because:
@@ -91,10 +87,8 @@ OSInfo** OSInfo::GetInstanceStorage() {
     //   since they sometimes change behavior in ways that matter.
     // - There is no IsWindows11OrGreater() function yet.
     ::GetVersionEx(reinterpret_cast<_OSVERSIONINFOW*>(&version_info));
-#if defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(_MSC_VER)
-#pragma warning(pop)
+#else
+    RtlGetVersion(&version_info);
 #endif
 
     DWORD os_type = 0;

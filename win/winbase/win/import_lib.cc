@@ -9,5 +9,6 @@
 #pragma comment(lib, "setupapi.lib ")
 #pragma comment(lib, "powrprof.lib ")
 #pragma comment(lib, "userenv.lib ")  // For CreateEnvironmentBlock
+#pragma comment(lib, "ntdll.lib")  // For RtlGetVersion
 
 #endif  // defined(_MSC_VER)
