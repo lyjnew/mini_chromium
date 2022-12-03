@@ -23,11 +23,11 @@
 
 namespace winbase {
 
-class SamplingHeapProfiler;
+///class SamplingHeapProfiler;
 
-namespace debug {
-class GlobalActivityTracker;
-}  // namespace debug
+///namespace debug {
+///class GlobalActivityTracker;
+///}  // namespace debug
 
 ///namespace trace_event {
 ///class MallocDumpProvider;
@@ -35,7 +35,7 @@ class GlobalActivityTracker;
 
 namespace internal {
 
-class ThreadLocalStorageTestInternal;
+///class ThreadLocalStorageTestInternal;
 
 // WARNING: You should *NOT* use this class directly.
 // PlatformThreadLocalStorage is a low-level abstraction of the OS's TLS
@@ -141,10 +141,10 @@ class WINBASE_EXPORT ThreadLocalStorage {
   // thread destruction. Attempting to call Slot::Get() during destruction is
   // disallowed and will hit a DCHECK. Any code that relies on TLS during thread
   // destruction must first check this method before calling Slot::Get().
-  friend class ::winbase::SamplingHeapProfiler;
-  friend class ::winbase::internal::ThreadLocalStorageTestInternal;
+  ///friend class ::winbase::SamplingHeapProfiler;
+  ///friend class ::winbase::internal::ThreadLocalStorageTestInternal;
   ///friend class winbase::trace_event::MallocDumpProvider;
-  friend class ::winbase::debug::GlobalActivityTracker;
+  ///friend class ::winbase::debug::GlobalActivityTracker;
   ///friend class heap_profiling::ScopedAllowAlloc;
   ///friend class ui::TLSDestructionCheckerForX11;
   static bool HasBeenDestroyed();

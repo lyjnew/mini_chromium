@@ -32,12 +32,14 @@
 //   // My class is logically attached to a single thread. We cache a pointer
 //   // on the thread it was created on, so we can implement current().
 //   MyClass::MyClass() {
-//     DCHECK(Singleton<ThreadLocalPointer<MyClass> >::get()->Get() == NULL);
+//     WINBASE_DCHECK(
+//         Singleton<ThreadLocalPointer<MyClass> >::get()->Get() == NULL);
 //     Singleton<ThreadLocalPointer<MyClass> >::get()->Set(this);
 //   }
 //
 //   MyClass::~MyClass() {
-//     DCHECK(Singleton<ThreadLocalPointer<MyClass> >::get()->Get() != NULL);
+//     WINBASE_DCHECK(
+//         Singleton<ThreadLocalPointer<MyClass> >::get()->Get() != NULL);
 //     Singleton<ThreadLocalPointer<MyClass> >::get()->Set(NULL);
 //   }
 //
@@ -59,8 +61,8 @@ template <typename Type>
 class ThreadLocalPointer {
  public:
   ThreadLocalPointer() = default;
-  ThreadLocalPointer(const ThreadLocalPointer&) = delete;
-  ThreadLocalPointer& operator=(const ThreadLocalPointer&) = delete;
+  ThreadLocalPointer(const ThreadLocalPointer<Type>&) = delete;
+  ThreadLocalPointer<Type>& operator=(const ThreadLocalPointer<Type>&) = delete;
 
   ~ThreadLocalPointer() = default;
 
