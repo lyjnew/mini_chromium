@@ -130,7 +130,7 @@ MessageLoop::MessageLoop(Type type)
 }
 
 MessageLoop::MessageLoop(std::unique_ptr<MessagePump> pump)
-    : MessageLoop(TYPE_CUSTOM, BindOnce(&ReturnPump, std::move(pump))) {
+    : MessageLoop(Type::CUSTOM, BindOnce(&ReturnPump, std::move(pump))) {
   BindToCurrentThread();
 }
 
@@ -203,17 +203,17 @@ bool MessageLoop::InitMessagePumpForUIFactory(MessagePumpFactory* factory) {
 
 // static
 std::unique_ptr<MessagePump> MessageLoop::CreateMessagePumpForType(Type type) {
-  if (type == MessageLoop::TYPE_UI) {
+  if (type == MessageLoop::Type::UI) {
     if (message_pump_for_ui_factory_)
       return message_pump_for_ui_factory_();
 
     return std::make_unique<MessagePumpForUI>();
   }
 
-  if (type == MessageLoop::TYPE_IO)
+  if (type == MessageLoop::Type::IO)
     return std::unique_ptr<MessagePump>(new MessagePumpForIO());
 
-  WINBASE_DCHECK_EQ(MessageLoop::TYPE_DEFAULT, type);
+  WINBASE_DCHECK_EQ(MessageLoop::Type::DEFAULT, type);
   return std::make_unique<MessagePumpDefault>();
 }
 
@@ -271,7 +271,7 @@ MessageLoop::MessageLoop(Type type, MessagePumpFactoryCallback pump_factory)
           incoming_task_queue_)),
       task_runner_(unbound_task_runner_) {
   // If type is TYPE_CUSTOM non-null pump_factory must be given.
-  WINBASE_DCHECK(type_ != TYPE_CUSTOM || !pump_factory_.is_null());
+  WINBASE_DCHECK(type_ != Type::CUSTOM || !pump_factory_.is_null());
 
   // Bound in BindToCurrentThread();
   WINBASE_DETACH_FROM_THREAD(bound_thread_checker_);
@@ -506,7 +506,7 @@ bool MessageLoop::DoIdleWork() {
     // logging the histogram (https://crbug.com/860801) -- there's typically
     // only one UI thread per process and, for practical purposes, restricting
     // the MessageLoop diagnostic metrics to it yields similar information.
-    if (type_ == TYPE_UI)
+    if (type_ == Type::UI)
       incoming_task_queue_->ReportMetricsOnIdle();
 
     // On Windows we activate the high resolution timer so that the wait
@@ -530,7 +530,7 @@ bool MessageLoop::DoIdleWork() {
 // MessageLoopForUI
 
 MessageLoopForUI::MessageLoopForUI(Type type) : MessageLoop(type) {
-  WINBASE_DCHECK_EQ(type, TYPE_UI);
+  WINBASE_DCHECK_EQ(type, Type::UI);
 }
 
 // static

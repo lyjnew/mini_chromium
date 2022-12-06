@@ -25,7 +25,7 @@ namespace winbase {
 template <typename CallbackType>
 CallbackType ResetAndReturn(CallbackType* cb) {
   CallbackType ret(std::move(*cb));
-  ///DCHECK(!*cb);
+  WINBASE_DCHECK(!*cb);
   return ret;
 }
 
@@ -36,7 +36,7 @@ class AdaptCallbackForRepeatingHelper final {
  public:
   explicit AdaptCallbackForRepeatingHelper(OnceCallback<void(Args...)> callback)
       : callback_(std::move(callback)) {
-    ///DCHECK(callback_);
+    WINBASE_DCHECK(callback_);
   }
 
   AdaptCallbackForRepeatingHelper(const AdaptCallbackForRepeatingHelper&) 
@@ -47,7 +47,7 @@ class AdaptCallbackForRepeatingHelper final {
   void Run(Args... args) {
     if (subtle::NoBarrier_AtomicExchange(&has_run_, 1))
       return;
-    ///DCHECK(callback_);
+    WINBASE_DCHECK(callback_);
     std::move(callback_).Run(std::forward<Args>(args)...);
   }
 

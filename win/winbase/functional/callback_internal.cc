@@ -4,7 +4,7 @@
 
 #include "winbase\functional\callback_internal.h"
 
-///#include "winbase\logging.h"
+#include "winbase\logging.h"
 
 namespace winbase {
 namespace internal {
@@ -57,7 +57,7 @@ void CallbackBase::Reset() {
 }
 
 bool CallbackBase::IsCancelled() const {
-  ///DCHECK(bind_state_);
+  WINBASE_DCHECK(bind_state_);
   return bind_state_->IsCancelled();
 }
 

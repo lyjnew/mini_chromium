@@ -61,7 +61,7 @@ bool Thread::Start() {
 
   Options options;
   if (com_status_ == STA)
-    options.message_loop_type = MessageLoop::TYPE_UI;
+    options.message_loop_type = MessageLoop::Type::UI;
   return StartWithOptions(options);
 }
 
@@ -72,7 +72,7 @@ bool Thread::StartWithOptions(const Options& options) {
   WINBASE_DCHECK(!stopping_) 
       << "Starting a non-joinable thread a second time? That's not allowed!";
   WINBASE_DCHECK((com_status_ != STA) ||
-      (options.message_loop_type == MessageLoop::TYPE_UI));
+      (options.message_loop_type == MessageLoop::Type::UI));
 
   // Reset |id_| here to support restarting the thread.
   id_event_.Reset();
@@ -82,7 +82,7 @@ bool Thread::StartWithOptions(const Options& options) {
 
   MessageLoop::Type type = options.message_loop_type;
   if (!options.message_pump_factory.is_null())
-    type = MessageLoop::TYPE_CUSTOM;
+    type = MessageLoop::Type::CUSTOM;
 
   message_loop_timer_slack_ = options.timer_slack;
   std::unique_ptr<MessageLoop> message_loop_owned =
@@ -324,7 +324,7 @@ void Thread::ThreadMain() {
 
   com_initializer.reset();
 
-  if (message_loop->type() != MessageLoop::TYPE_CUSTOM) {
+  if (message_loop->type() != MessageLoop::Type::CUSTOM) {
     // Assert that RunLoop::QuitWhenIdle was called by ThreadQuitHelper. Don't
     // check for custom message pumps, because their shutdown might not allow
     // this.

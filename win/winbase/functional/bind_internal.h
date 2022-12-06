@@ -149,7 +149,7 @@ class PassedWrapper {
   PassedWrapper(PassedWrapper&& other)
       : is_valid_(other.is_valid_), scoper_(std::move(other.scoper_)) {}
   T Take() const {
-    ///CHECK(is_valid_);
+    WINBASE_CHECK(is_valid_);
     is_valid_ = false;
     return std::move(scoper_);
   }
@@ -519,7 +519,7 @@ struct FunctorTraits<RepeatingCallback<R(Args...)>> {
 
   template <typename CallbackType, typename... RunArgs>
   static R Invoke(CallbackType&& callback, RunArgs&&... args) {
-    ///DCHECK(!callback.is_null());
+    WINBASE_DCHECK(!callback.is_null());
     return std::forward<CallbackType>(callback).Run(
         std::forward<RunArgs>(args)...);
   }
@@ -722,7 +722,7 @@ struct BindState final : BindStateBase {
                       &ApplyCancellationTraits<BindState>),
         functor_(std::forward<ForwardFunctor>(functor)),
         bound_args_(std::forward<ForwardBoundArgs>(bound_args)...) {
-    ///DCHECK(!IsNull(functor_));
+    WINBASE_DCHECK(!IsNull(functor_));
   }
 
   template <typename ForwardFunctor, typename... ForwardBoundArgs>
@@ -733,7 +733,7 @@ struct BindState final : BindStateBase {
       : BindStateBase(invoke_func, &Destroy),
         functor_(std::forward<ForwardFunctor>(functor)),
         bound_args_(std::forward<ForwardBoundArgs>(bound_args)...) {
-    ///DCHECK(!IsNull(functor_));
+    WINBASE_DCHECK(!IsNull(functor_));
   }
 
   ~BindState() = default;

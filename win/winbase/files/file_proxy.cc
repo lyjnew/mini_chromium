@@ -241,6 +241,7 @@ class WriteHelper : public FileHelper {
 
 }  // namespace
 
+FileProxy::FileProxy() : task_runner_(nullptr) {}
 FileProxy::FileProxy(TaskRunner* task_runner) : task_runner_(task_runner) {
 }
 

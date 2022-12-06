@@ -285,8 +285,9 @@ class circular_deque_const_iterator {
       return;
 
     difference_type new_offset = OffsetFromBegin() + delta;
-    ///DCHECK(new_offset >= 0 &&
-    ///       new_offset <= static_cast<difference_type>(parent_deque_->size()));
+    WINBASE_DCHECK(
+        new_offset >= 0 &&
+            new_offset <= static_cast<difference_type>(parent_deque_->size()));
     index_ = (new_offset + parent_deque_->begin_) %
              parent_deque_->buffer_.capacity();
   }

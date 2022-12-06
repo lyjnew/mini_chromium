@@ -87,41 +87,43 @@ class WINBASE_EXPORT MessageLoop : public MessagePump::Delegate,
   // A MessageLoop has a particular type, which indicates the set of
   // asynchronous events it may process in addition to tasks and timers.
   //
-  // TYPE_DEFAULT
+  // Type::DEFAULT
   //   This type of ML only supports tasks and timers.
   //
-  // TYPE_UI
+  // Type::UI
   //   This type of ML also supports native UI events (e.g., Windows messages).
   //   See also MessageLoopForUI.
   //
-  // TYPE_IO
+  // Type::IO
   //   This type of ML also supports asynchronous IO.  See also
   //   MessageLoopForIO.
   //
-  // TYPE_JAVA
+  // Type::JAVA
   //   This type of ML is backed by a Java message handler which is responsible
   //   for running the tasks added to the ML. This is only for use on Android.
   //   TYPE_JAVA behaves in essence like TYPE_UI, except during construction
   //   where it does not use the main thread specific pump factory.
   //
-  // TYPE_CUSTOM
+  // Type::CUSTOM
   //   MessagePump was supplied to constructor.
   //
-  enum Type {
-    TYPE_DEFAULT,
-    TYPE_UI,
-    TYPE_CUSTOM,
-    TYPE_IO,
+  enum class Type {
+    DEFAULT,
+    UI,
+    CUSTOM,
+    IO,
   };
 
   // Normally, it is not necessary to instantiate a MessageLoop.  Instead, it
   // is typical to make use of the current thread's MessageLoop instance.
-  explicit MessageLoop(Type type = TYPE_DEFAULT);
-  MessageLoop(const MessageLoop&) = delete;
-  MessageLoop& operator=(const MessageLoop&) = delete;
+  explicit MessageLoop(Type type = Type::DEFAULT);
+
   // Creates a TYPE_CUSTOM MessageLoop with the supplied MessagePump, which must
   // be non-NULL.
   explicit MessageLoop(std::unique_ptr<MessagePump> pump);
+
+  MessageLoop(const MessageLoop&) = delete;
+  MessageLoop& operator=(const MessageLoop&) = delete;
 
   ~MessageLoop() override;
 
@@ -294,7 +296,7 @@ class WINBASE_EXPORT MessageLoop : public MessagePump::Delegate,
   bool task_execution_allowed_ = true;
 
   // pump_factory_.Run() is called to create a message pump for this loop
-  // if type_ is TYPE_CUSTOM and pump_ is null.
+  // if type_ is Type::CUSTOM and pump_ is null.
   MessagePumpFactoryCallback pump_factory_;
 
   ObserverList<TaskObserver> task_observers_;
@@ -340,7 +342,7 @@ class WINBASE_EXPORT MessageLoop : public MessagePump::Delegate,
 //
 class WINBASE_EXPORT MessageLoopForUI : public MessageLoop {
  public:
-  explicit MessageLoopForUI(Type type = TYPE_UI);
+  explicit MessageLoopForUI(Type type = Type::UI);
 
   // TODO(gab): Mass migrate callers to MessageLoopCurrentForUI::Get()/IsSet().
   static MessageLoopCurrentForUI current();
@@ -368,7 +370,7 @@ static_assert(sizeof(MessageLoop) == sizeof(MessageLoopForUI),
 //
 class WINBASE_EXPORT MessageLoopForIO : public MessageLoop {
  public:
-  MessageLoopForIO() : MessageLoop(TYPE_IO) {}
+  MessageLoopForIO() : MessageLoop(Type::IO) {}
 
   // TODO(gab): Mass migrate callers to MessageLoopCurrentForIO::Get()/IsSet().
   static MessageLoopCurrentForIO current();

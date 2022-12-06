@@ -10,7 +10,7 @@
 
 #include "winbase\functional\callback.h"
 #include "winbase\compiler_specific.h"
-///#include "winbase\logging.h"
+#include "winbase\logging.h"
 #include "winbase\macros.h"
 
 // OVERVIEW:
@@ -24,6 +24,8 @@
 //
 // class MyWidget {
 //  public:
+//   MyWidget(const MyWidget&) = delete;
+//   MyWidget& operator=(const MyWidget&) = delete;
 //   ...
 //
 //   std::unique_ptr<winbase::CallbackList<void(const Foo&)>::Subscription>
@@ -37,8 +39,6 @@
 //   }
 //
 //   winbase::CallbackList<void(const Foo&)> callback_list_;
-//
-//   DISALLOW_COPY_AND_ASSIGN(MyWidget);
 // };
 //
 //
@@ -103,7 +103,7 @@ class CallbackListBase {
   // returned Subscription is destroyed, which must occur before the
   // CallbackList is destroyed.
   std::unique_ptr<Subscription> Add(const CallbackType& cb) WARN_UNUSED_RESULT {
-    ///DCHECK(!cb.is_null());
+    WINBASE_DCHECK(!cb.is_null());
     return std::make_unique<Subscription>(
         this, callbacks_.insert(callbacks_.end(), cb));
   }
@@ -116,7 +116,7 @@ class CallbackListBase {
   // Returns true if there are no subscriptions. This is only valid to call when
   // not looping through the list.
   bool empty() {
-    ///DCHECK_EQ(0, active_iterator_count_);
+    WINBASE_DCHECK_EQ(0, active_iterator_count_);
     return callbacks_.empty();
   }
 
@@ -162,8 +162,8 @@ class CallbackListBase {
   CallbackListBase() : active_iterator_count_(0) {}
 
   ~CallbackListBase() {
-    ///DCHECK_EQ(0, active_iterator_count_);
-    ///DCHECK_EQ(0U, callbacks_.size());
+    WINBASE_DCHECK_EQ(0, active_iterator_count_);
+    WINBASE_DCHECK_EQ(0U, callbacks_.size());
   }
 
   CallbackListBase(const CallbackListBase&) = delete;

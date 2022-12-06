@@ -9,7 +9,7 @@ namespace winbase {
 
 // Amount of timer slack to use for delayed timers.  Increasing timer slack
 // allows the OS to coalesce timers more effectively.
-enum TimerSlack {
+enum class TimerSlack {
   // Lowest value for timer slack allowed by OS.
   TIMER_SLACK_NONE,
 

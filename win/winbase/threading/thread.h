@@ -67,10 +67,10 @@ class WINBASE_EXPORT Thread : PlatformThread::Delegate {
 
     // Specifies the type of message loop that will be allocated on the thread.
     // This is ignored if message_pump_factory.is_null() is false.
-    MessageLoop::Type message_loop_type = MessageLoop::TYPE_DEFAULT;
+    MessageLoop::Type message_loop_type = MessageLoop::Type::DEFAULT;
 
     // Specifies timer slack for thread message loop.
-    TimerSlack timer_slack = TIMER_SLACK_NONE;
+    TimerSlack timer_slack = TimerSlack::TIMER_SLACK_NONE;
 
     // Used to create the MessagePump for the MessageLoop. The callback is Run()
     // on the thread. If message_pump_factory.is_null(), then a MessagePump
@@ -333,7 +333,7 @@ class WINBASE_EXPORT Thread : PlatformThread::Delegate {
 
   // Stores Options::timer_slack_ until the message loop has been bound to
   // a thread.
-  TimerSlack message_loop_timer_slack_ = TIMER_SLACK_NONE;
+  TimerSlack message_loop_timer_slack_ = TimerSlack::TIMER_SLACK_NONE;
 
   // The name of the thread.  Used for debugging purposes.
   const std::string name_;

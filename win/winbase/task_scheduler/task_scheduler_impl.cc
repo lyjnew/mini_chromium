@@ -98,8 +98,8 @@ void TaskSchedulerImpl::Start(
   // SFI), the service thread runs a MessageLoopForIO which is used to support
   // FileDescriptorWatcher in the scope in which tasks run.
   ServiceThread::Options service_thread_options;
-  service_thread_options.message_loop_type = MessageLoop::TYPE_DEFAULT;
-  service_thread_options.timer_slack = TIMER_SLACK_MAXIMUM;
+  service_thread_options.message_loop_type = MessageLoop::Type::DEFAULT;
+  service_thread_options.timer_slack = TimerSlack::TIMER_SLACK_MAXIMUM;
   WINBASE_CHECK(service_thread_->StartWithOptions(service_thread_options));
 
   // Needs to happen after starting the service thread to get its task_runner().

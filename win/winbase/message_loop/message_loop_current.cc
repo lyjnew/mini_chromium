@@ -124,7 +124,7 @@ bool MessageLoopCurrent::IsBoundToCurrentThreadInternal(
 MessageLoopCurrentForUI MessageLoopCurrentForUI::Get() {
   MessageLoop* loop = GetTLSMessageLoop()->Get();
   WINBASE_DCHECK(loop);
-  WINBASE_DCHECK(loop->IsType(MessageLoop::TYPE_UI));
+  WINBASE_DCHECK(loop->IsType(MessageLoop::Type::UI));
   auto* loop_for_ui = static_cast<MessageLoopForUI*>(loop);
   return MessageLoopCurrentForUI(
       loop_for_ui, static_cast<MessagePumpForUI*>(loop_for_ui->pump_.get()));
@@ -133,7 +133,7 @@ MessageLoopCurrentForUI MessageLoopCurrentForUI::Get() {
 // static
 bool MessageLoopCurrentForUI::IsSet() {
   MessageLoop* loop = GetTLSMessageLoop()->Get();
-  return loop && loop->IsType(MessageLoop::TYPE_UI);
+  return loop && loop->IsType(MessageLoop::Type::UI);
 }
 
 //------------------------------------------------------------------------------
@@ -143,7 +143,7 @@ bool MessageLoopCurrentForUI::IsSet() {
 MessageLoopCurrentForIO MessageLoopCurrentForIO::Get() {
   MessageLoop* loop = GetTLSMessageLoop()->Get();
   WINBASE_DCHECK(loop);
-  WINBASE_DCHECK_EQ(MessageLoop::TYPE_IO, loop->type());
+  WINBASE_DCHECK_EQ(MessageLoop::Type::IO, loop->type());
   auto* loop_for_io = static_cast<MessageLoopForIO*>(loop);
   return MessageLoopCurrentForIO(
       loop_for_io, static_cast<MessagePumpForIO*>(loop_for_io->pump_.get()));
@@ -152,7 +152,7 @@ MessageLoopCurrentForIO MessageLoopCurrentForIO::Get() {
 // static
 bool MessageLoopCurrentForIO::IsSet() {
   MessageLoop* loop = GetTLSMessageLoop()->Get();
-  return loop && loop->IsType(MessageLoop::TYPE_IO);
+  return loop && loop->IsType(MessageLoop::Type::IO);
 }
 
 HRESULT MessageLoopCurrentForIO::RegisterIOHandler(

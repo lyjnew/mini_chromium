@@ -79,8 +79,7 @@ FileVersionInfo* FileVersionInfo::CreateFileVersionInfo(
     return nullptr;
 
   std::vector<uint8_t> data(length, 0);
-
-  if (!::GetFileVersionInfo(path, dummy, length, data.data()))
+  if (!::GetFileVersionInfo(path, /*dummy*/0, length, data.data()))
     return nullptr;
 
   const LanguageAndCodePage* translate = GetTranslate(data.data());
