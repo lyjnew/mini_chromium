@@ -107,7 +107,7 @@ int32_t CurrentProcessId() {
 }
 
 uint64_t TickCount() {
-  return ::GetTickCount();
+  return ::GetTickCount64();
 }
 
 void DeleteFilePath(const PathString& log_name) {
@@ -556,8 +556,8 @@ Win32ErrorLogMessage::Win32ErrorLogMessage(const char* file,
 
 Win32ErrorLogMessage::~Win32ErrorLogMessage() {
   stream() << ": " << SystemErrorCodeToString(err_);
-  // We're about to crash (CHECK). Put |err_| on the stack (by placing it in a
-  // field) and use Alias in hopes that it makes it into crash dumps.
+  // We're about to crash (WINBASE_CHECK). Put |err_| on the stack (by placing 
+  // it in a field) and use Alias in hopes that it makes it into crash dumps.
   DWORD last_error = err_;
   winbase::debug::Alias(&last_error);
 }

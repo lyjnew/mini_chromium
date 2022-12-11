@@ -121,7 +121,7 @@
 //      << "I'm printed when size is more than 1024 and when you run the "
 //         "program with --v=1 or more";
 //
-// We also override the standard 'assert' to use 'DLOG_ASSERT'.
+// We also override the standard 'assert' to use 'WINBASE_DLOG_ASSERT'.
 //
 // Lastly, there is:
 //
@@ -375,10 +375,10 @@ const LogSeverity LOG_DFATAL = LOG_FATAL;
 #define COMPACT_WINBASE_LOG_DFATAL  COMPACT_WINBASE_LOG_EX_DFATAL(LogMessage)
 #define COMPACT_WINBASE_LOG_DCHECK  COMPACT_WINBASE_LOG_EX_DCHECK(LogMessage)
 
-// wingdi.h defines ERROR to be 0. When we call LOG(ERROR), it gets
-// substituted with 0, and it expands to COMPACT_GOOGLE_LOG_0. To allow us
-// to keep using this syntax, we define this macro to do the same thing
-// as COMPACT_GOOGLE_LOG_ERROR, and also define ERROR the same way that
+// wingdi.h defines ERROR to be 0. When we call WINBASE_LOG(ERROR), it gets
+// substituted with 0, and it expands to WINBASE_COMPACT_GOOGLE_LOG_0. To allow
+// us to keep using this syntax, we define this macro to do the same thing
+// as WINBASE_COMPACT_GOOGLE_LOG_ERROR, and also define ERROR the same way that
 // the Windows SDK does for consistency.
 #ifndef ERROR
 #define ERROR 0
@@ -386,17 +386,17 @@ const LogSeverity LOG_DFATAL = LOG_FATAL;
 #define COMPACT_WINBASE_LOG_EX_0(ClassName, ...) \
   COMPACT_WINBASE_LOG_EX_ERROR(ClassName, ##__VA_ARGS__)
 #define COMPACT_WINBASE_LOG_0 COMPACT_WINBASE_LOG_ERROR
-// Needed for LOG_IS_ON(ERROR).
+// Needed for WINBASE_LOG_IS_ON(ERROR).
 const LogSeverity LOG_0 = LOG_ERROR;
 
-// As special cases, we can assume that LOG_IS_ON(FATAL) always holds. Also,
-// LOG_IS_ON(DFATAL) always holds in debug mode. In particular, CHECK()s will
-// always fire if they fail.
+// As special cases, we can assume that WINBASE_LOG_IS_ON(FATAL) always holds.
+// Also, WINBASE_LOG_IS_ON(DFATAL) always holds in debug mode. In particular, 
+// WINBASE_CHECK()s will always fire if they fail.
 #define WINBASE_LOG_IS_ON(severity)            \
   (::winbase::logging::ShouldCreateLogMessage( \
       ::winbase::logging::LOG_##severity))
 
-// We can't do any caching tricks with VLOG_IS_ON() like the
+// We can't do any caching tricks with WINBASE_VLOG_IS_ON() like the
 // google-glog version since it requires GCC extensions.  This means
 // that using the v-logging functions in conjunction with --vmodule
 // may be slow.
@@ -409,10 +409,10 @@ const LogSeverity LOG_0 = LOG_ERROR;
   !(condition) ? (void) 0 : ::winbase::logging::LogMessageVoidify() & (stream)
 
 // We use the preprocessor's merging operator, "##", so that, e.g.,
-// LOG(INFO) becomes the token COMPACT_GOOGLE_LOG_INFO.  There's some funny
-// subtle difference between ostream member streaming functions (e.g.,
-// ostream::operator<<(int) and ostream non-member streaming functions
-// (e.g., ::operator<<(ostream&, string&): it turns out that it's
+// WINBASE_LOG(INFO) becomes the token WINBASE_COMPACT_GOOGLE_LOG_INFO.  
+// There's some funny subtle difference between ostream member streaming 
+// functions (e.g., ostream::operator<<(int) and ostream non-member streaming
+// functions (e.g., ::operator<<(ostream&, string&): it turns out that it's
 // impossible to stream something like a string directly to an unnamed
 // ostream. We employ a neat hack by calling the stream() member
 // function of LogMessage which seems to avoid the problem.
@@ -424,7 +424,7 @@ const LogSeverity LOG_0 = LOG_ERROR;
   WINBASE_LAZY_STREAM(WINBASE_LOG_STREAM(severity), \
                       WINBASE_LOG_IS_ON(severity) && (condition))
 
-// The VLOG macros log with negative verbosities.
+// The WINBASE_VLOG macros log with negative verbosities.
 #define WINBASE_VLOG_STREAM(verbose_level) \
   ::winbase::logging::LogMessage(__FILE__, __LINE__, -verbose_level).stream()
 
@@ -448,7 +448,7 @@ const LogSeverity LOG_0 = LOG_ERROR;
   WINBASE_LAZY_STREAM(WINBASE_VPLOG_STREAM(verbose_level), \
                       WINBASE_VLOG_IS_ON(verbose_level) && (condition))
 
-// TODO(akalin): Add more WINBASE_VLOG variants, e.g. VPLOG.
+// TODO(akalin): Add more WINBASE_VLOG variants, e.g. WINBASE_VPLOG.
 
 #define WINBASE_LOG_ASSERT(condition)                               \
   WINBASE_LOG_IF(FATAL, !(WINBASE_ANALYZER_ASSUME_TRUE(condition))) \
@@ -506,18 +506,18 @@ class CheckOpResult {
 //   distinct and not get folded into the same opcode by the compiler.
 //   On Linux/Android this is tricky because GCC still folds identical
 //   asm volatile blocks. The workaround is generating distinct opcodes for
-//   each CHECK using the __COUNTER__ macro.
+//   each WINBASE_CHECK using the __COUNTER__ macro.
 // - The debug info for the trap instruction has to be attributed to the source
-//   line that has the CHECK(), to make crash reports actionable. This rules
-//   out the ability of using a inline function, at least as long as clang
+//   line that has the WINBASE_CHECK(), to make crash reports actionable. This 
+//   rules out the ability of using a inline function, at least as long as clang
 //   doesn't support attribute(artificial).
 // - Failed CHECKs should produce a signal that is distinguishable from an
 //   invalid memory access, to improve the actionability of crash reports.
-// - The compiler should treat the CHECK as no-return instructions, so that the
-//   trap code can be efficiently packed in the prologue of the function and
-//   doesn't interfere with the main execution flow.
+// - The compiler should treat the WINBASE_CHECK as no-return instructions, so 
+//   that the trap code can be efficiently packed in the prologue of the function
+//   and doesn't interfere with the main execution flow.
 // - When debugging, developers shouldn't be able to accidentally step over a
-//   CHECK. This is achieved by putting opcodes that will cause a non
+//   WINBASE_CHECK. This is achieved by putting opcodes that will cause a non
 //   continuable exception after the actual trap instruction.
 // - Don't cause too much binary bloat.
 #if defined(COMPILER_GCC)
@@ -547,14 +547,16 @@ class CheckOpResult {
 #define WINBASE_TRAP_SEQUENCE() __builtin_trap()
 #endif  // ARCH_CPU_*
 
-// CHECK() and the trap sequence can be invoked from a constexpr function.
+// WINBASE_CHECK() and the trap sequence can be invoked from a constexpr 
+// function.
 // This could make compilation fail on GCC, as it forbids directly using inline
 // asm inside a constexpr function. However, it allows calling a lambda
 // expression including the same asm.
 // The side effect is that the top of the stacktrace will not point to the
 // calling function, but to this anonymous lambda. This is still useful as the
 // full name of the lambda will typically include the name of the function that
-// calls CHECK() and the debugger will still break at the right line of code.
+// calls WINBASE_CHECK() and the debugger will still break at the right line of 
+// code.
 #if !defined(__clang__)
 #define WINBASE_WRAPPED_TRAP_SEQUENCE() \
   do {                                  \
@@ -607,8 +609,8 @@ class CheckOpResult {
 
 #if defined(OFFICIAL_BUILD) && defined(NDEBUG)
 
-// Make all CHECK functions discard their log strings to reduce code bloat, and
-// improve performance, for official release builds.
+// Make all WINBASE_CHECK functions discard their log strings to reduce code 
+// bloat, and improve performance, for official release builds.
 //
 // This is not calling BreakDebugger since this is called frequently, and
 // calling an out-of-line function instead of a noreturn inline macro prevents
@@ -617,10 +619,11 @@ class CheckOpResult {
   UNLIKELY(!(condition)) ? WINBASE_IMMEDIATE_CRASH() \
                          : WINBASE_EAT_STREAM_PARAMETERS
 
-// PCHECK includes the system error code, which is useful for determining
-// why the condition failed. In official builds, preserve only the error code
-// message so that it is available in crash reports. The stringified
-// condition and any additional stream parameters are dropped.
+// WINBASE_PCHECK includes the system error code, which is useful for 
+// determining why the condition failed. 
+// In official builds, preserve only the error code message so that it is 
+// available in crash reports. 
+// The stringified condition and any additional stream parameters are dropped.
 #define WINBASE_PCHECK(condition)                                  \
   WINBASE_LAZY_STREAM(WINBASE_PLOG_STREAM(FATAL), UNLIKELY(!(condition))); \
   WINBASE_EAT_STREAM_PARAMETERS
@@ -631,7 +634,7 @@ class CheckOpResult {
 
 #if defined(_PREFAST_)
 // Use __analysis_assume to tell the VC++ static analysis engine that
-// assert conditions are true, to suppress warnings.  The LAZY_STREAM
+// assert conditions are true, to suppress warnings.  The WINBASE_LAZY_STREAM
 // parameter doesn't reference 'condition' in /analyze builds because
 // this evaluation confuses /analyze. The !! before condition is because
 // __analysis_assume gets confused on some conditions:
@@ -907,11 +910,12 @@ const LogSeverity LOG_DCHECK = LOG_FATAL;
 #endif  // defined(_PREFAST_)
 
 // Helper macro for binary operators.
-// Don't use this macro directly in your code, use DCHECK_EQ et al below.
+// Don't use this macro directly in your code, use WINBASE_DCHECK_EQ et al 
+// below.
 // The 'switch' is used to prevent the 'else' from being ambiguous when the
 // macro is used in an 'if' clause such as:
 // if (a == 1)
-//   DCHECK_EQ(2, a);
+//   WINBASE_DCHECK_EQ(2, a);
 #if WINBASE_DCHECK_IS_ON()
 
 #define WINBASE_DCHECK_OP(name, op, val1, val2)                        \
@@ -927,13 +931,14 @@ const LogSeverity LOG_DCHECK = LOG_FATAL;
 
 #else  // WINBASE_DCHECK_IS_ON()
 
-// When DCHECKs aren't enabled, DCHECK_OP still needs to reference operator<<
-// overloads for |val1| and |val2| to avoid potential compiler warnings about
-// unused functions. For the same reason, it also compares |val1| and |val2|
-// using |op|.
+// When DCHECKs aren't enabled, WINBASE_DCHECK_OP still needs to reference 
+// operator<< overloads for |val1| and |val2| to avoid potential compiler 
+// warnings about unused functions. 
+// For the same reason, it also compares |val1| and |val2| using |op|.
 //
-// Note that the contract of DCHECK_EQ, etc is that arguments are only evaluated
-// once. Even though |val1| and |val2| appear twice in this version of the macro
+// Note that the contract of WINBASE_DCHECK_EQ, etc is that arguments are only 
+// evaluated once. 
+// Even though |val1| and |val2| appear twice in this version of the macro
 // expansion, this is OK, since the expression is never actually evaluated.
 #define WINBASE_DCHECK_OP(name, op, val1, val2)         \
   WINBASE_EAT_STREAM_PARAMETERS <<                      \
@@ -946,19 +951,19 @@ const LogSeverity LOG_DCHECK = LOG_FATAL;
 #endif  // DCHECK_IS_ON()
 
 // Equality/Inequality checks - compare two values, and log a
-// LOG_DCHECK message including the two values when the result is not
+// WINBASE_LOG_DCHECK message including the two values when the result is not
 // as expected.  The values must have operator<<(ostream, ...)
 // defined.
 //
 // You may append to the error message like so:
-//   DCHECK_NE(1, 2) << "The world must be ending!";
+//   WINBASE_DCHECK_NE(1, 2) << "The world must be ending!";
 //
 // We are very careful to ensure that each argument is evaluated exactly
 // once, and that anything which is legal to pass as a function argument is
 // legal here.  In particular, the arguments may be temporary expressions
 // which will end up being destroyed at the end of the apparent statement,
 // for example:
-//   DCHECK_EQ(string("abc")[1], 'b');
+//   WINBASE_DCHECK_EQ(string("abc")[1], 'b');
 //
 // WARNING: These don't compile correctly if one of the arguments is a pointer
 // and the other is NULL.  In new code, prefer nullptr instead.  To
@@ -984,21 +989,21 @@ const LogSeverity LOG_DCHECK = LOG_FATAL;
 // full message gets streamed to the appropriate destination.
 //
 // You shouldn't actually use LogMessage's constructor to log things,
-// though.  You should use the LOG() macro (and variants thereof)
+// though.  You should use the WINBASE_LOG() macro (and variants thereof)
 // above.
 class WINBASE_EXPORT LogMessage {
  public:
-  // Used for LOG(severity).
+  // Used for WINBASE_LOG(severity).
   LogMessage(const char* file, int line, LogSeverity severity);
 
-  // Used for CHECK().  Implied severity = LOG_FATAL.
+  // Used for WINBASE_CHECK().  Implied severity = LOG_FATAL.
   LogMessage(const char* file, int line, const char* condition);
 
-  // Used for CHECK_EQ(), etc. Takes ownership of the given string.
+  // Used for WINBASE_CHECK_EQ(), etc. Takes ownership of the given string.
   // Implied severity = LOG_FATAL.
   LogMessage(const char* file, int line, std::string* result);
 
-  // Used for DCHECK_EQ(), etc. Takes ownership of the given string.
+  // Used for WINBASE_DCHECK_EQ(), etc. Takes ownership of the given string.
   LogMessage(const char* file, int line, LogSeverity severity,
              std::string* result);
 
@@ -1130,9 +1135,9 @@ inline std::ostream& operator<<(std::ostream& out, const std::wstring& wstr) {
 }
 }  // namespace std
 
-// The NOTIMPLEMENTED() macro annotates codepaths which have not been
+// The WINBASE_NOTIMPLEMENTED() macro annotates codepaths which have not been
 // implemented yet. If output spam is a serious concern,
-// NOTIMPLEMENTED_LOG_ONCE can be used.
+// WINBASE_NOTIMPLEMENTED_LOG_ONCE can be used.
 
 #if defined(COMPILER_GCC)
 // On Linux, with GCC, we can use __PRETTY_FUNCTION__ to get the demangled name
