@@ -6,7 +6,7 @@
 
 #include "winbase\functional\bind.h"
 #include "winbase\process\process_iterator.h"
-///#include "winbase\task_scheduler\post_task.h"
+#include "winbase\task_scheduler\post_task.h"
 #include "winbase\time\time.h"
 
 namespace winbase {
@@ -39,17 +39,17 @@ void EnsureProcessTerminated(Process process) {
   if (process.WaitForExitWithTimeout(TimeDelta(), nullptr))
     return;
 
-  ///PostDelayedTaskWithTraits(
-  ///    WINBASE_FROM_HERE,
-  ///    {TaskPriority::BACKGROUND, TaskShutdownBehavior::CONTINUE_ON_SHUTDOWN},
-  ///    BindOnce(
-  ///        [](Process process) {
-  ///          if (process.WaitForExitWithTimeout(TimeDelta(), nullptr))
-  ///            return;
-  ///          process.Terminate(win::kProcessKilledExitCode, false);
-  ///        },
-  ///        std::move(process)),
-  ///    TimeDelta::FromSeconds(2));
+  PostDelayedTaskWithTraits(
+      WINBASE_FROM_HERE,
+      {TaskPriority::BACKGROUND, TaskShutdownBehavior::CONTINUE_ON_SHUTDOWN},
+      BindOnce(
+          [](Process process) {
+            if (process.WaitForExitWithTimeout(TimeDelta(), nullptr))
+              return;
+            process.Terminate(win::kProcessKilledExitCode, false);
+          },
+          std::move(process)),
+      TimeDelta::FromSeconds(2));
 }
 
 }  // namespace winbase
