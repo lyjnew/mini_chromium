@@ -124,7 +124,7 @@ class WINBASE_EXPORT RefCountedBase {
 #endif
   }
 
-#if defined(ARCH_CPU_64_BIT)
+#if defined(ARCH_CPU_64_BITS)
   void AddRefImpl() const;
 #else
   void AddRefImpl() const { ++ref_count_; }
